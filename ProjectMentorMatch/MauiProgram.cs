@@ -3,6 +3,18 @@ using Microsoft.Extensions.Logging;
 
 namespace ProjectMentorMatch
 {
+    // To push code to github.
+    // go to "Git" found on the top right corner.
+    // press "Commit or Stash".
+    // a tab named "Git Changes"" will pop up.
+    // Enter a message, make sure ur message gives context kung unsa imong gi add/ammend/delete.
+    // press "Commit All".
+    // Then go to "Git" again and push.
+
+    // To update ur code.
+    // Go to "Git" then press sync.0
+
+
     public static class MauiProgram
     {
         public static MauiApp CreateMauiApp()
