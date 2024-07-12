@@ -8,6 +8,7 @@
         <VerticalStackLayout
             Padding="30,0"
             Spacing="25">
+            
             <Image
                 Source="dotnet_bot.png"
                 HeightRequest="185"
@@ -31,6 +32,36 @@
                 SemanticProperties.Hint="Counts the number of times you click"
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
+            
+            <!-- DO NOT DELETE COMMENTS
+            
+            Use XAML Live Preview as guide
+            
+            Inserting an Image
+                <Image
+                    Source="dotnet_bot.png"
+                    HeightRequest="185"
+                    Aspect="AspectFit"
+                    SemanticProperties.Description="dot net bot in a race car number eight" />
+            
+            Inserting a Label
+                <Label
+                    Text="Hello, World!"
+                    Style="{StaticResource Headline}"
+                    SemanticProperties.HeadingLevel="Level1" />
+            
+            to put text on next line do "&#10;"
+            
+            Inserting Buttons
+                <Button
+                    x:Name="CounterBtn"
+                    Text="Click me" 
+                    SemanticProperties.Hint="Counts the number of times you click"
+                    Clicked="OnCounterClicked"
+                    HorizontalOptions="Fill" />
+            
+            -->
+            
         </VerticalStackLayout>
     </ScrollView>
 

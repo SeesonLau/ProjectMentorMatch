@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    public static class Database
+    public class Database
     {
         private static string connectionString = "Server=tcp:mentor-mentee.database.windows.net,1433;Initial Catalog=mentorMentee_DB;Persist Security Info=False;User ID=mentor_mentee;Password=(MSAD12345);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+        private static SqlConnection? connection;
         //TEST CONNECTION
         public static async Task<bool> TestConnectionAsync()
         {
@@ -27,7 +27,6 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
-
 
         //TEST TO INSERT DATA
         public static async Task<bool> InsertDataAsync(string dataToInsert)
@@ -51,5 +50,14 @@ namespace ProjectMentorMatch.Models
             }
         }
 
+        //Here lies the connection string that eveyone inherits
+        public SqlConnection GetConnection()
+        {
+            connection = new SqlConnection(connectionString);
+            return connection;
+        }
     }
+    
+  
 }
+

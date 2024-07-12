@@ -9,6 +9,9 @@
             InitializeComponent();
         }
 
+
+        //You can delete OnCounterClicked
+        //the function below is just an example
         private void OnCounterClicked(object sender, EventArgs e)
         {
             count++;
