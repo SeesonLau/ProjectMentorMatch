@@ -5,6 +5,22 @@
              x:Class="ProjectMentorMatch.App">
     <Application.Resources>
         <ResourceDictionary>
+
+            <!--Linear Gradient Background-->
+            <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0" />
+                <GradientStop Color="Green" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!--Radial Gradient Background-->
+            <LinearGradientBrush x:Key="RadialBackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="LightBlue" Offset="0.0" />
+                <GradientStop Color="White" Offset="1.0" />
+            </LinearGradientBrush>
+
+
+
+
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources/Styles/Colors.xaml" />
                 <ResourceDictionary Source="Resources/Styles/Styles.xaml" />
