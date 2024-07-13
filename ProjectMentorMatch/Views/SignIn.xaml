@@ -12,7 +12,7 @@
     </ContentPage.Background>-->
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="10">
+        <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center">
 
             
             <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
@@ -20,12 +20,13 @@
             <Label Text="Log In" Style="{StaticResource BodyBase}" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
             
             <!-- Email Field -->
-            <Label Text="     Email" Style="{StaticResource BodyBase}" />
+            
+            <Label Text="Email" Style="{StaticResource BodyBase}" />
             <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
 
             
             <!-- Password Field -->
-            <Label Text="     Password" Style="{StaticResource BodyBase}" />
+            <Label Text="Password" Style="{StaticResource BodyBase}" />
             <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
             <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
             

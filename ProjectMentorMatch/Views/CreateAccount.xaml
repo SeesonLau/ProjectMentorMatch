@@ -18,34 +18,40 @@
             <Label Text="Create Account" Style="{StaticResource BodyBase}" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
 
             <!--Lastname and Firstname Field-->
-            <StackLayout Spacing="20">
+            <StackLayout Spacing="20" HorizontalOptions="Center">
                 <StackLayout Orientation="Horizontal" Spacing="15">
                     <StackLayout Spacing="0">
-                        <Label Text="  Firstname" Style="{StaticResource BodyBase}"/>
-                        <Entry x:Name="FullnameEntry" Placeholder="Enter your firstname" WidthRequest="165"/>
+                        <Label Text="Firstname" Style="{StaticResource BodyBase}"/>
+                        <Entry x:Name="FullnameEntry" Placeholder="Enter firstname" WidthRequest="165"/>
                     </StackLayout>
 
                     <StackLayout Spacing="0">
-                        <Label Text=" Lastname" Style="{StaticResource BodyBase}"/>
-                        <Entry x:Name="LastnameEntry" Placeholder="Enter your lastname" WidthRequest="150"/>
+                        <Label Text="Lastname" Style="{StaticResource BodyBase}"/>
+                        <Entry x:Name="LastnameEntry" Placeholder="Enter lastname" WidthRequest="150"/>
                     </StackLayout>
                 </StackLayout>
             </StackLayout>
             <!-- Email Field -->
-            <Label Text="  Email" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="330" HorizontalOptions="Start"/>
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Email" Style="{StaticResource BodyBase}" />
+                <Entry x:Name="EmailEntry" Placeholder="Enter email" WidthRequest="330" HorizontalOptions="Start"/>
+            </StackLayout>
+  
 
             
 
             <!-- Password Field -->
-            <Label Text="  Password" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
-
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Password" Style="{StaticResource BodyBase}" />
+                <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
+            </StackLayout>
+            
             <!-- Confirm Password Field -->
-            <Label Text="  Confirm Password" Style="{StaticResource BodyBase}"/>
-            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm your password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
-
-            <!-- Sign Up Button -->
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Confirm Password" Style="{StaticResource BodyBase}"/>
+                <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
+            </StackLayout>
+            <!-- Sign Up Button -->    
             <Button Text="Sign Up" Clicked="OnSignUpClicked" WidthRequest="150" HeightRequest ="37" HorizontalOptions="Center"/>
 
             <!-- OR Separator -->
