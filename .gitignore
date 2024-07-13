@@ -361,3 +361,9 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+/ProjectMentorMatch/Views/CreateAccount.xaml.cs
+/ProjectMentorMatch/Views/SignIn.xaml
+/ProjectMentorMatch/MainPage.xaml
+/.gitignore
+/ProjectMentorMatch/Views/CreateAccount.xaml.cs
+/ProjectMentorMatch/Views/CreateAccount.xaml
