@@ -5,11 +5,93 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProjectMentorMatch"
     Shell.FlyoutBehavior="Disabled"
+      Shell.TabBarBackgroundColor="yellow"
+  Shell.FlyoutBackdrop="Orange"
+  Shell.BackgroundColor="red"
+  Shell.DisabledColor="Brown"
+  Shell.TabBarIsVisible="True"
     Title="ProjectMentorMatch">
 
-    <ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />
+
+    <Shell.FlyoutHeader>
+        <VerticalStackLayout>
+            <Label Text="Mentor-Mentee App" Style="{StaticResource Headline}" />
+            <Label Text="PRE-ALPHA BUILD v0.0.1" Style="{StaticResource SubHeadline}" FontSize="16" />
+            <Image BackgroundColor="Gray" Source="dotnet_bot.png"></Image>
+
+        </VerticalStackLayout>
+    </Shell.FlyoutHeader>
+
+    <Shell.FlyoutFooter>
+        <VerticalStackLayout>
+
+            <Image WidthRequest="100" Source="dotnet_bot.png"></Image>
+            <Label Text="Test" HorizontalTextAlignment="Center"></Label>
+
+        </VerticalStackLayout>
+    </Shell.FlyoutFooter>
+
+    <FlyoutItem  FlyoutDisplayOptions="AsMultipleItems">
+
+
+
+    </FlyoutItem>
+
+    <TabBar >
+        <Tab Title="Home" Icon="dotnet_bot.png">
+            <ShellContent
+    Title="Login/Signup"       
+    ContentTemplate="{DataTemplate local:MainPage}"
+     Icon="dotnet_bot.png"
+    Route="MainPage" />
+
+         
+
+
+            <ShellContent
+Title="TEST"
+ContentTemplate="{DataTemplate local:MainPage}"
+             Icon="dotnet_bot.png"
+Route="MainPage" />
+
+            <ShellContent
+    Title="Login/Signup"       
+    ContentTemplate="{DataTemplate local:MainPage}"
+     Icon="dotnet_bot.png"
+    Route="MainPage" />
+
+        </Tab>
+
+        <ShellContent
+    Title="Login/Signup"       
+    ContentTemplate="{DataTemplate local:MainPage}"
+     Icon="dotnet_bot.png"
+    Route="MainPage" />
+
+     
+
+
+        <ShellContent
+Title="TEST"
+ContentTemplate="{DataTemplate local:MainPage}"
+             Icon="dotnet_bot.png"
+Route="MainPage" />
+
+        <ShellContent
+    Title="Login/Signup"       
+    ContentTemplate="{DataTemplate local:MainPage}"
+     Icon="dotnet_bot.png"
+    Route="MainPage" />
+
+       
+
+        <ShellContent
+Title="TEST"
+ContentTemplate="{DataTemplate local:MainPage}"
+             Icon="dotnet_bot.png"
+Route="MainPage" />
+
+    </TabBar>
+
 
 </Shell>

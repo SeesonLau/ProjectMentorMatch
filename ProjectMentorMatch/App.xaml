@@ -8,7 +8,7 @@
 
             <!-- PUT COMMENTS ON WHAT THEY DO-->
             <!-- DONT DELETE COMMENTS -->
-            
+
             <!--Linear Gradient Background-->
             <LinearGradientBrush x:Key="BackgroundGradient" StartPoint="0,0" EndPoint="1,1">
                 <GradientStop Color="LightBlue" Offset="0.0" />
@@ -20,6 +20,26 @@
                 <GradientStop Color="LightBlue" Offset="0.0" />
                 <GradientStop Color="White" Offset="1.0" />
             </LinearGradientBrush>
+
+            <!-- Additional Linear Gradient Background -->
+            <LinearGradientBrush x:Key="SecondaryPageBackgroundGradient" StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="Pink" Offset="0.0" />
+                <GradientStop Color="Purple" Offset="1.0" />
+            </LinearGradientBrush>
+
+            <!-- Additional Radial Gradient Background -->
+            <RadialGradientBrush x:Key="SecondaryRadialBackgroundGradient" Center="0.5,0.5" Radius="0.5">
+                <GradientStop Color="Yellow" Offset="0.0" />
+                <GradientStop Color="Orange" Offset="1.0" />
+            </RadialGradientBrush>
+
+            <!-- Other Resources like Styles, Colors, etc. -->
+            <Color x:Key="PrimaryColor">#3498db</Color>
+            <Style x:Key="PrimaryButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="{StaticResource PrimaryColor}" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="CornerRadius" Value="5" />
+            </Style>
 
 
 
