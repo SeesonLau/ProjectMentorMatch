@@ -12,7 +12,7 @@
     </ContentPage.Background>-->
 
     <ScrollView>
-        <StackLayout Padding="20" Spacing="10" HorizontalOptions="Center">
+        <StackLayout Padding="20" Spacing="10">
 
             
             <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
