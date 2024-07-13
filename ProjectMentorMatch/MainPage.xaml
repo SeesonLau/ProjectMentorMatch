@@ -4,10 +4,6 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ProjectMentorMatch.MainPage">
 
-    <ContentPage.Background>
-        <!-- Reference the LinearGradientBrush defined in App.xaml -->
-        <StaticResource Key="BackgroundGradient" />
-    </ContentPage.Background>
 
 
     <ScrollView>
@@ -23,6 +19,7 @@
                 TextColor="#086EBB"
                 HorizontalOptions="Start"/>
             <BoxView HeightRequest="5" Color="Transparent" />
+            
             <Image
                 Source="logo_ni_siya.png"
                 HeightRequest="185"
@@ -42,7 +39,7 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />-->
 
-            <Button
+            <!--<Button
                 x:Name="CounterBtn"
                 Text="Click me" 
                 SemanticProperties.Hint="Counts the number of times you click"
