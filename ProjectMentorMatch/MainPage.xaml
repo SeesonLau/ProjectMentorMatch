@@ -61,16 +61,15 @@
                  SemanticProperties.HeadingLevel="Level1" 
                  FontSize="14"
                  TextColor="Black"
-                 HorizontalOptions="Start"/>
+                 />
 
             
             <Label
-                 Text="             Already have an account?"
+                 Text="Already have an account?"
                  Style="{StaticResource Headline}"
                  SemanticProperties.HeadingLevel="Level1" 
                  FontSize="15"
                  TextColor="Black"
-                 HorizontalOptions="Start"
                 FontAttributes="Bold"/>
 
             <Button

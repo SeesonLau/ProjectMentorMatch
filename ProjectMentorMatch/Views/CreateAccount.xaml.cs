@@ -7,7 +7,7 @@ namespace ProjectMentorMatch
     {
         public CreateAccount()
         {
-            InitializeComponent();
+             InitializeComponent();
         }
         private async void OnSignUpClicked(object sender, EventArgs e)
         {

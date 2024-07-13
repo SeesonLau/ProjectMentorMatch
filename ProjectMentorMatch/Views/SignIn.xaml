@@ -20,16 +20,17 @@
             <Label Text="Log In" Style="{StaticResource BodyBase}" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
             
             <!-- Email Field -->
-            <Label Text="     Email" Style="{StaticResource BodyBase}" />
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Email" Style="{StaticResource BodyBase}" />
             <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
-
+            </StackLayout>
             
             <!-- Password Field -->
-            <Label Text="     Password" Style="{StaticResource BodyBase}" />
+            <StackLayout HorizontalOptions="Center">
+                <Label Text="Password" Style="{StaticResource BodyBase}" />
             <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
             <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
-            
-            
+            </StackLayout>
             <!-- Login Button -->
             <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150" HeightRequest="37" HorizontalOptions="Center"/>
 
