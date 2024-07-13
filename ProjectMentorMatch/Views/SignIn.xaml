@@ -28,8 +28,7 @@
             <Label Text="     Password" Style="{StaticResource BodyBase}" />
             <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
             <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
-            
-            
+                  
             <!-- Login Button -->
             <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150" HeightRequest="37" HorizontalOptions="Center"/>
 

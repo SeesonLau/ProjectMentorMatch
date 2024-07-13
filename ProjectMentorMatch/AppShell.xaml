@@ -7,14 +7,12 @@
     Title="ProjectMentorMatch">
 
 
-   
+    <ShellContent
+        Title="Login/Signup"       
+        ContentTemplate="{DataTemplate local:MainPage}"
+        Icon="dotnet_bot.png"
+        Route="MainPage" />
 
 
-         
-
-
-  
-    
-       
 
 </Shell>
