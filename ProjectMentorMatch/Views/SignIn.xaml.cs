@@ -30,7 +30,12 @@ public partial class SignIn : ContentPage
             if (isUserFound)
             {
                 await DisplayAlert("Success", "Login successful.", "OK");
-                await Navigation.PushAsync(new Dashboard());
+                // Check if Application.Current is not null
+                if (Application.Current != null)
+                {
+                    Application.Current.MainPage = new AppShell();
+                    Shell.Current.GoToAsync("//MentorMatch");
+                }
             }
             else
             {
