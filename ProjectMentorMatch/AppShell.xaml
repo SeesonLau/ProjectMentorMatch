@@ -33,14 +33,18 @@
             <ShellContent ContentTemplate="{DataTemplate local:Notification}" Route="Notifications" />
         </Tab>
 
-   
+        <Tab Title="Chat" Icon="chat_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Chat}" Route="Chats" />
+        </Tab>
+
+    </TabBar>
 
 
-         
 
 
-  
-    
-       
+
+
+
+
 
 </Shell>
