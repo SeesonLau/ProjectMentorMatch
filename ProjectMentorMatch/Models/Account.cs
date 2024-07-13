@@ -86,5 +86,21 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
+
+        public bool LogIn()
+        {
+            string query = "SELECT COUNT(*) FROM CreateAccount WHERE email = @Email AND password = @Password";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Password", password);
+
+                connection.Open();
+                int userCount = (int)command.ExecuteScalar();
+
+                return userCount > 0;
+            }
+        }
     }
 }
