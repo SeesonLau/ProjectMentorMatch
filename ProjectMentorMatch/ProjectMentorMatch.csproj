@@ -44,7 +44,7 @@
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#F8F938" />
 	
 		<!-- Splash Screen -->
-		<MauiSplashScreen Include="Resources\Splash\splash.svg"  Color="#0696FE" BaseSize="328,328" />
+		<MauiSplashScreen Include="Resources\Splash\splash.svg" Color="#0696FE" BaseSize="328,328" />
 
 		<!-- Images -->
 		<MauiImage Include="Resources\Images\*" />
@@ -64,6 +64,12 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="CreateAccount.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	</ItemGroup>
 
 </Project>

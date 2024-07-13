@@ -23,6 +23,13 @@
 
             SemanticScreenReader.Announce(CounterBtn.Text);
         }
+
+        private async void OnCreateAccountClicked(object sender, EventArgs e)
+        {
+            // Navigate to Page1.xaml
+            await Navigation.PushAsync(new CreateAccount());
+
+        }
     }
 
 }

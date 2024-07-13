@@ -33,6 +33,15 @@
                 Clicked="OnCounterClicked"
                 HorizontalOptions="Fill" />
             
+            
+            <!-- PLACEHOLDER BUTTONS-->
+            <Button
+                x:Name="CreateAccountBtn"
+                Text="Create Account"
+                Clicked="OnCreateAccountClicked"
+                HorizontalOptions="Fill" />
+
+
             <!-- DO NOT DELETE COMMENTS
             
             Use XAML Live Preview as guide
