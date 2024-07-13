@@ -58,6 +58,16 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <AndroidResource Remove="Resources\Images\NewFolder\**" />
+	  <Compile Remove="Resources\Images\NewFolder\**" />
+	  <EmbeddedResource Remove="Resources\Images\NewFolder\**" />
+	  <MauiCss Remove="Resources\Images\NewFolder\**" />
+	  <MauiImage Remove="Resources\Images\NewFolder\**" />
+	  <MauiXaml Remove="Resources\Images\NewFolder\**" />
+	  <None Remove="Resources\Images\NewFolder\**" />
+	</ItemGroup>
+
+	<ItemGroup>
 		<PackageReference Include="Azure.Identity" Version="1.12.0" />
 		<PackageReference Include="CommunityToolkit.Maui" Version="9.0.2" />
 		<PackageReference Include="Microsoft.Data.SqlClient" Version="5.2.1" />
@@ -68,6 +78,9 @@
 
 	<ItemGroup>
 	  <MauiXaml Update="Views\CreateAccount.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\HomeScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\SignIn.xaml">

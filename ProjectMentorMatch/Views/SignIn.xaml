@@ -3,26 +3,42 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.SignIn"
              Title="SignIn">
+
+    <!--<ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+            <GradientStop Color="LightBlue" Offset="0.0" />
+            <GradientStop Color="LightSkyBlue" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>-->
+
     <ScrollView>
-        <StackLayout Padding="20">
+        <StackLayout Padding="20" Spacing="10">
 
+            
+            <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+
+            <Label Text="Log In" Style="{StaticResource BodyBase}" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
+            
             <!-- Email Field -->
-            <Label Text="Email" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="EmailEntry" Placeholder="Enter your email" />
+            <Label Text="     Email" Style="{StaticResource BodyBase}" />
+            <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
 
+            
             <!-- Password Field -->
-            <Label Text="Password" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" />
-
+            <Label Text="     Password" Style="{StaticResource BodyBase}" />
+            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
+            <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
+            
+            
             <!-- Login Button -->
-            <Button Text="Login" Clicked="OnLoginClicked" />
+            <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150" HeightRequest="37" HorizontalOptions="Center"/>
 
             <!-- OR Separator -->
-            <Label Text="OR" HorizontalOptions="Center" VerticalOptions="Center" />
+            <Label Text="OR" Padding ="5" HorizontalOptions="Center" VerticalOptions="Center" />
 
             <!-- Sign Up Button -->
-            <Button Text="Sign Up" Clicked="OnSignUpClicked" />
-
+            <Button Text="Sign Up" Clicked="OnSignUpClicked" WidthRequest="150" HorizontalOptions="Center" HeightRequest="37" TextColor="Black" BackgroundColor="LightBlue"/>
+            
         </StackLayout>
     </ScrollView>
 </ContentPage>
