@@ -7,29 +7,7 @@
     Title="ProjectMentorMatch">
 
 
-    <Shell.FlyoutHeader>
-        <VerticalStackLayout>
-            <Label Text="Mentor-Mentee App" Style="{StaticResource Headline}" />
-            <Label Text="PRE-ALPHA BUILD v0.0.1" Style="{StaticResource SubHeadline}" FontSize="16" />
-            <Image BackgroundColor="Gray" Source="dotnet_bot.png"></Image>
-
-        </VerticalStackLayout>
-    </Shell.FlyoutHeader>
-
-    <Shell.FlyoutFooter>
-        <VerticalStackLayout>
-
-            <Image WidthRequest="100" Source="dotnet_bot.png"></Image>
-            <Label Text="Test" HorizontalTextAlignment="Center"></Label>
-
-        </VerticalStackLayout>
-    </Shell.FlyoutFooter>
-
-    <FlyoutItem  FlyoutDisplayOptions="AsMultipleItems">
-
-
-
-    </FlyoutItem>
+   
 
 
          

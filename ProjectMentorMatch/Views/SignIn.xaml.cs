@@ -1,5 +1,6 @@
 using Microsoft.Maui.Controls;
 using ProjectMentorMatch.Models;
+using ProjectMentorMatch.Views;
 using System;
 
 namespace ProjectMentorMatch;
@@ -29,6 +30,7 @@ public partial class SignIn : ContentPage
             if (isUserFound)
             {
                 await DisplayAlert("Success", "Login successful.", "OK");
+                await Navigation.PushAsync(new Dashboard());
             }
             else
             {
