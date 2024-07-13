@@ -5,11 +5,10 @@
              x:Class="ProjectMentorMatch.MainPage">
 
 
-
     <ScrollView>
         <VerticalStackLayout
             Padding="30,0"
-            Spacing="15">
+            Spacing="25">
     
             <Label
                 Text="Join today!"
@@ -18,7 +17,6 @@
                 FontSize="25"
                 TextColor="#086EBB"
                 HorizontalOptions="Start"/>
-            <BoxView HeightRequest="5" Color="Transparent" />
             
             <Image
                 Source="logo_ni_siya.png"
@@ -39,7 +37,7 @@
                 SemanticProperties.HeadingLevel="Level2"
                 SemanticProperties.Description="Welcome to dot net Multi platform App U I" />-->
 
-            <!--<Button
+           <!-- <Button
                 x:Name="CounterBtn"
                 Text="Click me" 
                 SemanticProperties.Hint="Counts the number of times you click"
@@ -48,7 +46,7 @@
             
             
             <!-- PLACEHOLDER BUTTONS-->
-            <BoxView HeightRequest="15" Color="Transparent" />
+         
             <Button
                 x:Name="CreateAccountBtn"
                 Text="Create Account"
@@ -65,7 +63,7 @@
                  TextColor="Black"
                  HorizontalOptions="Start"/>
 
-            <BoxView HeightRequest="30" Color="Transparent" />
+            
             <Label
                  Text="             Already have an account?"
                  Style="{StaticResource Headline}"
