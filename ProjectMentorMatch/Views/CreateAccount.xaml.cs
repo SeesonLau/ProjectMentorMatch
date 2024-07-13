@@ -36,13 +36,13 @@ namespace ProjectMentorMatch
             }
             catch (Exception ex)
             {
-                await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+                await DisplayAlert("Error", $"{ex.Message}", "OK");
             }
         }
 
-        private void OnLoginClicked(object sender, EventArgs e)
+        private async void OnLoginClicked(object sender, EventArgs e)
         {
-
+            await Navigation.PushAsync(new SignIn());
         }
 
     }
