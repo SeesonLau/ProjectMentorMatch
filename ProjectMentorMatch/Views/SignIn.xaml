@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjectMentorMatch.CreateAccount"
-             Title="CreateAccount">
+             x:Class="ProjectMentorMatch.SignIn"
+             Title="SignIn">
     <ScrollView>
         <StackLayout Padding="20">
 
@@ -10,26 +10,18 @@
             <Label Text="Email" Style="{StaticResource BodyBase}" />
             <Entry x:Name="EmailEntry" Placeholder="Enter your email" />
 
-            <!-- Full Name Field -->
-            <Label Text="Fullname" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="FullnameEntry" Placeholder="Enter your full name" />
-
             <!-- Password Field -->
             <Label Text="Password" Style="{StaticResource BodyBase}" />
             <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" />
 
-            <!-- Confirm Password Field -->
-            <Label Text="Confirm Password" Style="{StaticResource BodyBase}" />
-            <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm your password" IsPassword="True" />
-
-            <!-- Sign Up Button -->
-            <Button Text="Sign Up" Clicked="OnSignUpClicked" />
+            <!-- Login Button -->
+            <Button Text="Login" Clicked="OnLoginClicked" />
 
             <!-- OR Separator -->
             <Label Text="OR" HorizontalOptions="Center" VerticalOptions="Center" />
 
-            <!-- Login Button -->
-            <Button Text="Login" Clicked="OnLoginClicked" />
+            <!-- Sign Up Button -->
+            <Button Text="Sign Up" Clicked="OnSignUpClicked" />
 
         </StackLayout>
     </ScrollView>

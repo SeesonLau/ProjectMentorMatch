@@ -41,6 +41,12 @@
                 Clicked="OnCreateAccountClicked"
                 HorizontalOptions="Fill" />
 
+            <Button
+                x:Name="LoginBtn"
+                Text="Log In"
+                Clicked="OnLoginClicked"
+                HorizontalOptions="Fill" />
+
 
             <!-- DO NOT DELETE COMMENTS
             
