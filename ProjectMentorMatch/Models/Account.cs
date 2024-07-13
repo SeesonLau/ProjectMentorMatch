@@ -72,6 +72,10 @@ namespace ProjectMentorMatch.Models
         */
         public void SignUp()
         {
+            if (CheckEmailIsTaken(email))
+            {
+                throw new Exception("Email already exists. Please use a different email.");
+            }
 
             string query = "INSERT INTO CreateAccount (userID, fullname, email, password) VALUES (@UserID, @Fullname, @Email, @Password)";
             using (var connection = GetConnection())
@@ -100,6 +104,21 @@ namespace ProjectMentorMatch.Models
                 int userCount = (int)command.ExecuteScalar();
 
                 return userCount > 0;
+            }
+        }
+
+        public bool CheckEmailIsTaken(string email)
+        {
+            string query = "SELECT COUNT(*) FROM CreateAccount WHERE email = @Email";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@Email", email);
+
+                connection.Open();
+                int emailCount = (int)command.ExecuteScalar();
+
+                return emailCount > 0;
             }
         }
     }
