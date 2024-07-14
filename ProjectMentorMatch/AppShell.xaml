@@ -36,6 +36,9 @@
         <Tab Title="Chat" Icon="chat_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:Chat}" Route="Chats" />
         </Tab>
+        <Tab Title="Analytics" Icon="analytics.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Analytics}" Route="Analytics" />
+        </Tab>
 
     </TabBar>
 

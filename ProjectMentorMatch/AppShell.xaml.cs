@@ -19,6 +19,7 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(Profile), typeof(Profile));
             Routing.RegisterRoute(nameof(Search), typeof(SearchBar));
             Routing.RegisterRoute(nameof(SignIn), typeof(SignIn));
+            Routing.RegisterRoute(nameof(Analytics), typeof(Analytics));
         }
     }
 }

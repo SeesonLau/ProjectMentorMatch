@@ -77,6 +77,9 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <MauiXaml Update="Views\Analytics.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\Chat.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
