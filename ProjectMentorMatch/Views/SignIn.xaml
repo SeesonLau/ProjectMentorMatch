@@ -17,17 +17,17 @@
             
             <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
 
-            <Label Text="Log In" Style="{StaticResource BodyBase}" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
+            <Label Text="Log In"  HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
             
             <!-- Email Field -->
             <StackLayout HorizontalOptions="Center">
-                <Label Text="Email" Style="{StaticResource BodyBase}" />
+                <Label Text="Email"  />
             <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
             </StackLayout>
             
             <!-- Password Field -->
             <StackLayout HorizontalOptions="Center">
-                <Label Text="Password" Style="{StaticResource BodyBase}" />
+                <Label Text="Password"  />
             <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
             <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
             </StackLayout>

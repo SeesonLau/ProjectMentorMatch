@@ -34,7 +34,7 @@ public partial class SignIn : ContentPage
                 if (Application.Current != null)
                 {
                     Application.Current.MainPage = new AppShell();
-                    Shell.Current.GoToAsync("//MentorMatch");
+                    await Shell.Current.GoToAsync("//MentorMatch");
                 }
             }
             else
