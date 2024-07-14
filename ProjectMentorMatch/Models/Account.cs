@@ -7,69 +7,43 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    internal class Account : Database
+    public class Account : Database
     {
         RandomID randomID = new RandomID();
 
         private int userID = RandomID.userID();
-        private string fullname;
-        private string email;
-        private string password;
+        private string? fullname;
+        private string? email;
+        private string? password;
 
-
-        //private static string connectionString = "Server=tcp:mentor-mentee.database.windows.net,1433;Initial Catalog=mentorMentee_DB;Persist Security Info=False;User ID=mentor_mentee;Password=(MSAD12345);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
-
+        /*
         public Account(string fullname, string email, string password)
         {
             this.fullname = fullname;
             this.email = email;
             this.password = password;
-        }
-
-        public int UserID
+        }*/
+        public int GetUserID()
         {
-            get { return userID; }
-            set { userID = value; }
+            return userID;
         }
-
-        public string Fullname
+        public string GetFullname()
         {
-            get { return fullname; }
-            set { fullname = value; }
+            return fullname;
         }
-
-        public string Email
+        public string GetEmail()
         {
-            get { return email; }
-            set { email = value; }
+            return email;
         }
-
-        public string Password
+        public string GetPassword()
         {
-            get { return password; }
-            set { password = value; }
+            return password;
         }
-        /*
-        public void SignUp()
-        {
+        public void SetUserID(int userID) {this.userID = userID;}
+        public void SetFullname(string fullname) {this.fullname = fullname;}  
+        public void SetEmail(string email) {this.email = email;}
+        public void SetPassword(string password) {this.password = password;}
 
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                string query = "INSERT INTO CreateAccount (userID, fullname, email, password) VALUES (@UserID, @Fullname, @Email, @Password)";
-
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@UserID", userID);
-                    command.Parameters.AddWithValue("@Fullname", fullname);
-                    command.Parameters.AddWithValue("@Email", email);
-                    command.Parameters.AddWithValue("@Password", password);
-
-                    connection.Open();
-                    command.ExecuteNonQuery();
-                }
-            }
-        }
-        */
         public void SignUp()
         {
             if (CheckEmailIsTaken(email))

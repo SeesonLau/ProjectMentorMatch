@@ -30,7 +30,12 @@ namespace ProjectMentorMatch
 
             try
             {
-                Account account = new Account(fullname, email, password);
+                //Account account = new Account(fullname, email, password);
+                Account account = new Account();
+                account.SetFullname(fullname);
+                account.SetPassword(password);
+                account.SetEmail(email);
+
                 account.SignUp();
                 await DisplayAlert("Success", "Account created successfully.", "OK");
             }

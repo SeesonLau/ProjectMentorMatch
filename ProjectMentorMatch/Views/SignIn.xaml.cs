@@ -24,7 +24,15 @@ public partial class SignIn : ContentPage
 
         try
         {
-            Account account = new Account("", email, password);
+            //Account account = new Account("", email, password);
+            Account account = new Account();
+            account.SetEmail(email);
+            account.SetPassword(password);
+
+            //AYAW MO PAG CHAT GPT
+            //PAG KAT ON INTAWN MOG CODE
+            // -SISON
+
             bool isUserFound = account.LogIn();
 
             if (isUserFound)

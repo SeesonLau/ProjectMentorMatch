@@ -4,21 +4,34 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProjectMentorMatch.Views"
-    Shell.TabBarBackgroundColor="yellow"
+    Shell.TabBarBackgroundColor="#0696FE"
     Shell.FlyoutBackdrop="Orange"
-    Shell.BackgroundColor="red"
+    Shell.BackgroundColor="#086EBB"
     Shell.DisabledColor="Brown"
     Shell.FlyoutBehavior="Disabled"
-    Title="ProjectMentorMatch">
+    
 
+    
+    
+    Title="ProjectMentorMatch">
+<!-- 
+    #75A4DE
+    #0696FE
+    #086EBB
+    #F8F938
+    #FDDB19
+    #F79E1B
+    -->
     <Shell.Resources>
         <Style TargetType="Shell">
             <Setter Property="Shell.TabBarBackgroundColor" Value="#D9D9D9" />
             <Setter Property="Shell.TabBarForegroundColor" Value="Blue" />
             <Setter Property="Shell.TabBarUnselectedColor" Value="DarkBlue" />
-            <Setter Property="Shell.TabBarTitleColor" Value="#515151" />
+            <Setter Property="Shell.TabBarTitleColor" Value="#F79E1B" />
         </Style>
     </Shell.Resources>
+    
+    
     <!-- Tab bar: ShellNavigation -->
     <TabBar>
         <Tab Title="Profile" Icon="profile_icon.png">
@@ -39,15 +52,5 @@
         <Tab Title="Analytics" Icon="analytics.png">
             <ShellContent ContentTemplate="{DataTemplate local:Analytics}" Route="Analytics" />
         </Tab>
-
     </TabBar>
-
-
-
-
-
-
-
-
-
 </Shell>
