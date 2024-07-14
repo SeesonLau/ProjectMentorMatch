@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    public class Notification : Account
+    public class Settings : ProfileInformation
     {
     }
 }

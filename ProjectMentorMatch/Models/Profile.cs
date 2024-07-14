@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    class Profile
+    public class Profile : Account
     {
     }
 }
