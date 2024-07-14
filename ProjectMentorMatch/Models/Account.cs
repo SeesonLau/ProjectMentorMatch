@@ -46,7 +46,14 @@ namespace ProjectMentorMatch.Models
 
         public void SignUp()
         {
-            if (CheckEmailIsTaken(email))
+            // POSSIBLE NULL REFERENCE example
+            /*if (CheckEmailIsTaken(email))
+            {
+                throw new Exception("Email already exists. Please use a different email.");
+            }*/
+
+            // CORRECT WAY
+            if (email != null && CheckEmailIsTaken(email))
             {
                 throw new Exception("Email already exists. Please use a different email.");
             }

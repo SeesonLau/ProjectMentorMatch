@@ -8,11 +8,11 @@ namespace ProjectMentorMatch.Models
 {
     public class ProfileInformation : Profile
     {
-        private int courseID;
-        private int subjectTaughtID;
-        private int subjectTakenID;
-        private int scheduleID;
-        private int addressID;
+        private int courseID = RandomID.courseID();
+        private int subjectTaughtID = RandomID.subject_taughtID();
+        private int subjectTakenID = RandomID.subject_takenID();
+        private int scheduleID = RandomID.schedID();
+        private int addressID = RandomID.addressID();
 
         private string? subjectTaught;
         private string? subjectTaken;

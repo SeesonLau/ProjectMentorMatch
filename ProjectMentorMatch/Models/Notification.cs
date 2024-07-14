@@ -8,7 +8,7 @@ namespace ProjectMentorMatch.Models
 {
     public class Notification : Account
     {
-        private int notificationID;
+        private int notificationID = RandomID.notificationID();
         private string? notificationText; //notification text needs to be automatic. Make resources for the default texts that is frequently used.
         private int userID;
 

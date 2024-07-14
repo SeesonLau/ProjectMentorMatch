@@ -19,13 +19,18 @@
     sessionID()         : 300000 - 399999
     subject_taken()     : 260000 - 299999
     subject_taughtID()  : 200000 - 259999
-    courseID()          : 160000 - 199999
-    schedID()           : 100000 - 159999
+    courseID()          : 170000 - 199999
+    schedID()           : 140000 - 169999
+    addressID()         : 100000 - 139999
      
      */
     public class RandomID 
     {
         private static readonly Random random = new Random();
+        public static int addressID()
+        {
+            return random.Next(100000, 139999);
+        }
 
         public static int userID()
         {
@@ -37,11 +42,11 @@
         }
         public static int schedID()
         {
-            return random.Next(100000, 159999);
+            return random.Next(140000, 169999);
         }
         public static int courseID()
         {
-            return random.Next(160000, 199999);
+            return random.Next(170000, 199999);
         }
         public static int subject_taughtID()
         {

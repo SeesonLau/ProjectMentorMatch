@@ -8,7 +8,7 @@ namespace ProjectMentorMatch.Models
 {
     public class Analytics : ProfileInformation
     {
-        private int analyticsID;
+        private int analyticsID = RandomID.analyticsID();
         private int brainReact;
         private double points;
         private int profileID;

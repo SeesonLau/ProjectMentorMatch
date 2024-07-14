@@ -8,7 +8,7 @@ namespace ProjectMentorMatch.Models
 {
     public class Booking : ProfileInformation
     {
-        private int bookingID;
+        private int bookingID = RandomID.bookingID();
         private string? modeOfLearning;
         private int profileID;
 

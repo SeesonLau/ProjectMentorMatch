@@ -8,7 +8,7 @@ namespace ProjectMentorMatch.Models
 {
     public class Chat : Account
     {
-        private int messageID; //serves like a channel
+        private int messageID = RandomID.messageID(); //serves like a channel
         private string? messageText;
         private int userIDSender;
         private int userIDReceiver;
