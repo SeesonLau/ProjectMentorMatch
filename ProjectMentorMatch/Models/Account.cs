@@ -27,15 +27,15 @@ namespace ProjectMentorMatch.Models
         {
             return userID;
         }
-        public string GetFullname()
+        public string? GetFullname()
         {
             return fullname;
         }
-        public string GetEmail()
+        public string? GetEmail()
         {
             return email;
         }
-        public string GetPassword()
+        public string? GetPassword()
         {
             return password;
         }

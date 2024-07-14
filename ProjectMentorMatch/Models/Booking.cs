@@ -20,10 +20,10 @@ namespace ProjectMentorMatch.Models
         {
             return modeOfLearning;
         }
-        public int GetProfileID()
+        /*public int GetProfileID()
         {
             return profileID;
-        }
+        }*/
         public void SetProfileID(string modeOfLearning)
         {
             this.modeOfLearning = modeOfLearning;
