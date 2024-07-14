@@ -2,7 +2,7 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-    public List<CarouselView> CarouselViews { get; set; }
+    public List<CarouselView> CarouselViews { get; set; } = new List<CarouselView>();
 
     public Dashboard()
 	{
@@ -28,8 +28,8 @@ public partial class Dashboard : ContentPage
 
     public class CarouselItem
     {
-        public string ImageSource { get; set; }
-        public string Title { get; set; }
+        public string ImageSource { get; set; } = string.Empty;
+        public string Title { get; set; } = string.Empty;
     }
 }
 
