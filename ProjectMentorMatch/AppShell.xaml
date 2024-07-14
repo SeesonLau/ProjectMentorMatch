@@ -7,6 +7,14 @@
     Shell.FlyoutBehavior="Disabled"
     Title="ProjectMentorMatch">
 
+    <Shell.Resources>
+        <Style TargetType="Shell">
+            <Setter Property="Shell.TabBarBackgroundColor" Value="#D9D9D9" />
+            <Setter Property="Shell.TabBarForegroundColor" Value="Blue" />
+            <Setter Property="Shell.TabBarUnselectedColor" Value="DarkBlue" />
+            <Setter Property="Shell.TabBarTitleColor" Value="#515151" />
+        </Style>
+    </Shell.Resources>
     <!-- Tab bar: ShellNavigation -->
     <TabBar>
         <Tab Title="Profile" Icon="profile_icon.png">

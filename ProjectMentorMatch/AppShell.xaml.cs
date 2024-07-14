@@ -13,7 +13,6 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(CreateAccount), typeof(CreateAccount));
             Routing.RegisterRoute(nameof(HomeScreen), typeof(HomeScreen));
             Routing.RegisterRoute(nameof(SignIn), typeof(SignIn));
-            Routing.RegisterRoute(nameof(Dashboard), typeof(Dashboard));
         }
     }
 }
