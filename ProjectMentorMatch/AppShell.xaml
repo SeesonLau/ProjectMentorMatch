@@ -31,26 +31,46 @@
         </Style>
     </Shell.Resources>
     
-    
+
     <!-- Tab bar: ShellNavigation -->
+    
     <TabBar>
-        <Tab Title="Profile" Icon="profile_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Profile}" Route="Profile" />
+        <Tab Title="Profile" 
+             Icon="profile_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Profile}" 
+                          Route="Profile" />
         </Tab>
-        <Tab Title="Search" Icon="search_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Search}" Route="Search" />
+        
+        <Tab Title="Search" 
+             Icon="search_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Search}" 
+                          Route="Search" />
         </Tab>
+        
         <Tab Icon="circle_logo.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Dashboard}" Route="MentorMatch" />
+            <ShellContent ContentTemplate="{DataTemplate local:Dashboard}" 
+                          Route="MentorMatch" />
         </Tab>
-        <Tab Title="Notification" Icon="notification_logo.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Notification}" Route="Notifications" />
+        
+        <Tab Title="Notification" 
+             Icon="notification_logo.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Notification}" 
+                          Route="Notifications" />
         </Tab>
-        <Tab Title="Chat" Icon="chat_icon.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Chat}" Route="Chats" />
+        
+        <Tab Title="Chat" 
+             Icon="chat_icon.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Chat}" 
+                          Route="Chats" />
         </Tab>
-        <Tab Title="Analytics" Icon="analytics.png">
-            <ShellContent ContentTemplate="{DataTemplate local:Analytics}" Route="Analytics" />
+        
+        <Tab Title="Analytics" 
+             Icon="analytics.png">
+            <ShellContent ContentTemplate="{DataTemplate local:Analytics}" 
+                          Route="Analytics" />
         </Tab>
-    </TabBar>
+    </TabBar> 
 </Shell>
+
+    
+    
