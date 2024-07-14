@@ -20,7 +20,7 @@
                                    HeightRequest="200"
                                    WidthRequest="150"/>
                         <Label Text="{Binding Title}"
-                                   HorizontalOptions="Center"
+                                    HorizontalOptions="Center"
                                    VerticalOptions="End"/>
                     </Grid>
                 </DataTemplate>
