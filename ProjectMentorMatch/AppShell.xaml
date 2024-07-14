@@ -4,6 +4,10 @@
     xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
     xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
     xmlns:local="clr-namespace:ProjectMentorMatch.Views"
+    Shell.TabBarBackgroundColor="yellow"
+    Shell.FlyoutBackdrop="Orange"
+    Shell.BackgroundColor="red"
+    Shell.DisabledColor="Brown"
     Shell.FlyoutBehavior="Disabled"
     Title="ProjectMentorMatch">
 
