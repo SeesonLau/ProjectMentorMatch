@@ -3,8 +3,13 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="ProjectMentorMatch.MainPage">
-    
-    
+
+    <!--Status Bar Color-->
+    <ContentPage.Behaviors>
+        <toolkit:StatusBarBehavior StatusBarColor="#086EBB" StatusBarStyle="LightContent" />
+    </ContentPage.Behaviors>
+
+
     <!--BUG!: THE APP CRASHES WHEN THE BUTTONS ARE CLICKED IN RELEASE MODE AKA PUBLISHING IT TO APK FILE, BUT IT WORKS FINE IN DEBUG MODE.-->
 
     <!--BUGGED FIXED: DO NOT USE STATICRESOURCE BODYBASE IN XAML CODE, DONT WORRY IT DOSENT AFFECT THE STYLING, -LK -->

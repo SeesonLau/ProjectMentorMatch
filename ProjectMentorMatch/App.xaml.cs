@@ -1,4 +1,6 @@
-﻿namespace ProjectMentorMatch
+﻿using CommunityToolkit.Maui.Core;
+
+namespace ProjectMentorMatch
 {
     public partial class App : Application
     {
