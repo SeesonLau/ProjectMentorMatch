@@ -47,7 +47,7 @@
                           Route="Search" />
         </Tab>
         
-        <Tab Icon="circle_logo.png">
+        <Tab Icon="dashboard_icon.png">
             <ShellContent ContentTemplate="{DataTemplate local:Dashboard}" 
                           Route="MentorMatch" />
         </Tab>
