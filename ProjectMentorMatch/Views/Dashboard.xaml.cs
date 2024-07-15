@@ -11,7 +11,10 @@ public partial class Dashboard : ContentPage
 
     }
 
-    
+    private async void OnFilterButtonClicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Filter());
+    }
     private void InitializeCarousel()
     {
         var items = new List<CarouselItem>

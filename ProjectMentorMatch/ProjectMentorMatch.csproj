@@ -123,6 +123,9 @@
 	  <MauiXaml Update="Views\Dashboard.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Views\Filter.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Views\HomeScreen.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

@@ -4,9 +4,11 @@
              x:Class="ProjectMentorMatch.Views.Dashboard"
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Core.Carousel;assembly=Syncfusion.Maui.Core"
              Title="MentorMatch">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
+    </ContentPage.ToolbarItems>
 
-
-      <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
+    <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <Grid>

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectMentorMatch.Views.Filter"
+             Title="Filter">
+    <ScrollView>
+        <StackLayout Spacing="20" Padding="10">
+            <Label Text="Narrow your search" FontSize="Large" FontAttributes="Bold" />
+
+            <!-- Gender Filter -->
+            <Label Text="Gender" FontSize="Medium" FontAttributes="Bold" />
+            <StackLayout Spacing="25" Orientation="Horizontal" HorizontalOptions="Start">
+                <RadioButton Content="Male" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                <RadioButton Content="Female" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                <RadioButton Content="Non-binary" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+            </StackLayout>
+
+            <!-- Subject Filter -->
+            <Label Text="Subject" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" />
+            <FlexLayout Wrap="Wrap" JustifyContent="Start">
+                <Button Text="Calculus" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="History" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Physics" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Programming" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Biology" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="English" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Chemistry" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Algebra" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="More" Style="{StaticResource ActionChipStyle}" Clicked="OnMoreSubjectsClicked" />
+            </FlexLayout>
+
+            <!-- Day Filter -->
+            <Label Text="Day" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" />
+            <FlexLayout Wrap="Wrap" JustifyContent="Start">
+                <Button Text="Monday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Tuesday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Wednesday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Thursday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Friday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Saturday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+                <Button Text="Sunday" Style="{StaticResource ActionChipStyle}" Clicked="OnChipClicked" />
+            </FlexLayout>
+
+            <!-- Preferred Setup Filter -->
+            <Label Text="Preferred Setup" FontSize="Medium" FontAttributes="Bold" Margin="0,10,0,0" />
+            <StackLayout Spacing="50" Orientation="Horizontal" HorizontalOptions="Start">
+                <RadioButton Content="Face to Face" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+                <RadioButton Content="Online" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+            </StackLayout>
+
+            <StackLayout Spacing="56" Orientation="Horizontal" HorizontalOptions="Start">
+                <RadioButton Content="One-on-one" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+                <RadioButton Content="Group" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+            </StackLayout>
+        </StackLayout>
+        </ScrollView>
+</ContentPage>
