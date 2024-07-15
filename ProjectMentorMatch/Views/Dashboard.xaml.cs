@@ -1,41 +1,55 @@
+using ProjectMentorMatch.Models;
+
 namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-    public List<CarouselView> CarouselViews { get; set; } = new List<CarouselView>();
+
+    // INSTRUCTIONS HOW TO BIND DATA: 
+    // 0. Make sure that the attributes/fields are public from the classes and initialized it in GET AND SET in order the binding to recognize it as a property in the xaml
+    // 1. Create a List<> to initilize the attributes from the classes you want to bind
+    // 2. Call the data from the database
+    // 3. Set up the binding attributes to be called in the xaml
+    // 4. Bind the data to the xaml
+
+
+
+    //  List to call the attributes from the Account.cs
+    public List<Account> CarouselItems { get; set; } = new List<Account>();
+
+    // Add profile list once we had the profile page
 
     public Dashboard()
 	{
 		InitializeComponent();
-        InitializeCarousel();
-
+        InitializeCarouselAsync();
     }
 
     private async void OnFilterButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Filter());
     }
-    private void InitializeCarousel()
+    private async Task InitializeCarouselAsync()
     {
-        var items = new List<CarouselItem>
+        //Call the accounts from the database
+        var accounts = await Task.Run(() => Account.GetAllAccounts());
+
+        foreach (var account in accounts)
+        {
+            CarouselItems.Add(new Account
             {
-                // will cause an error if the image file name is in uppercase
-                new CarouselItem { ImageSource = "search_icon.png", Title = "Item 1" },
-                new CarouselItem { ImageSource = "chat_icon.png", Title = "Item 2" },
-                new CarouselItem { ImageSource = "dotnet_bot.png", Title = "Item 3" },
-                new CarouselItem { ImageSource = "analytics.png", Title = "Item 4" },
-            };
+                // Setting up the binding attribute name to be called in the xaml
+                fullname = account.GetFullname(),
+                email = account.GetEmail(),
+            }
 
-        carouselView.ItemsSource = items;
+            // Once we have profile page, we can add the other attributes to the list AKA CarouselItems.Add(new Profile
+            );
+
+        }
+
+        // Binding the accounts to the xaml carouselview
+        carouselView.ItemsSource = CarouselItems;
     }
 
-    public class CarouselItem
-    {
-        public string ImageSource { get; set; } = string.Empty;
-        public string Title { get; set; } = string.Empty;
-    }
 }
-
-	
-
-	

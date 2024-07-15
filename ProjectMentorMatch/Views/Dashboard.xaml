@@ -2,34 +2,97 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.Views.Dashboard"
-             xmlns:carousel="clr-namespace:Syncfusion.Maui.Core.Carousel;assembly=Syncfusion.Maui.Core"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Core.Carousel;assembly=Syncfusion.Maui.Core"        
              Title="MentorMatch">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
     </ContentPage.ToolbarItems>
 
+
     <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <Grid>
-                        <Grid.RowDefinitions>
-                            <RowDefinition Height="Auto"/>
-                            <RowDefinition Height="Auto"/>
-                        </Grid.RowDefinitions>
-                        <Image Source="{Binding ImageSource}"
+        <CarouselView.ItemTemplate>
+            <DataTemplate>
+                <ScrollView>
+                    <StackLayout Margin="0,10,0,10">
+                        <AbsoluteLayout HeightRequest="200" WidthRequest="150">
+                            <Image Source="circle_logo.png"
                                    Aspect="AspectFill"
-                                   HeightRequest="200"
-                                   WidthRequest="150"/>
-                        <Label Text="{Binding Title}"
-                                    HorizontalOptions="Center"
-                                   VerticalOptions="End"/>
-                    </Grid>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
+                                   HeightRequest="500"
+                                   WidthRequest="300"
+                                   BackgroundColor="ForestGreen"
+                                   AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
 
-            </CarouselView>
+                            <Button Text="1"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="0, 0.9, -150, -500"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"/>
 
-    
+                            <Button Text="2"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="1, 0.9, -150, -500"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"/>
+
+                            <Button Text="3"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="1, 1, 150, -350"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"/>
+                        </AbsoluteLayout>
+
+                        <Label Text="{Binding fullname}"   
+                               HorizontalOptions="Center"
+                               FontSize="30"
+                               TextColor="Black"
+                               Margin="0,220,0,10"/>
+
+                        <Label Text="{Binding email}"   
+                          HorizontalOptions="Center"
+                            FontSize="15"
+                              TextColor="Black"/>
+
+                        
+
+                        <Label Text="We Can Bind the data here from the database, and we can also add more buttons and other controls here"
+                               Padding="23"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,20"/>
+
+                        <Button Text="View Profile"   
+                                WidthRequest="225"
+                                HeightRequest="40"
+                                VerticalOptions="End"
+                                BackgroundColor="CadetBlue"
+                                TextColor="Black"
+                                BorderWidth="2.2"
+                                Margin="0,0,0,0"/>
+                        
+                        <Button Text="Button 2"   
+          WidthRequest="225"
+          HeightRequest="40"
+          VerticalOptions="End"
+          BackgroundColor="CadetBlue"
+          TextColor="Black"
+          BorderWidth="2.2"
+          Margin="0,23,0,23"/>
+                    </StackLayout>
+                </ScrollView>
+            </DataTemplate>
+        </CarouselView.ItemTemplate>
+    </CarouselView>
+
+
 </ContentPage>
 
     

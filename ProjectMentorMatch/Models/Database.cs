@@ -51,7 +51,8 @@ namespace ProjectMentorMatch.Models
         }
 
         //Here lies the connection string that eveyone inherits
-        public SqlConnection GetConnection()
+        // Making the GetConnection() static to be able to call it without creating an instance of the class
+        public static SqlConnection GetConnection()
         {
             connection = new SqlConnection(connectionString);
             return connection;

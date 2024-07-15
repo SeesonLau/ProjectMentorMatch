@@ -10,9 +10,7 @@
     </ContentPage.Behaviors>
 
 
-    <!--BUG!: THE APP CRASHES WHEN THE BUTTONS ARE CLICKED IN RELEASE MODE AKA PUBLISHING IT TO APK FILE, BUT IT WORKS FINE IN DEBUG MODE.-->
-
-    <!--BUGGED FIXED: DO NOT USE STATICRESOURCE BODYBASE IN XAML CODE, DONT WORRY IT DOSENT AFFECT THE STYLING, -LK -->
+    <!--It is recommended to use async for the methods in order the app more responsive as it uses CPU multithreading according to MS documentation-->
 
 
     <ScrollView>

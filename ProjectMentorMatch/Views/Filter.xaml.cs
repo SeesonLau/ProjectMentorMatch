@@ -50,19 +50,19 @@ public partial class Filter : ContentPage
     }
     private void OnChipClicked(object sender, EventArgs e)
     {
-        Button button = sender as Button;
-        if (button != null)
-        {
-            // Toggle chip selection
-            if (button.Style == (Style)Application.Current.Resources["ActionChipStyle"])
-            {
-                button.Style = (Style)Application.Current.Resources["SelectedActionChipStyle"];
-            }
-            else
-            {
-                button.Style = (Style)Application.Current.Resources["ActionChipStyle"];
-            }
-        }
+        //Button button = sender as Button;
+        //if (button != null)
+        //{
+        //    // Toggle chip selection
+        //    if (button.Style == (Style)Application.Current.Resources["ActionChipStyle"])
+        //    {
+        //        button.Style = (Style)Application.Current.Resources["SelectedActionChipStyle"];
+        //    }
+        //    else
+        //    {
+        //        button.Style = (Style)Application.Current.Resources["ActionChipStyle"];
+        //    }
+        //}
     }
 
     private void OnMoreSubjectsClicked(object sender, EventArgs e)

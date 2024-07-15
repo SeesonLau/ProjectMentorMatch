@@ -11,10 +11,14 @@ namespace ProjectMentorMatch.Models
     {
         RandomID randomID = new RandomID();
 
-        private int userID = RandomID.userID();
-        private string? fullname;
-        private string? email;
-        private string? password;
+        // Making the attributes public to be able to access and bind them to the Dashboard.xaml and Dashboard.xaml.cs, and other pages
+
+        public int userID = RandomID.userID();
+
+        // ADDED GET AND SET IN ORDER TO RECOGNIZE FOR THE BINDING AS A PROPERTY IN THE XAML
+        public string? fullname { get; set; } 
+        public string? email { get; set; }
+        public string? password { get; set; }
 
         /*
         public Account(string fullname, string email, string password)
@@ -39,6 +43,7 @@ namespace ProjectMentorMatch.Models
         {
             return password;
         }
+
         public void SetUserID(int userID) {this.userID = userID;}
         public void SetFullname(string fullname) {this.fullname = fullname;}  
         public void SetEmail(string email) {this.email = email;}
@@ -101,6 +106,33 @@ namespace ProjectMentorMatch.Models
 
                 return emailCount > 0;
             }
+        }
+
+        // Fetching data from the database
+        public static List<Account> GetAllAccounts()
+        {
+            List<Account> accounts = new List<Account>();
+
+            string query = "SELECT fullname, email, password FROM CreateAccount";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        accounts.Add(new Account
+                        {
+                            fullname = reader["fullname"].ToString(),
+                            email = reader["email"].ToString(),
+                            password = reader["password"].ToString()
+                        });
+                    }
+                }
+            }
+
+            return accounts;
         }
     }
 }
