@@ -30,10 +30,10 @@
                 SemanticProperties.Description="dot net bot in a race car number eight" />
 
             <Label
-                Text="Hello, World!"
+                Text="Your Mentor, Your Future!"
                 Style="{StaticResource Headline}"
                 SemanticProperties.HeadingLevel="Level1" 
-                FontSize="28"
+                FontSize="22"
                 TextColor="#086EBB"/>
 
             <!--<Label
@@ -65,7 +65,6 @@
                  Style="{StaticResource Headline}"
                  SemanticProperties.HeadingLevel="Level1" 
                  FontSize="14"
-                 TextColor="Black"
                  />
 
             
@@ -74,7 +73,6 @@
                  Style="{StaticResource Headline}"
                  SemanticProperties.HeadingLevel="Level1" 
                  FontSize="15"
-                 TextColor="Black"
                 FontAttributes="Bold"/>
 
             <Button

@@ -12,7 +12,7 @@ namespace ProjectMentorMatch
         private async void OnSignUpClicked(object sender, EventArgs e)
         {
             string email = EmailEntry.Text;
-            string fullname = FullnameEntry.Text;
+            string fullname = FullnameEntry.Text + " " + LastnameEntry.Text;
             string password = PasswordEntry.Text;
             string confirmPassword = ConfirmPasswordEntry.Text;
 
