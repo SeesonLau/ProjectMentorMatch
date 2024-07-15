@@ -8,7 +8,7 @@
         <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
     </ContentPage.ToolbarItems>
 
-
+        
     <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
         <CarouselView.ItemTemplate>
             <DataTemplate>
