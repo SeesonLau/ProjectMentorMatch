@@ -17,9 +17,9 @@ public partial class Notification : ContentPage
         {
             NotificationId = 1337,
             
-            Title = "MENTOR CONFIRMED",
-            Subtitle = "Please message him for updates",
-            Description = "John Laurence G. Sison confirmed your appointment",
+            Title = "Mentor Application Confirmed",
+            Subtitle = "Thank you for trusting MentorMatch! Happy Teaching :)",
+            Description = "Your application for being a mentor is confirmed",
             BadgeNumber = 42,
             CategoryType = NotificationCategoryType.Status,
             Schedule = new NotificationRequestSchedule
