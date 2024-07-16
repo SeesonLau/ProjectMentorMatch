@@ -6,11 +6,15 @@
              xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
              xmlns:core="clr-namespace:Syncfusion.Maui.NavigationDrawer;assembly=Syncfusion.Maui.NavigationDrawer"
              xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.Profile"
              >
+    <ContentPage.BindingContext>
+        <local:ScheduleViewModel />
+    </ContentPage.BindingContext>
 
     
-    <Grid RowDefinitions=".1*, .1*, *" Margin="0,-10,0,0">
+    <Grid RowDefinitions=".1*, .15*, *, .12*" Margin="0,-10,0,0">
         <!-- Header Section -->
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
             
@@ -99,7 +103,7 @@
 
                     
                     <HorizontalStackLayout>
-                        <chip:SfChipGroup ChipType="Choice" Margin="8,0" Padding="10,0,0,0">
+                        <chip:SfChipGroup ChipType="Choice" Margin="8,0" Padding="10,0,0,0" SelectedChipBackground="LightBlue">
                             <chip:SfChipGroup.Items>
                                 <chip:SfChip Text="Male" Margin="10"/>
                                 <chip:SfChip Text="Female" Margin="10"/>
@@ -171,7 +175,7 @@
                            FontAttributes="Bold"/>
 
                     <material:TextField Text="" 
-                         Title="Enter your address" 
+                         Title="Enter your first address" 
                          Margin="0,8,0,10" 
                          WidthRequest="330"/>
 
@@ -180,7 +184,7 @@
                            FontAttributes="Bold"/>
 
                     <material:TextField Text="" 
-                         Title="Enter your address" 
+                         Title="Enter your second address" 
                          Margin="0,8,0,10" 
                          WidthRequest="330"/>
                     
@@ -260,7 +264,7 @@
                     </material:MultiplePickerField>
                 </VerticalStackLayout>
 
-                <VerticalStackLayout>
+                <VerticalStackLayout Spacing="20">
 
                     <Label Text="Available Schedule" 
                            FontSize="18" 
@@ -268,23 +272,45 @@
                            TextColor="Blue" 
                            Margin="0,20,0,15" />
 
-                    <material:MultiplePickerField Title="Select Day" Margin="0,8,0,10" Icon="day_icon.png" WidthRequest="330">
-                        <material:MultiplePickerField.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Monday</x:String>
-                                <x:String>Tuesday</x:String>
-                                <x:String>Wednesday</x:String>
-                                <x:String>Thursday</x:String>
-                                <x:String>Friday</x:String>
-                                <x:String>Saturday</x:String>
-                                <x:String>Sunday</x:String>
-                            </x:Array>
-                        </material:MultiplePickerField.ItemsSource>
-                    </material:MultiplePickerField>
+                    <CollectionView ItemsSource="{Binding Days}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="5">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Day}" VerticalOptions="Center"/>
+                                    <material:TimePickerField Time="{Binding FromTime}" 
+                                                              IsVisible="{Binding IsSelected}" 
+                                                              Title="FROM" 
+                                                              Format="hh:mm tt" 
+                                                              FontSize="13" 
+                                                              HeightRequest="50" 
+                                                              Margin="5" 
+                                                              VerticalOptions="Center" 
+                                                              HorizontalOptions="Center"/>
 
+                                    <material:TimePickerField Time="{Binding ToTime}" 
+                                                              IsVisible="{Binding IsSelected}" 
+                                                              Title="TO" 
+                                                              Format="hh:mm tt" 
+                                                              HeightRequest="50" 
+                                                              FontSize="13" 
+                                                              Margin="5" 
+                                                              VerticalOptions="Center" 
+                                                              HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </VerticalStackLayout>
-
             </VerticalStackLayout>
         </ScrollView>
+        <Grid Grid.Row="3" Grid.Column="2">
+            <Button Text="Save" 
+                    FontAttributes="Bold" 
+                    HeightRequest="45" 
+                    WidthRequest="280" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"></Button>
+        </Grid>
     </Grid>
 </ContentPage>
