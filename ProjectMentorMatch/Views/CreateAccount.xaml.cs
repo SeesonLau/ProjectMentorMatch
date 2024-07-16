@@ -38,6 +38,13 @@ namespace ProjectMentorMatch
 
                 account.SignUp();
                 await DisplayAlert("Success", "Account created successfully.", "OK");
+
+                //Clear entries after registering
+                EmailEntry.Text = string.Empty;
+                FullnameEntry.Text = string.Empty;
+                LastnameEntry.Text = string.Empty;
+                PasswordEntry.Text = string.Empty;
+                ConfirmPasswordEntry.Text = string.Empty;
             }
             catch (Exception ex)
             {
