@@ -43,7 +43,7 @@ namespace ProjectMentorMatch.Models
         {
             return password;
         }
-
+        //push testing using another account
         public void SetUserID(int userID) {this.userID = userID;}
         public void SetFullname(string fullname) {this.fullname = fullname;}  
         public void SetEmail(string email) {this.email = email;}

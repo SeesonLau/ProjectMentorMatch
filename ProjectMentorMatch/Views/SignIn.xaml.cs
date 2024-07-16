@@ -16,6 +16,12 @@ public partial class SignIn : ContentPage
         string email = EmailEntry.Text;
         string password = PasswordEntry.Text;
 
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            await DisplayAlert("Error", "No internet connection. Please check your connection and try again.", "OK");
+            return;
+        }
+
         if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(password))
         {
             await DisplayAlert("Error", "Email and password are required.", "OK");

@@ -16,6 +16,12 @@ namespace ProjectMentorMatch
             string password = PasswordEntry.Text;
             string confirmPassword = ConfirmPasswordEntry.Text;
 
+            if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+            {
+                await DisplayAlert("Error", "No internet connection. Please check your connection and try again.", "OK");
+                return;
+            }
+
             if (string.IsNullOrEmpty(email) || string.IsNullOrEmpty(fullname) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(confirmPassword))
             {
                 await DisplayAlert("Error", "All fields are required.", "OK");

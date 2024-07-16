@@ -8,14 +8,13 @@
         <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
     </ContentPage.ToolbarItems>
 
-        
-    <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
-        <CarouselView.ItemTemplate>
-            <DataTemplate>
-                <ScrollView>
-                    <StackLayout Margin="0,10,0,10">
-                        <AbsoluteLayout HeightRequest="200" WidthRequest="150">
-                            <Image Source="circle_logo.png"
+        <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ScrollView>
+                        <StackLayout Margin="0,10,0,10">
+                            <AbsoluteLayout HeightRequest="200" WidthRequest="150">
+                                <Image Source="circle_logo.png"
                                    Aspect="AspectFill"
                                    HeightRequest="500"
                                    WidthRequest="300"
@@ -23,7 +22,7 @@
                                    AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
                                    AbsoluteLayout.LayoutFlags="PositionProportional"/>
 
-                            <Button Text="1"
+                                <Button Text="1"
                                     BackgroundColor="LightBlue"
                                     TextColor="Black"
                                     WidthRequest="50"
@@ -32,7 +31,7 @@
                                     AbsoluteLayout.LayoutFlags="PositionProportional"
                                     VerticalOptions="Center"/>
 
-                            <Button Text="2"
+                                <Button Text="2"
                                     BackgroundColor="LightBlue"
                                     TextColor="Black"
                                     WidthRequest="50"
@@ -41,7 +40,7 @@
                                     AbsoluteLayout.LayoutFlags="PositionProportional"
                                     VerticalOptions="Center"/>
 
-                            <Button Text="3"
+                                <Button Text="3"
                                     BackgroundColor="LightBlue"
                                     TextColor="Black"
                                     WidthRequest="50"
@@ -49,27 +48,27 @@
                                     AbsoluteLayout.LayoutBounds="1, 1, 150, -350"
                                     AbsoluteLayout.LayoutFlags="PositionProportional"
                                     VerticalOptions="Center"/>
-                        </AbsoluteLayout>
+                            </AbsoluteLayout>
 
-                        <Label Text="{Binding fullname}"   
+                            <Label Text="{Binding fullname}"   
                                HorizontalOptions="Center"
                                FontSize="30"
                                TextColor="Black"
                                Margin="0,220,0,10"/>
 
-                        <Label Text="{Binding email}"   
+                            <Label Text="{Binding email}"   
                           HorizontalOptions="Center"
                             FontSize="15"
                               TextColor="Black"/>
 
-                        
 
-                        <Label Text="We Can Bind the data here from the database, and we can also add more buttons and other controls here"
+
+                            <Label Text="We Can Bind the data here from the database, and we can also add more buttons and other controls here"
                                Padding="23"
                                HorizontalOptions="Center"
                                Margin="0,0,0,20"/>
 
-                        <Button Text="View Profile"   
+                            <Button Text="View Profile"   
                                 WidthRequest="225"
                                 HeightRequest="40"
                                 VerticalOptions="End"
@@ -77,8 +76,8 @@
                                 TextColor="Black"
                                 BorderWidth="2.2"
                                 Margin="0,0,0,0"/>
-                        
-                        <Button Text="Button 2"   
+
+                            <Button Text="Button 2"   
           WidthRequest="225"
           HeightRequest="40"
           VerticalOptions="End"
@@ -86,11 +85,11 @@
           TextColor="Black"
           BorderWidth="2.2"
           Margin="0,23,0,23"/>
-                    </StackLayout>
-                </ScrollView>
-            </DataTemplate>
-        </CarouselView.ItemTemplate>
-    </CarouselView>
+                        </StackLayout>
+                    </ScrollView>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
 
 
 </ContentPage>
