@@ -9,10 +9,7 @@
     Shell.BackgroundColor="#086EBB"
     Shell.DisabledColor="Brown"
     Shell.FlyoutBehavior="Disabled"
-    
-
-    
-    
+     
     Title="ProjectMentorMatch">
 <!-- 
     #75A4DE
