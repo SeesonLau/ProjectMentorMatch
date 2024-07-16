@@ -8,7 +8,6 @@
         <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
     </ContentPage.ToolbarItems>
 
-    <RefreshView x:Name="refreshView" Command="{Binding RefreshCommand}">
         <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
@@ -91,7 +90,6 @@
                 </DataTemplate>
             </CarouselView.ItemTemplate>
         </CarouselView>
-    </RefreshView>
 
 
 </ContentPage>
