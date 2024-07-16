@@ -11,6 +11,8 @@
 
 
     <!--It is recommended to use async for the methods in order the app more responsive as it uses CPU multithreading according to MS documentation-->
+    
+    <!--BUG: RUNNING THE APP IN WINDOWS CAUSES ERROR BECAUSE THE NUGET LOCAL NOTIFICATION PLUGIN IS NOT SUPPORTED IN WINDOWS-->
 
 
     <ScrollView>
