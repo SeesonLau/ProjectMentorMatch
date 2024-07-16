@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Plugin.LocalNotification;
 using Syncfusion.Maui.Core.Hosting;
+using UraniumUI;
 
 namespace ProjectMentorMatch
 {
@@ -26,6 +27,9 @@ namespace ProjectMentorMatch
                 .UseMauiApp<App>()
                  // Initialize the .NET MAUI Community Toolkit by adding the below line of code
                 .UseMauiCommunityToolkit()
+                // Add UraniumUI.Material.Controls
+                .UseUraniumUI()
+                .UseUraniumUIMaterial()
                 // Add Syncfusion.Maui.Core.Hosting
                 .ConfigureSyncfusionCore()
                 // Added Notification Functionality
