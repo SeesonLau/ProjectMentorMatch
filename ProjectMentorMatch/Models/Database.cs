@@ -9,7 +9,8 @@ namespace ProjectMentorMatch.Models
 {
     public class Database
     {
-        private static string connectionString = "Server=tcp:mentor-mentee.database.windows.net,1433;Initial Catalog=mentorMentee_DB;Persist Security Info=False;User ID=mentor_mentee;Password=(MSAD12345);MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        // Inheritance is very useful, thank you very much 1 line of code ra e change aning connection string
+        private static string connectionString = "Server=tcp:mentor2.database.windows.net,1433;Initial Catalog=mentor-mentee2;Persist Security Info=False;User ID=mentormentee2;Password=#MSADSaging;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
         private static SqlConnection? connection;
         //TEST CONNECTION
         public static async Task<bool> TestConnectionAsync()
