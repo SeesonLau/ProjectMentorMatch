@@ -25,10 +25,12 @@ public partial class Dashboard : ContentPage
         InitializeCarouselAsync();
     }
 
+
     private async void OnFilterButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Filter());
     }
+
     private async Task InitializeCarouselAsync()
     {
         //Call the accounts from the database
@@ -51,5 +53,40 @@ public partial class Dashboard : ContentPage
         // Binding the accounts to the xaml carouselview
         carouselView.ItemsSource = CarouselItems;
     }
+
+
+
+
+    // Show Blank Page if no internet connection
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Check for internet connectivity when the page appears
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            // No internet connection, show a blank page with message
+            Content = new StackLayout
+            {
+                Children =
+                    {
+                        new Label
+                        {
+                            Text = "No Internet Connection",
+                            FontSize = Device.GetNamedSize(NamedSize.Large, typeof(Label)),
+                            HorizontalOptions = LayoutOptions.Center,
+                            VerticalOptions = LayoutOptions.CenterAndExpand
+                        }
+                    }
+            };
+        }
+        else
+        {
+            // Internet connection available, initialize the carousel
+            if (CarouselItems.Count == 0)
+                await InitializeCarouselAsync();
+        }
+    }
+
 
 }
