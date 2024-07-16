@@ -16,4 +16,14 @@ public partial class Profile : ContentPage
     {
 		Navigation.PushAsync(new ApplyAsMentor());
     }
+
+    private void GoBackButton_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Dashboard());
+    }
+
+    private void SettingsButton_Clicked(object sender, EventArgs e)
+    {
+        Navigation.PushAsync(new Settings());
+    }
 }

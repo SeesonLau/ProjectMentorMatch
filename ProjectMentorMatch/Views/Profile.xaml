@@ -22,7 +22,8 @@
                      HorizontalOptions="Start" 
                      VerticalOptions="Center"
                      WidthRequest="40"
-                     HeightRequest="40"/>
+                     HeightRequest="40"
+                     Clicked="GoBackButton_Clicked"/>
             
             <Label Grid.Column="1"
                FontSize="24"
@@ -37,7 +38,8 @@
                      HorizontalOptions="End"
                      VerticalOptions="Center"
                      WidthRequest="30"
-                     HeightRequest="30"/>
+                     HeightRequest="30"
+                     Clicked="SettingsButton_Clicked"/>
         </Grid>
         
         <Grid Grid.Row="1">
