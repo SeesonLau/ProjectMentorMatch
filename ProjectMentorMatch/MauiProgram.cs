@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Plugin.LocalNotification;
 using Syncfusion.Maui.Core.Hosting;
 
 namespace ProjectMentorMatch
@@ -27,6 +28,8 @@ namespace ProjectMentorMatch
                 .UseMauiCommunityToolkit()
                 // Add Syncfusion.Maui.Core.Hosting
                 .ConfigureSyncfusionCore()
+                // Added Notification Functionality
+                .UseLocalNotification()
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
