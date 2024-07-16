@@ -71,6 +71,7 @@
                         <x:String>Thursday</x:String>
                         <x:String>Friday</x:String>
                         <x:String>Saturday</x:String>
+                        <x:String>Sunday</x:String>
                     </x:Array>
                 </material:MultiplePickerField.ItemsSource>
             </material:MultiplePickerField>
