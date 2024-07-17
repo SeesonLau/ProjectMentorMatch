@@ -3,9 +3,164 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.Views.Notification"
              Title="Notification">
-    <VerticalStackLayout>
+    <ScrollView>
+        <VerticalStackLayout Padding="10">
 
-        <Button Text="Click To Test" FontSize="25" Margin="0,250,0,0" Clicked="OnNotificationClicked" WidthRequest="250" HeightRequest="100" HorizontalOptions="Center"/>
+            <!-- Notification Header -->
+            <Label Text="Notification"
+                   FontSize="24"
+                   FontAttributes="Bold"
+                   TextColor="Blue"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,10" />
 
-    </VerticalStackLayout>
+            <!-- New Notifications Section -->
+            <Label Text="New"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10"/>
+
+            <StackLayout>
+                <!-- Notification Items -->
+                <Frame BorderColor="Gray"
+                       CornerRadius="5"
+                       Padding="10"
+                       Margin="0,5"
+                       HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="profile_placeholder.png"
+                               WidthRequest="40"
+                               HeightRequest="40"/>
+                        <Label Text="Your tutoring session with Mentor 1 has been approved."
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                        <Image Source="mentee_placeholder.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray"
+                       CornerRadius="5"
+                       Padding="10"
+                       Margin="0,5"
+                       HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="profile_placeholder.png"
+                               WidthRequest="40"
+                               HeightRequest="40"/>
+                        <Label Text="Your tutoring session with Mentor 2 has been approved."
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                        <Image Source="mentee_placeholder.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+            </StackLayout>
+
+            <!-- Recommended Mentors Section -->
+            <Label Text="Recommended Mentors"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10"/>
+
+            <CarouselView>
+                <CarouselView.ItemsSource>
+                    <x:Array Type="{x:Type x:String}">
+                        <x:String>Mentor 1</x:String>
+                        <x:String>Mentor 2</x:String>
+                        <x:String>Mentor 3</x:String>
+                        <x:String>Mentor 4</x:String>
+                    </x:Array>
+                </CarouselView.ItemsSource>
+                <CarouselView.ItemTemplate>
+                    <DataTemplate>
+                        <Frame BorderColor="Gray"
+                               CornerRadius="10"
+                               Padding="10"
+                               Margin="50,5"
+                               HasShadow="False">
+                            <VerticalStackLayout>
+                                <Image Source="profile_placeholder.png"
+                                       WidthRequest="60"
+                                       HeightRequest="60"
+                                       HorizontalOptions="Center"/>
+                                <Label Text="Mentor"
+                                       HorizontalTextAlignment="Center"
+                                       FontSize="16"
+                                       FontAttributes="Bold"
+                                       Margin="0,5,0,0"/>
+                                <Button Text="View"
+                                        WidthRequest="120"
+                                        Margin="10,0,10,0"/>
+                            </VerticalStackLayout>
+                        </Frame>
+                    </DataTemplate>
+                </CarouselView.ItemTemplate>
+            </CarouselView>
+
+            <!-- Earlier Notifications Section -->
+            <Label Text="Earlier"
+                   FontSize="18"
+                   FontAttributes="Bold"
+                   Margin="0,20,0,10"/>
+
+            <StackLayout>
+                <Frame BorderColor="Gray"
+                       CornerRadius="5"
+                       Padding="10"
+                       Margin="0,5"
+                       HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="profile_placeholder.png"
+                               WidthRequest="40"
+                               HeightRequest="40"/>
+                        <Label Text="Your tutoring session with Mentor 3 has been approved."
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                        <Image Source="mentee_placeholder.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <Frame BorderColor="Gray"
+                       CornerRadius="5"
+                       Padding="10"
+                       Margin="0,5"
+                       HasShadow="False">
+                    <HorizontalStackLayout>
+                        <Image Source="profile_placeholder.png"
+                               WidthRequest="40"
+                               HeightRequest="40"/>
+                        <Label Text="Your tutoring session with Mentor 4 has been approved."
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                        <Image Source="mentee_placeholder.png"
+                               WidthRequest="20"
+                               HeightRequest="20"
+                               VerticalOptions="Center"
+                               Margin="10,0"/>
+                    </HorizontalStackLayout>
+                </Frame>
+
+                <!-- Test Button -->
+                <Button Text="Click To Test"
+                        FontSize="25"
+                        Margin="0,20,0,0"
+                        Clicked="OnNotificationClicked"
+                        WidthRequest="250"
+                        HeightRequest="100"
+                        HorizontalOptions="Center"/>
+            </StackLayout>
+
+        </VerticalStackLayout>
+    </ScrollView>
 </ContentPage>
