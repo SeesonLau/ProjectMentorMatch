@@ -8,6 +8,7 @@
              xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.Profile"
+             Shell.NavBarIsVisible="False"
              >
     <ContentPage.BindingContext>
         <local:ScheduleViewModel />
