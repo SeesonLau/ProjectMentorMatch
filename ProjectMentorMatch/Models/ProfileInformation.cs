@@ -98,13 +98,13 @@ namespace ProjectMentorMatch.Models
         // NAME
 
 
-        public string? GetFullName(string userID)
+        public string? GetFullName(int userID)
         {
             string? fullname = "";
 
-            string query = "SELECT fullname FROM CreateAccount WHERE userID = @UserID";
+            string query = "SELECT Fullname FROM CreateAccount WHERE UserID = @UserID";
 
-            using (var connection = GetConnection()) // Assuming GetConnection() retrieves your SqlConnection
+            using (var connection = GetConnection()) 
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@UserID", userID);

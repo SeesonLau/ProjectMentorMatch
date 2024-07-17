@@ -9,18 +9,21 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Profile : ContentPage
 {
+    Account account;
     ProfileInformation profileInfo;
     public Profile()
 	{
         InitializeComponent();
         profileInfo = new ProfileInformation();
+        account = new Account();
         LoadProfileData();
 
     }
     private void LoadProfileData()
     {
-        string userID = "943678"; //ID NI EDEJER
-        string fullname = profileInfo.GetFullName(userID);
+        //int userID = 943678; //ID ni EDJER
+        int userID = account.GetUserID();
+        string? fullname = profileInfo.GetFullName(userID);
 
         MainThread.BeginInvokeOnMainThread(() =>
         {

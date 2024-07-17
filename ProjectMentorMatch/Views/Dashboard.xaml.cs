@@ -44,8 +44,8 @@ public partial class Dashboard : ContentPage
                 CarouselItems.Add(new Account
                 {
                     // Setting up the binding attribute name to be called in the xaml
-                    fullname = account.GetFullname(),
-                    email = account.GetEmail(),
+                    //fullname = account.GetFullname(),
+                    //email = account.GetEmail(),
                 }
 
                 // Once we have profile page, we can add the other attributes to the list AKA CarouselItems.Add(new Profile

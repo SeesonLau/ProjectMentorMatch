@@ -36,7 +36,6 @@ namespace ProjectMentorMatch
 
             try
             {
-                //Account account = new Account(fullname, email, password);
                 Account account = new Account();
                 account.SetFullname(fullname);
                 account.SetPassword(password);
@@ -61,6 +60,8 @@ namespace ProjectMentorMatch
         private async void OnLoginClicked(object sender, EventArgs e)
         {
             await Navigation.PushAsync(new SignIn());
+
+
         }
 
     }

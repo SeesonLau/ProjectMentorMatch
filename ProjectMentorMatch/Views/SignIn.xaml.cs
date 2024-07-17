@@ -30,21 +30,18 @@ public partial class SignIn : ContentPage
 
         try
         {
-            //Account account = new Account("", email, password);
             Account account = new Account();
+            ProfileInformation pf = new ProfileInformation();
             account.SetEmail(email);
             account.SetPassword(password);
 
-            //AYAW MO PAG CHAT GPT
-            //PAG KAT ON INTAWN MOG CODE
-            // -SISON
-
-            bool isUserFound = account.LogIn();
+            bool isUserFound = account.LogIn(email, password);
 
             if (isUserFound)
-            {
-                await DisplayAlert("Success", "Login successful.", "OK");
-                // Check if Application.Current is not null
+            {                                                           
+                await DisplayAlert("Success", "Login successful.", "OK", $"{pf.GetUserID()}");
+                account.SetUserID(account.GetUserID());
+
                 if (Application.Current != null)
                 {
                     Application.Current.MainPage = new AppShell();

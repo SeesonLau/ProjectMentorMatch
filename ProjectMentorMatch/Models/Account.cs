@@ -10,26 +10,17 @@ namespace ProjectMentorMatch.Models
     public class Account : Database
     {
         RandomID randomID = new RandomID();
+        private int userID = RandomID.userID();
 
-        // Making the attributes public to be able to access and bind them to the Dashboard.xaml and Dashboard.xaml.cs, and other pages
+        private string? fullname;
+        private string? email;
+        private string? password;
 
-        public int userID = RandomID.userID();
+        private int retuserID;
 
-        // ADDED GET AND SET IN ORDER TO RECOGNIZE FOR THE BINDING AS A PROPERTY IN THE XAML
-        public string? fullname { get; set; } 
-        public string? email { get; set; }
-        public string? password { get; set; }
-
-        /*
-        public Account(string fullname, string email, string password)
-        {
-            this.fullname = fullname;
-            this.email = email;
-            this.password = password;
-        }*/
         public int GetUserID()
         {
-            return userID;
+            return retuserID;
         }
         public string? GetFullname()
         {
@@ -43,21 +34,13 @@ namespace ProjectMentorMatch.Models
         {
             return password;
         }
-        //push testing using another account
-        public void SetUserID(int userID) {this.userID = userID;}
+        public void SetUserID(int retuserID) {this.retuserID = retuserID; }
         public void SetFullname(string fullname) {this.fullname = fullname;}  
         public void SetEmail(string email) {this.email = email;}
         public void SetPassword(string password) {this.password = password;}
 
         public void SignUp()
         {
-            // POSSIBLE NULL REFERENCE example
-            /*if (CheckEmailIsTaken(email))
-            {
-                throw new Exception("Email already exists. Please use a different email.");
-            }*/
-
-            // CORRECT WAY
             if (email != null && CheckEmailIsTaken(email))
             {
                 throw new Exception("Email already exists. Please use a different email.");
@@ -76,10 +59,10 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-
+        /*
         public bool LogIn()
         {
-            string query = "SELECT COUNT(*) FROM CreateAccount WHERE email = @Email AND password = @Password";
+            string query = "SELECT userID FROM CreateAccount WHERE email = @Email AND password = @Password";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -87,11 +70,64 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@Password", password);
 
                 connection.Open();
-                int userCount = (int)command.ExecuteScalar();
-
-                return userCount > 0;
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    userID = Convert.ToInt32(result);
+                    SetUserID(userID);
+                    return true; 
+                }
+                else
+                {
+                    return false; 
+                }
             }
         }
+        */
+        // THE COOLER BOOL LOGIN
+
+        public bool LogIn(string email, string password)
+        {
+            string countQuery = "SELECT COUNT(*) FROM [CreateAccount] WHERE [Email] = @Email AND [Password] = @Password";
+            string userIDQuery = "SELECT UserID FROM CreateAccount WHERE Email = @Email";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand countCommand = new SqlCommand(countQuery, connection))
+                {
+                    countCommand.Parameters.AddWithValue("@Email", email);
+                    countCommand.Parameters.AddWithValue("@Password", password);
+
+                    int count = (int)countCommand.ExecuteScalar();
+
+                    if (count > 0)
+                    {
+                        using (SqlCommand userIDCommand = new SqlCommand(userIDQuery, connection))
+                        {
+                            userIDCommand.Parameters.AddWithValue("@Email", email);
+
+                            object result = userIDCommand.ExecuteScalar();
+                            if (result != null && result != DBNull.Value)
+                            {
+                                int userID = Convert.ToInt32(result);
+                                SetUserID(userID);
+                                return true;
+                            }
+                        }
+                    }
+                    else
+                    {
+                        return false;
+                    }
+                }
+            }
+            return false;
+        }
+
+
+
+
 
         public bool CheckEmailIsTaken(string email)
         {

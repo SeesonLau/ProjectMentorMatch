@@ -14,7 +14,7 @@ namespace ProjectMentorMatch.Models
         private string? qualification;
         private string? isMentor; // can also be bool
         private int contactNumber;
-        private int userID;
+        //private int userID;
 
         public int GetProfileID()
         {
