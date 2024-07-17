@@ -75,7 +75,7 @@ public partial class SignIn : ContentPage
             //PAG KAT ON INTAWN MOG CODE
             // -SISON
 
-            bool isUserFound = account.LogIn();
+            bool isUserFound = account.LogIn(email, password);
 
             if (isUserFound)
             {

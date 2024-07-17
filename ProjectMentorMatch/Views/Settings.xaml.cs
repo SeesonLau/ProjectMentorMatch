@@ -6,4 +6,9 @@ public partial class Settings : ContentPage
 	{
 		InitializeComponent();
 	}
+
+    private void ImageButton_Clicked(object sender, EventArgs e)
+    {
+		Navigation.PushAsync(new Profile());
+    }
 }

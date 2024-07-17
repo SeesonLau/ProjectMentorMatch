@@ -1,13 +1,179 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:cards="clr-namespace:Syncfusion.Maui.Cards;assembly=Syncfusion.Maui.Cards"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="ProjectMentorMatch.Views.Settings"
-             Title="Settings"
-             BackgroundColor="LightBlue">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
+             Shell.NavBarIsVisible="False">
+
+    <Grid RowDefinitions=".3*, .1*, *, .1*, .175*, .2*, .075*" Margin="0,10,0,0">
+        
+        <!-- Header Section -->
+        <Grid ColumnDefinitions=".2*,*,.2*" Padding="15,0,15,10">
+
+            <ImageButton Source="goback_icon.png"
+                         HorizontalOptions="Start"
+                         VerticalOptions="Center"
+                         WidthRequest="30"
+                         HeightRequest="30"
+                         Clicked="ImageButton_Clicked" >
+            </ImageButton>
+
+            <Label Grid.Column="1"
+                   FontSize="25"
+                   HorizontalTextAlignment="Center"
+                   Text="Settings"
+                   TextColor="#006EBB"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center" />
+
+        </Grid>
+        
+
+        <Grid Grid.Row="2" ColumnDefinitions=".00005*,*,.00005*" Padding="15,0,15,10">
+            <cards:SfCardLayout Grid.Column="1" BackgroundColor="Transparent">
+                <cards:SfCardView BackgroundColor="#F0F0F0" CornerRadius="25">
+                    <Grid RowDefinitions="*,*,*,*" ColumnDefinitions=".3*,*">
+
+                        <Grid Grid.Row="0" Grid.Column="0" Padding="0, 10, 0, 0">
+                            <Image Source="password_icon.png" 
+                                   HeightRequest="23" 
+                                   WidthRequest="23" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        
+                        <Grid Grid.Row="0" Grid.Column="1" Padding="0, 10, 0, 0">
+                            <buttons:SfButton x:Name="btnChangePass1" 
+                                              Text="Change Password" 
+                                              FontSize ="16" 
+                                              BackgroundColor="Transparent" 
+                                              Background="Transparent"
+                                              ImageSource="rightarrow_icon.png"
+                                              ImageAlignment="End"
+                                              ShowIcon="True"   
+                                              TextColor="Black" 
+                                              HorizontalOptions="Fill" 
+                                              VerticalTextAlignment="Center" 
+                                              HorizontalTextAlignment="Start"
+                                              CornerRadius="1"
+                                              />
+                        </Grid>
+                        
+
+                        <Grid Grid.Row="1" Grid.Column="0" Padding="0, 10, 0, 0">
+                            <Image Source="notification_icon.png" 
+                                   HeightRequest="23" 
+                                   WidthRequest="23" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                        </Grid>
+                        
+                        <Grid Grid.Row="1" Grid.Column="1" Padding="0, 10, 0, 0">
+                            <Grid ColumnDefinitions="*, .3*">
+                                <Grid Grid.Column="0">
+                                    <buttons:SfButton Text="Notification" 
+                                                      FontSize ="16" 
+                                                      BackgroundColor="Transparent" 
+                                                      Background="Transparent" 
+                                                      ShowIcon="True"  
+                                                      TextColor="Black" 
+                                                      HorizontalOptions="Fill" 
+                                                      VerticalTextAlignment="Center" 
+                                                      HorizontalTextAlignment="Start"
+                                                      CornerRadius="1"/>
+                                </Grid>
+                                <Grid Grid.Column="1">
+                                    <Switch OnColor="#006EBB" HorizontalOptions="Center"/>
+                                </Grid>
+                            </Grid>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="0" Padding="0, 10, 0, 0">
+                            <Image Source="lock_icon.png" 
+                                   HeightRequest="23" 
+                                   WidthRequest="23" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Row="2" Grid.Column="1" Padding="0, 10, 0, 0">
+                            <buttons:SfButton x:Name="btnPrivacyandSecurity" 
+                                              Text="Privacy and Security" 
+                                              FontSize ="16" 
+                                              BackgroundColor="Transparent" 
+                                              Background="Transparent"
+                                              ImageSource="rightarrow_icon.png"
+                                              ImageAlignment="End"
+                                              ShowIcon="True"   
+                                              TextColor="Black" 
+                                              HorizontalOptions="Fill" 
+                                              VerticalTextAlignment="Center" 
+                                              HorizontalTextAlignment="Start"
+                                              CornerRadius="1"
+                                              />
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="0" Padding="0, 10, 0, 0">
+                            <Image Source="about_icon.png" 
+                                   HeightRequest="23" 
+                                   WidthRequest="23" 
+                                   HorizontalOptions="Center" 
+                                   VerticalOptions="Center"/>
+                        </Grid>
+
+                        <Grid Grid.Row="3" Grid.Column="1" Padding="0, 10, 0, 0">
+                            <buttons:SfButton x:Name="btnAbout" 
+                                              Text="Privacy and Security" 
+                                              FontSize ="16" 
+                                              BackgroundColor="Transparent" 
+                                              Background="Transparent"
+                                              ImageSource="rightarrow_icon.png"
+                                              ImageAlignment="End"
+                                              ShowIcon="True"   
+                                              TextColor="Black" 
+                                              HorizontalOptions="Fill" 
+                                              VerticalTextAlignment="Center" 
+                                              HorizontalTextAlignment="Start"
+                                              CornerRadius="1"
+                                              />
+                        </Grid>
+
+                    </Grid>
+
+                </cards:SfCardView>
+            </cards:SfCardLayout>
+
+        </Grid>
+
+        <Grid Grid.Row="4" Grid.Column="2">
+            <Button Text="Log out"
+                BackgroundColor="#006EBB"
+                BorderColor="#006EBB"
+                BorderWidth="1.5"
+                x:Name="btnLogout"
+                FontAttributes="Bold" 
+                HeightRequest="40" 
+                WidthRequest="250" 
+                HorizontalOptions="Center" 
+                VerticalOptions="Center"></Button>
+        </Grid>
+        
+        <Grid Grid.Row="5" Grid.Column="2">
+            <Button Text="Delete Account"
+                    x:Name="btnDeleteAccount"
+                    TextColor="Black"
+                    BackgroundColor="#E79A26"
+                    BorderColor="LightYellow"
+                    BorderWidth="1.5"                      
+                    FontAttributes="Bold" 
+                    HeightRequest="40" 
+                    WidthRequest="250" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center">
+            </Button>
+        </Grid>
+    </Grid>
 </ContentPage>
