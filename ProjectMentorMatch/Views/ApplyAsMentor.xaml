@@ -2,92 +2,175 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+             xmlns:core="clr-namespace:Syncfusion.Maui.NavigationDrawer;assembly=Syncfusion.Maui.NavigationDrawer"
+             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.ApplyAsMentor"
              Shell.TabBarIsVisible="False"
              xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
-             Title="Apply as Mentor">
-    <ScrollView>
-        <StackLayout Padding="30">
-            <!-- Profile Section -->
-            <Grid RowDefinitions="Auto,Auto" ColumnDefinitions="Auto,*" Padding="0,0,0,10">
-                <Image Source="profile_picture_placeholder.png" WidthRequest="60" HeightRequest="60" Aspect="AspectFill"
-                       Grid.RowSpan="2" VerticalOptions="Center"/>
-                <Label Text="{Binding fullname}" FontAttributes="Bold" VerticalOptions="End" Margin="10,0,0,0"/>
-            </Grid>
+             Title="Apply as Mentor"
+             Shell.NavBarIsVisible="False" >
 
-            <!-- About Me Section -->
-            <Label Text="About me" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:TextField Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
+    <ContentPage.BindingContext>
+        <local:ScheduleViewModel />
+    </ContentPage.BindingContext>
 
-            <!-- Subject of Expertise Section -->
-            <Label Text="Subject of Expertise" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:MultiplePickerField x:Name="acadsPicker" Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
-                <material:MultiplePickerField.ItemsSource BackgroundColor="White">
-                    <x:Array Type="{x:Type x:String}" >
-                        <x:String>Business</x:String>
-                        <x:String>Calculus</x:String>
-                        <x:String>Chemistry</x:String>
-                        <x:String>Computer Programming</x:String>
-                        <x:String>Economics</x:String>
-                        <x:String>Engineering</x:String>
-                        <x:String>Foreign Language</x:String>
-                        <x:String>Health/Nutrition</x:String>
-                        <x:String>History</x:String>
-                        <x:String>Literacy</x:String>
-                        <x:String>Mathematics</x:String>
-                        <x:String>Medical</x:String>
-                        <x:String>Philosophy</x:String>
-                        <x:String>Physics</x:String>
-                        <x:String>Science</x:String>
-                        <x:String>Sex Education</x:String>
-                    </x:Array>
-                </material:MultiplePickerField.ItemsSource>
-            </material:MultiplePickerField>
+    <Grid RowDefinitions=".1*, .15*, *, .12*" Margin="0,-10,0,0">
+        <!-- Header Section -->
+        <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
 
-            <material:MultiplePickerField x:Name="nonacadsPicker" Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
-                <material:MultiplePickerField.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Art/Design</x:String>
-                        <x:String>Cooking/Culinary Arts</x:String>
-                        <x:String>Creative Writing</x:String>
-                        <x:String>Dance</x:String>
-                        <x:String>Fitness Training</x:String>
-                        <x:String>Music</x:String>
-                        <x:String>Performing Arts</x:String>
-                        <x:String>Photography and Photo Editing</x:String>
-                        <x:String>Physical Education</x:String>
-                        <x:String>Public Speaking</x:String>
-                        <x:String>Video Editing</x:String>
-                    </x:Array>
-                </material:MultiplePickerField.ItemsSource>
-            </material:MultiplePickerField>
+            <ImageButton Source="goback_icon.png" 
+             HorizontalOptions="Start" 
+             VerticalOptions="Center"
+             WidthRequest="40"
+             HeightRequest="40"
+             Clicked="GoBackButton_Clicked"/>
 
-            <!-- Available Schedule -->
-            <Label Text="Available Schedule" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:MultiplePickerField x:Name="dayPicker" Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
-                <material:MultiplePickerField.ItemsSource>
-                    <x:Array Type="{x:Type x:String}">
-                        <x:String>Monday</x:String>
-                        <x:String>Tuesday</x:String>
-                        <x:String>Wednesday</x:String>
-                        <x:String>Thursday</x:String>
-                        <x:String>Friday</x:String>
-                        <x:String>Saturday</x:String>
-                        <x:String>Sunday</x:String>
-                    </x:Array>
-                </material:MultiplePickerField.ItemsSource>
-            </material:MultiplePickerField>
+            <Label Grid.Column="1"
+            FontSize="24"
+            HorizontalTextAlignment="Center"
+            Text="Apply as Mentor"
+            TextColor="Blue"
+            FontAttributes="Bold"
+            VerticalOptions="Center" />
 
-            <Label Text="Select Time" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:TimePickerField Title="From" Margin="0,0,0,10" Icon="time_icon.png" />
-            <material:TimePickerField Title="To" Margin="0,0,0,10" Icon="time_icon.png" />
 
-            <!-- Session Rates -->
-            <Label Text="Session Rates" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:TextField Title="Rates" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
-            
-            <!-- Apply Button-->
-            <Button Text="Apply" WidthRequest="150" HeightRequest ="39" HorizontalOptions="Center"/>
-        </StackLayout>
-    </ScrollView>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Image Grid.Column="0" 
+            Source="dotnet_bot.png" 
+            WidthRequest="80" 
+            HeightRequest="80" 
+            HorizontalOptions="Start" 
+            VerticalOptions="Center" 
+            Margin="20"/>
+
+            <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
+                <Label Margin="2"
+                x:Name="UpperNameEntry"
+                Text="{Binding PlaceholderText}"
+                HorizontalOptions="Start"
+                FontSize="15"
+                FontAttributes="Bold"/>
+
+
+                <Label Margin="2" 
+                 Text="BSCPE - 2"
+                 FontSize="12"/>
+            </VerticalStackLayout>
+        </Grid>
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="30">
+                <VerticalStackLayout>
+                    <!-- About Me Section -->
+                    <Label Text="About me" 
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    TextColor="Blue"  
+                    Margin="0,20,0,10" />
+                    <material:EditorField Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <!-- Subject of Expertise Section -->
+                    <Label Text="Subject of Expertise" 
+                     FontSize="18" 
+                     FontAttributes="Bold" 
+                     TextColor="Blue"  
+                     Margin="0,20,0,10" />
+                    <material:MultiplePickerField x:Name="acadsPicker" Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
+                        <material:MultiplePickerField.ItemsSource BackgroundColor="White">
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>Business</x:String>
+                                <x:String>Calculus</x:String>
+                                <x:String>Chemistry</x:String>
+                                <x:String>Computer Programming</x:String>
+                                <x:String>Economics</x:String>
+                                <x:String>Engineering</x:String>
+                                <x:String>Foreign Language</x:String>
+                                <x:String>Health/Nutrition</x:String>
+                                <x:String>History</x:String>
+                                <x:String>Literacy</x:String>
+                                <x:String>Mathematics</x:String>
+                                <x:String>Medical</x:String>
+                                <x:String>Philosophy</x:String>
+                                <x:String>Physics</x:String>
+                                <x:String>Science</x:String>
+                                <x:String>Sex Education</x:String>
+                            </x:Array>
+                        </material:MultiplePickerField.ItemsSource>
+                    </material:MultiplePickerField>
+
+                    <material:MultiplePickerField x:Name="nonacadsPicker" Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
+                        <material:MultiplePickerField.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Art/Design</x:String>
+                                <x:String>Cooking/Culinary Arts</x:String>
+                                <x:String>Creative Writing</x:String>
+                                <x:String>Dance</x:String>
+                                <x:String>Fitness Training</x:String>
+                                <x:String>Music</x:String>
+                                <x:String>Performing Arts</x:String>
+                                <x:String>Photography and Photo Editing</x:String>
+                                <x:String>Physical Education</x:String>
+                                <x:String>Public Speaking</x:String>
+                                <x:String>Video Editing</x:String>
+                            </x:Array>
+                        </material:MultiplePickerField.ItemsSource>
+                    </material:MultiplePickerField>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="15">
+                    <!-- Available Schedule -->
+                    <Label Text="Available Schedule" 
+                    FontSize="18" 
+                    FontAttributes="Bold" 
+                    TextColor="Blue" 
+                    Margin="0,20,0,10" />
+
+                    <CollectionView ItemsSource="{Binding Days}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="5">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Day}" VerticalOptions="Center"/>
+                                    <material:TimePickerField Time="{Binding FromTime}" 
+                                              IsVisible="{Binding IsSelected}" 
+                                              Title="FROM" 
+                                              Format="hh:mm tt" 
+                                              FontSize="13" 
+                                              HeightRequest="50" 
+                                              Margin="5" 
+                                              VerticalOptions="Center" 
+                                              HorizontalOptions="Center"/>
+
+                                    <material:TimePickerField Time="{Binding ToTime}" 
+                                              IsVisible="{Binding IsSelected}" 
+                                              Title="TO" 
+                                              Format="hh:mm tt" 
+                                              HeightRequest="50" 
+                                              FontSize="13" 
+                                              Margin="5" 
+                                              VerticalOptions="Center" 
+                                              HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+                    <!-- Session Rates -->
+                    <Label Text="Session Rates" FontAttributes="Bold" Margin="0,10,0,10"/>
+                    <material:TextField Title="Rates" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
+                </VerticalStackLayout>
+                <!-- Apply Button-->
+                <Button Text="Apply" WidthRequest="150" HeightRequest ="39" HorizontalOptions="Center"/>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
