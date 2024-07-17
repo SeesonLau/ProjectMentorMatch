@@ -25,6 +25,8 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(Settings) , typeof(Settings));
             Routing.RegisterRoute(nameof(ApplyAsMentor), typeof(ApplyAsMentor));
             Routing.RegisterRoute(nameof(Booking), typeof(Booking));
+            Routing.RegisterRoute(nameof(ChangePasswordPopUp), typeof(ChangePasswordPopUp));
+            Routing.RegisterRoute(nameof(ChangePassPopUp), typeof(ChangePassPopUp));
 
             ProfileTabClickedCommand = new Command<string>(OnProfileTabClicked);
         }

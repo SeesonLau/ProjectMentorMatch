@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"  
+             x:Class="ProjectMentorMatch.Views.ChangePassPopUp"
+             CanBeDismissedByTappingOutsideOfPopup="False">
+
+    <Frame CornerRadius="20" Background="LightGray">
+        
+        <VerticalStackLayout Padding="5" Spacing="0">
+
+            <HorizontalStackLayout Padding="10" Spacing="35">
+                
+                <ImageButton Source="goback_icon.png"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     HorizontalOptions="Start"
+                     Clicked="ImageButton_Clicked">
+                </ImageButton>
+
+                <Label FontSize="18"
+                       Text="Change Password"
+                       TextColor="#006EBB"
+                       FontAttributes="Bold"
+                       Margin="5">
+                </Label>
+
+            </HorizontalStackLayout>
+
+            <VerticalStackLayout Padding="20" Spacing="10">
+
+                <Label FontSize="14"
+                       HorizontalTextAlignment="Start"
+                       Text="Old Password"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center">
+                </Label>
+
+                <material:TextField FontSize="14" 
+                                    WidthRequest="250"                                     
+                                    Title="Enter your old password" 
+                                    TitleColor="Gray"
+                                    x:Name="OldPassEntry">
+                </material:TextField>
+
+                <Label FontSize="14"
+                       HorizontalTextAlignment="Start"
+                       Text="New Password"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center">
+                </Label>
+
+                <material:TextField FontSize="14" 
+                                    WidthRequest="250" 
+                                    Title="Enter your new password" 
+                                    TitleColor="Gray"
+                                    x:Name="NewPassEntry">
+                </material:TextField>
+
+                <Label FontSize="14"
+                       HorizontalTextAlignment="Start"
+                       Text="Confirm Password"
+                       TextColor="Black"
+                       FontAttributes="Bold"
+                       VerticalOptions="Center">
+                </Label>
+
+                <material:TextField FontSize="14" 
+                                    WidthRequest="250" 
+                                    Title="Confirm your new password" 
+                                    TitleColor="Gray"
+                                    TitleFontSize="14"                   
+                                    x:Name="ConfirmNewPassEntry">
+                </material:TextField>
+
+                <VerticalStackLayout Padding="20" HorizontalOptions="Center">
+
+                    <Button Text="Save"
+                            WidthRequest="120"
+                            HorizontalOptions="Center"
+                            x:Name="btnSave">
+                    </Button>
+                    
+                </VerticalStackLayout>
+
+            </VerticalStackLayout>
+
+        </VerticalStackLayout>
+    </Frame>
+    
+</toolkit:Popup>

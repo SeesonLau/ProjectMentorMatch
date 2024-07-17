@@ -46,7 +46,7 @@
                         </Grid>
                         
                         <Grid Grid.Row="0" Grid.Column="1" Padding="0, 10, 0, 0">
-                            <buttons:SfButton x:Name="btnChangePass1" 
+                            <buttons:SfButton x:Name="btnChangePass" 
                                               Text="Change Password" 
                                               FontSize ="16" 
                                               BackgroundColor="Transparent" 
@@ -59,6 +59,7 @@
                                               VerticalTextAlignment="Center" 
                                               HorizontalTextAlignment="Start"
                                               CornerRadius="1"
+                                              Clicked="btnChangePass_Clicked"
                                               />
                         </Grid>
                         
