@@ -25,8 +25,6 @@ public partial class Dashboard : ContentPage
 		InitializeComponent();
         InitializeCarouselAsync();
     }
-
-
     private async void OnFilterButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Filter());
@@ -114,7 +112,7 @@ public partial class Dashboard : ContentPage
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-
+        
         // Check for internet connectivity when the page appears
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
@@ -135,6 +133,20 @@ public partial class Dashboard : ContentPage
         }
         else
         {
+            /*Content = new Grid
+            {
+                Children =
+            {
+                new Label
+                {
+                    Text = $"UserID: { App.UserID}",
+                    FontSize = 24, // You can adjust the font size as needed
+                    HorizontalOptions = LayoutOptions.Start,
+                    VerticalOptions = LayoutOptions.Center
+                }
+            }
+            };*/
+            
             // Internet connection available, initialize the carousel
             if (CarouselItems.Count == 0)
                 await InitializeCarouselAsync();
