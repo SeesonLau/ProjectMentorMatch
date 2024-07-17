@@ -76,8 +76,9 @@ public partial class Dashboard : ContentPage
         refreshView.IsRefreshing = false;
     }
 
+    //WILL BE COMPARING THE TWO
 
-
+    /*
     // Show a message if there is no internet connection
     protected override async void OnAppearing()
     {
@@ -109,5 +110,35 @@ public partial class Dashboard : ContentPage
         }
     }
 
+    */
+    protected override async void OnAppearing()
+    {
+        base.OnAppearing();
+
+        // Check for internet connectivity when the page appears
+        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+        {
+            // No internet connection, show a blank page with message
+            Content = new Grid
+            {
+                Children =
+            {
+                new Label
+                {
+                    Text = "No Internet Connection",
+                    FontSize = 24, // You can adjust the font size as needed
+                    HorizontalOptions = LayoutOptions.Center,
+                    VerticalOptions = LayoutOptions.Center
+                }
+            }
+            };
+        }
+        else
+        {
+            // Internet connection available, initialize the carousel
+            if (CarouselItems.Count == 0)
+                await InitializeCarouselAsync();
+        }
+    }
 
 }

@@ -54,12 +54,14 @@
 
             <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
 
+                <!-- WILL BE LEAVING THIS OUT UNTIL FURTHER TOTS IS MADDE-->
                 <Label Margin="2" 
-                   Text="Ana Angeli Edejer"
+                   Text="PlaceHolder Text"
                    HorizontalOptions="Start"
                    FontSize="15"
                    FontAttributes="Bold"/>
-
+                
+                
                 <Label Margin="2" 
                     Text="BSCPE - 2"
                    FontSize="12"/>
@@ -111,8 +113,9 @@
                     <Label Text="Name" 
                            FontSize="15" 
                            FontAttributes="Bold"/>
-
-                    <material:TextField Text="Ana Angeli Edejer" 
+                    <!-- ENTRY FOR NAME-->
+                    <material:TextField x:Name="userName"
+                                        Text="{Binding UserName}" 
                                         Title="Enter your name" 
                                         Margin="0,8,0,10" 
                                         WidthRequest="330"/>
@@ -124,7 +127,12 @@
 
 
                     <HorizontalStackLayout>
-                        <chip:SfChipGroup ChipType="Choice" Margin="8,0" Padding="10,0,0,0" SelectedChipBackground="LightBlue">
+                        <chip:SfChipGroup x:Name="genderChipGroup"
+                                            ChipType="Choice"
+                                            Margin="8,0"
+                                            Padding="10,0,0,0"
+                                            SelectedChipBackground="LightBlue"
+                                            SelectedItem="{Binding SelectedGender}">
                             <chip:SfChipGroup.Items>
                                 <chip:SfChip Text="Male" Margin="10"/>
                                 <chip:SfChip Text="Female" Margin="10"/>
@@ -135,24 +143,28 @@
 
 
                     <Label Text="Birth-date" 
-                           FontSize="15" 
-                           Margin="0,10,0,0"
-                           FontAttributes="Bold"/>
+                            FontSize="15" 
+                            Margin="0,10,0,0"
+                            FontAttributes="Bold"/>
 
-                    <material:DatePickerField Format="MM/dd/yyyy" 
-                                              FontSize="16" 
-                                              WidthRequest="330" 
-                                              Icon="day_icon.png" 
-                                              Margin="0,8,0,10"/>
+                    <material:DatePickerField x:Name="birthDatePicker"
+                                                Date="{Binding BirthDate}"
+                                                Format="MM/dd/yyyy" 
+                                                FontSize="16" 
+                                                WidthRequest="330" 
+                                                Icon="day_icon.png" 
+                                                Margin="0,8,0,10"/>
 
                     <Label Text="Grade/Course" 
-                           FontSize="15" 
-                           Margin="0,10,0,0" 
-                           FontAttributes="Bold"/>
+                            FontSize="15" 
+                            Margin="0,10,0,0" 
+                            FontAttributes="Bold"/>
 
-                    <material:EditorField Title="Enter Grade/Course and Year" 
-                                        WidthRequest="330"
-                                        Margin="0,8,0,10"/>
+                    <material:EditorField x:Name="gradeCourseEditor"
+                                            Text="{Binding GradeCourse}"
+                                            Title="Enter Grade/Course and Year" 
+                                            WidthRequest="330"
+                                            Margin="0,8,0,10"/>
                 </VerticalStackLayout>
 
 
@@ -168,7 +180,8 @@
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:TextField Text="" 
+                    <material:TextField x:Name="emailTextField"
+                                        Text="{Binding Email}"
                                         Title="Enter your email" 
                                         Margin="0,8,0,10" 
                                         WidthRequest="330"/>
@@ -177,7 +190,8 @@
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:TextField Text="" 
+                    <material:TextField x:Name="contactNumberTextField"
+                                        Text="{Binding ContactNumber}"
                                         Title="Enter contact number" 
                                         Margin="0,8,0,10" 
                                         WidthRequest="330"/>
@@ -191,23 +205,25 @@
                            TextColor="Blue" 
                            Margin="0,20,0,15" />
 
-                    <Label Text="Address 1" 
+                    <Label Text="Province" 
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:TextField Text="" 
-                         Title="Enter your first address" 
-                         Margin="0,8,0,10" 
-                         WidthRequest="330"/>
+                    <material:TextField x:Name="provinceTextField"
+                                        Text="{Binding Province}"
+                                        Title="Enter your province" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
 
-                    <Label Text="Address 2" 
+                    <Label Text="City/Municipality" 
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:TextField Text="" 
-                         Title="Enter your second address" 
-                         Margin="0,8,0,10" 
-                         WidthRequest="330"/>
+                    <material:TextField x:Name="cityTextField"
+                                        Text="{Binding CityMunicipality}"
+                                        Title="Enter your city/municipality" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
 
                 </VerticalStackLayout>
 
@@ -220,10 +236,11 @@
                            Margin="0,20,0,15" />
 
 
-                    <material:EditorField Text="" 
-                                        Title="Enter your educational background" 
-                                        Margin="0,8,0,10" 
-                                        WidthRequest="330"/>
+                    <material:EditorField x:Name="educationalBackgroundEditor"
+                                          Text="{Binding EducationalBackground}"
+                                          Title="Enter your educational background" 
+                                          Margin="0,8,0,10" 
+                                          WidthRequest="330"/>
 
                 </VerticalStackLayout>
 
@@ -239,7 +256,14 @@
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,8,0,10" AccentColor="White" WidthRequest="330">
+                    <material:MultiplePickerField 
+                              x:Name="academicSubjectsPicker"
+                              Title="Academic Subjects" 
+                              Icon="subject_icon.png" 
+                              Margin="0,8,0,10" 
+                              AccentColor="White" 
+                              WidthRequest="330"
+                              SelectedItems="{Binding SelectedAcademicSubjects}">
                         <material:MultiplePickerField.ItemsSource BackgroundColor="White">
                             <x:Array Type="{x:Type x:String}" >
                                 <x:String>Business</x:String>
@@ -266,7 +290,14 @@
                            FontSize="15" 
                            FontAttributes="Bold"/>
 
-                    <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,8,0,10" WidthRequest="330" AccentColor="LightBlue">
+                    <material:MultiplePickerField 
+                              x:Name="nonAcademicSubjectsPicker"
+                              Title="Non-academic Subjects" 
+                              Icon="subject_icon.png" 
+                              Margin="0,8,0,10" 
+                              WidthRequest="330" 
+                              AccentColor="LightBlue"
+                              SelectedItems="{Binding SelectedNonAcademicSubjects}">
                         <material:MultiplePickerField.ItemsSource>
                             <x:Array Type="{x:Type x:String}">
                                 <x:String>Art/Design</x:String>
@@ -284,7 +315,7 @@
                         </material:MultiplePickerField.ItemsSource>
                     </material:MultiplePickerField>
                 </VerticalStackLayout>
-
+                <!-- WILL CONNECT LATER. YES -->
                 <VerticalStackLayout Spacing="20">
 
                     <Label Text="Available Schedule" 

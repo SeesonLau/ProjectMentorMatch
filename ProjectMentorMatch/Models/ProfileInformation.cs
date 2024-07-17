@@ -23,7 +23,7 @@ namespace ProjectMentorMatch.Models
         private double initialTime;
         private double finalTime;
         private string? gender;
-        private string? addressCity;
+        private string? addressCity; 
         private string? addressProvince;
 
         public string? GetSubjectTaught()
@@ -90,6 +90,7 @@ namespace ProjectMentorMatch.Models
         {
             this.addressProvince = addressProvince;
         }
+
 
     }
 }
