@@ -42,6 +42,10 @@ namespace ProjectMentorMatch
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            // Do not remove this line of code, else the app bugs out in Release Mode
+            builder.Services.AddCommunityToolkitDialogs();
+            builder.Services.AddMopupsDialogs();
+
 #if DEBUG
     		builder.Logging.AddDebug();
             builder.Services.AddCommunityToolkitDialogs();
