@@ -1,4 +1,5 @@
-﻿using ProjectMentorMatch.Views;
+﻿using ProjectMentorMatch.ViewModels;
+using ProjectMentorMatch.Views;
 using System.Windows.Input;
 
 namespace ProjectMentorMatch
@@ -25,8 +26,9 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(Settings) , typeof(Settings));
             Routing.RegisterRoute(nameof(ApplyAsMentor), typeof(ApplyAsMentor));
             Routing.RegisterRoute(nameof(Booking), typeof(Booking));
-            Routing.RegisterRoute(nameof(ChangePasswordPopUp), typeof(ChangePasswordPopUp));
             Routing.RegisterRoute(nameof(ChangePassPopUp), typeof(ChangePassPopUp));
+            Routing.RegisterRoute(nameof(PrivacyAndSecurity), typeof(PrivacyAndSecurity));
+            Routing.RegisterRoute(nameof(About), typeof(About));
 
             ProfileTabClickedCommand = new Command<string>(OnProfileTabClicked);
         }
