@@ -1,6 +1,7 @@
 using Plugin.LocalNotification;
 using Plugin.LocalNotification.AndroidOption;
 using Plugin.LocalNotification.iOSOption;
+using ProjectMentorMatch.Methods;
 
 namespace ProjectMentorMatch.Views;
 
@@ -13,6 +14,7 @@ public partial class Notification : ContentPage
 
     private void OnNotificationClicked(object sender, EventArgs e)
     {
+
         var request = new NotificationRequest
         {
             NotificationId = 1337,
