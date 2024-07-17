@@ -1,11 +1,337 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:picker="clr-namespace:Syncfusion.Maui.Picker;assembly=Syncfusion.Maui.Picker"
+             xmlns:core="clr-namespace:Syncfusion.Maui.NavigationDrawer;assembly=Syncfusion.Maui.NavigationDrawer"
+             xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
+             xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.Profile"
-             Title="Profile">
-    <VerticalStackLayout>
-        
-        <Button Text="Apply as Mentor" FontSize="25" Margin="0,250,0,0" Clicked="OnApplyMentorClicked" WidthRequest="250" HeightRequest="100" HorizontalOptions="Center"/>
+             >
+    <ContentPage.BindingContext>
+        <local:ScheduleViewModel />
+    </ContentPage.BindingContext>
 
-    </VerticalStackLayout>
+
+    <Grid RowDefinitions=".1*, .15*, *, .12*" Margin="0,-10,0,0">
+        <!-- Header Section -->
+        <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
+
+            <ImageButton Source="goback_icon.png" 
+                     HorizontalOptions="Start" 
+                     VerticalOptions="Center"
+                     WidthRequest="40"
+                     HeightRequest="40"
+                     Clicked="GoBackButton_Clicked"/>
+
+            <Label Grid.Column="1"
+               FontSize="24"
+               HorizontalTextAlignment="Center"
+               Text="Profile"
+               TextColor="Blue"
+               FontAttributes="Bold"
+               VerticalOptions="Center" />
+
+            <ImageButton Source="settings_icon.png"
+                     Grid.Column="2"
+                     HorizontalOptions="End"
+                     VerticalOptions="Center"
+                     WidthRequest="30"
+                     HeightRequest="30"
+                     Clicked="SettingsButton_Clicked"/>
+        </Grid>
+
+        <Grid Grid.Row="1">
+
+            <Image Grid.Column="0" 
+               Source="dotnet_bot.png" 
+               WidthRequest="80" 
+               HeightRequest="80" 
+               HorizontalOptions="Start" 
+               VerticalOptions="Center" 
+               Margin="20"/>
+
+            <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
+
+                <Label Margin="2" 
+                   Text="Ana Angeli Edejer"
+                   HorizontalOptions="Start"
+                   FontSize="15"
+                   FontAttributes="Bold"/>
+
+                <Label Margin="2" 
+                    Text="BSCPE - 2"
+                   FontSize="12"/>
+            </VerticalStackLayout>
+
+            <buttons:SfButton Grid.Column="2" 
+                          x:Name="sfButton" 
+                          Text="Apply as Mentor" 
+                          WidthRequest="125" 
+                          HeightRequest="42" 
+                          HorizontalOptions="End" 
+                          VerticalOptions="Center" 
+                          Margin="0,0,5,0"
+                          Background="Yellow"
+                          FontSize="13"
+                          TextColor="Black" 
+                          FontAttributes="Bold"
+                          Clicked="OnApplyMentorClicked"/>
+        </Grid>
+
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="15,5,0,0">
+                <HorizontalStackLayout HorizontalOptions="Center">
+                    <chip:SfAvatarView ContentType="Initials"
+                                   AvatarName="Alex"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"  
+                                   HeightRequest="120"
+                                   CornerRadius="60"
+                                   WidthRequest="120"
+                                   ImageSource="profile_icon.png"/>
+                    <ImageButton Source="edit_icon.png" 
+                                 WidthRequest="20" 
+                                 HeightRequest="20" 
+                                 HorizontalOptions="End" 
+                                 VerticalOptions="End"
+                                 Margin="-12,0,0,0">
+                    </ImageButton>
+                </HorizontalStackLayout>
+
+
+                <VerticalStackLayout>
+                    <Label Text="Personal Information" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="Blue"  
+                       Margin="0,20,0,15" />
+
+                    <Label Text="Name" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:TextField Text="Ana Angeli Edejer" 
+                                        Title="Enter your name" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
+
+                    <Label Text="Gender" 
+                           FontSize="15"
+                           FontAttributes="Bold"
+                           Margin="0,10,0,0" />
+
+
+                    <HorizontalStackLayout>
+                        <chip:SfChipGroup ChipType="Choice" Margin="8,0" Padding="10,0,0,0" SelectedChipBackground="LightBlue">
+                            <chip:SfChipGroup.Items>
+                                <chip:SfChip Text="Male" Margin="10"/>
+                                <chip:SfChip Text="Female" Margin="10"/>
+                                <chip:SfChip Text="Non-binary" Margin="10"/>
+                            </chip:SfChipGroup.Items>
+                        </chip:SfChipGroup>
+                    </HorizontalStackLayout>
+
+
+                    <Label Text="Birth-date" 
+                           FontSize="15" 
+                           Margin="0,10,0,0"
+                           FontAttributes="Bold"/>
+
+                    <material:DatePickerField Format="MM/dd/yyyy" 
+                                              FontSize="16" 
+                                              WidthRequest="330" 
+                                              Icon="day_icon.png" 
+                                              Margin="0,8,0,10"/>
+
+                    <Label Text="Grade/Course" 
+                           FontSize="15" 
+                           Margin="0,10,0,0" 
+                           FontAttributes="Bold"/>
+
+                    <material:EditorField Title="Enter Grade/Course and Year" 
+                                        WidthRequest="330"
+                                        Margin="0,8,0,10"/>
+                </VerticalStackLayout>
+
+
+                <VerticalStackLayout>
+
+                    <Label Text="Contact Information" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="Blue" 
+                           Margin="0,20,0,15" />
+
+                    <Label Text="Email" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:TextField Text="" 
+                                        Title="Enter your email" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
+
+                    <Label Text="Contact Number" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:TextField Text="" 
+                                        Title="Enter contact number" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Label Text="Address Information" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="Blue" 
+                           Margin="0,20,0,15" />
+
+                    <Label Text="Address 1" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:TextField Text="" 
+                         Title="Enter your first address" 
+                         Margin="0,8,0,10" 
+                         WidthRequest="330"/>
+
+                    <Label Text="Address 2" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:TextField Text="" 
+                         Title="Enter your second address" 
+                         Margin="0,8,0,10" 
+                         WidthRequest="330"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Label Text="Educational Background" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="Blue" 
+                           Margin="0,20,0,15" />
+
+
+                    <material:EditorField Text="" 
+                                        Title="Enter your educational background" 
+                                        Margin="0,8,0,10" 
+                                        WidthRequest="330"/>
+
+                </VerticalStackLayout>
+
+                <VerticalStackLayout>
+
+                    <Label Text="Subject Preferences" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="Blue" 
+                           Margin="0,20,0,15" />
+
+                    <Label Text="Academic Subjects" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,8,0,10" AccentColor="White" WidthRequest="330">
+                        <material:MultiplePickerField.ItemsSource BackgroundColor="White">
+                            <x:Array Type="{x:Type x:String}" >
+                                <x:String>Business</x:String>
+                                <x:String>Calculus</x:String>
+                                <x:String>Chemistry</x:String>
+                                <x:String>Computer Programming</x:String>
+                                <x:String>Economics</x:String>
+                                <x:String>Engineering</x:String>
+                                <x:String>Foreign Language</x:String>
+                                <x:String>Health/Nutrition</x:String>
+                                <x:String>History</x:String>
+                                <x:String>Literacy</x:String>
+                                <x:String>Mathematics</x:String>
+                                <x:String>Medical</x:String>
+                                <x:String>Philosophy</x:String>
+                                <x:String>Physics</x:String>
+                                <x:String>Science</x:String>
+                                <x:String>Sex Education</x:String>
+                            </x:Array>
+                        </material:MultiplePickerField.ItemsSource>
+                    </material:MultiplePickerField>
+
+                    <Label Text="Non-Academic Subject" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,8,0,10" WidthRequest="330" AccentColor="LightBlue">
+                        <material:MultiplePickerField.ItemsSource>
+                            <x:Array Type="{x:Type x:String}">
+                                <x:String>Art/Design</x:String>
+                                <x:String>Cooking/Culinary Arts</x:String>
+                                <x:String>Creative Writing</x:String>
+                                <x:String>Dance</x:String>
+                                <x:String>Fitness Training</x:String>
+                                <x:String>Music</x:String>
+                                <x:String>Performing Arts</x:String>
+                                <x:String>Photography and Photo Editing</x:String>
+                                <x:String>Physical Education</x:String>
+                                <x:String>Public Speaking</x:String>
+                                <x:String>Video Editing</x:String>
+                            </x:Array>
+                        </material:MultiplePickerField.ItemsSource>
+                    </material:MultiplePickerField>
+                </VerticalStackLayout>
+
+                <VerticalStackLayout Spacing="20">
+
+                    <Label Text="Available Schedule" 
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="Blue" 
+                           Margin="0,20,0,15" />
+
+                    <CollectionView ItemsSource="{Binding Days}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout Orientation="Horizontal" Spacing="5">
+                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                                    <Label Text="{Binding Day}" VerticalOptions="Center"/>
+                                    <material:TimePickerField Time="{Binding FromTime}" 
+                                                              IsVisible="{Binding IsSelected}" 
+                                                              Title="FROM" 
+                                                              Format="hh:mm tt" 
+                                                              FontSize="13" 
+                                                              HeightRequest="50" 
+                                                              Margin="5" 
+                                                              VerticalOptions="Center" 
+                                                              HorizontalOptions="Center"/>
+
+                                    <material:TimePickerField Time="{Binding ToTime}" 
+                                                              IsVisible="{Binding IsSelected}" 
+                                                              Title="TO" 
+                                                              Format="hh:mm tt" 
+                                                              HeightRequest="50" 
+                                                              FontSize="13" 
+                                                              Margin="5" 
+                                                              VerticalOptions="Center" 
+                                                              HorizontalOptions="Center"/>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
+                </VerticalStackLayout>
+            </VerticalStackLayout>
+        </ScrollView>
+        <Grid Grid.Row="3" Grid.Column="2">
+            <Button Text="Save" 
+                    FontAttributes="Bold" 
+                    HeightRequest="45" 
+                    WidthRequest="280" 
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center"></Button>
+        </Grid>
+    </Grid>
 </ContentPage>

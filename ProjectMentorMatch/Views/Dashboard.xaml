@@ -93,9 +93,6 @@
             </CarouselView.ItemTemplate>
         </CarouselView>
     </RefreshView>
-
-
-
 </ContentPage>
 
     
