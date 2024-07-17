@@ -28,7 +28,7 @@
                        Margin="0,5"
                        HasShadow="False">
                     <HorizontalStackLayout>
-                        <Image Source="profile_placeholder.png"
+                        <Image Source="circle_logo.png"
                                WidthRequest="40"
                                HeightRequest="40"/>
                         <Label Text="Your tutoring session with Mentor 1 has been approved."
@@ -48,7 +48,7 @@
                        Margin="0,5"
                        HasShadow="False">
                     <HorizontalStackLayout>
-                        <Image Source="profile_placeholder.png"
+                        <Image Source="circle_logo.png"
                                WidthRequest="40"
                                HeightRequest="40"/>
                         <Label Text="Your tutoring session with Mentor 2 has been approved."
@@ -85,20 +85,37 @@
                                Padding="10"
                                Margin="50,5"
                                HasShadow="False">
-                            <VerticalStackLayout>
-                                <Image Source="profile_placeholder.png"
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="Auto"/>
+                                    <RowDefinition Height="Auto"/>
+                                </Grid.RowDefinitions>
+                                <Image Source="circle_logo.png"
                                        WidthRequest="60"
                                        HeightRequest="60"
-                                       HorizontalOptions="Center"/>
-                                <Label Text="Mentor"
-                                       HorizontalTextAlignment="Center"
-                                       FontSize="16"
-                                       FontAttributes="Bold"
-                                       Margin="0,5,0,0"/>
-                                <Button Text="View"
-                                        WidthRequest="120"
-                                        Margin="10,0,10,0"/>
-                            </VerticalStackLayout>
+                                       HorizontalOptions="Center"
+                                       Grid.Row="0"/>
+                                <!-- Close Button -->
+                                <Button Text="X"
+                                        BackgroundColor="Transparent"
+                                        TextColor="Gray"
+                                        FontSize="20"
+                                        Margin="0,5,5,10"
+                                        HorizontalOptions="End"
+                                        Clicked="OnRemoveMentorClicked"
+                                        CommandParameter="{Binding .}"
+                                        Grid.Row="0"/>
+                                <VerticalStackLayout Grid.Row="1">
+                                    <Label Text="{Binding .}"
+                                           HorizontalTextAlignment="Center"
+                                           FontSize="16"
+                                           FontAttributes="Bold"
+                                           Margin="0,5,0,0"/>
+                                    <Button Text="View"
+                                            WidthRequest="120"
+                                            Margin="10,0,10,0"/>
+                                </VerticalStackLayout>
+                            </Grid>
                         </Frame>
                     </DataTemplate>
                 </CarouselView.ItemTemplate>
@@ -117,7 +134,7 @@
                        Margin="0,5"
                        HasShadow="False">
                     <HorizontalStackLayout>
-                        <Image Source="profile_placeholder.png"
+                        <Image Source="circle_logo.png"
                                WidthRequest="40"
                                HeightRequest="40"/>
                         <Label Text="Your tutoring session with Mentor 3 has been approved."
@@ -137,7 +154,7 @@
                        Margin="0,5"
                        HasShadow="False">
                     <HorizontalStackLayout>
-                        <Image Source="profile_placeholder.png"
+                        <Image Source="circle_logo.png"
                                WidthRequest="40"
                                HeightRequest="40"/>
                         <Label Text="Your tutoring session with Mentor 4 has been approved."
