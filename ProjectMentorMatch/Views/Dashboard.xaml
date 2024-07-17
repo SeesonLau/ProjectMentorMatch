@@ -6,16 +6,19 @@
              Title="MentorMatch">
     <ContentPage.ToolbarItems>
         <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
+        
     </ContentPage.ToolbarItems>
 
-    <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Refreshing="OnRefresh">
 
+    <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Refreshing="OnRefresh">
         <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
             <CarouselView.ItemTemplate>
                 <DataTemplate>
                     <ScrollView>
                         <StackLayout Margin="0,10,0,10">
+                            
                             <AbsoluteLayout HeightRequest="200" WidthRequest="150">
+                                
                                 <Image Source="circle_logo.png"
                                    Aspect="AspectFill"
                                    HeightRequest="500"
@@ -87,7 +90,9 @@
                          TextColor="Black"
                          BorderWidth="2.2"
                         Margin="0,23,0,23"/>
+                            
                         </StackLayout>
+                        
                     </ScrollView>
                 </DataTemplate>
             </CarouselView.ItemTemplate>

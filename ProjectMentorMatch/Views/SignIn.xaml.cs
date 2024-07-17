@@ -1,3 +1,4 @@
+using Microsoft.Data.SqlClient;
 using Microsoft.Maui.Controls;
 using ProjectMentorMatch.Models;
 using ProjectMentorMatch.Views;
@@ -7,10 +8,45 @@ namespace ProjectMentorMatch;
 
 public partial class SignIn : ContentPage
 {
-	public SignIn()
+   // Database db = new Database();
+    
+    public SignIn()
 	{
 		InitializeComponent();
-	}
+    }
+
+    public int GetUserID()
+    {
+        try
+        {
+            using (SqlConnection cn = Database.GetConnection())
+            {
+                cn.Open();
+                using (SqlCommand cm = new SqlCommand("SELECT [UserID] FROM [CreateAccount] WHERE [Email] = @email AND [Password] = @pass", cn))
+                {
+                    cm.Parameters.AddWithValue("@email", EmailEntry.Text);
+                    cm.Parameters.AddWithValue("@pass", PasswordEntry.Text);
+                    using (SqlDataReader dr = cm.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            if (dr["UserID"] != DBNull.Value && int.TryParse(dr["UserID"].ToString(), out int ID))
+                            {
+                                return ID;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+            return 0;
+        }
+    }
+
     private async void OnLoginClicked(object sender, EventArgs e)
     {
         string email = EmailEntry.Text;
@@ -43,6 +79,9 @@ public partial class SignIn : ContentPage
 
             if (isUserFound)
             {
+                int userId = GetUserID();
+                App.UserID = userId;
+
                 await DisplayAlert("Success", "Login successful.", "OK");
                 // Check if Application.Current is not null
                 if (Application.Current != null)
