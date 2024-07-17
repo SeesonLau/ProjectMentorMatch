@@ -32,7 +32,6 @@ namespace ProjectMentorMatch
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
                 .ConfigureMopups()
-
                 // Add Syncfusion.Maui.Core.Hosting
                 .ConfigureSyncfusionCore()
                 // Added Notification Functionality
