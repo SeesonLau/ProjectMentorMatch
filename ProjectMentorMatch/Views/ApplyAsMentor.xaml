@@ -4,6 +4,7 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="ProjectMentorMatch.Views.ApplyAsMentor"
              Shell.TabBarIsVisible="False"
+             xmlns:validation="clr-namespace:InputKit.Shared.Validations;assembly=InputKit.Maui"
              Title="Apply as Mentor">
     <ScrollView>
         <StackLayout Padding="30">
@@ -20,7 +21,7 @@
 
             <!-- Subject of Expertise Section -->
             <Label Text="Subject of Expertise" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
+            <material:MultiplePickerField x:Name="acadsPicker" Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
                 <material:MultiplePickerField.ItemsSource BackgroundColor="White">
                     <x:Array Type="{x:Type x:String}" >
                         <x:String>Business</x:String>
@@ -43,7 +44,7 @@
                 </material:MultiplePickerField.ItemsSource>
             </material:MultiplePickerField>
 
-            <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
+            <material:MultiplePickerField x:Name="nonacadsPicker" Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
                 <material:MultiplePickerField.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Art/Design</x:String>
@@ -63,7 +64,7 @@
 
             <!-- Available Schedule -->
             <Label Text="Available Schedule" FontAttributes="Bold" Margin="0,10,0,10"/>
-            <material:MultiplePickerField Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
+            <material:MultiplePickerField x:Name="dayPicker" Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
                 <material:MultiplePickerField.ItemsSource>
                     <x:Array Type="{x:Type x:String}">
                         <x:String>Monday</x:String>

@@ -108,8 +108,10 @@
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 		<PackageReference Include="Plugin.LocalNotification" Version="10.1.8" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.1.41" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.1.42" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="26.1.42" />
+		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.9.0" />
+		<PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.9.0" />
 		<PackageReference Include="UraniumUI.Material" Version="2.9.0" />
 	</ItemGroup>
 

@@ -1,5 +1,6 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
+using Mopups.Hosting;
 using Plugin.LocalNotification;
 using Syncfusion.Maui.Core.Hosting;
 using UraniumUI;
@@ -30,6 +31,8 @@ namespace ProjectMentorMatch
                 // Add UraniumUI.Material.Controls
                 .UseUraniumUI()
                 .UseUraniumUIMaterial()
+                .ConfigureMopups()
+
                 // Add Syncfusion.Maui.Core.Hosting
                 .ConfigureSyncfusionCore()
                 // Added Notification Functionality
@@ -42,6 +45,8 @@ namespace ProjectMentorMatch
 
 #if DEBUG
     		builder.Logging.AddDebug();
+            builder.Services.AddCommunityToolkitDialogs();
+            builder.Services.AddMopupsDialogs();
 #endif
 
             return builder.Build();
