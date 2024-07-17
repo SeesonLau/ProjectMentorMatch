@@ -56,11 +56,12 @@
             <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
 
                 <!-- WILL BE LEAVING THIS OUT UNTIL FURTHER TOTS IS MADDE-->
-                <Label Margin="2" 
-                   Text="PlaceHolder Text"
-                   HorizontalOptions="Start"
-                   FontSize="15"
-                   FontAttributes="Bold"/>
+                <Label Margin="2"
+                        x:Name="UpperNameEntry"
+                        Text="{Binding PlaceholderText}"
+                        HorizontalOptions="Start"
+                        FontSize="15"
+                        FontAttributes="Bold"/>
                 
                 
                 <Label Margin="2" 
@@ -115,7 +116,7 @@
                            FontSize="15" 
                            FontAttributes="Bold"/>
                     <!-- ENTRY FOR NAME-->
-                    <material:TextField x:Name="userName"
+                    <material:TextField x:Name="userNameEntry"
                                         Text="{Binding UserName}" 
                                         Title="Enter your name" 
                                         Margin="0,8,0,10" 

@@ -1,9 +1,11 @@
 ﻿using ProjectMentorMatch.Views;
+using System.Windows.Input;
 
 namespace ProjectMentorMatch
 {
     public partial class AppShell : Shell
     {
+        public ICommand ProfileTabClickedCommand { get; set; }
         public AppShell()
         {
             InitializeComponent();
@@ -22,6 +24,14 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(Analytics), typeof(Analytics));
             Routing.RegisterRoute(nameof(Settings) , typeof(Settings));
             Routing.RegisterRoute(nameof(ApplyAsMentor), typeof(ApplyAsMentor));
+
+            ProfileTabClickedCommand = new Command<string>(OnProfileTabClicked);
         }
+        
+        private void OnProfileTabClicked(string username)
+        {
+            
+        }
+
     }
 }

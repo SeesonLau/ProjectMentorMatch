@@ -1,8 +1,11 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectMentorMatch.Views;
 
 namespace ProjectMentorMatch.Models
 {
@@ -92,5 +95,27 @@ namespace ProjectMentorMatch.Models
         }
 
 
+        // NAME
+
+
+        public string? GetFullName(string userID)
+        {
+            string? fullname = "";
+
+            string query = "SELECT fullname FROM CreateAccount WHERE userID = @UserID";
+
+            using (var connection = GetConnection()) // Assuming GetConnection() retrieves your SqlConnection
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    fullname = result.ToString();
+                }
+            }
+            return fullname;
+        }
     }
 }
