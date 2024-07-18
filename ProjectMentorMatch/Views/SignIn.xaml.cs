@@ -67,18 +67,15 @@ public partial class SignIn : ContentPage
         try
         {
             Account account = new Account();
+            ProfileInformation pf = new ProfileInformation();
             account.SetEmail(email);
             account.SetPassword(password);
-
 
             bool isUserFound = account.LogIn(email, password);
 
             if (isUserFound)
             {
-                int userId = GetUserID();
-                App.UserID = userId;
-
-                await DisplayAlert("Success", "Login successful.", $"{userId}", "OK");
+                await DisplayAlert("Success", "Login successful.", "OK");
                 // Check if Application.Current is not null
                 if (Application.Current != null)
                 {
@@ -99,15 +96,5 @@ public partial class SignIn : ContentPage
     private async void OnSignUpClicked(object sender, EventArgs e)
 	{
         await Navigation.PushAsync(new CreateAccount());
-    }
-
-    [Obsolete]
-    protected override bool OnBackButtonPressed()
-    {
-        Device.BeginInvokeOnMainThread(async () =>
-        {
-            await Navigation.PushAsync(new MainPage());
-        });
-        return true;
     }
 }
