@@ -22,7 +22,7 @@ public partial class Profile : ContentPage
     private void LoadProfileData()
     {
         //int userID = 943678; //ID ni EDJER
-        int userID = account.GetUserID();
+        int userID = App.UserID;
         string? fullname = profileInfo.GetFullName(userID);
 
         MainThread.BeginInvokeOnMainThread(() =>

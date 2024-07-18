@@ -96,8 +96,6 @@ namespace ProjectMentorMatch.Models
 
 
         // NAME
-
-
         public string? GetFullName(int userID)
         {
             string? fullname = "";
@@ -117,5 +115,7 @@ namespace ProjectMentorMatch.Models
             }
             return fullname;
         }
+
+
     }
 }

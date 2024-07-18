@@ -66,14 +66,10 @@ public partial class SignIn : ContentPage
 
         try
         {
-            //Account account = new Account("", email, password);
             Account account = new Account();
             account.SetEmail(email);
             account.SetPassword(password);
 
-            //AYAW MO PAG CHAT GPT
-            //PAG KAT ON INTAWN MOG CODE
-            // -SISON
 
             bool isUserFound = account.LogIn(email, password);
 
@@ -82,7 +78,7 @@ public partial class SignIn : ContentPage
                 int userId = GetUserID();
                 App.UserID = userId;
 
-                await DisplayAlert("Success", "Login successful.", "OK");
+                await DisplayAlert("Success", "Login successful.", $"{userId}", "OK");
                 // Check if Application.Current is not null
                 if (Application.Current != null)
                 {

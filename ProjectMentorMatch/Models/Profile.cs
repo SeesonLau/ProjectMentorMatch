@@ -8,7 +8,8 @@ namespace ProjectMentorMatch.Models
 {
     public class Profile : Account
     {
-        private int profileID = RandomID.profileID();
+        private int profileRID = RandomID.profileID();
+        private int profileID;
         private string? birthday;
         private string? aboutMe;
         private string? qualification;
