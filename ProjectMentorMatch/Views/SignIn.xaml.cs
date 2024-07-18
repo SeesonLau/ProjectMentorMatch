@@ -67,7 +67,6 @@ public partial class SignIn : ContentPage
         try
         {
             Account account = new Account();
-            ProfileInformation pf = new ProfileInformation();
             account.SetEmail(email);
             account.SetPassword(password);
 
@@ -75,6 +74,9 @@ public partial class SignIn : ContentPage
 
             if (isUserFound)
             {
+                int userId = GetUserID();
+                App.UserID = userId;
+
                 await DisplayAlert("Success", "Login successful.", "OK");
                 // Check if Application.Current is not null
                 if (Application.Current != null)

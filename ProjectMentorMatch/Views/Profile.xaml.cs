@@ -18,16 +18,22 @@ public partial class Profile : ContentPage
     }
     private void LoadProfileData()
     {
-        //int userID = 943678; //ID ni EDJER
         int userID = App.UserID;
         string? fullname = profile.GetFullName(userID);
         string? email = profile.GetEmail(userID);
+        string? cN = profile.GetContactNumber(userID);
+        DateTime? birthday = profile.GetBirthday(userID);
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
             UpperNameEntry.Text = fullname;
             userNameEntry.Text = fullname;
             emailTextField.Text = email;
+            contactNumberTextField.Text = cN;
+            if (birthday.HasValue)
+            {
+                birthDatePicker.Date = birthday.Value; 
+            }
         });
     }
     private void OnApplyMentorClicked(object sender, EventArgs e)
@@ -46,18 +52,25 @@ public partial class Profile : ContentPage
     }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
-        string? birthday = birthDatePicker.ToString();
+        DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
 
 
         //string? aboutMe;
         //string? qualification = q;
-       // string? isMentor;
+        // string? isMentor;
+        try
+        {
+            profile.SetBirthday(birthday);
+            profile.SetContactNumber(contactNumber);
 
-
-
-        int userID = App.UserID;
-        profile.InsertProfileData(userID);
-        await DisplayAlert("Success", "User information has been saved.", "OK");
+            int userID = App.UserID;
+            profile.InsertProfileData(userID);
+            await DisplayAlert("Success", "User information has been saved.", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+        }
     }
 }
