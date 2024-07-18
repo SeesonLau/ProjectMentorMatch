@@ -1,16 +1,205 @@
 <?xml version="1.0" encoding="utf-8" ?>
-	<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
              x:Class="ProjectMentorMatch.Views.Chat"
-             xmlns:templates="clr-namespace:ProjectMentorMatch.Views.Templates"
              Title="Chat">
-		
-		<VerticalStackLayout>
-			<Label
-				Text="Welcome to .NET MAUI!"
-				VerticalOptions="Center"
-				HorizontalOptions="Center" />
-		</VerticalStackLayout>
-	</ContentPage>
-    
-   
+
+    <ScrollView>
+        <VerticalStackLayout Padding="15,10">
+
+            <!-- Search Bar -->
+            <Grid ColumnDefinitions="*, auto" Padding="0,0,0,10">
+                <material:EditorField Text="" 
+                                      Title="Search" 
+                                      Margin="0,8,0,10" 
+                                      WidthRequest="330"/>
+                <ImageButton Source="search_icon.png"
+                             Grid.Column="1"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- MATCHED MENTORS/STUDENTS -->
+            <Label Text="Your Matched Mentors" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   TextColor="Blue"
+                   Margin="0,10,0,5"/>
+            <ScrollView Orientation="Horizontal">
+                <HorizontalStackLayout Spacing="10">
+
+                    <!-- Mentor 1 -->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Clicked="OnMentorClicked"
+                                     CommandParameter="Jamel"/>
+                        <!-- replace with Actual names later -->
+                        <Label Text="Mentor 1" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+
+                    <!-- Mentor 2 -->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Clicked="OnMentorClicked"
+                                     CommandParameter="Mentor 2"/>
+                        <Label Text="Mentor 2" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+
+                    <!-- Mentor 3 -->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Clicked="OnMentorClicked"
+                                     CommandParameter="Mentor 3"/>
+                        <Label Text="Mentor 3" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+
+                    <!-- Mentor 4 -->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Clicked="OnMentorClicked"
+                                     CommandParameter="Mentor 4"/>
+                        <Label Text="Mentor 4" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+
+                    <!-- Mentor 5 -->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                     WidthRequest="60"
+                                     HeightRequest="60"
+                                     Clicked="OnMentorClicked"
+                                     CommandParameter="Mentor 5"/>
+                        <Label Text="Mentor 5" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+
+                    <!-- Mentor 6-->
+                    <VerticalStackLayout>
+                        <ImageButton Source="chat_placeholder.png"
+                                WidthRequest="60"
+                                HeightRequest="60"
+                                Clicked="OnMentorClicked"
+                                CommandParameter="Mentor 6"/>
+                        <Label Text="Mentor 6" FontSize="14" HorizontalOptions="Center"/>
+                    </VerticalStackLayout>
+                </HorizontalStackLayout>
+            </ScrollView>
+
+            <!-- CHATS SECTION-->
+            <Label Text="Chats (Recent)" 
+                   FontSize="18" 
+                   FontAttributes="Bold" 
+                   TextColor="Blue"
+                   Margin="0,20,0,10"/>
+
+            <!-- Chat 1 -->
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                <Grid.BindingContext>
+                    <x:String>Mentor 1</x:String>
+                </Grid.BindingContext>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+                <Image Source="chat_placeholder.png"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Jamel Hadjirasul" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                </VerticalStackLayout>
+                <ImageButton Source="more_vert_icon.png"
+                             Grid.Column="2"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Chat 2 -->
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                <Grid.BindingContext>
+                    <x:String>Mentor 2</x:String>
+                </Grid.BindingContext>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+                <Image Source="chat_placeholder.png"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Mentor 2" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                </VerticalStackLayout>
+                <ImageButton Source="more_vert_icon.png"
+                             Grid.Column="2"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Chat 3 -->
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                <Grid.BindingContext>
+                    <x:String>Mentor 3</x:String>
+                </Grid.BindingContext>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+                <Image Source="chat_placeholder.png"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Mentor 3" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                </VerticalStackLayout>
+                <ImageButton Source="more_vert_icon.png"
+                             Grid.Column="2"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
+            </Grid>
+
+            <!-- Chat 4 -->
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                <Grid.BindingContext>
+                    <x:String>Mentor 4</x:String>
+                </Grid.BindingContext>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+                <Image Source="chat_placeholder.png"
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       VerticalOptions="Center"/>
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label Text="Mentor 4" FontSize="16" FontAttributes="Bold"/>
+                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
+                           FontSize="14" 
+                           TextColor="Gray"/>
+                </VerticalStackLayout>
+                <ImageButton Source="more_vert_icon.png"
+                             Grid.Column="2"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
+            </Grid>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>
