@@ -12,6 +12,7 @@ namespace ProjectMentorMatch.Models
         private string? messageText;
         private int userIDSender;
         private int userIDReceiver;
+        private string? timeSent { get; set; } //Will add more fields as needed
 
         public int GetMessageID()
         {
@@ -34,4 +35,7 @@ namespace ProjectMentorMatch.Models
             this.messageText = messageText;
         }
     }
+
+
+
 }

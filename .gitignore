@@ -367,3 +367,7 @@ FodyWeavers.xsd
 /.gitignore
 /ProjectMentorMatch/Views/CreateAccount.xaml.cs
 /ProjectMentorMatch/Views/CreateAccount.xaml
+/ProjectMentorMatch/ChatViewModels/ChatHomeViewModel.cs
+*.png
+/ProjectMentorMatch/Models/Chat.cs
+*.cs
