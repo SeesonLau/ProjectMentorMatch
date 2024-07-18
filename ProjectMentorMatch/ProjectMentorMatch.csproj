@@ -117,6 +117,7 @@
 		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.1.41" />
 		<PackageReference Include="Syncfusion.Maui.Chat" Version="26.1.42" />
 		<PackageReference Include="Syncfusion.Maui.Core" Version="26.1.42" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="26.1.42" />
 		<PackageReference Include="Syncfusion.Maui.NavigationDrawer" Version="26.1.42" />
 		<PackageReference Include="Syncfusion.Maui.Picker" Version="26.1.42" />
 		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.9.0" />
@@ -162,6 +163,12 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\ChatSpecific.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MenteeSearch.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Views\MentorSearch.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Views\Notification.xaml">
