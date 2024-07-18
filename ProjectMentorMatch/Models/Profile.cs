@@ -104,6 +104,25 @@ namespace ProjectMentorMatch.Models
             }
             return fullname;
         }
+        public string? GetEmail(int userID)
+        {
+            string? email = "";
+
+            string query = "SELECT Email FROM CreateAccount WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    email = result.ToString();
+                }
+            }
+            return email;
+        }
         public void InsertProfileData(int userID)
         {
             string query = "INSERT INTO Profile (ProfileID, UserID, Birthday, ContactNumber, AboutMe, Qualification, IsMentor) " +
