@@ -1,12 +1,40 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+<toolkit:Popup xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.ViewModels.About"
-             Title="About">
-    <VerticalStackLayout>
-        <Label 
-            Text="Welcome to .NET MAUI!"
-            VerticalOptions="Center" 
-            HorizontalOptions="Center" />
-    </VerticalStackLayout>
-</ContentPage>
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"            
+             CanBeDismissedByTappingOutsideOfPopup="False">
+    <Frame CornerRadius="20" Background="LightGray">
+
+        <VerticalStackLayout  Spacing="0" WidthRequest="280" HeightRequest="500" >
+
+            <HorizontalStackLayout Padding="10" Spacing="69">
+
+                <ImageButton Source="goback_icon.png"
+                             WidthRequest="30"
+                             HeightRequest="30"
+                             HorizontalOptions="Start"
+                             Clicked="ImageButton_Clicked">
+                </ImageButton>
+
+                <Label FontSize="18"
+                       Text="About"
+                       TextColor="#006EBB"
+                       FontAttributes="Bold"
+                       Margin="5">
+                </Label>
+
+            </HorizontalStackLayout>
+            
+            <ScrollView>
+                <VerticalStackLayout WidthRequest="250" HeightRequest="400">
+                    
+                </VerticalStackLayout>
+                
+            </ScrollView>
+            
+
+        </VerticalStackLayout>
+    </Frame>
+</toolkit:Popup>
