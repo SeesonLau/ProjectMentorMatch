@@ -41,7 +41,10 @@ namespace ProjectMentorMatch
                 account.SetPassword(password);
                 account.SetEmail(email);
 
+               
                 account.SignUp();
+                account.sendEmail(email); //sends email
+
                 await DisplayAlert("Success", "Account created successfully.", "OK");
 
                 //Clear entries after registering
