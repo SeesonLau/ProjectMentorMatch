@@ -13,7 +13,7 @@
         <local:ScheduleViewModel />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions=".1*, .05*, *, .0*" Margin="0,20,0,0">
+    <Grid RowDefinitions=".1*, .06*, *, .0*" Margin="0,20,0,0">
         <Label Grid.Column="1"
                    FontSize="24"
                    HorizontalTextAlignment="Start"
