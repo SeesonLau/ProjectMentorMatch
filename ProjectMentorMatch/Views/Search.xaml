@@ -5,11 +5,16 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:control="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              x:Class="ProjectMentorMatch.Views.Search"
+             xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              Shell.NavBarIsVisible="False"
              Title="Search">
-    <Grid RowDefinitions=".1*, .0*, *, .0*" Margin="0,20,0,0">
-        <Grid>
-            <Label Grid.Column="1"
+
+    <ContentPage.BindingContext>
+        <local:ScheduleViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions=".1*, .05*, *, .0*" Margin="0,20,0,0">
+        <Label Grid.Column="1"
                    FontSize="24"
                    HorizontalTextAlignment="Start"
                    Text="   Search"
@@ -17,27 +22,29 @@
                    FontAttributes="Bold"
                    VerticalOptions="Start" />
 
-            
-            <Grid Padding="0,0,18,25">
-                <ImageButton Source="filter_icon.png"
+
+        <Grid Padding="0,0,18,25">
+            <ImageButton Source="filter_icon.png"
                              Grid.Column="2"
                              HorizontalOptions="End"
                              VerticalOptions="Center"
                              WidthRequest="25"
                              HeightRequest="25"
              />
-            </Grid>
+        </Grid>
+        <Grid  Margin="0,34,0,0">
+            <VerticalStackLayout Padding="10,0,10,0">
+                <material:TextField Title="" Icon="search_icon.png" AllowClear="True">
+                    <material:TextField.Attachments>
+                        <Button Text="Search" />
+                    </material:TextField.Attachments>
+                </material:TextField>
+            </VerticalStackLayout>
         </Grid>
         
         <ScrollView Grid.Row="2">
             <VerticalStackLayout Padding="0,0,0,0">
-                <VerticalStackLayout Padding="10,0,10,0">
-                    <material:TextField Title="" Icon="search_icon.png" AllowClear="True">
-                        <material:TextField.Attachments>
-                            <Button Text="Search" />
-                        </material:TextField.Attachments>
-                    </material:TextField>
-                </VerticalStackLayout>
+                
                 <VerticalStackLayout Padding="0,7,0,0">
                     <material:TabView>
                         <material:TabItem Title="Mentor">
@@ -66,13 +73,25 @@
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 1" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+                                                                    
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-               FontSize="14" 
-               TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+                                                            
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
 
                                         </Grid>
@@ -99,13 +118,25 @@
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 2" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
 
                                         </Grid>
@@ -132,13 +163,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 3" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
 
@@ -164,13 +207,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 4" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
 
@@ -196,13 +251,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 5" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
 
@@ -228,13 +295,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 6" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
 
@@ -260,13 +339,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 7" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
 
@@ -292,13 +383,25 @@ TextColor="Gray"/>
                                                             <ColumnDefinition Width="auto" />
                                                         </Grid.ColumnDefinitions>
                                                         <Label Text="Mentor 8" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1" />
+                                                        <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
                                                     </Grid>
                                                     <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-FontSize="14" 
-TextColor="Gray"/>
+                                                           FontSize="14" 
+                                                          TextColor="Gray"/>
                                                 </VerticalStackLayout>
-                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1"/>
+                                                <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                    <control:SfRating.RatingSettings>
+                                                        <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                        </control:RatingSettings>
+                                                    </control:SfRating.RatingSettings>
+                                                </control:SfRating>
                                             </Grid>
                                         </Grid>
                                     </VerticalStackLayout>
