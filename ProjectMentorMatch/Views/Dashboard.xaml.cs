@@ -23,14 +23,14 @@ public partial class Dashboard : ContentPage
     public Dashboard()
 	{
 		InitializeComponent();
-        InitializeCarouselAsync();
+       // InitializeCarouselAsync();
     }
     private async void OnFilterButtonClicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Filter());
     }
 
-    private async Task InitializeCarouselAsync()
+  /*  private async Task InitializeCarouselAsync()
     {
         try
         {
@@ -59,9 +59,9 @@ public partial class Dashboard : ContentPage
             await DisplayAlert($"Error: {ex.Message}", "Failed to load data. Please try again later.", "OK");
         }
 
-    }
+    }*/
 
-    private async void OnRefresh(object sender, EventArgs e)
+  /*  private async void OnRefresh(object sender, EventArgs e)
     {
         if (Connectivity.NetworkAccess != NetworkAccess.Internet)
         {
@@ -72,7 +72,7 @@ public partial class Dashboard : ContentPage
 
         await InitializeCarouselAsync();
         refreshView.IsRefreshing = false;
-    }
+    }*/
 
     //WILL BE COMPARING THE TWO
 
@@ -109,7 +109,7 @@ public partial class Dashboard : ContentPage
     }
 
     */
-    protected override async void OnAppearing()
+  /*  protected override async void OnAppearing()
     {
         base.OnAppearing();
         
@@ -145,12 +145,16 @@ public partial class Dashboard : ContentPage
                     VerticalOptions = LayoutOptions.Center
                 }
             }
-            };*/
+            };
             
             // Internet connection available, initialize the carousel
             if (CarouselItems.Count == 0)
                 await InitializeCarouselAsync();
         }
-    }
+    }*/
 
+    private async void Button_Clicked(object sender, EventArgs e)
+    {
+        await Navigation.PushAsync(new Booking());
+    }
 }
