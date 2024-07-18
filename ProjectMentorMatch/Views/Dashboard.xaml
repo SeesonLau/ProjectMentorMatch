@@ -5,7 +5,7 @@
              xmlns:carousel="clr-namespace:Syncfusion.Maui.Core.Carousel;assembly=Syncfusion.Maui.Core"        
              Title="MentorMatch">
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Filter" IconImageSource="filter_icon.png" Clicked="OnFilterButtonClicked" />
+        <ToolbarItem Text = "Filter" IconImageSource="filter_icon.png"  Clicked="OnFilterButtonClicked"/>
         
     </ContentPage.ToolbarItems>
 
