@@ -2,64 +2,164 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.CreateAccount"
-             Title="Create Account">
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             NavigationPage.HasBackButton="True">
+   
     <!--<ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
             <GradientStop Color="LightBlue" Offset="0.0" />
             <GradientStop Color="LightSkyBlue" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>-->
-    <ScrollView>
-        <StackLayout Padding="15" Spacing="10">
+    <Grid RowDefinitions=".19*,.15*, *, .38*" Padding="5">
+        <Grid Grid.Row="0">
+            <Grid ColumnDefinitions=".2*, *, .2*">
+                <Grid Grid.Column="1">
 
-            
-            <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                    <Image Source="logo_ni_siya.png" 
+                           HeightRequest="120" 
+                           WidthRequest="120" 
+                           Aspect="AspectFill">
+                    </Image>
 
-            <Label Text="Create Account" HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
+                </Grid>
+            </Grid>
+        </Grid>
 
-            <!--Lastname and Firstname Field-->
-            <StackLayout Spacing="20" HorizontalOptions="Center">
-                <StackLayout Orientation="Horizontal" Spacing="15">
-                    <StackLayout Spacing="0">
-                        <Label Text="Firstname"/>
-                        <Entry x:Name="FullnameEntry" Placeholder="Enter firstname" WidthRequest="165"/>
-                    </StackLayout>
+        <Grid Grid.Row="1" Padding="17">
+            <HorizontalStackLayout HorizontalOptions="Center">
 
-                    <StackLayout Spacing="0">
-                        <Label Text="Lastname"/>
-                        <Entry x:Name="LastnameEntry" Placeholder="Enter lastname" WidthRequest="150"/>
-                    </StackLayout>
-                </StackLayout>
-            </StackLayout>
-            <!-- Email Field -->
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Email"  />
-                <Entry x:Name="EmailEntry" Placeholder="Enter email" WidthRequest="330" HorizontalOptions="Start"/>
-            </StackLayout>
-  
+                <Label Text="Create Account"  
+                       HorizontalOptions="Center" 
+                       FontSize="25" 
+                       TextColor="#086EBB" 
+                       FontAttributes="Bold">
+                </Label>
 
-            
+            </HorizontalStackLayout>
+        </Grid>
 
-            <!-- Password Field -->
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Password"  />
-                <Entry x:Name="PasswordEntry" Placeholder="Enter password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
-            </StackLayout>
-            
-            <!-- Confirm Password Field -->
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Confirm Password" />
-                <Entry x:Name="ConfirmPasswordEntry" Placeholder="Confirm password" IsPassword="True" WidthRequest="330" HorizontalOptions="Start"/>
-            </StackLayout>
-            <!-- Sign Up Button -->    
-            <Button Text="Sign Up" Clicked="OnSignUpClicked" WidthRequest="150" HeightRequest ="37" HorizontalOptions="Center"/>
+        <Grid Grid.Row="2" Padding="15">
+            <Grid  RowDefinitions="* , *, *, *">
+                <Grid Grid.Row="0">
+                    <Grid ColumnDefinitions="1.1*, *">
+                        <!-- Fullname Field -->
+                        <Grid Grid.Column="0" Padding="5">
+                            <VerticalStackLayout Spacing="10">
+                                <!-- Firstname Field -->
+                                <Label Text="Firstname"
+                                       FontAttributes="Bold">
+                                </Label>
 
-            <!-- OR Separator -->
-            <Label Text="OR" Padding ="5" HorizontalOptions="Center" VerticalOptions="Center" />
+                                <material:TextField x:Name="FullnameEntry" 
+                                                    Title = "Enter your firstname"
+                                                    TitleColor="Gray"
+                                                    FontSize="14"
+                                                    TitleFontSize="13.5">
+                                </material:TextField>
 
-            <!-- Login Button -->
-            <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150" HorizontalOptions="Center" HeightRequest ="37" TextColor="Black" BackgroundColor="LightBlue"/>
+                            </VerticalStackLayout>
+                        </Grid>
 
-        </StackLayout>
-    </ScrollView>
+                        <Grid Grid.Column="1" Padding="5">
+
+                            <VerticalStackLayout Spacing="10">
+                                <!-- Lastname Field -->
+                                <Label Text="Lastname"
+                                       FontAttributes="Bold">
+                                </Label>
+
+                                <material:TextField x:Name="LastnameEntry" 
+                                                    Title = "Enter your lastname"
+                                                    TitleColor="Gray"
+                                                    FontSize="14"
+                                                    TitleFontSize="13.5">
+                                </material:TextField>
+
+                            </VerticalStackLayout>
+                        </Grid>
+                    </Grid>
+                </Grid>
+                <Grid Grid.Row="1">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Email"
+                               FontAttributes="Bold">
+                        </Label>
+                        <!-- Email Field -->
+                        <material:TextField x:Name="EmailEntry" 
+                                            Title = "Enter your email"
+                                            TitleColor="Gray"
+                                            FontSize="14"
+                                            TitleFontSize="13.5">
+                        </material:TextField>
+
+                    </VerticalStackLayout>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Password"
+                               FontAttributes="Bold">
+                        </Label>
+                        <!-- Password Field -->
+                        <material:TextField x:Name="PasswordEntry" 
+                                            Title = "Enter your password"
+                                            TitleColor="Gray"
+                                            FontSize="14"
+                                            TitleFontSize="13.5">
+                        </material:TextField>
+
+                    </VerticalStackLayout>
+                </Grid>
+
+                <Grid Grid.Row="3">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Password"
+                               FontAttributes="Bold">
+                        </Label>
+                        <!-- Confirm Password Field -->
+                        <material:TextField x:Name="ConfirmPasswordEntry" 
+                                            Title = "Confirm your password"
+                                            TitleColor="Gray"
+                                            FontSize="14"
+                                            TitleFontSize="13.5">
+                        </material:TextField>
+
+                    </VerticalStackLayout>
+                </Grid>
+
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <VerticalStackLayout Spacing="8">
+                <!-- Sign Up Button -->
+                <Button Text="Sign Up" 
+                        Clicked="OnSignUpClicked" 
+                        WidthRequest="150" 
+                        HeightRequest ="40" 
+                        HorizontalOptions="Center">
+                </Button>
+                <!-- OR Separator -->
+                <Label Text="or" 
+                       Padding ="5" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"
+                       FontAttributes="Bold">
+                </Label>
+                <!-- Login Button -->
+                <Button Text="Login" 
+                        Clicked="OnLoginClicked"
+                        WidthRequest="150" 
+                        HorizontalOptions="Center" 
+                        HeightRequest ="40" 
+                        TextColor="Black" 
+                        BackgroundColor="LightBlue">
+                </Button>
+            </VerticalStackLayout>
+
+        </Grid>
+    </Grid>
 </ContentPage>
