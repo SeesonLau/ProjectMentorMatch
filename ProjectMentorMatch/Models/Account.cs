@@ -4,6 +4,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net.Mail;
+using System.Net.Mime;
+using System.Net;
 
 namespace ProjectMentorMatch.Models
 {
@@ -144,6 +147,48 @@ namespace ProjectMentorMatch.Models
             }
 
             return accounts;
+        }
+
+        //sends email confirmation upon successful login; check CreateAccount.xaml.cs, under OnSignUpClicked
+        public void sendEmail(string email)
+        {
+
+            string fromMail = "mentormatch4dmins@gmail.com";
+            string fromPassword = "rakd vjox ydwh rxen";
+
+            MailMessage message = new MailMessage();
+            message.From = new MailAddress(fromMail);
+            message.Subject = "Account Confirmation";
+            message.To.Add(new MailAddress(email));
+            message.Body = "<html><body> Your account has been successfully confirmed. </body></html>";
+            message.IsBodyHtml = true;
+
+            /* Can't get picture to work yet lah
+             * 
+            string imagePath = FileSystem.Current.AppDataDirectory;
+            imagePath = Path.Combine(imagePath, "welcome_email.png");
+
+            Attachment inlineImage = new Attachment(imagePath);
+            inlineImage.ContentId = "EmbeddedImage";
+
+            if (inlineImage.ContentDisposition != null)
+            {
+                inlineImage.ContentDisposition.Inline = true;
+                inlineImage.ContentDisposition.DispositionType = DispositionTypeNames.Inline;
+            }
+            //embeds the pic ooga booga
+            message.Attachments.Add(inlineImage);
+            */
+            var smtpClient = new SmtpClient("smtp.gmail.com")
+            {
+                Port = 587,
+                Credentials = new NetworkCredential(fromMail, fromPassword),
+                EnableSsl = true,
+            };
+
+            smtpClient.Send(message);
+
+
         }
     }
 }
