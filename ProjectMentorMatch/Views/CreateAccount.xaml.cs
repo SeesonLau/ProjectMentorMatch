@@ -64,6 +64,16 @@ namespace ProjectMentorMatch
 
         }
 
+        [Obsolete]
+        protected override bool OnBackButtonPressed()
+        {
+            Device.BeginInvokeOnMainThread(async () =>
+            {
+                await Navigation.PushAsync(new MainPage());
+            });
+            return true;
+        }
+
     }
 }
 

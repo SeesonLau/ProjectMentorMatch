@@ -104,4 +104,14 @@ public partial class SignIn : ContentPage
 	{
         await Navigation.PushAsync(new CreateAccount());
     }
+
+    [Obsolete]
+    protected override bool OnBackButtonPressed()
+    {
+        Device.BeginInvokeOnMainThread(async () =>
+        {
+            await Navigation.PushAsync(new MainPage());
+        });
+        return true;
+    }
 }
