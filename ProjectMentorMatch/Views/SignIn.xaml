@@ -1,8 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="ProjectMentorMatch.SignIn"          
-            Title="Log In">
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             x:Class="ProjectMentorMatch.SignIn"
+             >
 
     <!--<ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -10,36 +11,111 @@
             <GradientStop Color="LightSkyBlue" Offset="1.0" />
         </LinearGradientBrush>
     </ContentPage.Background>-->
+    <Grid RowDefinitions=".3*,.3*, .9*, .7*" Padding="10" >
+        
+        <Grid Grid.Row="0">
+            <Grid ColumnDefinitions=".2*, *, .2*">
+                <Grid Grid.Column="1">
 
-    <ScrollView>
-        <StackLayout Padding="20" Spacing="10">
+                    <Image Source="logo_ni_siya.png" 
+                       HeightRequest="130" 
+                       WidthRequest="130" 
+                       Aspect="AspectFill">
+                    </Image>
 
-            
-            <Image Source="logo_ni_siya.png" HeightRequest="100" WidthRequest="100" Aspect="AspectFill" />
+                </Grid>
+            </Grid>
+        </Grid>
 
-            <Label Text="Log In"  HorizontalOptions="Center" FontSize="25" TextColor="#086EBB" FontAttributes="Bold"/>
-            
-            <!-- Email Field -->
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Email"  />
-            <Entry x:Name="EmailEntry" Placeholder="Enter your email" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
-            </StackLayout>
-            
-            <!-- Password Field -->
-            <StackLayout HorizontalOptions="Center">
-                <Label Text="Password"  />
-            <Entry x:Name="PasswordEntry" Placeholder="Enter your password" IsPassword="True" WidthRequest="300" HorizontalOptions="Center" PlaceholderColor="DarkGray"/>
-            <Label Text="Forgot Password?    " HorizontalOptions="End" TextColor="DarkGray"/>
-            </StackLayout>
-            <!-- Login Button -->
-            <Button Text="Login" Clicked="OnLoginClicked" WidthRequest="150" HeightRequest="37" HorizontalOptions="Center"/>
+        <Grid Grid.Row="1" Padding="23">
+            <HorizontalStackLayout HorizontalOptions="Center">
 
-            <!-- OR Separator -->
-            <Label Text="OR" Padding ="5" HorizontalOptions="Center" VerticalOptions="Center" />
+                <Label Text="Log In"  
+                   HorizontalOptions="Center" 
+                   FontSize="25" 
+                   TextColor="#086EBB" 
+                   FontAttributes="Bold">
+                </Label>
 
-            <!-- Sign Up Button -->
-            <Button Text="Sign Up" Clicked="OnSignUpClicked" WidthRequest="150" HorizontalOptions="Center" HeightRequest="37" TextColor="Black" BackgroundColor="LightBlue"/>
-            
-        </StackLayout>
-    </ScrollView>
+            </HorizontalStackLayout>
+        </Grid>
+
+        <Grid Grid.Row="2" Padding="15">
+            <Grid  RowDefinitions=".7* , .6*, .5*">
+                <Grid Grid.Row="0">
+
+                    <VerticalStackLayout Spacing="10">
+                        <!-- Email Field -->
+                        <Label Text="Email"
+                                   FontAttributes="Bold">
+                        </Label>
+
+                        <material:TextField x:Name="EmailEntry" 
+                                                Title = "Enter your email"
+                                                TitleColor="Gray"
+                                                FontSize="14"
+                                                TitleFontSize="13.5">
+                        </material:TextField>
+                    </VerticalStackLayout>
+
+                </Grid>
+                <Grid Grid.Row="1">
+                    <VerticalStackLayout Spacing="10">
+
+                        <Label Text="Password"
+                           FontAttributes="Bold">
+                        </Label>
+                        <!-- Password Field -->
+                        <material:TextField x:Name="PasswordEntry" 
+                                        Title = "Enter your password"
+                                        IsPassword="True"
+                                        TitleColor="Gray"
+                                        FontSize="14"
+                                        TitleFontSize="13.5">
+                        </material:TextField>
+
+                    </VerticalStackLayout>
+                </Grid>
+                <Grid Grid.Row="2">
+                    <VerticalStackLayout Spacing="10">
+                        <!-- Forgot Password Field -->
+                        <Label Text="Forgot Password?" 
+                               HorizontalOptions="End" 
+                               TextColor="Gray"
+                               >
+                        </Label>
+
+                    </VerticalStackLayout>
+                </Grid>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="3">
+            <VerticalStackLayout Spacing="8">
+                <!-- Log In Button -->
+                <Button Text="Log In" 
+                    Clicked="OnLoginClicked" 
+                    WidthRequest="150" 
+                    HeightRequest ="40" 
+                    HorizontalOptions="Center">
+                </Button>
+                <!-- OR Separator -->
+                <Label Text="or" 
+                   Padding ="5" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"
+                   FontAttributes="Bold">
+                </Label>
+                <!-- Sign Up Button -->
+                <Button Text="Sign Up" 
+                    Clicked="OnSignUpClicked"
+                    WidthRequest="150" 
+                    HorizontalOptions="Center" 
+                    HeightRequest ="40" 
+                    TextColor="Black" 
+                    BackgroundColor="LightBlue">
+                </Button>
+            </VerticalStackLayout>
+        </Grid>
+    </Grid>
 </ContentPage>

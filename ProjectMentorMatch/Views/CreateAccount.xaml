@@ -4,6 +4,7 @@
              x:Class="ProjectMentorMatch.CreateAccount"
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              NavigationPage.HasBackButton="True">
+
    
     <!--<ContentPage.Background>
         <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
@@ -159,7 +160,6 @@
                         BackgroundColor="LightBlue">
                 </Button>
             </VerticalStackLayout>
-
         </Grid>
     </Grid>
 </ContentPage>
