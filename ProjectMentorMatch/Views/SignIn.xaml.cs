@@ -66,14 +66,9 @@ public partial class SignIn : ContentPage
 
         try
         {
-            //Account account = new Account("", email, password);
             Account account = new Account();
             account.SetEmail(email);
             account.SetPassword(password);
-
-            //AYAW MO PAG CHAT GPT
-            //PAG KAT ON INTAWN MOG CODE
-            // -SISON
 
             bool isUserFound = account.LogIn(email, password);
 
@@ -103,15 +98,5 @@ public partial class SignIn : ContentPage
     private async void OnSignUpClicked(object sender, EventArgs e)
 	{
         await Navigation.PushAsync(new CreateAccount());
-    }
-
-    [Obsolete]
-    protected override bool OnBackButtonPressed()
-    {
-        Device.BeginInvokeOnMainThread(async () =>
-        {
-            await Navigation.PushAsync(new MainPage());
-        });
-        return true;
     }
 }

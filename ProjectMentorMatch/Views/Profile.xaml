@@ -355,6 +355,7 @@
         </ScrollView>
         <Grid Grid.Row="3" Grid.Column="2">
             <Button Text="Save" 
+                    Clicked="OnSaveProfileClicked"
                     FontAttributes="Bold" 
                     HeightRequest="40" 
                     WidthRequest="250" 

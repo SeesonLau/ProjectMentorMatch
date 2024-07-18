@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Maui.ApplicationModel.Communication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,23 +8,31 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    public class Profile : Account
+    public class ProfileModels : Account
     {
-        private int profileID = RandomID.profileID();
+        private int profileRID = RandomID.profileID();
+        private int profileID;
         private string? birthday;
         private string? aboutMe;
         private string? qualification;
         private string? isMentor; // can also be bool
-        private int contactNumber;
+        private string? contactNumber;
         //private int userID;
-
+        DateTime parsedBirthday;
         public int GetProfileID()
         {
             return profileID;
         }
-        public string? GetBirthday()
+        public DateTime? GetparsedBirthday()
         {
-            return birthday;
+            if (DateTime.TryParse(birthday, out DateTime parsedBirthday))
+            {
+                return parsedBirthday;
+            }
+            else
+            {
+                return null; 
+            }
         }
         public string? GetAboutMe()
         {
@@ -36,17 +46,16 @@ namespace ProjectMentorMatch.Models
         {
             return isMentor;
         }
-        public int GetContactNumber()
-        {
-            return contactNumber;
-        }
 
         public void SetProfileID(int profileID) {this.profileID = profileID;}
-        public void SetBirthdayID(string birthday) { this.birthday = birthday;}
+        public void SetBirthday(DateTime? birthday) 
+        { 
+            this.birthday = birthday?.ToString("MM/dd/yyyy");
+        }
         public void SetAboutMe(string aboutMe) { this.aboutMe = aboutMe;}
         public void SetQualification(string qualification) { this.qualification = qualification; }
         public void SetIsMentor(string isMentor) { this.isMentor = isMentor; }
-        public void SetContactNumber(int contactNumber) { this.contactNumber = contactNumber; }
+        public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
 
 
         private byte[]? selectedImageBytes;
@@ -81,7 +90,139 @@ namespace ProjectMentorMatch.Models
             }
         }
         */
+        // Methods for Import and Export Data
+        public string? GetFullName(int userID)
+        {
+            string? fullname = "";
 
+            string query = "SELECT Fullname FROM CreateAccount WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    fullname = result.ToString();
+                }
+            }
+            return fullname;
+        }
+        public string? GetEmail(int userID)
+        {
+            string? email = "";
+
+            string query = "SELECT Email FROM CreateAccount WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    email = result.ToString();
+                }
+            }
+            return email;
+        }
+        public string? GetContactNumber(int userID)
+        {
+            string? cN = "";
+
+            string query = "SELECT [ContactNumber] FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    cN = result.ToString();
+                }
+            }
+            return cN;
+        }
+        public DateTime? GetBirthday(int userID)
+        {
+            string query = "SELECT [Birthday] FROM Profile WHERE [UserID] = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                var result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    if (DateTime.TryParse(result.ToString(), out DateTime birthday))
+                    {
+                        return birthday;
+                    }
+                    else
+                    {
+                        return null; // Handle case where conversion to DateTime fails
+                    }
+                }
+
+                return null; // Handle case where no birthday is found for the UserID
+            }
+        }
+
+
+
+        public void InsertProfileData(int userID)
+        {
+            // Check if a profile for the userID already exists
+            bool profileExists = CheckProfileExists(userID);
+
+            string query;
+            if (profileExists)
+            {
+                // Update the existing profile
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber " +
+                        "WHERE [UserID] = @UserID";
+            }
+            else
+            {
+                // Insert a new profile
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber)";
+            }
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileRID); 
+                command.Parameters.AddWithValue("@UserID", userID);
+                command.Parameters.AddWithValue("@Birthday", GetparsedBirthday()); 
+                command.Parameters.AddWithValue("@ContactNumber", contactNumber); 
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        private bool CheckProfileExists(int userID)
+        {
+            string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+
+                return count > 0;
+            }
+        }
 
     }
 }
