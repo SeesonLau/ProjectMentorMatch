@@ -6,6 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using ProjectMentorMatch.Views;
+using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace ProjectMentorMatch.Models
 {
@@ -95,27 +96,7 @@ namespace ProjectMentorMatch.Models
         }
 
 
-        // NAME
-        public string? GetFullName(int userID)
-        {
-            string? fullname = "";
-
-            string query = "SELECT Fullname FROM CreateAccount WHERE UserID = @UserID";
-
-            using (var connection = GetConnection()) 
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@UserID", userID);
-                connection.Open();
-                object result = command.ExecuteScalar();
-                if (result != null)
-                {
-                    fullname = result.ToString();
-                }
-            }
-            return fullname;
-        }
-
+        
 
     }
 }

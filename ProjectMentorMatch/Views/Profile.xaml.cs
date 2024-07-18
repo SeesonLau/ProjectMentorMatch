@@ -4,18 +4,15 @@ using UraniumUI.Material.Controls;
 using ProjectMentorMatch.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Maui.ApplicationModel.Communication;
-
 namespace ProjectMentorMatch.Views;
 
 public partial class Profile : ContentPage
 {
-    Account account;
-    ProfileInformation profileInfo;
+    ProfileModels profile;
     public Profile()
 	{
         InitializeComponent();
-        profileInfo = new ProfileInformation();
-        account = new Account();
+        profile = new ProfileModels();
         LoadProfileData();
 
     }
@@ -23,12 +20,12 @@ public partial class Profile : ContentPage
     {
         //int userID = 943678; //ID ni EDJER
         int userID = App.UserID;
-        string? fullname = profileInfo.GetFullName(userID);
+        string? fullname = profile.GetFullName(userID);
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
             UpperNameEntry.Text = fullname;
-            userNameEntry.Text = fullname;
+            userNameEntry.Text = fullname;          
         });
     }
     private void OnApplyMentorClicked(object sender, EventArgs e)
@@ -44,5 +41,11 @@ public partial class Profile : ContentPage
     private void SettingsButton_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new Settings());
+    }
+    private async void OnSaveProfileClicked(object sender, EventArgs e)
+    {
+        int userID = App.UserID;
+        profile.InsertProfileData(userID);
+        await DisplayAlert("Success", "User information has been saved.", "OK");
     }
 }

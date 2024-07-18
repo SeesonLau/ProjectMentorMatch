@@ -59,31 +59,6 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-        /*
-        public bool LogIn()
-        {
-            string query = "SELECT userID FROM CreateAccount WHERE email = @Email AND password = @Password";
-            using (var connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@Email", email);
-                command.Parameters.AddWithValue("@Password", password);
-
-                connection.Open();
-                object result = command.ExecuteScalar();
-                if (result != null && result != DBNull.Value)
-                {
-                    userID = Convert.ToInt32(result);
-                    SetUserID(userID);
-                    return true; 
-                }
-                else
-                {
-                    return false; 
-                }
-            }
-        }
-        */
         // THE COOLER BOOL LOGIN
 
         public bool LogIn(string email, string password)

@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using Microsoft.Maui.ApplicationModel.Communication;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Models
 {
-    public class Profile : Account
+    public class ProfileModels : Account
     {
         private int profileRID = RandomID.profileID();
         private int profileID;
@@ -82,7 +84,48 @@ namespace ProjectMentorMatch.Models
             }
         }
         */
+        // NAME
+        public string? GetFullName(int userID)
+        {
+            string? fullname = "";
 
+            string query = "SELECT Fullname FROM CreateAccount WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    fullname = result.ToString();
+                }
+            }
+            return fullname;
+        }
+        public void InsertProfileData(int userID)
+        {
+            string query = "INSERT INTO Profile (ProfileID, UserID, Birthday, ContactNumber, AboutMe, Qualification, IsMentor) " +
+                "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @IsMentor)";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileRID);
+                command.Parameters.AddWithValue("@UserID", userID);
+                command.Parameters.AddWithValue("@Birthday", birthday);
+                command.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                command.Parameters.AddWithValue("@AboutMe", aboutMe);
+                command.Parameters.AddWithValue("@Qualification", qualification);
+                command.Parameters.AddWithValue("@IsMentor", isMentor);
+
+                //command.Parameters.AddWithValue("@Picture", picture);
+                //picture is currently not included,yet.
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
 
     }
 }
