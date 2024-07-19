@@ -127,4 +127,21 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
+
+    private async void ImageButton_Clicked(object sender, EventArgs e)
+    {
+        var result = await FilePicker.PickAsync(new PickOptions
+        {
+            PickerTitle = "Pick Image please...",
+            FileTypes = FilePickerFileType.Images
+        });
+
+        if (result == null) { 
+            return;
+        }
+
+        var stream = await result.OpenReadAsync();
+
+        ProfileImage.ImageSource = ImageSource.FromStream(() => stream);
+    }
 }

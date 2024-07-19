@@ -81,7 +81,8 @@
         <ScrollView Grid.Row="2">
             <VerticalStackLayout Padding="15,5,0,0">
                 <HorizontalStackLayout HorizontalOptions="Center">
-                    <chip:SfAvatarView ContentType="Initials"
+                    <chip:SfAvatarView x:Name="ProfileImage"
+                                   ContentType="Initials"
                                    AvatarName="Alex"
                                    VerticalOptions="Center"
                                    HorizontalOptions="Center"  
@@ -96,7 +97,8 @@
                                  HeightRequest="20" 
                                  HorizontalOptions="End" 
                                  VerticalOptions="End"
-                                 Margin="-12,0,0,0">
+                                 Margin="-12,0,0,0"
+                                 Clicked="ImageButton_Clicked">
                     </ImageButton>
                 </HorizontalStackLayout>
 
