@@ -12,11 +12,11 @@
     </ContentPage.ToolbarItems>
     
 
-    <ScrollView Margin="0,20,0,10" VerticalScrollBarVisibility="Never">
+    <ScrollView Margin="0,10,0,5" VerticalScrollBarVisibility="Never">
         
         <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto, Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
             
-            <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="-30,-25,-30,-30" CornerRadius="80" IsClippedToBounds="True" Padding="0">
+            <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,-30,10,-30" CornerRadius="40" IsClippedToBounds="True" Padding="0">
                 <!-- Profile Picture Field -->
                 <ImageButton Source="sample_profile2.png" 
                              HorizontalOptions="FillAndExpand"  
@@ -137,9 +137,10 @@
                            VerticalOptions="Center"/>
 
                 </HorizontalStackLayout>
+                
                 <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
                     <Label Text="Scroll for more details..."  
-                           Margin="5,8,0,0" 
+                           Margin="5,12,0,0" 
                            FontAttributes="Bold" 
                            FontSize="15.5" 
                            TextColor="#086EBB"/>
@@ -147,7 +148,7 @@
                     <Image Source="arrow_down.png" 
                            WidthRequest="18" 
                            HeightRequest="18" 
-                           Margin="7">
+                           Margin="12">
                     </Image>
                 </HorizontalStackLayout>
                
@@ -232,7 +233,8 @@
                 </Label> 
 
 
-                <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ...        
+                        For binding pa ning mga content diri" 
                         FontAttributes="Bold" 
                         FontSize="16" TextColor="#a3a3a3"/>
                     
