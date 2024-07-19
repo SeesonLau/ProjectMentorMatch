@@ -152,14 +152,14 @@
                                                 Icon="day_icon.png" 
                                                 Margin="0,5,0,5"/>
 
-                    <Label Text="Grade/Course" 
+                    <Label Text="Course" 
                             FontSize="15" 
                             Margin="0,10,0,0" 
                             FontAttributes="Bold"/>
 
                     <material:EditorField x:Name="gradeCourseEditor"
                                             Text="{Binding GradeCourse}"
-                                            Title="Enter Grade/Course and Year" 
+                                            Title="Enter Course " 
                                             WidthRequest="330"
                                             Margin="0,5,0,5"/>
                 </VerticalStackLayout>

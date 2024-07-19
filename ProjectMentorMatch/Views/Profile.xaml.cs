@@ -4,12 +4,14 @@ using UraniumUI.Material.Controls;
 using ProjectMentorMatch.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Maui.ApplicationModel.Communication;
+using Syncfusion.Maui.Core;
 namespace ProjectMentorMatch.Views;
 
 public partial class Profile : ContentPage
 {
     ProfileModels profile;
     ProfileInformation profileInfo;
+
     public Profile()
 	{
         InitializeComponent();
@@ -56,9 +58,11 @@ public partial class Profile : ContentPage
     }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
+
         DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
         string? gender = genderChipGroup.ToString();
+
 
 
         //string? aboutMe;
@@ -75,9 +79,9 @@ public partial class Profile : ContentPage
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-           profileInfo.InserProfileData2(profileID);
+            profileInfo.InserProfileData2(profileID);
 
-            await DisplayAlert("Success", "User information has been saved.", "OK");
+            await DisplayAlert("Success", "User information has been saved.",$"{profileID}", "OK");
         }
         catch (Exception ex)
         {
