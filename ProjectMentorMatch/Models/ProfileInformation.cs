@@ -16,7 +16,7 @@ namespace ProjectMentorMatch.Models
         private int subjectTaughtID = RandomID.subject_taughtID();
         private int subjectTakenID = RandomID.subject_takenID();
         private int scheduleID = RandomID.schedID();
-        private int addressID = RandomID.addressID();
+        private int addressRID = RandomID.addressID();
         private int genderRID = RandomID.genderID();
         private int genderID;
 
@@ -75,12 +75,38 @@ namespace ProjectMentorMatch.Models
         {
             return finalTime;
         }
-        public string? GetAddressCity()
+        public string? GetAddressCity(int profileID)
         {
+            string query = "SELECT city FROM Address WHERE profileID = @profileID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@profileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    addressCity = result.ToString();
+                }
+            }
             return addressCity;
         }
-        public string? GetAddressProvince()
+        public string? GetAddressProvince(int profileID)
         {
+            string query = "SELECT province FROM Address WHERE profileID = @profileID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@profileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    addressProvince = result.ToString();
+                }
+            }
             return addressProvince;
         }
         public void SetSubjectTaught(string subjectTaught)
@@ -117,7 +143,7 @@ namespace ProjectMentorMatch.Models
         }
         public void SetGender(string? gender) { this.gender = gender; }
 
-        public void InserProfileData2(int profileID)
+        public void InsertProfileGender(int profileID)
         {
             // Check if a profile for the profileID already exists
             bool profileExists = CheckProfileExists(profileID);
@@ -144,6 +170,33 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@genderID", genderRID);
                 command.Parameters.AddWithValue("@genderClass", gender);
                 command.Parameters.AddWithValue("@ProfileID", profileID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        public void InsertProfileAddress (int profileID)
+        {
+            bool profileExists = CheckProfileExists(profileID);
+
+            string queryAddress;
+            if (profileExists)
+            {
+                queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
+                        "WHERE [profileID] = @profileID";
+            }
+            else
+            {
+                queryAddress = "INSERT INTO Address ([addressID], [city], [province], [profileID]) " +
+                        "VALUES (@addressID, @city, @province, @profileID)";
+            }
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(queryAddress, connection))
+            {
+                command.Parameters.AddWithValue("@addressID", addressRID);
+                command.Parameters.AddWithValue("@city", addressCity);
+                command.Parameters.AddWithValue("@province", addressProvince);
+                command.Parameters.AddWithValue("@profileID", profileID);
 
                 connection.Open();
                 command.ExecuteNonQuery();
