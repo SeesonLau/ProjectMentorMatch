@@ -6,6 +6,17 @@
              x:Class="ProjectMentorMatch.Views.MentorSearch"
              Shell.NavBarIsVisible="False"
              Title="MentorSearch">
+
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <!-- Style for Disabled Buttons -->
+            <Style x:Key="DisabledButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#8EC4F5" />
+                <Setter Property="TextColor" Value="#086EBB" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+
     <Grid RowDefinitions=".1*, .0*, *" Margin="0,5,0,0">
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
 
@@ -182,8 +193,8 @@
                    TextColor="#086EBB">
                     </Label>
                     <StackLayout Padding="0,0,120,0" Spacing="8">
-                        <Button StyleClass="ElevatedButton" IsEnabled="False" Text="B.S Computer Science" />
-                        <Button StyleClass="ElevatedButton" IsEnabled="False" Text="Software Analyst" />
+                        <Button Style="{StaticResource DisabledButtonStyle}" IsEnabled="False" Text="B.S Computer Science" />
+                        <Button Style="{StaticResource DisabledButtonStyle}" IsEnabled="False" Text="Software Analyst" />
                     </StackLayout>
 
                 </VerticalStackLayout>
@@ -201,8 +212,8 @@
                         <Grid Grid.Column="0" Padding="5">
                             <VerticalStackLayout Spacing="10">
                                 <!-- Firstname Field -->
-                                <Button StyleClass="OutlinedButton" IsEnabled="False" Text="Monday" />
-                                <Button StyleClass="OutlinedButton" IsEnabled="False" Text="Wednesday" />
+                                <Button Style="{StaticResource DisabledButtonStyle}" IsEnabled="False" Text="Monday" />
+                                <Button Style="{StaticResource DisabledButtonStyle}" IsEnabled="False" Text="Wednesday" />
                             </VerticalStackLayout>
                         </Grid>
 
