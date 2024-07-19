@@ -46,6 +46,37 @@ public partial class SignIn : ContentPage
             return 0;
         }
     }
+    public int GetProfileID(int userID)
+    {
+        try
+        {
+            using (SqlConnection cn = Database.GetConnection())
+            {
+                cn.Open();
+                using (SqlCommand cm = new SqlCommand("SELECT [ProfileID] FROM [Profile] WHERE [UserID] = @userID", cn))
+                {
+                    cm.Parameters.AddWithValue("@userID", userID);
+                    using (SqlDataReader dr = cm.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            if (dr["ProfileID"] != DBNull.Value && int.TryParse(dr["ProfileID"].ToString(), out int ID))
+                            {
+                                return ID;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+            return 0;
+        }
+    }
+
 
     private async void OnLoginClicked(object sender, EventArgs e)
     {
@@ -76,6 +107,9 @@ public partial class SignIn : ContentPage
             {
                 int userId = GetUserID();
                 App.UserID = userId;
+
+                int profileID = GetProfileID(userId);
+                App.ProfileID = profileID;
 
                 await DisplayAlert("Success", "Login successful.", "OK");
                 // Check if Application.Current is not null

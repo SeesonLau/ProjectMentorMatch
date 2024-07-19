@@ -10,13 +10,14 @@ using Microsoft.Maui.ApplicationModel.Communication;
 
 namespace ProjectMentorMatch.Models
 {
-    public class ProfileInformation : Profile
+    public class ProfileInformation : ProfileModels
     {
         private int courseID = RandomID.courseID();
         private int subjectTaughtID = RandomID.subject_taughtID();
         private int subjectTakenID = RandomID.subject_takenID();
         private int scheduleID = RandomID.schedID();
         private int addressID = RandomID.addressID();
+        private int genderID = RandomID.genderID();
 
         private string? subjectTaught;
         private string? subjectTaken;
@@ -94,9 +95,54 @@ namespace ProjectMentorMatch.Models
         {
             this.addressProvince = addressProvince;
         }
+        public void SetGender(string? gender) { this.gender = gender; }
 
+        public void InserProfileData2(int profileID)
+        {
+            // Check if a profile for the profileID already exists
+            bool profileExists = CheckProfileExists(profileID);
 
-        
+            string queryGender;
+            if (profileExists)
+            {
+                // Update the existing profile
+                queryGender = "UPDATE Gender SET [genderID] = @genderID, [genderClass] = @genderClass " +
+                        "WHERE [ProfileID] = @ProfileID"; 
+            }
+            else
+            {
+                // Insert if profile not exist
+                queryGender = "INSERT INTO Gender ([genderID], [genderClass], [ProfileID]) " +
+                        "VALUES (@genderID, @genderClass, @ProfileID)"; 
+     
+
+            }
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(queryGender, connection))
+            {
+                command.Parameters.AddWithValue("@genderID", genderID);
+                command.Parameters.AddWithValue("@genderClass", gender);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+        private bool CheckProfileExists(int userID)
+        {
+            string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+
+                return count > 0;
+            }
+        }
 
     }
 }

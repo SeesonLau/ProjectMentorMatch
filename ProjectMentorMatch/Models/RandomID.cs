@@ -22,11 +22,16 @@
     courseID()          : 170000 - 199999
     schedID()           : 140000 - 169999
     addressID()         : 100000 - 139999
+    genderID()          : 100 - 199
      
      */
     public class RandomID 
     {
         private static readonly Random random = new Random();
+        public static int genderID()
+        {
+            return random.Next(100, 199);
+        }
         public static int addressID()
         {
             return random.Next(100000, 139999);
