@@ -15,7 +15,7 @@
     </ContentPage.BindingContext>
 
 
-    <Grid RowDefinitions=".1*, .15*, *, .1*" Margin="0,9,0,0">
+    <Grid RowDefinitions=".1*, .15*, *" Margin="0,9,0,0">
         <!-- Header Section -->
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
           
@@ -89,6 +89,8 @@
                                    CornerRadius="60"
                                    WidthRequest="120"
                                    ImageSource="profile_icon.png"/>
+                    
+                    <!-- Edit/Upload Profile Picture -->
                     <ImageButton Source="edit_icon.png" 
                                  WidthRequest="20" 
                                  HeightRequest="20" 
@@ -346,21 +348,24 @@
                                                               Margin="5" 
                                                               VerticalOptions="Center" 
                                                               HorizontalOptions="Center"/>
+
+
                                 </StackLayout>
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
                 </VerticalStackLayout>
+                <Button Text="Save" 
+                        Clicked="OnSaveProfileClicked"
+                        FontAttributes="Bold" 
+                        HeightRequest="40" 
+                        WidthRequest="250"
+                        Margin="10,10"
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center">
+                </Button>
             </VerticalStackLayout>
         </ScrollView>
-        <Grid Grid.Row="3" Grid.Column="2">
-            <Button Text="Save" 
-                    Clicked="OnSaveProfileClicked"
-                    FontAttributes="Bold" 
-                    HeightRequest="40" 
-                    WidthRequest="250" 
-                    HorizontalOptions="Center" 
-                    VerticalOptions="Center"></Button>
-        </Grid>
     </Grid>
 </ContentPage>

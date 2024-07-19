@@ -139,7 +139,7 @@
                 </HorizontalStackLayout>
                 <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
                     <Label Text="Scroll for more details..."  
-                           Margin="60,7,0,0" 
+                           Margin="5,8,0,0" 
                            FontAttributes="Bold" 
                            FontSize="15.5" 
                            TextColor="#086EBB"/>
@@ -303,7 +303,24 @@
                         FontAttributes="Bold" 
                         FontSize="16" TextColor="#a3a3a3"/>
 
-            </VerticalStackLayout>           
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" Spacing="5">
+
+                <Label Text="Contact Information" 
+           FontAttributes="Bold" 
+           FontSize="16" 
+           Margin="0,20,0,0"
+           TextColor="#086EBB">
+                </Label>
+
+
+                <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+            FontAttributes="Bold" 
+            FontSize="16" TextColor="#a3a3a3"/>
+
+            </VerticalStackLayout>
+
         </Grid>
     </ScrollView>
     <!-- <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Refreshing="OnRefresh">
