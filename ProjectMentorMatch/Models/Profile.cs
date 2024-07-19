@@ -19,8 +19,22 @@ namespace ProjectMentorMatch.Models
         private string? contactNumber;
         //private int userID;
         DateTime parsedBirthday;
-        public int GetProfileID()
+        public int GetProfileID(int userID)
         {
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    profileID = Convert.ToInt32(result);
+                    SetProfileID(profileID);
+                }
+            }
             return profileID;
         }
         public DateTime? GetparsedBirthday()
@@ -209,6 +223,8 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
+      
+
         private bool CheckProfileExists(int userID)
         {
             string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";

@@ -9,10 +9,12 @@ namespace ProjectMentorMatch.Views;
 public partial class Profile : ContentPage
 {
     ProfileModels profile;
+    ProfileInformation profileInfo;
     public Profile()
 	{
         InitializeComponent();
         profile = new ProfileModels();
+        profileInfo = new ProfileInformation();
         LoadProfileData();
 
     }
@@ -23,6 +25,8 @@ public partial class Profile : ContentPage
         string? email = profile.GetEmail(userID);
         string? cN = profile.GetContactNumber(userID);
         DateTime? birthday = profile.GetBirthday(userID);
+
+        //int profileID = App.ProfileID;
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -54,6 +58,7 @@ public partial class Profile : ContentPage
     {
         DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
+        string? gender = genderChipGroup.ToString();
 
 
         //string? aboutMe;
@@ -63,9 +68,15 @@ public partial class Profile : ContentPage
         {
             profile.SetBirthday(birthday);
             profile.SetContactNumber(contactNumber);
+            profileInfo.SetGender(gender);
+
 
             int userID = App.UserID;
+            int profileID = App.ProfileID;
+
             profile.InsertProfileData(userID);
+           profileInfo.InserProfileData2(profileID);
+
             await DisplayAlert("Success", "User information has been saved.", "OK");
         }
         catch (Exception ex)

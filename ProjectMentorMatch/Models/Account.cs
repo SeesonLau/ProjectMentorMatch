@@ -7,6 +7,8 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
+//using Intents;
+//using MetalPerformanceShaders;
 
 namespace ProjectMentorMatch.Models
 {
@@ -68,7 +70,8 @@ namespace ProjectMentorMatch.Models
         {
             string countQuery = "SELECT COUNT(*) FROM [CreateAccount] WHERE [Email] = @Email AND [Password] = @Password";
             string userIDQuery = "SELECT UserID FROM CreateAccount WHERE Email = @Email";
-
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+ 
             using (var connection = GetConnection())
             {
                 connection.Open();
@@ -89,10 +92,23 @@ namespace ProjectMentorMatch.Models
                             if (result != null && result != DBNull.Value)
                             {
                                 int userID = Convert.ToInt32(result);
-                                SetUserID(userID);
+                                SetUserID(userID);                         
+                                
+                                using (SqlCommand profileIDCommand = new SqlCommand(profileIDQuery, connection))
+                                {
+                                    profileIDCommand.Parameters.AddWithValue("@UserID", userID);
+                                    object profileResult = profileIDCommand.ExecuteScalar();
+                                    if(profileResult != null && profileResult != DBNull.Value)
+                                    {
+                                        ProfileInformation profileInfo = new ProfileInformation();
+                                        int profileID = Convert.ToInt32(profileResult);
+                                        profileInfo.SetProfileID(profileID);
+                                    }
+                                }
                                 return true;
                             }
                         }
+
                     }
                     else
                     {
@@ -102,10 +118,6 @@ namespace ProjectMentorMatch.Models
             }
             return false;
         }
-
-
-
-
 
         public bool CheckEmailIsTaken(string email)
         {
