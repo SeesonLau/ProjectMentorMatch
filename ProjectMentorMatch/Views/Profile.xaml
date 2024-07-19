@@ -47,7 +47,7 @@
                VerticalOptions="Center" 
                Margin="20"/>
 
-            <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
+            <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,100,0" VerticalOptions="Center">
 
                 <!-- WILL BE LEAVING THIS OUT UNTIL FURTHER TOTS IS MADDE-->
                 <Label Margin="2"
