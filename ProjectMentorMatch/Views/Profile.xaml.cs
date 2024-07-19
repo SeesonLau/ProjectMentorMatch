@@ -35,6 +35,9 @@ public partial class Profile : ContentPage
 
         //int profileID = App.ProfileID;
 
+        string? addressCity = profileInfo.GetAddressCity(profileID);
+        string? addressProvince = profileInfo.GetAddressProvince(profileID);
+
         MainThread.BeginInvokeOnMainThread(() =>
         {
             UpperNameEntry.Text = fullname;
@@ -42,6 +45,8 @@ public partial class Profile : ContentPage
             emailTextField.Text = email;
             contactNumberTextField.Text = cN;
             gradeCourseEditor.Text = qualification;
+            cityTextField.Text = addressCity;
+            provinceTextField.Text = addressProvince;
 
             if (birthday.HasValue)
             {
@@ -76,7 +81,8 @@ public partial class Profile : ContentPage
         }
 
         string? qualification = gradeCourseEditor.Text;
-
+        string? addressCity = cityTextField.Text;
+        string? addressProvince = provinceTextField.Text;
 
         //string? aboutMe;
         //string? qualification = q;
@@ -87,15 +93,18 @@ public partial class Profile : ContentPage
             profile.SetContactNumber(contactNumber);
             profileInfo.SetGender(gender);
             profile.SetQualification(qualification);
+            profileInfo.SetAddressCity(addressCity);
+            profileInfo.SetAddressProvince(addressProvince);
 
 
             int userID = App.UserID;
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-            profileInfo.InserProfileData2(profileID);
+            profileInfo.InsertProfileGender(profileID);
+            profileInfo.InsertProfileAddress(profileID);
 
-            await DisplayAlert("Success", "User information has been saved.",$"{profileID}", "OK");
+            await DisplayAlert("Success", "User information has been saved.", "OK");
         }
         catch (Exception ex)
         {
