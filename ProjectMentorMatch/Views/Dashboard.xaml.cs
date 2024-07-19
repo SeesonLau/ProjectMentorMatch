@@ -25,54 +25,94 @@ public partial class Dashboard : ContentPage
 		InitializeComponent();
        // InitializeCarouselAsync();
     }
-    private async void OnFilterButtonClicked(object sender, EventArgs e)
+    private void OnClickedFilter(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Filter());
+        NavigationDrawer.ToggleDrawer();
+    }
+    private void OnGenderCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                // Logic when a gender radio button is selected
+                // For example, you can store the selected gender value
+                string selectedGender = radioButton.Content.ToString();
+                Console.WriteLine("Selected Gender: " + selectedGender);
+            }
+        }
+    }
+    private void OnSetupModeCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value)
+        {
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
+            {
+                // Logic when a setup mode radio button is selected
+                string selectedSetupMode = radioButton.Content.ToString();
+                Console.WriteLine("Selected Setup Mode: " + selectedSetupMode);
+            }
+        }
     }
 
-  /*  private async Task InitializeCarouselAsync()
+    private void OnInteractionModeCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        try
+        if (e.Value)
         {
-            //Call the accounts from the database
-            var accounts = await Task.Run(() => Account.GetAllAccounts());
-
-            foreach (var account in accounts)
+            RadioButton radioButton = sender as RadioButton;
+            if (radioButton != null)
             {
-                CarouselItems.Add(new Account
-                {
-                    // Setting up the binding attribute name to be called in the xaml
-                    //fullname = account.GetFullname(),
-                    //email = account.GetEmail(),
-                }
-
-                // Once we have profile page, we can add the other attributes to the list AKA CarouselItems.Add(new Profile
-                );
-
+                // Logic when an interaction mode radio button is selected
+                string selectedInteractionMode = radioButton.Content.ToString();
+                Console.WriteLine("Selected Interaction Mode: " + selectedInteractionMode);
             }
-
-            // Binding the accounts to the xaml carouselview
-            carouselView.ItemsSource = CarouselItems;
         }
-        catch (Exception ex)
-        {
-            await DisplayAlert($"Error: {ex.Message}", "Failed to load data. Please try again later.", "OK");
-        }
+    }
+    /*  private async Task InitializeCarouselAsync()
+      {
+          try
+          {
+              //Call the accounts from the database
+              var accounts = await Task.Run(() => Account.GetAllAccounts());
 
-    }*/
+              foreach (var account in accounts)
+              {
+                  CarouselItems.Add(new Account
+                  {
+                      // Setting up the binding attribute name to be called in the xaml
+                      //fullname = account.GetFullname(),
+                      //email = account.GetEmail(),
+                  }
 
-  /*  private async void OnRefresh(object sender, EventArgs e)
-    {
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            await DisplayAlert("No Internet", "Please check your internet connection and try again.", "OK");
-            refreshView.IsRefreshing = false;
-            return;
-        }
+                  // Once we have profile page, we can add the other attributes to the list AKA CarouselItems.Add(new Profile
+                  );
 
-        await InitializeCarouselAsync();
-        refreshView.IsRefreshing = false;
-    }*/
+              }
+
+              // Binding the accounts to the xaml carouselview
+              carouselView.ItemsSource = CarouselItems;
+          }
+          catch (Exception ex)
+          {
+              await DisplayAlert($"Error: {ex.Message}", "Failed to load data. Please try again later.", "OK");
+          }
+
+      }*/
+
+    /*  private async void OnRefresh(object sender, EventArgs e)
+      {
+          if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+          {
+              await DisplayAlert("No Internet", "Please check your internet connection and try again.", "OK");
+              refreshView.IsRefreshing = false;
+              return;
+          }
+
+          await InitializeCarouselAsync();
+          refreshView.IsRefreshing = false;
+      }*/
 
     //WILL BE COMPARING THE TWO
 
@@ -109,49 +149,49 @@ public partial class Dashboard : ContentPage
     }
 
     */
-  /*  protected override async void OnAppearing()
-    {
-        base.OnAppearing();
-        
-        // Check for internet connectivity when the page appears
-        if (Connectivity.NetworkAccess != NetworkAccess.Internet)
-        {
-            // No internet connection, show a blank page with message
-            Content = new Grid
-            {
-                Children =
-            {
-                new Label
-                {
-                    Text = "No Internet Connection",
-                    FontSize = 24, // You can adjust the font size as needed
-                    HorizontalOptions = LayoutOptions.Center,
-                    VerticalOptions = LayoutOptions.Center
-                }
-            }
-            };
-        }
-        else
-        {
-            /*Content = new Grid
-            {
-                Children =
-            {
-                new Label
-                {
-                    Text = $"UserID: { App.UserID}",
-                    FontSize = 24, // You can adjust the font size as needed
-                    HorizontalOptions = LayoutOptions.Start,
-                    VerticalOptions = LayoutOptions.Center
-                }
-            }
-            };
-            
-            // Internet connection available, initialize the carousel
-            if (CarouselItems.Count == 0)
-                await InitializeCarouselAsync();
-        }
-    }*/
+    /*  protected override async void OnAppearing()
+      {
+          base.OnAppearing();
+
+          // Check for internet connectivity when the page appears
+          if (Connectivity.NetworkAccess != NetworkAccess.Internet)
+          {
+              // No internet connection, show a blank page with message
+              Content = new Grid
+              {
+                  Children =
+              {
+                  new Label
+                  {
+                      Text = "No Internet Connection",
+                      FontSize = 24, // You can adjust the font size as needed
+                      HorizontalOptions = LayoutOptions.Center,
+                      VerticalOptions = LayoutOptions.Center
+                  }
+              }
+              };
+          }
+          else
+          {
+              /*Content = new Grid
+              {
+                  Children =
+              {
+                  new Label
+                  {
+                      Text = $"UserID: { App.UserID}",
+                      FontSize = 24, // You can adjust the font size as needed
+                      HorizontalOptions = LayoutOptions.Start,
+                      VerticalOptions = LayoutOptions.Center
+                  }
+              }
+              };
+
+              // Internet connection available, initialize the carousel
+              if (CarouselItems.Count == 0)
+                  await InitializeCarouselAsync();
+          }
+      }*/
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
