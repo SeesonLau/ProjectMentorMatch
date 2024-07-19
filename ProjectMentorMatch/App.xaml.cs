@@ -8,6 +8,7 @@ namespace ProjectMentorMatch
     public partial class App : Application
     {
         public static int UserID { get; set; }
+        public static int ProfileID { get; set; }
         public App()
         {
             InitializeComponent();
