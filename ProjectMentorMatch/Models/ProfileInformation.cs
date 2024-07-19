@@ -17,7 +17,9 @@ namespace ProjectMentorMatch.Models
         private int subjectTakenID = RandomID.subject_takenID();
         private int scheduleID = RandomID.schedID();
         private int addressID = RandomID.addressID();
-        private int genderID = RandomID.genderID();
+        private int genderRID = RandomID.genderID();
+        private int genderID;
+
 
         private string? subjectTaught;
         private string? subjectTaken;
@@ -30,7 +32,25 @@ namespace ProjectMentorMatch.Models
         private string? gender;
         private string? addressCity; 
         private string? addressProvince;
+        public string? GetGender(int profileID)
+        {
+            string? gender = "";
 
+            string query = "SELECT Gender FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    gender = result.ToString();
+                }
+            }
+            return gender;
+        }
         public string? GetSubjectTaught()
         {
             return subjectTaught;
@@ -121,7 +141,7 @@ namespace ProjectMentorMatch.Models
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryGender, connection))
             {
-                command.Parameters.AddWithValue("@genderID", genderID);
+                command.Parameters.AddWithValue("@genderID", genderRID);
                 command.Parameters.AddWithValue("@genderClass", gender);
                 command.Parameters.AddWithValue("@ProfileID", profileID);
 
@@ -129,19 +149,31 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-        private bool CheckProfileExists(int userID)
+        private bool CheckProfileExists(int profileID)
         {
-            string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";
+            string query = "SELECT COUNT(*) FROM Profile WHERE [ProfileID] = @ProfileID";
+            string checkGID = "SELECT COUNT (*) FROM Gender WHERE [GenderID] = @GenderID";
+
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@UserID", userID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
 
                 connection.Open();
-                int count = (int)command.ExecuteScalar();
+                int countProfile = (int)command.ExecuteScalar();
 
-                return count > 0;
+                if (countProfile > 0)
+                {
+                    using (SqlCommand GIDcommand = new SqlCommand(checkGID, connection))
+                    { 
+                        command.Parameters.AddWithValue("@GenderID", genderID);
+                        int countGID = (int)command.ExecuteScalar();
+                        return countGID > 0;
+                    }
+                }
+                
             }
+            return false;
         }
 
     }

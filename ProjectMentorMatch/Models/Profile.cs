@@ -53,8 +53,21 @@ namespace ProjectMentorMatch.Models
         {
             return aboutMe;
         }
-        public string? GetQualification()
+        public string? GetQualification(int userID)
         {
+            string query = "SELECT [Qualification] FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    qualification = result.ToString();
+                }
+            }
             return qualification;
         }
         public string? GetIsMentor()
@@ -68,7 +81,7 @@ namespace ProjectMentorMatch.Models
             this.birthday = birthday?.ToString("MM/dd/yyyy");
         }
         public void SetAboutMe(string aboutMe) { this.aboutMe = aboutMe;}
-        public void SetQualification(string qualification) { this.qualification = qualification; }
+        public void SetQualification(string? qualification) { this.qualification = qualification; }
         public void SetIsMentor(string isMentor) { this.isMentor = isMentor; }
         public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
 
@@ -191,8 +204,6 @@ namespace ProjectMentorMatch.Models
             }
         }
 
-
-
         public void InsertProfileData(int userID)
         {
             // Check if a profile for the userID already exists
@@ -202,14 +213,14 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @Qualification)";
             }
 
             using (var connection = GetConnection())
@@ -218,14 +229,15 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@ProfileID", profileRID); 
                 command.Parameters.AddWithValue("@UserID", userID);
                 command.Parameters.AddWithValue("@Birthday", GetparsedBirthday()); 
-                command.Parameters.AddWithValue("@ContactNumber", contactNumber); 
+                command.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                command.Parameters.AddWithValue("@Qualification", qualification);
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
       
-
         private bool CheckProfileExists(int userID)
         {
             string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";
