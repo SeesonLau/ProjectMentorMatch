@@ -16,10 +16,9 @@
 
     <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
         <syncfusion:SfNavigationDrawer.DrawerSettings>
-            <syncfusion:DrawerSettings DrawerHeaderHeight="80" DrawerWidth="350" Position="Right">
+            <syncfusion:DrawerSettings DrawerHeaderHeight="70" DrawerWidth="350" Position="Right">
                 <syncfusion:DrawerSettings.DrawerHeaderView>
                     <HorizontalStackLayout HorizontalOptions="StartAndExpand">
-
                         <Label Text="Filter Search" 
                                FontSize="Large" 
                                FontAttributes="Bold" 
@@ -30,7 +29,7 @@
                 </syncfusion:DrawerSettings.DrawerHeaderView>
                 <syncfusion:DrawerSettings.DrawerContentView>
                     <ScrollView Padding="10">
-                        <StackLayout Spacing="10" Padding="10">
+                        <StackLayout Spacing="10" Padding="5">
                             <!-- Gender Filter -->
                             <Label Text="Gender"
                                     TextColor="#086EBB"

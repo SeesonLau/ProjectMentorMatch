@@ -36,7 +36,7 @@
         </Grid>
         <ScrollView Grid.Row="2" VerticalScrollBarVisibility="Never">
             <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
-                <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="-30,-25,-30,-30" CornerRadius="80" IsClippedToBounds="True" Padding="0">
+                <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,-30,10,-30" CornerRadius="40" IsClippedToBounds="True" Padding="0">
                     <!-- Profile Picture Field -->
                     <ImageButton Source="model2.jpg" 
                  HorizontalOptions="FillAndExpand"  
@@ -108,15 +108,15 @@
                     </HorizontalStackLayout>
                     <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
                         <Label Text="Scroll for more details..."  
-                               Margin="60,20,0,0" 
-                               FontAttributes="Bold" 
-                               FontSize="15.5" 
-                               TextColor="#086EBB"/>
+                                Margin="5,15,0,0" 
+                                FontAttributes="Bold" 
+                                FontSize="15.5" 
+                                TextColor="#086EBB"/>
 
                         <Image Source="arrow_down.png" 
-                               WidthRequest="18" 
-                               HeightRequest="18" 
-                               Margin="0,20,0,0">
+                                WidthRequest="18" 
+                                HeightRequest="18" 
+                                Margin="5,15,0,0">
                         </Image>
                     </HorizontalStackLayout>
                     <Label Grid.Column="1"
