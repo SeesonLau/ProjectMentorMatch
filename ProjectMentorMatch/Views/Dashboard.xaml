@@ -12,9 +12,9 @@
     </ContentPage.ToolbarItems>
     
 
-    <ScrollView Margin="0,20,0,-40" VerticalScrollBarVisibility="Never">
+    <ScrollView Margin="0,20,0,10" VerticalScrollBarVisibility="Never">
         
-        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
+        <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto, Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
             
             <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="-30,-25,-30,-30" CornerRadius="80" IsClippedToBounds="True" Padding="0">
                 <!-- Profile Picture Field -->
@@ -305,21 +305,21 @@
 
             </VerticalStackLayout>
 
-            <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" Spacing="5">
+           <!-- <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" Spacing="5">
 
                 <Label Text="Contact Information" 
-           FontAttributes="Bold" 
-           FontSize="16" 
-           Margin="0,20,0,0"
-           TextColor="#086EBB">
-                </Label>
+                        FontAttributes="Bold" 
+                        FontSize="16" 
+                        Margin="0,20,0,0"
+                        TextColor="#086EBB">
+                                        </Label>
 
 
                 <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
-            FontAttributes="Bold" 
-            FontSize="16" TextColor="#a3a3a3"/>
+                        FontAttributes="Bold" 
+                        FontSize="16" TextColor="#a3a3a3"/>
 
-            </VerticalStackLayout>
+            </VerticalStackLayout> -->
 
         </Grid>
     </ScrollView>
