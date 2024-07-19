@@ -56,13 +56,27 @@ public partial class Profile : ContentPage
     {
         Navigation.PushAsync(new Settings());
     }
+    private void OnGenderChipGroupSelectionChanged(object sender, SelectionChangedEventArgs e)
+    {
+        if (e.CurrentSelection != null && e.CurrentSelection.Count > 0)
+        {
+            var selectedChip = e.CurrentSelection[0] as SfChip;
+            string? gender = selectedChip?.Text;
+
+            // You can now use the gender variable as needed, for example, save it to the database
+        }
+    }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
 
         DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
-        string? gender = genderChipGroup.ToString();
-
+        string? gender = "";
+        // Retrieve the selected gender
+        if (genderChipGroup.SelectedItem is SfChip selectedChip)
+        {
+            gender = selectedChip.Text;
+        }
 
 
         //string? aboutMe;
