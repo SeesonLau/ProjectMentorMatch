@@ -32,7 +32,25 @@ namespace ProjectMentorMatch.Models
         private string? gender;
         private string? addressCity; 
         private string? addressProvince;
+        public string? GetGender(int profileID)
+        {
+            string? gender = "";
 
+            string query = "SELECT Gender FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    gender = result.ToString();
+                }
+            }
+            return gender;
+        }
         public string? GetSubjectTaught()
         {
             return subjectTaught;
