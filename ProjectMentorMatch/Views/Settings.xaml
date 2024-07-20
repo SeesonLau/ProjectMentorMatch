@@ -155,6 +155,7 @@
                 BorderColor="#006EBB"
                 BorderWidth="1.5"
                 x:Name="btnLogout"
+                Clicked="btnLogout_Clicked"
                 FontAttributes="Bold" 
                 HeightRequest="40" 
                 WidthRequest="250" 

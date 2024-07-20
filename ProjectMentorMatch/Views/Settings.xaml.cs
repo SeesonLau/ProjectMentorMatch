@@ -35,4 +35,17 @@ public partial class Settings : ContentPage
 
         this.ShowPopup(popup);
     }
+
+    private async void btnLogout_Clicked(object sender, EventArgs e)
+    {
+        bool isConfirmed = await DisplayAlert("Log Out", "Are you sure you want to log out?", "Yes", "No");
+
+        if (isConfirmed)
+        {
+            Application.Current.MainPage = new NavigationPage(new MainPage());
+        }
+    }
+
+
+
 }
