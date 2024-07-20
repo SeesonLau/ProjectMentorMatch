@@ -282,7 +282,6 @@
                                 <x:String>Philosophy</x:String>
                                 <x:String>Physics</x:String>
                                 <x:String>Science</x:String>
-                                <x:String>Sex Education</x:String>
                             </x:Array>
                         </material:MultiplePickerField.ItemsSource>
                     </material:MultiplePickerField>
@@ -311,6 +310,8 @@
                                 <x:String>Photography and Photo Editing</x:String>
                                 <x:String>Physical Education</x:String>
                                 <x:String>Public Speaking</x:String>
+                                <x:String>Sex Education</x:String>
+                                <x:String>Sign Language</x:String>
                                 <x:String>Video Editing</x:String>
                             </x:Array>
                         </material:MultiplePickerField.ItemsSource>
