@@ -6,6 +6,7 @@ using ProjectMentorMatch.ViewModels;
 using ProjectMentorMatch.Views;
 using Syncfusion.Maui.Core.Hosting;
 using UraniumUI;
+using PanCardView;
 
 namespace ProjectMentorMatch
 {
@@ -38,6 +39,9 @@ namespace ProjectMentorMatch
                 .ConfigureSyncfusionCore()
                 // Added Notification Functionality
                 .UseLocalNotification()
+                // Added Cards View
+                .UseCardsView()
+
                 .ConfigureFonts(fonts =>
                 {
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
