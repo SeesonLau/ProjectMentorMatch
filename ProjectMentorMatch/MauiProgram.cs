@@ -2,6 +2,8 @@ using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
 using Plugin.LocalNotification;
+using ProjectMentorMatch.ViewModels;
+using ProjectMentorMatch.Views;
 using Syncfusion.Maui.Core.Hosting;
 using UraniumUI;
 
@@ -45,6 +47,9 @@ namespace ProjectMentorMatch
             // Do not remove this line of code, else the app bugs out in Release Mode
             builder.Services.AddCommunityToolkitDialogs();
             builder.Services.AddMopupsDialogs();
+
+            builder.Services.AddSingleton<MentorListViewModel>();
+            builder.Services.AddSingleton<Dashboard>();
 
 #if DEBUG
     		builder.Logging.AddDebug();

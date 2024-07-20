@@ -1,4 +1,6 @@
 using ProjectMentorMatch.Models;
+using ProjectMentorMatch.ViewModels;
+using CommunityToolkit.Mvvm.ComponentModel;
 
 namespace ProjectMentorMatch.Views;
 
@@ -20,10 +22,11 @@ public partial class Dashboard : ContentPage
 
     // Add profile list once we had the profile page
 
-    public Dashboard()
+    public Dashboard(MentorListViewModel mentorListViewModel)
 	{
 		InitializeComponent();
        // InitializeCarouselAsync();
+       BindingContext = mentorListViewModel;
     }
     private void OnClickedFilter(object sender, EventArgs e)
     {
@@ -196,5 +199,16 @@ public partial class Dashboard : ContentPage
     private async void Button_Clicked(object sender, EventArgs e)
     {
         await Navigation.PushAsync(new Booking());
+    }
+
+    private void btnEx_Clicked(object sender, EventArgs e)
+    {
+        var viewModel = BindingContext as MentorListViewModel;
+        if (viewModel != null)
+        {
+            int currentIndex = viewModel.ItemList.IndexOf(viewModel.CurrentItem);
+            int nextIndex = (currentIndex + 1) % viewModel.ItemList.Count;
+            viewModel.CurrentItem = viewModel.ItemList[nextIndex];
+        }
     }
 }
