@@ -21,40 +21,47 @@ public partial class Profile : ContentPage
         LoadProfileData();
 
     }
-    private void LoadProfileData()
+    private async void LoadProfileData()
     {
-        int userID = App.UserID;
-        int profileID = App.ProfileID;
-        string? fullname = profile.GetFullName(userID);
-        string? email = profile.GetEmail(userID);
-        string? cN = profile.GetContactNumber(userID);
-        DateTime? birthday = profile.GetBirthday(userID);
-        string? qualification = profile.GetQualification(userID);
-        //string? gender = profileInfo.GetGender(profileID);
-        //SelectGenderChip(gender);
-        string? gender = profile.GetGender(userID);
-        //int profileID = App.ProfileID;
-
-        string? addressCity = profile.GetAddressCity(userID);
-        string? addressProvince = profile.GetAddressProvince(userID);
-        string? educBack = profile.GetAboutMe(userID);
-
-        MainThread.BeginInvokeOnMainThread(() =>
+        try
         {
-            UpperNameEntry.Text = fullname;
-            userNameEntry.Text = fullname;
-            emailTextField.Text = email;
-            contactNumberTextField.Text = cN;
-            gradeCourseEditor.Text = qualification;
-            cityTextField.Text = addressCity;
-            provinceTextField.Text = addressProvince;
-            educationalBackgroundEditor.Text = educBack;
+            int userID = App.UserID;
+            int profileID = App.ProfileID;
+            string? fullname = profile.GetFullName(userID);
+            string? email = profile.GetEmail(userID);
+            string? cN = profile.GetContactNumber(userID);
+            DateTime? birthday = profile.GetBirthday(userID);
+            string? qualification = profile.GetQualification(userID);
+            //string? gender = profileInfo.GetGender(profileID);
+            string? gender = profile.GetGender(userID);
+            await SelectGenderChip(gender);
+            //int profileID = App.ProfileID;
 
-            if (birthday.HasValue)
+            string? addressCity = profile.GetAddressCity(userID);
+            string? addressProvince = profile.GetAddressProvince(userID);
+            string? educBack = profile.GetAboutMe(userID);
+
+            MainThread.BeginInvokeOnMainThread(() =>
             {
-                birthDatePicker.Date = birthday.Value;
-            }
-        });
+                UpperNameEntry.Text = fullname;
+                userNameEntry.Text = fullname;
+                emailTextField.Text = email;
+                contactNumberTextField.Text = cN;
+                gradeCourseEditor.Text = qualification;
+                cityTextField.Text = addressCity;
+                provinceTextField.Text = addressProvince;
+                educationalBackgroundEditor.Text = educBack;
+
+                if (birthday.HasValue)
+                {
+                    birthDatePicker.Date = birthday.Value;
+                }
+            });
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+        }
     }
     private void OnApplyMentorClicked(object sender, EventArgs e)
     {
@@ -99,9 +106,8 @@ public partial class Profile : ContentPage
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-            //profileInfo.InsertProfileEducationalBackground(profileID);
 
-            await DisplayAlert("Success", "User information has been saved.", $"{profileID}", "OK");
+            await DisplayAlert("Success", "User information has been saved.", "OK");
         }
         catch (Exception ex)
         {
@@ -114,15 +120,12 @@ public partial class Profile : ContentPage
         {
             if (genderChipGroup != null && genderChipGroup.ItemsSource != null)
             {
-                // Cast ItemsSource to a list if necessary
                 var chips = genderChipGroup.ItemsSource.OfType<SfChip>().ToList();
-
                 foreach (var chip in chips)
                 {
                     if (chip.Text == gender)
                     {
-                        // Set the matching chip as selected
-                        genderChipGroup.SelectedItem = chip; // Use the appropriate method to select
+                        genderChipGroup.SelectedItem = chip;
                         break;
                     }
                 }
