@@ -227,7 +227,7 @@ namespace ProjectMentorMatch.Models
         public void InsertProfileAddress (int profileID)
         {
             /*
-            bool profileExists = CheckProfileExists(profileID);
+             bool profileExists = CheckProfileExists(profileID);
 
             string queryAddress;
             if (profileExists)
