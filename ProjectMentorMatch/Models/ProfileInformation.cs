@@ -77,12 +77,12 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressCity(int profileID)
         {
-            string query = "SELECT city FROM Address WHERE profileID = @profileID";
+            string query = "SELECT city FROM Address WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -94,12 +94,12 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressProvince(int profileID)
         {
-            string query = "SELECT province FROM Address WHERE profileID = @profileID";
+            string query = "SELECT province FROM Address WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -152,60 +152,62 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                queryGender = "UPDATE Gender SET [genderID] = @genderID, [genderClass] = @genderClass " +
-                        "WHERE [ProfileID] = @ProfileID"; 
+                queryGender = "UPDATE Gender SET [genderID] = @genderID, [Gender] = @Gender " +
+                              "WHERE [ProfileID] = @ProfileID";
             }
             else
             {
-                // Insert if profile not exist
-                queryGender = "INSERT INTO Gender ([genderID], [genderClass], [ProfileID]) " +
-                        "VALUES (@genderID, @genderClass, @ProfileID)"; 
-     
-
+                // Insert if profile does not exist
+                queryGender = "INSERT INTO Gender ([genderID], [Gender], [ProfileID]) " +
+                              "VALUES (@genderID, @Gender, @ProfileID)";
             }
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryGender, connection))
             {
                 command.Parameters.AddWithValue("@genderID", genderRID);
-                command.Parameters.AddWithValue("@genderClass", gender);
+                command.Parameters.AddWithValue("@Gender", gender ?? (object)DBNull.Value); // Use DBNull.Value for null values
                 command.Parameters.AddWithValue("@ProfileID", profileID);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-        public void InsertProfileAddress (int profileID)
+
+        public void InsertProfileAddress(int profileID)
         {
             bool profileExists = CheckProfileExists(profileID);
 
             string queryAddress;
             if (profileExists)
             {
-                queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
-                        "WHERE [profileID] = @profileID";
+                // Update the existing address for the profile
+                queryAddress = "UPDATE Address SET [City] = @City, [Province] = @Province " +
+                               "WHERE [ProfileID] = @ProfileID";
             }
             else
             {
-                queryAddress = "INSERT INTO Address ([addressID], [city], [province], [profileID]) " +
-                        "VALUES (@addressID, @city, @province, @profileID)";
+                // Insert a new address record
+                queryAddress = "INSERT INTO Address ([City], [Province], [ProfileID]) " +
+                               "VALUES (@City, @Province, @ProfileID)";
             }
+
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryAddress, connection))
             {
-                command.Parameters.AddWithValue("@addressID", addressRID);
-                command.Parameters.AddWithValue("@city", addressCity);
-                command.Parameters.AddWithValue("@province", addressProvince);
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@City", addressCity ?? (object)DBNull.Value); // Use DBNull.Value for null values
+                command.Parameters.AddWithValue("@Province", addressProvince ?? (object)DBNull.Value); // Use DBNull.Value for null values
+                command.Parameters.AddWithValue("@ProfileID", profileID);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
+
         private bool CheckProfileExists(int profileID)
         {
             string query = "SELECT COUNT(*) FROM Profile WHERE [ProfileID] = @ProfileID";
-            string checkGID = "SELECT COUNT (*) FROM Gender WHERE [GenderID] = @GenderID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -214,20 +216,10 @@ namespace ProjectMentorMatch.Models
 
                 connection.Open();
                 int countProfile = (int)command.ExecuteScalar();
-
-                if (countProfile > 0)
-                {
-                    using (SqlCommand GIDcommand = new SqlCommand(checkGID, connection))
-                    { 
-                        command.Parameters.AddWithValue("@GenderID", genderID);
-                        int countGID = (int)command.ExecuteScalar();
-                        return countGID > 0;
-                    }
-                }
-                
+                return countProfile > 0;
             }
-            return false;
         }
+
 
     }
 }
