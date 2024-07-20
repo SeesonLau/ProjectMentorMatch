@@ -197,4 +197,9 @@ public partial class Dashboard : ContentPage
     {
         await Navigation.PushAsync(new Booking());
     }
+
+    private void BtnEx_Clicked(object sender, EventArgs e)
+    {
+
+    }
 }
