@@ -12,7 +12,9 @@
              x:DataType="viewmodel:MentorListViewModel"
              Title="MentorMatch">
             <!-- x:Class="ProjectMentorMatch.Views.Dashboard"-->
-             
+    <ContentPage.BindingContext>
+        <viewmodel:MentorListViewModel/>
+    </ContentPage.BindingContext>    
 
     <ContentPage.ToolbarItems>
         <ToolbarItem Text = "Filter" IconImageSource="filter_icon.png" Clicked="OnClickedFilter"/>
@@ -249,10 +251,12 @@
                     <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="1" Margin="0, -5">
                         <!-- Name and Age Field -->
                         <Label x:Name="lblNameAge"
-               Text="Yang Jungwon, 20" 
-               FontAttributes="Bold" 
-               Margin="0,10,0,0" 
-               FontSize="21"/>
+                               Text="{Binding CurrentItemName}"
+                               FontAttributes="Bold" 
+                               Margin="0,10,0,0" 
+                               FontSize="21"/>
+                              <!-- Text="Yang Jungwon, 20" -->
+                               
                         <!-- Address Field -->
                         <Label x:Name="lblAddress"
                    Text="Cebu City"  
