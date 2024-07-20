@@ -18,13 +18,9 @@ namespace ProjectMentorMatch.Models
         private string? qualification;
         private string? isMentor; // can also be bool
         private string? contactNumber;
-
         private string? gender;
         private string? addressCity;
         private string? addressProvince;
-
-
-        //private int userID;
         DateTime parsedBirthday;
         public int GetProfileID(int userID)
         {

@@ -104,8 +104,6 @@ public partial class Profile : ContentPage
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-            //profileInfo.InsertProfileGender(profileID);
-            //profileInfo.InsertProfileAddress(profileID);
             profileInfo.InsertProfileEducationalBackground(profileID);
 
             await DisplayAlert("Success", "User information has been saved.", $"{profileID}", "OK");
