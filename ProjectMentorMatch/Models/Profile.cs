@@ -18,6 +18,12 @@ namespace ProjectMentorMatch.Models
         private string? qualification;
         private string? isMentor; // can also be bool
         private string? contactNumber;
+
+        private string? gender;
+        private string? addressCity;
+        private string? addressProvince;
+
+
         //private int userID;
         DateTime parsedBirthday;
         public int GetProfileID(int userID)
@@ -74,7 +80,57 @@ namespace ProjectMentorMatch.Models
         {
             return isMentor;
         }
+        public string? GetGender(int userID)
+        {
+            string? gender = "";
 
+            string query = "SELECT Gender FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    gender = result.ToString();
+                }
+            }
+            return gender;
+        }
+        public string? GetAddressCity(int userID)
+        {
+            string query = "SELECT City FROM Profile WHERE ProfileID = @ProfileID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    addressCity = result.ToString();
+                }
+            }
+            return addressCity;
+        }
+        public string? GetAddressProvince(int userID)
+        {
+            string query = "SELECT Province FROM Profile WHERE ProfileID = @ProfileID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    addressProvince = result.ToString();
+                }
+            }
+            return addressProvince;
+        }
         public void SetProfileID(int profileID) {this.profileID = profileID;}
         public void SetBirthday(DateTime? birthday) 
         { 
@@ -84,7 +140,15 @@ namespace ProjectMentorMatch.Models
         public void SetQualification(string? qualification) { this.qualification = qualification; }
         public void SetIsMentor(string isMentor) { this.isMentor = isMentor; }
         public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
-
+        public void SetAddressCity(string addressCity)
+        {
+            this.addressCity = addressCity;
+        }
+        public void SetAddressProvince(string addressProvince)
+        {
+            this.addressProvince = addressProvince;
+        }
+        public void SetGender(string? gender) { this.gender = gender; }
 
         private byte[]? selectedImageBytes;
 
@@ -208,19 +272,18 @@ namespace ProjectMentorMatch.Models
         {
             // Check if a profile for the userID already exists
             bool profileExists = CheckProfileExists(userID);
-
             string query;
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @Qualification)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Gender], [City], [Province]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @Qualification, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
@@ -231,7 +294,9 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@Birthday", GetparsedBirthday()); 
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                 command.Parameters.AddWithValue("@Qualification", qualification);
-
+                command.Parameters.AddWithValue("@Gender", gender);
+                command.Parameters.AddWithValue("@City", addressCity);
+                command.Parameters.AddWithValue("@Province", addressProvince);
 
                 connection.Open();
                 command.ExecuteNonQuery();

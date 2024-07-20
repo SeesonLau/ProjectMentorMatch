@@ -93,10 +93,10 @@ public partial class Profile : ContentPage
         {
             profile.SetBirthday(birthday);
             profile.SetContactNumber(contactNumber);
-            profileInfo.SetGender(gender);
+            profile.SetGender(gender);
             profile.SetQualification(qualification);
-            profileInfo.SetAddressCity(addressCity);
-            profileInfo.SetAddressProvince(addressProvince);
+            profile.SetAddressCity(addressCity);
+            profile.SetAddressProvince(addressProvince);
             profileInfo.SetCourseName(educback);
 
 
@@ -104,8 +104,8 @@ public partial class Profile : ContentPage
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-            profileInfo.InsertProfileGender(profileID);
-            profileInfo.InsertProfileAddress(profileID);
+            //profileInfo.InsertProfileGender(profileID);
+            //profileInfo.InsertProfileAddress(profileID);
             profileInfo.InsertProfileEducationalBackground(profileID);
 
             await DisplayAlert("Success", "User information has been saved.", $"{profileID}", "OK");
@@ -155,6 +155,6 @@ public partial class Profile : ContentPage
 
         var stream = await result.OpenReadAsync();
 
-        ProfileImage.ImageSource = ImageSource.FromStream(() => stream);
+        //ProfileImage.ImageSource = ImageSource.FromStream(() => stream);
     }
 }

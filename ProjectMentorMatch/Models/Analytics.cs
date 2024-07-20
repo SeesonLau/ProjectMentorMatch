@@ -25,9 +25,5 @@ namespace ProjectMentorMatch.Models
         {
             return points;
         }
-        /*public int GetProfileID()
-        {
-            return profileID;
-        }*/
     }
 }
