@@ -12,7 +12,7 @@ namespace ProjectMentorMatch.Models
 {
     public class ProfileInformation : ProfileModels
     {
-        private int courseID = RandomID.courseID();
+        private int courseRID = RandomID.courseID();
         private int subjectTaughtID = RandomID.subject_taughtID();
         private int subjectTakenID = RandomID.subject_takenID();
         private int scheduleID = RandomID.schedID();
@@ -61,9 +61,24 @@ namespace ProjectMentorMatch.Models
         {
             return subjectTaken;
         }
-        public string? GetCourseName()
+        public string? GetCourseName(int profileID)
         {
-            return courseName;
+            string? cN = "";
+
+            string query = "SELECT [courseName] FROM EducationalBackground WHERE ProfileID = @ProfileID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    cN = result.ToString();
+                }
+            }
+            return cN;
         }
         public string? GetDay()
         {
@@ -79,14 +94,24 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressCity(int profileID)
         {
+<<<<<<< HEAD
+<<<<<<< HEAD
+            string query = "SELECT city FROM Address WHERE ProfileID = @ProfileID";
+=======
             //string query = "SELECT City FROM Address WHERE profileID = @profileID";
 
             string query = "SELECT City FROM Profile WHERE ProfileID = @ProfileID";
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
+=======
+            //string query = "SELECT City FROM Address WHERE profileID = @profileID";
+
+            string query = "SELECT City FROM Profile WHERE ProfileID = @ProfileID";
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -98,13 +123,22 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressProvince(int profileID)
         {
+<<<<<<< HEAD
+<<<<<<< HEAD
+            string query = "SELECT province FROM Address WHERE ProfileID = @ProfileID";
+=======
             //string query = "SELECT Province FROM Address WHERE profileID = @profileID";
             string query = "SELECT Province FROM Profile WHERE ProfileID = @ProfileID";
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
+=======
+            //string query = "SELECT Province FROM Address WHERE profileID = @profileID";
+            string query = "SELECT Province FROM Profile WHERE ProfileID = @ProfileID";
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -232,6 +266,16 @@ namespace ProjectMentorMatch.Models
             string queryAddress;
             if (profileExists)
             {
+<<<<<<< HEAD
+<<<<<<< HEAD
+                queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
+                        "WHERE [ProfileID] = @ProfileID";
+            }
+            else
+            {
+                queryAddress = "INSERT INTO Address ([addressID], [city], [province], [ProfileID]) " +
+                        "VALUES (@addressID, @city, @province, @ProfileID)";
+=======
                 //  queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
                 //  "WHERE [profileID] = @profileID";
 
@@ -240,11 +284,25 @@ namespace ProjectMentorMatch.Models
             }
             else
             {
+=======
+                //  queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
+                //  "WHERE [profileID] = @profileID";
+
+                queryAddress = "UPDATE Address SET city = @city, province = @province WHERE profileID = @profileID";
+
+            }
+            else
+            {
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
                 // queryAddress = "INSERT INTO Address ([addressID], [city], [province], [profileID]) " +
                 // "VALUES (@addressID, @city, @province, @profileID)";
 
                 queryAddress = "INSERT INTO Address (city, province, profileID) VALUES (@city, @province, @profileID)";
 
+<<<<<<< HEAD
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
+=======
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
             }
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryAddress, connection))
@@ -252,7 +310,7 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@addressID", addressRID);
                 command.Parameters.AddWithValue("@city", addressCity);
                 command.Parameters.AddWithValue("@province", addressProvince);
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
 
                 connection.Open();
                 command.ExecuteNonQuery();
@@ -303,6 +361,80 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
+<<<<<<< HEAD
+        public void InsertProfileEducationalBackground (int profileID)
+        {
+            bool profileExists = CheckProfileExists(profileID);
+
+            string queryEB;
+            if (profileExists)
+            {
+                queryEB = "UPDATE EducationalBackground SET [courseID] = @courseID, [courseName] = @courseName " +
+                        "WHERE [ProfileID] = @ProfileID";
+            }
+            else
+            {
+                queryEB = "INSERT INTO EducationalBackground ([courseID], [courseName], [ProfileID]) " +
+                        "VALUES (@courseID, @courseName,  @ProfileID)";
+            }
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(queryEB, connection))
+            {
+                command.Parameters.AddWithValue("@courseID", courseRID);
+                command.Parameters.AddWithValue("@courseName", courseName);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+            */
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        bool profileExists = CheckProfileExists(profileID);
+                        string profileAddressQuery;
+
+                        if (profileExists)
+                        {
+                            // Update 
+                            profileAddressQuery = "UPDATE Profile SET City = @City, Province = @Province WHERE ProfileID = @ProfileID";
+                            using (var command = new SqlCommand(profileAddressQuery, connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@City", addressCity);
+                                command.Parameters.AddWithValue("@Province", addressProvince);
+                                command.Parameters.AddWithValue("@ProfileID", profileID);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        else
+                        {
+                            // Insert 
+                            profileAddressQuery = "INSERT INTO Profile (City, Province, ProfileID) VALUES (@City, @Province, @ProfileID)";
+                            using (var command = new SqlCommand(profileAddressQuery, connection, transaction))
+                            {
+                                command.Parameters.AddWithValue("@City", addressCity);
+                                command.Parameters.AddWithValue("@Province", addressProvince);
+                                command.Parameters.AddWithValue("@ProfileID", profileID);
+                                command.ExecuteNonQuery();
+                            }
+                        }
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error chu chu " + ex.Message);
+                    }
+                }
+            }
+        }
+=======
+>>>>>>> 83f9193c12b89abc5c83ce74b32c9f12828e2603
         private bool CheckProfileExists(int profileID)
         {      
             string query = "SELECT COUNT(*) FROM Profile WHERE [ProfileID] = @ProfileID";
@@ -329,6 +461,7 @@ namespace ProjectMentorMatch.Models
             }
             return false;          
         }
+
 
     }
 }
