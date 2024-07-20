@@ -51,8 +51,21 @@ namespace ProjectMentorMatch.Models
                 return null; 
             }
         }
-        public string? GetAboutMe()
+        public string? GetAboutMe(int userID)
         {
+            string query = "SELECT [AboutMe] FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    aboutMe = result.ToString();
+                }
+            }
             return aboutMe;
         }
         public string? GetQualification(int userID)
@@ -85,7 +98,7 @@ namespace ProjectMentorMatch.Models
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@UserID", profileID);
+                command.Parameters.AddWithValue("@UserID", userID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -97,11 +110,11 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressCity(int userID)
         {
-            string query = "SELECT City FROM Profile WHERE ProfileID = @ProfileID";
+            string query = "SELECT City FROM Profile WHERE UserID = @UserID";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ProfileID", profileID);
+                command.Parameters.AddWithValue("@UserID", userID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -113,11 +126,11 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressProvince(int userID)
         {
-            string query = "SELECT Province FROM Profile WHERE ProfileID = @ProfileID";
+            string query = "SELECT Province FROM Profile WHERE UserID = @UserID";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ProfileID", profileID);
+                command.Parameters.AddWithValue("@UserID", userID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -272,14 +285,14 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
                 query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Gender], [City], [Province]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @Qualification, @Gender, @City, @Province)";
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
@@ -289,6 +302,7 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@UserID", userID);
                 command.Parameters.AddWithValue("@Birthday", GetparsedBirthday()); 
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
+                command.Parameters.AddWithValue("@AboutMe", aboutMe);
                 command.Parameters.AddWithValue("@Qualification", qualification);
                 command.Parameters.AddWithValue("@Gender", gender);
                 command.Parameters.AddWithValue("@City", addressCity);
@@ -298,7 +312,6 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-      
         private bool CheckProfileExists(int userID)
         {
             string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";

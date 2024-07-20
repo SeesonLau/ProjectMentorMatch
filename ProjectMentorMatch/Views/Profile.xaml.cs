@@ -32,12 +32,12 @@ public partial class Profile : ContentPage
         string? qualification = profile.GetQualification(userID);
         //string? gender = profileInfo.GetGender(profileID);
         //SelectGenderChip(gender);
-        string? gender = profileInfo.GetGender(profileID);
+        string? gender = profile.GetGender(userID);
         //int profileID = App.ProfileID;
 
-        string? addressCity = profileInfo.GetAddressCity(profileID);
-        string? addressProvince = profileInfo.GetAddressProvince(profileID);
-        string? educBack = profileInfo.GetCourseName(profileID);
+        string? addressCity = profile.GetAddressCity(userID);
+        string? addressProvince = profile.GetAddressProvince(userID);
+        string? educBack = profile.GetAboutMe(userID);
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
@@ -60,19 +60,16 @@ public partial class Profile : ContentPage
     {
 		Navigation.PushAsync(new ApplyAsMentor());
     }
-
     private void GoBackButton_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new Dashboard());
     }
-
     private void SettingsButton_Clicked(object sender, EventArgs e)
     {
         Navigation.PushAsync(new Settings());
     }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
-
         DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
         string? gender = "";
@@ -81,7 +78,6 @@ public partial class Profile : ContentPage
         {
             gender = selectedChip.Text;
         }
-
         string? qualification = gradeCourseEditor.Text;
         string? addressCity = cityTextField.Text;
         string? addressProvince = provinceTextField.Text;
@@ -97,14 +93,13 @@ public partial class Profile : ContentPage
             profile.SetQualification(qualification);
             profile.SetAddressCity(addressCity);
             profile.SetAddressProvince(addressProvince);
-            profileInfo.SetCourseName(educback);
-
+            profile.SetAboutMe(educback);
 
             int userID = App.UserID;
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
-            profileInfo.InsertProfileEducationalBackground(profileID);
+            //profileInfo.InsertProfileEducationalBackground(profileID);
 
             await DisplayAlert("Success", "User information has been saved.", $"{profileID}", "OK");
         }
@@ -138,7 +133,6 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions

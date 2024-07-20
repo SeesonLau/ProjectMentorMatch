@@ -119,7 +119,6 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-
         private bool CheckProfileExists(int profileID)
         {      
             string query = "SELECT COUNT(*) FROM Profile WHERE [ProfileID] = @ProfileID";
@@ -146,7 +145,5 @@ namespace ProjectMentorMatch.Models
             }
             return false;          
         }
-
-
     }
 }
