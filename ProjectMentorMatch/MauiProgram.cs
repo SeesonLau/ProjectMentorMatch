@@ -51,6 +51,7 @@ namespace ProjectMentorMatch
             // Do not remove this line of code, else the app bugs out in Release Mode
             builder.Services.AddCommunityToolkitDialogs();
             builder.Services.AddMopupsDialogs();
+            builder.Logging.AddDebug();
 
             builder.Services.AddSingleton<MentorListViewModel>();
             builder.Services.AddSingleton<Dashboard>();

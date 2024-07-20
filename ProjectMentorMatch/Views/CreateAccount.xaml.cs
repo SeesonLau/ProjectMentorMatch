@@ -34,6 +34,12 @@ namespace ProjectMentorMatch
                 return;
             }
 
+            if (!Methods.EmailFormat.IsValidEmail(email))
+            {
+                await DisplayAlert("Error", "Invalid email format.", "OK");
+                return;
+            }
+
             try
             {
                 Account account = new Account();
