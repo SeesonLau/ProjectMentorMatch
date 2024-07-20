@@ -32,7 +32,7 @@ public partial class Profile : ContentPage
         string? qualification = profile.GetQualification(userID);
         //string? gender = profileInfo.GetGender(profileID);
         //SelectGenderChip(gender);
-
+        string? gender = profileInfo.GetGender(profileID);
         //int profileID = App.ProfileID;
 
         string? addressCity = profileInfo.GetAddressCity(profileID);
@@ -50,7 +50,7 @@ public partial class Profile : ContentPage
 
             if (birthday.HasValue)
             {
-                birthDatePicker.Date = birthday.Value; 
+                birthDatePicker.Date = birthday.Value;
             }
         });
     }

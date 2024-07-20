@@ -37,6 +37,8 @@ namespace ProjectMentorMatch.Models
             string? gender = "";
 
             string query = "SELECT Gender FROM Profile WHERE UserID = @UserID";
+          //  string query = "SELECT Gender FROM Profile WHERE ProfileID = @ProfileID";
+
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -77,7 +79,9 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressCity(int profileID)
         {
-            string query = "SELECT city FROM Address WHERE profileID = @profileID";
+            //string query = "SELECT City FROM Address WHERE profileID = @profileID";
+
+            string query = "SELECT City FROM Profile WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -94,7 +98,8 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetAddressProvince(int profileID)
         {
-            string query = "SELECT province FROM Address WHERE profileID = @profileID";
+            //string query = "SELECT Province FROM Address WHERE profileID = @profileID";
+            string query = "SELECT Province FROM Profile WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -145,24 +150,25 @@ namespace ProjectMentorMatch.Models
 
         public void InsertProfileGender(int profileID)
         {
+            /*
             // Check if a profile for the profileID already exists
             bool profileExists = CheckProfileExists(profileID);
 
             string queryGender;
+           
             if (profileExists)
             {
                 // Update the existing profile
-                queryGender = "UPDATE Gender SET [genderID] = @genderID, [genderClass] = @genderClass " +
-                        "WHERE [ProfileID] = @ProfileID"; 
+               // queryGender = "UPDATE Gender SET [genderID] = @genderID, [genderClass] = @genderClass " +
+                  //      "WHERE [ProfileID] = @ProfileID"; 
             }
             else
             {
                 // Insert if profile not exist
-                queryGender = "INSERT INTO Gender ([genderID], [genderClass], [ProfileID]) " +
-                        "VALUES (@genderID, @genderClass, @ProfileID)"; 
-     
-
+               // queryGender = "INSERT INTO Gender ([genderID], [genderClass], [ProfileID]) " +
+                        //"VALUES (@genderID, @genderClass, @ProfileID)";
             }
+            
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryGender, connection))
@@ -174,21 +180,81 @@ namespace ProjectMentorMatch.Models
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+            */
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                        // Update Profile table
+                        string updateProfileGenderQuery = "UPDATE Profile SET Gender = @Gender WHERE ProfileID = @ProfileID";
+                        using (var command = new SqlCommand(updateProfileGenderQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@Gender", gender);
+                            command.Parameters.AddWithValue("@ProfileID", profileID);
+                            command.ExecuteNonQuery();
+                        }
+
+                        /* DILI KO KA INSERT TUNGOD SA GENDERID
+                        string insertGenderQuery = "INSERT INTO Gender (Gender, ProfileID) VALUES (@Gender, @ProfileID)";
+                        using (var command = new SqlCommand(insertGenderQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@Gender", gender);
+                            command.Parameters.AddWithValue("@ProfileID", profileID);
+                            command.ExecuteNonQuery();
+                        }
+                        */
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error chu chu " + ex.Message);
+                    }
+                }
+            }
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+                       
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error chu chu " + ex.Message);
+                    }
+                }
+            }
         }
         public void InsertProfileAddress (int profileID)
         {
+            /*
             bool profileExists = CheckProfileExists(profileID);
 
             string queryAddress;
             if (profileExists)
             {
-                queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
-                        "WHERE [profileID] = @profileID";
+                //  queryAddress = "UPDATE Address SET [addressID] = @addressID, [city] = @city, [province] = @province " +
+                //  "WHERE [profileID] = @profileID";
+
+                queryAddress = "UPDATE Address SET city = @city, province = @province WHERE profileID = @profileID";
+
             }
             else
             {
-                queryAddress = "INSERT INTO Address ([addressID], [city], [province], [profileID]) " +
-                        "VALUES (@addressID, @city, @province, @profileID)";
+                // queryAddress = "INSERT INTO Address ([addressID], [city], [province], [profileID]) " +
+                // "VALUES (@addressID, @city, @province, @profileID)";
+
+                queryAddress = "INSERT INTO Address (city, province, profileID) VALUES (@city, @province, @profileID)";
+
             }
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(queryAddress, connection))
@@ -201,9 +267,63 @@ namespace ProjectMentorMatch.Models
                 connection.Open();
                 command.ExecuteNonQuery();
             }
+            */
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {   
+                        string updateProfileAddressQuery = "UPDATE Profile SET City = @City, Province = @Province WHERE ProfileID = @ProfileID";
+                        using (var command = new SqlCommand(updateProfileAddressQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@City", addressCity);
+                            command.Parameters.AddWithValue("@Province", addressProvince);
+                            command.Parameters.AddWithValue("@ProfileID", profileID);
+                            command.ExecuteNonQuery();
+                        }
+
+                        /* ADDRESS ID WHERE
+                        string insertAddressQuery = "INSERT INTO Address (City, Province, ProfileID) VALUES (@City, @Province, @ProfileID)";
+                        using (var command = new SqlCommand(insertAddressQuery, connection, transaction))
+                        {
+                            command.Parameters.AddWithValue("@City", addressCity);
+                            command.Parameters.AddWithValue("@Province", addressProvince);
+                            command.Parameters.AddWithValue("@ProfileID", profileID);
+                            command.ExecuteNonQuery();
+                        }
+                        */
+                        transaction.Commit();
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error chu chu " + ex.Message);
+                    }
+                }
+            }
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                using (var transaction = connection.BeginTransaction())
+                {
+                    try
+                    {
+
+                    }
+                    catch (Exception ex)
+                    {
+                        transaction.Rollback();
+                        throw new Exception("Error chu chu " + ex.Message);
+                    }
+                }
+            }
         }
         private bool CheckProfileExists(int profileID)
-        {
+        {      
             string query = "SELECT COUNT(*) FROM Profile WHERE [ProfileID] = @ProfileID";
             string checkGID = "SELECT COUNT (*) FROM Gender WHERE [GenderID] = @GenderID";
 
@@ -226,7 +346,7 @@ namespace ProjectMentorMatch.Models
                 }
                 
             }
-            return false;
+            return false;          
         }
 
     }
