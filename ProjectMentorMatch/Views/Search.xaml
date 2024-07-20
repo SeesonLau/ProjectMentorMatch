@@ -131,6 +131,13 @@ TextColor="#086EBB">
                                 <RadioButton Content="One-on-one" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
                                 <RadioButton Content="Group" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
                             </StackLayout>
+                            <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                <!-- Accept Button -->
+                                <Button Text="Apply"  
+                                        WidthRequest="200" 
+                                        HeightRequest ="40" 
+                                        HorizontalOptions="Center"/>
+                            </VerticalStackLayout>
                         </StackLayout>
                     </ScrollView>
                 </syncfusion:DrawerSettings.DrawerContentView>
