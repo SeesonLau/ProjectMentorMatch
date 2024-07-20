@@ -43,7 +43,7 @@ public partial class Profile : ContentPage
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                UpperNameEntry.Text = fullname;
+                //UpperNameEntry.Text = fullname;
                 userNameEntry.Text = fullname;
                 emailTextField.Text = email;
                 contactNumberTextField.Text = cN;
