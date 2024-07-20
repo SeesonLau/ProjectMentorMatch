@@ -10,9 +10,9 @@ public partial class Settings : ContentPage
 		InitializeComponent();
 	}
 
-    private void ImageButton_Clicked(object sender, EventArgs e)
+    private async void ImageButton_Clicked(object sender, EventArgs e)
     {
-		Navigation.PushAsync(new Profile());
+        await Shell.Current.GoToAsync("//Profile", animate: true);
     }
 
     private void btnChangePass_Clicked(object sender, EventArgs e)

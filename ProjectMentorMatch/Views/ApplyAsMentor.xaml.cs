@@ -6,8 +6,8 @@ public partial class ApplyAsMentor : ContentPage
 	{
 		InitializeComponent();
     }
-    private void GoBackButton_Clicked(object sender, EventArgs e)
+    private async void GoBackButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new Profile());
+        await Shell.Current.GoToAsync("//Profile", animate: true);
     }
 }

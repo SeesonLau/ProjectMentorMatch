@@ -31,8 +31,12 @@ namespace ProjectMentorMatch
             Routing.RegisterRoute(nameof(About), typeof(About));
 
             ProfileTabClickedCommand = new Command<string>(OnProfileTabClicked);
+
+
+
         }
-        
+
+
         private void OnProfileTabClicked(string username)
         {
             
