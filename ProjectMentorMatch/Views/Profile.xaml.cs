@@ -69,7 +69,8 @@ public partial class Profile : ContentPage
     }
     private void GoBackButton_Clicked(object sender, EventArgs e)
     {
-        Navigation.PushAsync(new Dashboard());
+        var mentorListViewModel = new MentorListViewModel();
+        Navigation.PushAsync(new Dashboard(mentorListViewModel));
     }
     private void SettingsButton_Clicked(object sender, EventArgs e)
     {
