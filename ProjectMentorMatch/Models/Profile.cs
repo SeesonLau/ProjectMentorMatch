@@ -327,7 +327,7 @@ namespace ProjectMentorMatch.Models
 
                     // Check if the profile for the given userID already exists
                     var checkCommand = connection.CreateCommand();
-                    checkCommand.CommandText = "SELECT COUNT(*) FROM Subject WHERE UserID = @userID";
+                    checkCommand.CommandText = "SELECT COUNT(*) FROM Profile WHERE UserID = @userID";
                     checkCommand.Parameters.AddWithValue("@userID", userID);
 
                     int profileCount = Convert.ToInt32(await checkCommand.ExecuteScalarAsync());
@@ -338,7 +338,7 @@ namespace ProjectMentorMatch.Models
                     {
                         // Update the existing profile
                         query = @"
-                    UPDATE Subject 
+                    UPDATE Profile 
                     SET [Academic] = @academic, [NonAcademic] = @nonAcademic 
                     WHERE [UserID] = @userID
                     ";
@@ -347,7 +347,7 @@ namespace ProjectMentorMatch.Models
                     {
                         // Insert a new profile
                         query = @"
-                    INSERT INTO Subject ([Academic], [NonAcademic], [UserID])
+                    INSERT INTO Profile ([Academic], [NonAcademic], [UserID])
                     VALUES (@academic, @nonAcademic, @userID)
                     ";
                     }
