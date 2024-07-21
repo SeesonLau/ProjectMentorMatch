@@ -88,7 +88,7 @@
                                                       CornerRadius="1"/>
                                 </Grid>
                                 <Grid Grid.Column="1">
-                                    <Switch OnColor="#006EBB" HorizontalOptions="Center"/>
+                                    <Switch x:Name="notifSwitch" OnColor="#006EBB" HorizontalOptions="Center"/>
                                 </Grid>
                             </Grid>
                         </Grid>
