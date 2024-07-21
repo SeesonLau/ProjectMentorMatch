@@ -14,7 +14,7 @@
              Shell.NavBarIsVisible="False" >
 
     <ContentPage.BindingContext>
-        <local:ScheduleViewModel />
+        <local:ProfileViewModels />
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions=".1*, .15*, *" Margin="0,5,0,0">
@@ -82,45 +82,21 @@
                      FontAttributes="Bold" 
                      TextColor="#006EBB"  
                      Margin="0,20,0,10" />
-                    <material:MultiplePickerField x:Name="acadsPicker" Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
-                        <material:MultiplePickerField.ItemsSource BackgroundColor="White">
-                            <x:Array Type="{x:Type x:String}" >
-                                <x:String>Business</x:String>
-                                <x:String>Calculus</x:String>
-                                <x:String>Chemistry</x:String>
-                                <x:String>Computer Programming</x:String>
-                                <x:String>Economics</x:String>
-                                <x:String>Engineering</x:String>
-                                <x:String>Foreign Language</x:String>
-                                <x:String>Health/Nutrition</x:String>
-                                <x:String>History</x:String>
-                                <x:String>Literacy</x:String>
-                                <x:String>Mathematics</x:String>
-                                <x:String>Medical</x:String>
-                                <x:String>Philosophy</x:String>
-                                <x:String>Physics</x:String>
-                                <x:String>Science</x:String>
-                                <x:String>Sex Education</x:String>
-                            </x:Array>
-                        </material:MultiplePickerField.ItemsSource>
+                    <material:MultiplePickerField x:Name="acadsPicker" 
+                                                  Title="Academic Subjects" 
+                                                  Icon="subject_icon.png" 
+                                                  Margin="0,0,0,10" 
+                                                  AccentColor="White"
+                                                  ItemsSource="{Binding Subjects.AvailableSub}"
+                                                  SelectedItems="{Binding Subjects.SelectedSub}">
                     </material:MultiplePickerField>
 
-                    <material:MultiplePickerField x:Name="nonacadsPicker" Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
-                        <material:MultiplePickerField.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Art/Design</x:String>
-                                <x:String>Cooking/Culinary Arts</x:String>
-                                <x:String>Creative Writing</x:String>
-                                <x:String>Dance</x:String>
-                                <x:String>Fitness Training</x:String>
-                                <x:String>Music</x:String>
-                                <x:String>Performing Arts</x:String>
-                                <x:String>Photography and Photo Editing</x:String>
-                                <x:String>Physical Education</x:String>
-                                <x:String>Public Speaking</x:String>
-                                <x:String>Video Editing</x:String>
-                            </x:Array>
-                        </material:MultiplePickerField.ItemsSource>
+                    <material:MultiplePickerField x:Name="nonacadsPicker" 
+                                                  Title="Non-academic Subjects" 
+                                                  Icon="subject_icon.png" 
+                                                  Margin="0,0,0,10"
+                                                  ItemsSource="{Binding Subjects.AvailableNonSub}"
+                                                  SelectedItems="{Binding Subjects.SelectedNonSub}">
                     </material:MultiplePickerField>
                 </VerticalStackLayout>
 

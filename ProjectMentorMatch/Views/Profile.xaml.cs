@@ -19,7 +19,7 @@ public partial class Profile : ContentPage
         profile = new ProfileModels();
         profileInfo = new ProfileInformation();
         LoadProfileData();
-        BindingContext = new ProfileViewModels();
+        //BindingContext = new ProfileViewModels();
 
     }
     private async void LoadProfileData()
@@ -44,7 +44,6 @@ public partial class Profile : ContentPage
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
-                //UpperNameEntry.Text = fullname;
                 userNameEntry.Text = fullname;
                 emailTextField.Text = email;
                 contactNumberTextField.Text = cN;
@@ -108,6 +107,7 @@ public partial class Profile : ContentPage
             int profileID = App.ProfileID;
 
             profile.InsertProfileData(userID);
+            profile.InsertProfileSubject(userID);
 
             await DisplayAlert("Success", "User information has been saved.", "OK");
         }
