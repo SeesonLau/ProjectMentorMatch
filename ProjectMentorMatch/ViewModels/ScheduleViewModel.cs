@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 
 namespace ProjectMentorMatch.ViewModels
 {
@@ -24,6 +25,7 @@ namespace ProjectMentorMatch.ViewModels
         new DaySchedule { Day = "Sunday" }
         };
 
+        private string _selectedDaysText;
         public ObservableCollection<DaySchedule> Days
         {
             get => _days;
@@ -34,6 +36,32 @@ namespace ProjectMentorMatch.ViewModels
             }
         }
 
+        public string SelectedDaysText
+        {
+            get => _selectedDaysText;
+            set
+            {
+                _selectedDaysText = value;
+                OnPropertyChanged();
+            }
+        }
+        public ICommand SelectedDaysCommand { get; }
+
+        public ScheduleViewModel()
+        {
+            SelectedDaysCommand = new Command(OnSelectedDays);
+        }
+
+        private void OnSelectedDays()
+        {
+            var selectedDays = Days.Where(day => day.IsSelected).ToList();
+            var sb = new StringBuilder();
+            foreach (var day in selectedDays)
+            {
+                sb.AppendLine($"{day.Day}: From {day.FromTime:hh\\:mm} to {day.ToTime:hh\\:mm}");
+            }
+            SelectedDaysText = sb.ToString();
+        }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
