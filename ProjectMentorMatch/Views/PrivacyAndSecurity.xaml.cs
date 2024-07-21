@@ -23,12 +23,12 @@ public partial class PrivacyAndSecurity : Popup
             using (var reader = new StreamReader(stream, Encoding.UTF8))
             {
                 string privacyText = reader.ReadToEnd();
-                PrivacyLabel.Text = privacyText;
+               // PrivacyLabel.Text = privacyText;
             }
         }
         else
         {
-            PrivacyLabel.Text = "Error loading privacy text.";
+           // PrivacyLabel.Text = "Error loading privacy text.";
         }
     }
 

@@ -35,7 +35,8 @@
                            FontSize="14"
                            TextColor="Black"
                            LineBreakMode="WordWrap"/>
-                    </VerticalStackLayout>
+
+                  </VerticalStackLayout>
                 </ScrollView>
 
             </VerticalStackLayout>
