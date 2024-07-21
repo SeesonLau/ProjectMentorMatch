@@ -21,12 +21,14 @@ public partial class Dashboard : ContentPage
     public List<Account> CarouselItems { get; set; } = new List<Account>();
 
     // Add profile list once we had the profile page
-
+    
+    private Analytics analytics;
     public Dashboard(MentorListViewModel mentorListViewModel)
 	{
 		InitializeComponent();
        // InitializeCarouselAsync();
        BindingContext = mentorListViewModel;
+        analytics = new Analytics();
     }
     private void OnClickedFilter(object sender, EventArgs e)
     {
@@ -210,5 +212,15 @@ public partial class Dashboard : ContentPage
             int nextIndex = (currentIndex + 1) % viewModel.ItemList.Count;
             viewModel.CurrentItem = viewModel.ItemList[nextIndex];
         }
+    }
+    private void btnHeart_Click(object sender, EventArgs e)
+    {
+     
+        // Update brainReact count
+    //    analytics.UpdateBrainReact();
+
+        // Retrieve the updated brainReact count
+      //  int updatedBrainReact = analytics.GetBrainReact();
+      
     }
 }
