@@ -1,0 +1,7 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+
+<linker>
+	<assembly fullname="Syncfusion.Maui.Core" preserve="all">
+		<type fullname="Syncfusion.Maui.Core.SfView" preserve="all"/>
+	</assembly>
+</linker>

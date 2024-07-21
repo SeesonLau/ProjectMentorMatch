@@ -13,7 +13,6 @@
         
         <!-- Header Section -->
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="15,0,15,10">
-
             <ImageButton Source="goback_icon.png"
                          HorizontalOptions="Start"
                          VerticalOptions="Center"
