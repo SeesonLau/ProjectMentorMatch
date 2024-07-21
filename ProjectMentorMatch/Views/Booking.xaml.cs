@@ -2,13 +2,20 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Booking : ContentPage
 {
+    public Command GoBackCommand { get; }
 
     public Booking()
 	{
 		InitializeComponent();
+        GoBackCommand = new Command(async () => await GoBack());
+        this.BindingContext = this;
     }
 
-  
+    private async Task GoBack()
+    {
+        await Shell.Current.GoToAsync("/Dashboard", animate: true);
+    }
+
     private void OnSetupModeCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         if (e.Value)
