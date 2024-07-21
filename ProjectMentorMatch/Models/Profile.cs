@@ -391,7 +391,7 @@ namespace ProjectMentorMatch.Models
                 await connection.OpenAsync();
 
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT [Academic], [Non-Academic] FROM Subject WHERE [UserID] = @userID";
+                command.CommandText = "SELECT [Academic], [NonAcademic] FROM Profile WHERE [UserID] = @userID";
                 command.Parameters.AddWithValue("@userID", userID);
 
                 using (var reader = await command.ExecuteReaderAsync())
@@ -399,7 +399,7 @@ namespace ProjectMentorMatch.Models
                     if (await reader.ReadAsync())
                     {
                         string? academicSubjects = reader["Academic"].ToString();
-                        string? nonAcademicSubjects = reader["Non-Academic"].ToString();
+                        string? nonAcademicSubjects = reader["NonAcademic"].ToString();
 
                         string[] academicArray = academicSubjects.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
                         string[] nonAcademicArray = nonAcademicSubjects.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
@@ -413,6 +413,8 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
+
+        
 
     }
 }

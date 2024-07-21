@@ -37,7 +37,7 @@ public partial class Profile : ContentPage
             string? qualification = profile.GetQualification(userID);
             //string? gender = profileInfo.GetGender(profileID);
             string? gender = profile.GetGender(userID);
-            await SelectGenderChip(gender);
+        
             //int profileID = App.ProfileID;
             var subjects = await profile.GetSubjectsAsync(userID);
 
@@ -54,13 +54,21 @@ public partial class Profile : ContentPage
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
                 educationalBackgroundEditor.Text = educBack;
-
+      
                 academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
                 nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
                 if (birthday.HasValue)
                 {
                     birthDatePicker.Date = birthday.Value;
+                }
+                if (genderChipGroup.Items != null)
+                {
+                    var chipToSelect = genderChipGroup.Items.FirstOrDefault(chip => chip.Text == gender);
+                    if (chipToSelect != null)
+                    {
+                        genderChipGroup.SelectedItem = chipToSelect;
+                    }
                 }
             });
         }
@@ -143,7 +151,8 @@ public partial class Profile : ContentPage
         {
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
-    }
+    } 
+
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
