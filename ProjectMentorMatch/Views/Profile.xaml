@@ -309,6 +309,10 @@
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+
+                    <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
+
+                    <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
                 </VerticalStackLayout>
                 <Button Text="Save" 
                         Clicked="OnSaveProfileClicked"
