@@ -37,9 +37,8 @@
                                      WidthRequest="60"
                                      HeightRequest="60"
                                      Clicked="OnMentorClicked"
-                                     CommandParameter="Jamel"/>
-                        <!-- replace with Actual names later -->
-                        <Label Text="Mentor 1" FontSize="14" HorizontalOptions="Center"/>
+                                     CommandParameter="Mentor 1"/>
+                        <Label x:Name="Mentor1Label" Text="Mentor 1" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
                     <!-- Mentor 2 -->
@@ -49,7 +48,7 @@
                                      HeightRequest="60"
                                      Clicked="OnMentorClicked"
                                      CommandParameter="Mentor 2"/>
-                        <Label Text="Mentor 2" FontSize="14" HorizontalOptions="Center"/>
+                        <Label x:Name="Mentor2Label" Text="Mentor 2" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
                     <!-- Mentor 3 -->
@@ -59,7 +58,7 @@
                                      HeightRequest="60"
                                      Clicked="OnMentorClicked"
                                      CommandParameter="Mentor 3"/>
-                        <Label Text="Mentor 3" FontSize="14" HorizontalOptions="Center"/>
+                        <Label x:Name="Mentor3Label" Text="Mentor 3" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
                     <!-- Mentor 4 -->
@@ -69,7 +68,7 @@
                                      HeightRequest="60"
                                      Clicked="OnMentorClicked"
                                      CommandParameter="Mentor 4"/>
-                        <Label Text="Mentor 4" FontSize="14" HorizontalOptions="Center"/>
+                        <Label x:Name="Mentor4Label" Text="Mentor 4" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
                     <!-- Mentor 5 -->
@@ -79,18 +78,11 @@
                                      HeightRequest="60"
                                      Clicked="OnMentorClicked"
                                      CommandParameter="Mentor 5"/>
-                        <Label Text="Mentor 5" FontSize="14" HorizontalOptions="Center"/>
+                        <Label x:Name="Mentor5Label" Text="Mentor 5" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
                     <!-- Mentor 6-->
-                    <VerticalStackLayout>
-                        <ImageButton Source="chat_placeholder.png"
-                                WidthRequest="60"
-                                HeightRequest="60"
-                                Clicked="OnMentorClicked"
-                                CommandParameter="Mentor 6"/>
-                        <Label Text="Mentor 6" FontSize="14" HorizontalOptions="Center"/>
-                    </VerticalStackLayout>
+                    
                 </HorizontalStackLayout>
             </ScrollView>
 
@@ -104,7 +96,7 @@
             <!-- Chat 1 -->
             <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
                 <Grid.BindingContext>
-                    <x:String>Mentor 1</x:String>
+                    <x:String>Chat 1</x:String>
                 </Grid.BindingContext>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
@@ -114,10 +106,8 @@
                        HeightRequest="50"
                        VerticalOptions="Center"/>
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
-                    <Label Text="Jamel Hadjirasul" FontSize="16" FontAttributes="Bold"/>
-                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                           FontSize="14" 
-                           TextColor="Gray"/>
+                    <Label x:Name="Chat1ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="Chat1MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
                 </VerticalStackLayout>
                 <ImageButton Source="more_vert_icon.png"
                              Grid.Column="2"
@@ -129,7 +119,7 @@
             <!-- Chat 2 -->
             <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
                 <Grid.BindingContext>
-                    <x:String>Mentor 2</x:String>
+                    <x:String>Chat 2</x:String>
                 </Grid.BindingContext>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
@@ -139,10 +129,8 @@
                        HeightRequest="50"
                        VerticalOptions="Center"/>
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
-                    <Label Text="Mentor 2" FontSize="16" FontAttributes="Bold"/>
-                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                           FontSize="14" 
-                           TextColor="Gray"/>
+                    <Label x:Name="Chat2ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="Chat2MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
                 </VerticalStackLayout>
                 <ImageButton Source="more_vert_icon.png"
                              Grid.Column="2"
@@ -154,7 +142,7 @@
             <!-- Chat 3 -->
             <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
                 <Grid.BindingContext>
-                    <x:String>Mentor 3</x:String>
+                    <x:String>Chat 3</x:String>
                 </Grid.BindingContext>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
@@ -164,10 +152,8 @@
                        HeightRequest="50"
                        VerticalOptions="Center"/>
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
-                    <Label Text="Mentor 3" FontSize="16" FontAttributes="Bold"/>
-                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                           FontSize="14" 
-                           TextColor="Gray"/>
+                    <Label x:Name="Chat3ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="Chat3MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
                 </VerticalStackLayout>
                 <ImageButton Source="more_vert_icon.png"
                              Grid.Column="2"
@@ -179,7 +165,7 @@
             <!-- Chat 4 -->
             <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
                 <Grid.BindingContext>
-                    <x:String>Mentor 4</x:String>
+                    <x:String>Chat 4</x:String>
                 </Grid.BindingContext>
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
@@ -189,10 +175,8 @@
                        HeightRequest="50"
                        VerticalOptions="Center"/>
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
-                    <Label Text="Mentor 4" FontSize="16" FontAttributes="Bold"/>
-                    <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                           FontSize="14" 
-                           TextColor="Gray"/>
+                    <Label x:Name="Chat4ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="Chat4MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
                 </VerticalStackLayout>
                 <ImageButton Source="more_vert_icon.png"
                              Grid.Column="2"
@@ -200,6 +184,31 @@
                              HeightRequest="24"
                              VerticalOptions="Center"/>
             </Grid>
+
+
+            <!-- Chat 5 -->
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                <Grid.BindingContext>
+                    <x:String>Chat 5</x:String>
+                </Grid.BindingContext>
+                <Grid.GestureRecognizers>
+                    <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
+                </Grid.GestureRecognizers>
+                <Image Source="chat_placeholder.png"
+           WidthRequest="50"
+           HeightRequest="50"
+           VerticalOptions="Center"/>
+                <VerticalStackLayout Grid.Column="1" Spacing="2">
+                    <Label x:Name="Chat5ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
+                    <Label x:Name="Chat5MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
+                </VerticalStackLayout>
+                <ImageButton Source="more_vert_icon.png"
+                 Grid.Column="2"
+                 WidthRequest="24"
+                 HeightRequest="24"
+                 VerticalOptions="Center"/>
+            </Grid>
+            
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>
