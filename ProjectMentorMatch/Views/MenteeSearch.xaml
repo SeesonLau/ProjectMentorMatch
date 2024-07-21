@@ -5,6 +5,7 @@
              xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.MenteeSearch"
              Shell.NavBarIsVisible="False"
+             Shell.TabBarIsVisible="False"
              Title="MenteeSearch">
 
     <ContentPage.Resources>
