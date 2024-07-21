@@ -162,18 +162,22 @@
                                           ItemsSource="{Binding ItemList}"
                                           IndicatorView="indicatorView"
                                           IsSwipeEnabled="False"
-                                          CurrentItem ="{Binding CurrentItem}">
+                                          CurrentItem="{Binding CurrentItem}">
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate x:DataType="local:ItemInfo">
                                         <ImageButton Source="{Binding ImageSource}"
-                                                       HorizontalOptions="FillAndExpand"
-                                                       Aspect="AspectFill"
-                                                       HeightRequest="460"/>
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Aspect="AspectFill"
+                                                     HeightRequest="460"/>
                                     </DataTemplate>
                                 </CarouselView.ItemTemplate>
                             </CarouselView>
+                            <IndicatorView x:Name="indicatorView"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"
+                                           IndicatorColor="Gray"
+                                           SelectedIndicatorColor="Black"/>
                         </StackLayout>
-                        
                     </Frame>
                     <!-- <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,-30,10,-30" CornerRadius="40" IsClippedToBounds="True" Padding="0">
                          Profile Picture Field 

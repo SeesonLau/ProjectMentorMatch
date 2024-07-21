@@ -175,6 +175,7 @@ namespace ProjectMentorMatch.Models
             message.Body = "<html><body> Your account has been successfully confirmed. </body></html>";
             message.IsBodyHtml = true;
 
+
             /* Can't get picture to work yet lah
              * 
             string imagePath = FileSystem.Current.AppDataDirectory;
