@@ -319,21 +319,55 @@ namespace ProjectMentorMatch.Models
             string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
             string selectedNonAcademic = string.Join(", ", SubjectService.SelectedNonSub);
 
-            using (var connection = GetConnection())
+            try
             {
-                connection.Open();
-                var command = connection.CreateCommand();
-                command.CommandText =
-                @"
-                INSERT INTO Subject ([Non-Academic], [Academic], [UserID])
-                VALUES ($nonAcademic, $academic, $userID)
-                ";
+                using (var connection = GetConnection())
+                {
+                    await connection.OpenAsync();
 
-                command.Parameters.AddWithValue("$academic", selectedAcademic);
-                command.Parameters.AddWithValue("$nonAcademic", selectedNonAcademic);
-                command.Parameters.AddWithValue("$userID", userID);
+                    // Check if the profile for the given userID already exists
+                    var checkCommand = connection.CreateCommand();
+                    checkCommand.CommandText = "SELECT COUNT(*) FROM Subject WHERE UserID = @userID";
+                    checkCommand.Parameters.AddWithValue("@userID", userID);
 
-                await command.ExecuteNonQueryAsync();
+                    int profileCount = Convert.ToInt32(await checkCommand.ExecuteScalarAsync());
+
+                    string query;
+
+                    if (profileCount > 0)
+                    {
+                        // Update the existing profile
+                        query = @"
+                    UPDATE Subject 
+                    SET [Academic] = @academic, [NonAcademic] = @nonAcademic 
+                    WHERE [UserID] = @userID
+                    ";
+                    }
+                    else
+                    {
+                        // Insert a new profile
+                        query = @"
+                    INSERT INTO Subject ([Academic], [NonAcademic], [UserID])
+                    VALUES (@academic, @nonAcademic, @userID)
+                    ";
+                    }
+
+                    var command = connection.CreateCommand();
+                    command.CommandText = query;
+                    command.Parameters.AddWithValue("@academic", selectedAcademic);
+                    command.Parameters.AddWithValue("@nonAcademic", selectedNonAcademic);
+                    command.Parameters.AddWithValue("@userID", userID);
+
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
         private bool CheckProfileExists(int userID)
