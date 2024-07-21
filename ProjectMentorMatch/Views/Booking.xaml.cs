@@ -2,11 +2,13 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Booking : ContentPage
 {
-	public Booking()
+
+    public Booking()
 	{
 		InitializeComponent();
-	}
+    }
 
+  
     private void OnSetupModeCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
         if (e.Value)
