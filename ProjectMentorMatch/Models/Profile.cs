@@ -6,6 +6,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectMentorMatch.ViewModels;
+using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
 
 namespace ProjectMentorMatch.Models
 {
@@ -310,6 +312,28 @@ namespace ProjectMentorMatch.Models
 
                 connection.Open();
                 command.ExecuteNonQuery();
+            }
+        }
+        public async void InsertProfileSubject(int userID)
+        {
+            string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
+            string selectedNonAcademic = string.Join(", ", SubjectService.SelectedNonSub);
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                var command = connection.CreateCommand();
+                command.CommandText =
+                @"
+                INSERT INTO Subject ([Non-Academic], [Academic], [UserID])
+                VALUES ($nonAcademic, $academic, $userID)
+                ";
+
+                command.Parameters.AddWithValue("$academic", selectedAcademic);
+                command.Parameters.AddWithValue("$nonAcademic", selectedNonAcademic);
+                command.Parameters.AddWithValue("$userID", userID);
+
+                await command.ExecuteNonQueryAsync();
             }
         }
         private bool CheckProfileExists(int userID)

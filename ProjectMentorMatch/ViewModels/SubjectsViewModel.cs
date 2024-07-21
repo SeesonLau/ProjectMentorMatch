@@ -18,6 +18,15 @@ namespace ProjectMentorMatch.ViewModels
         private ObservableCollection<string> _availableNonSub;
         private ObservableCollection<string> _selectedNonSub;
         private string _selectedNonSubjectsText;
+
+
+        public static class SubjectService
+        {
+            public static ObservableCollection<string> SelectedSub { get; set; } = new ObservableCollection<string>();
+            public static ObservableCollection<string> SelectedNonSub { get; set; } = new ObservableCollection<string>();
+        }
+
+
         public ObservableCollection<string> AvailableSub
         {
             get => _availableSub;
@@ -30,10 +39,10 @@ namespace ProjectMentorMatch.ViewModels
 
         public ObservableCollection<string> SelectedSub
         {
-            get => _selectedSub;
+            get => SubjectService.SelectedSub;
             set
             {
-                _selectedSub = value;
+                SubjectService.SelectedSub = value;
                 OnPropertyChanged(nameof(SelectedSub));
             }
         }
@@ -60,10 +69,10 @@ namespace ProjectMentorMatch.ViewModels
 
         public ObservableCollection<string> SelectedNonSub
         {
-            get => _selectedNonSub;
+            get => SubjectService.SelectedNonSub;
             set
             {
-                _selectedNonSub = value;
+                SubjectService.SelectedNonSub = value;
                 OnPropertyChanged(nameof(SelectedNonSub));
             }
         }
