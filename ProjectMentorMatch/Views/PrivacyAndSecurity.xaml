@@ -7,33 +7,38 @@
              CanBeDismissedByTappingOutsideOfPopup="False">
 
     <Frame CornerRadius="20" Background="LightGray">
+            <VerticalStackLayout Spacing="0" WidthRequest="280" HeightRequest="500">
 
-        <VerticalStackLayout Spacing="0" WidthRequest="280" HeightRequest="500">
+                <HorizontalStackLayout Padding="10" Spacing="25">
 
-            <HorizontalStackLayout Padding="10" Spacing="25">
-
-                <ImageButton Source="goback_icon.png"
+                    <ImageButton Source="goback_icon.png"
                              WidthRequest="30"
                              HeightRequest="30"
                              HorizontalOptions="Start"
                              Clicked="ImageButton_Clicked">
-                </ImageButton>
+                    </ImageButton>
 
-                <Label FontSize="18"
+                    <Label FontSize="18"
                        Text="Privacy and Security"
                        TextColor="#006EBB"
                        FontAttributes="Bold"
                        Margin="5">
-                </Label>
+                    </Label>
 
-            </HorizontalStackLayout>
-            
-            <ScrollView>
-                <VerticalStackLayout HeightRequest="400" WidthRequest="250">
 
-                </VerticalStackLayout>
-            </ScrollView>
+                </HorizontalStackLayout>
 
-        </VerticalStackLayout>
+                <ScrollView>
+                    <VerticalStackLayout Padding="10" Spacing="10">
+                        <Label x:Name="PrivacyLabel"
+                           Text="{Binding PrivacyText}"
+                           FontSize="14"
+                           TextColor="Black"
+                           LineBreakMode="WordWrap"/>
+                    </VerticalStackLayout>
+                </ScrollView>
+
+            </VerticalStackLayout>
     </Frame>
+
 </toolkit:Popup>

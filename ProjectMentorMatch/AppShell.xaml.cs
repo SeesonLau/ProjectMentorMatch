@@ -35,8 +35,6 @@ namespace ProjectMentorMatch
 
 
         }
-
-
         private void OnProfileTabClicked(string username)
         {
             

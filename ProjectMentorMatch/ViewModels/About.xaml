@@ -29,7 +29,22 @@
             
             <ScrollView>
                 <VerticalStackLayout WidthRequest="250" HeightRequest="400">
+
+                    <Image Source="circle_logo.png" HorizontalOptions="Center"/>
+
+                    <Label FontSize="Large"
+                           Text="MentorMatch v1.0.0"
+                           HorizontalOptions="Center"/>
+
+                    <Label FontSize="Medium"
+                           Text="Developers:"
+                           HorizontalOptions="Center"/>
                     
+
+                    <!--<Image Source="dinampo.jpg"
+                           HorizontalOptions="Center"/>-->
+
+
                 </VerticalStackLayout>
                 
             </ScrollView>
