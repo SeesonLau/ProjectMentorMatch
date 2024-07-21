@@ -54,6 +54,8 @@ namespace ProjectMentorMatch
             builder.Logging.AddDebug();
 
             builder.Services.AddSingleton<MentorListViewModel>();
+            builder.Services.AddSingleton<SubjectsViewModel>();
+            builder.Services.AddSingleton<ProfileViewModels>();
             builder.Services.AddSingleton<Dashboard>();
 
 #if DEBUG
