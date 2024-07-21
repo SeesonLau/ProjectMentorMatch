@@ -384,6 +384,35 @@ namespace ProjectMentorMatch.Models
                 return count > 0;
             }
         }
+        public async Task<(string[] Academic, string[] NonAcademic)> GetSubjectsAsync(int userID)
+        {
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+
+                var command = connection.CreateCommand();
+                command.CommandText = "SELECT [Academic], [Non-Academic] FROM Subject WHERE [UserID] = @userID";
+                command.Parameters.AddWithValue("@userID", userID);
+
+                using (var reader = await command.ExecuteReaderAsync())
+                {
+                    if (await reader.ReadAsync())
+                    {
+                        string? academicSubjects = reader["Academic"].ToString();
+                        string? nonAcademicSubjects = reader["Non-Academic"].ToString();
+
+                        string[] academicArray = academicSubjects.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+                        string[] nonAcademicArray = nonAcademicSubjects.Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
+
+                        return (academicArray, nonAcademicArray);
+                    }
+                    else
+                    {
+                        return (Array.Empty<string>(), Array.Empty<string>());
+                    }
+                }
+            }
+        }
 
     }
 }

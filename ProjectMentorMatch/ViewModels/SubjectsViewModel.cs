@@ -68,14 +68,14 @@ namespace ProjectMentorMatch.ViewModels
         }
 
         public ObservableCollection<string> SelectedNonSub
+    {
+        get => SubjectService.SelectedNonSub;
+        set
         {
-            get => SubjectService.SelectedNonSub;
-            set
-            {
-                SubjectService.SelectedNonSub = value;
-                OnPropertyChanged(nameof(SelectedNonSub));
-            }
+            SubjectService.SelectedNonSub = value;
+            OnPropertyChanged(nameof(SelectedNonSub));
         }
+    }
 
         public string SelectedNonSubjectsText
         {

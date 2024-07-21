@@ -18,8 +18,10 @@ public partial class Profile : ContentPage
         InitializeComponent();
         profile = new ProfileModels();
         profileInfo = new ProfileInformation();
+
         LoadProfileData();
         //BindingContext = new ProfileViewModels();
+
 
     }
     private async void LoadProfileData()
@@ -37,6 +39,7 @@ public partial class Profile : ContentPage
             string? gender = profile.GetGender(userID);
             await SelectGenderChip(gender);
             //int profileID = App.ProfileID;
+            var subjects = await profile.GetSubjectsAsync(userID);
 
             string? addressCity = profile.GetAddressCity(userID);
             string? addressProvince = profile.GetAddressProvince(userID);
@@ -51,6 +54,9 @@ public partial class Profile : ContentPage
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
                 educationalBackgroundEditor.Text = educBack;
+
+                academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
+                nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
                 if (birthday.HasValue)
                 {
@@ -154,4 +160,5 @@ public partial class Profile : ContentPage
 
         //ProfileImage.ImageSource = ImageSource.FromStream(() => stream);
     }
+
 }
