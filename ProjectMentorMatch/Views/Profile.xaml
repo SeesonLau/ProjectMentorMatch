@@ -11,7 +11,7 @@
              Shell.NavBarIsVisible="False"
              >
     <ContentPage.BindingContext>
-        <local:ScheduleViewModel />
+        <local:ProfileViewModels/>
     </ContentPage.BindingContext>
 
 
@@ -240,32 +240,14 @@
                               Margin="0,5,0,5" 
                               AccentColor="White" 
                               WidthRequest="330"
-                              SelectedItems="{Binding SelectedAcademicSubjects}">
-                        <material:MultiplePickerField.ItemsSource BackgroundColor="White">
-                            <x:Array Type="{x:Type x:String}" >
-                                <x:String>Business</x:String>
-                                <x:String>Calculus</x:String>
-                                <x:String>Chemistry</x:String>
-                                <x:String>Computer Programming</x:String>
-                                <x:String>Economics</x:String>
-                                <x:String>Engineering</x:String>
-                                <x:String>Foreign Language</x:String>
-                                <x:String>Health/Nutrition</x:String>
-                                <x:String>History</x:String>
-                                <x:String>Literacy</x:String>
-                                <x:String>Mathematics</x:String>
-                                <x:String>Medical</x:String>
-                                <x:String>Philosophy</x:String>
-                                <x:String>Physics</x:String>
-                                <x:String>Science</x:String>
-                            </x:Array>
-                        </material:MultiplePickerField.ItemsSource>
+                              ItemsSource="{Binding Subjects.AvailableSub}"
+                              SelectedItems="{Binding Subjects.SelectedSub}">
                     </material:MultiplePickerField>
 
                     <Label Text="Non-Academic Subject" 
                            FontSize="15" 
                            FontAttributes="Bold"/>
-
+                    
                     <material:MultiplePickerField 
                               x:Name="nonAcademicSubjectsPicker"
                               Title="Non-academic Subjects" 
@@ -273,25 +255,18 @@
                               Margin="0,5,0,5" 
                               WidthRequest="330" 
                               AccentColor="LightBlue"
-                              SelectedItems="{Binding SelectedNonAcademicSubjects}">
-                        <material:MultiplePickerField.ItemsSource>
-                            <x:Array Type="{x:Type x:String}">
-                                <x:String>Art/Design</x:String>
-                                <x:String>Cooking/Culinary Arts</x:String>
-                                <x:String>Creative Writing</x:String>
-                                <x:String>Dance</x:String>
-                                <x:String>Fitness Training</x:String>
-                                <x:String>Music</x:String>
-                                <x:String>Performing Arts</x:String>
-                                <x:String>Photography and Photo Editing</x:String>
-                                <x:String>Physical Education</x:String>
-                                <x:String>Public Speaking</x:String>
-                                <x:String>Sex Education</x:String>
-                                <x:String>Sign Language</x:String>
-                                <x:String>Video Editing</x:String>
-                            </x:Array>
-                        </material:MultiplePickerField.ItemsSource>
+                              ItemsSource="{Binding Subjects.AvailableNonSub}"
+                              SelectedItems="{Binding Subjects.SelectedNonSub}">
                     </material:MultiplePickerField>
+                    
+                    <!-- Mao ni ang buttonpara display sa mga selected subjects-->
+                    <Button Text="Display Selected Subjects" 
+                            Margin="0,10,0,10" 
+                            Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
+                    <!-- Mao ni ang label sa mga selected subjects -->
+                    <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
+                    <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
+                                                       
                 </VerticalStackLayout>
                 <!-- WILL CONNECT LATER. YES -->
                 <VerticalStackLayout Spacing="20">
@@ -302,7 +277,7 @@
                            TextColor="#006EBB" 
                            Margin="0,20,0,15" />
 
-                    <CollectionView ItemsSource="{Binding Days}">
+                    <CollectionView ItemsSource="{Binding Schedule.Days}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal" Spacing="5">

@@ -19,6 +19,7 @@ public partial class Profile : ContentPage
         profile = new ProfileModels();
         profileInfo = new ProfileInformation();
         LoadProfileData();
+        BindingContext = new ProfileViewModels();
 
     }
     private async void LoadProfileData()
