@@ -16,6 +16,10 @@ namespace ProjectMentorMatch.Models
     {
         private int profileRID = RandomID.profileID();
         private int profileID;
+
+        private int userID;
+
+
         private string? birthday;
         private string? aboutMe;
         private string? qualification;
@@ -25,6 +29,78 @@ namespace ProjectMentorMatch.Models
         private string? addressCity;
         private string? addressProvince;
         DateTime parsedBirthday;
+
+        private string? fullName;
+
+
+
+        public static List<ProfileModels> GetAllProfiles()
+        {
+            List<ProfileModels> profiles = new List<ProfileModels>();
+
+            string query = @"
+                SELECT 
+                    p.[ProfileID], 
+                    p.[UserID], 
+                    p.[Birthday], 
+                    p.[ContactNumber], 
+                    p.[AboutMe], 
+                    p.[Qualification], 
+                    p.[IsMentor], 
+                    p.[Gender], 
+                    p.[City], 
+                    p.[Province], 
+                    p.[Academic], 
+                    p.[NonAcademic], 
+                    p.[Picture],
+                    c.[FullName]
+                FROM [Profile] p
+                JOIN [CreateAccount] c ON p.[UserID] = c.[UserID]";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                try
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            var profile = new ProfileModels
+                            {
+                                profileID = reader.GetInt32(reader.GetOrdinal("ProfileID")),
+                                userID = reader.GetInt32(reader.GetOrdinal("UserID")),
+                                birthday = reader["Birthday"].ToString(),
+                                contactNumber = reader["ContactNumber"].ToString(),
+                                aboutMe = reader["AboutMe"].ToString(),
+                                qualification = reader["Qualification"].ToString(),
+                                isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")),
+                                gender = reader["Gender"].ToString(),
+                                addressCity = reader["City"].ToString(),
+                                addressProvince = reader["Province"].ToString(),
+                                selectedImageBytes = reader["Picture"] != DBNull.Value ? (byte[])reader["Picture"] : null,
+                                fullName = reader["FullName"].ToString()
+                            };
+
+                            profiles.Add(profile);
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    // Handle exceptions (e.g., log the error)
+                    Console.WriteLine(ex.Message);
+                }
+            }
+
+            return profiles;
+        }
+
+
+
+
+
         public int GetProfileID(int userID)
         {
             string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
@@ -158,6 +234,8 @@ namespace ProjectMentorMatch.Models
             }
             return addressProvince;
         }
+
+
         public void SetProfileID(int profileID) {this.profileID = profileID;}
         public void SetBirthday(DateTime? birthday) 
         { 
