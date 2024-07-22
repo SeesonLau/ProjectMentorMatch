@@ -123,7 +123,7 @@
                     <material:TextField Title="Rates" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
                 </VerticalStackLayout>
                 <!-- Apply Button-->
-                <Button Text="Apply" WidthRequest="150" HeightRequest ="39" HorizontalOptions="Center" Margin="8"/>
+                <Button x:Name="ApplyButton" Text="Apply" WidthRequest="150" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
