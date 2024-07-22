@@ -32,8 +32,6 @@ namespace ProjectMentorMatch.Models
         private string? eduback;
         private string? fullName;
 
-
-
         public static List<ProfileModels> GetAllProfiles()
         {
             List<ProfileModels> profiles = new List<ProfileModels>();
@@ -288,7 +286,7 @@ namespace ProjectMentorMatch.Models
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@UserID", profileID);
+                command.Parameters.AddWithValue("@UserID", userID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)

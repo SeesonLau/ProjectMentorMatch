@@ -89,7 +89,6 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
     private void OnApplyMentorClicked(object sender, EventArgs e)
     {
 		Navigation.PushAsync(new ApplyAsMentor());
@@ -175,7 +174,6 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
@@ -195,7 +193,6 @@ public partial class Profile : ContentPage
             ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(selectedImageBytes));
         }
     }
-
     private byte[] GetProfilePictureData(Stream imageStream)
     {
         using (MemoryStream ms = new MemoryStream())
@@ -208,7 +205,6 @@ public partial class Profile : ContentPage
     {
 
     }
-
     private void SwitchMentor_StateChanging(object sender, Syncfusion.Maui.Buttons.SwitchStateChangingEventArgs e)
     {
 
