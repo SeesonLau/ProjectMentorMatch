@@ -11,13 +11,14 @@ namespace ProjectMentorMatch.ViewModels
     internal class ChatViewModel
     {
         public Author CurrentUser { get; set; }
-
+        public Author Receiver { get; set; }
         public ObservableCollection<object> Messages { get; set; }
 
-        public ChatViewModel()
+        public ChatViewModel(string ReceiverName)
         {
             Messages = new ObservableCollection<object>();
-            CurrentUser = new Author { Name = "Jamel", Avatar = "chat_placeholder.png" }; //change to whoever is logged in using SQL
+            CurrentUser = new Author { Name = "Charles", Avatar = "chat_placeholder.png" }; // change to logged in user
+            Receiver = new Author { Name = ReceiverName, Avatar = "chat_placeholder.png" };
             GenerateMessages();
         }
 
@@ -31,7 +32,7 @@ namespace ProjectMentorMatch.ViewModels
 
             Messages.Add(new TextMessage
             {
-                Author = new Author() { Name = "Jamel", Avatar = "chat_placeholder.png" },
+                Author = Receiver,
                 Text = "Ohh wow, that's amazing! "
             });
         }

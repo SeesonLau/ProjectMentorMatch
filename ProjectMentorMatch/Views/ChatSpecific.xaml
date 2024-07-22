@@ -8,10 +8,6 @@
 
 
 
-    <ContentPage.BindingContext>
-        <local:ChatViewModel/>
-    </ContentPage.BindingContext>
-
     <ContentPage.Content>
 
         <sfchat:SfChat x:Name="sfChat"

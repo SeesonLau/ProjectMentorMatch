@@ -98,10 +98,10 @@ namespace ProjectMentorMatch.Views
             var button = sender as ImageButton;
             if (button?.CommandParameter != null)
             {
-                var mentorName = button.CommandParameter.ToString();
-                if (!string.IsNullOrEmpty(mentorName))
+                var ReceiverName = button.CommandParameter.ToString();
+                if (!string.IsNullOrEmpty(ReceiverName))
                 {
-                    await Navigation.PushAsync(new ChatSpecific(mentorName));
+                    await Navigation.PushAsync(new ChatSpecific(ReceiverName));
                 }
             }
         }
@@ -111,10 +111,10 @@ namespace ProjectMentorMatch.Views
             var grid = sender as Grid;
             if (grid?.BindingContext != null)
             {
-                var mentorName = grid.BindingContext.ToString();
-                if (!string.IsNullOrEmpty(mentorName))
+                var ReceiverName = grid.BindingContext.ToString();
+                if (!string.IsNullOrEmpty(ReceiverName))
                 {
-                    await Navigation.PushAsync(new ChatSpecific(mentorName));
+                    await Navigation.PushAsync(new ChatSpecific(ReceiverName));
                 }
             }
         }
