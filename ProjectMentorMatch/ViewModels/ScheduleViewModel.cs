@@ -12,7 +12,7 @@ using System.Windows.Input;
 
 namespace ProjectMentorMatch.ViewModels
 {
-    public class ScheduleViewModel : Database, INotifyPropertyChanged
+    public class ScheduleViewModel : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -63,28 +63,12 @@ namespace ProjectMentorMatch.ViewModels
                 sb.AppendLine($"{day.Day}: From {day.FromTime:hh\\:mm} to {day.ToTime:hh\\:mm}");
             }
             SelectedDaysText = sb.ToString();
-            //SaveSelectedDaysToDatabase(selectedDays);
         }
 
-        private void InsertProfileMenteeSchedule(List<DaySchedule> selectedDays)
+        // CALL THIS TO GETSELECTED SCHEDULE
+        public List<DaySchedule> GetSelectedDays()
         {
-            Account account = new Account();
-
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-
-                foreach (var day in selectedDays)
-                {
-                    var command = new SqlCommand("INSERT INTO MenteeSchedule (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
-                    command.Parameters.AddWithValue("@UserID", account.GetUserID());
-                    command.Parameters.AddWithValue("@Day", day.Day);
-                    command.Parameters.AddWithValue("@FromTime", day.FromTime);
-                    command.Parameters.AddWithValue("@ToTime", day.ToTime);
-
-                    command.ExecuteNonQuery();
-                }
-            }
+            return Days.Where(day => day.IsSelected).ToList();
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

@@ -121,6 +121,9 @@ public partial class Profile : ContentPage
         string? addressCity = cityTextField.Text;
         string? addressProvince = provinceTextField.Text;
         string? educback = educationalBackgroundEditor.Text;
+
+        var scheduleViewModel = new ScheduleViewModel();
+        var selectedSchedules = scheduleViewModel.GetSelectedDays();
         //string? aboutMe;
         //string? qualification = q;
         // string? isMentor;
@@ -139,6 +142,8 @@ public partial class Profile : ContentPage
 
             profile.InsertProfileData(userID);
             profile.InsertProfileSubject(userID);
+            profile.InsertScheduleMentee(userID, selectedSchedules);
+
 
             await DisplayAlert("Success", "User information has been saved.", "OK");
         }
