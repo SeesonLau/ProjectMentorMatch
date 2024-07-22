@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ProjectMentorMatch.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -10,7 +12,7 @@ using System.Windows.Input;
 
 namespace ProjectMentorMatch.ViewModels
 {
-    public class ScheduleViewModel : INotifyPropertyChanged
+    public class ScheduleViewModel : Database, INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler? PropertyChanged;
 
@@ -61,7 +63,30 @@ namespace ProjectMentorMatch.ViewModels
                 sb.AppendLine($"{day.Day}: From {day.FromTime:hh\\:mm} to {day.ToTime:hh\\:mm}");
             }
             SelectedDaysText = sb.ToString();
+            //SaveSelectedDaysToDatabase(selectedDays);
         }
+
+        private void InsertProfileMenteeSchedule(List<DaySchedule> selectedDays)
+        {
+            Account account = new Account();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                foreach (var day in selectedDays)
+                {
+                    var command = new SqlCommand("INSERT INTO MenteeSchedule (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
+                    command.Parameters.AddWithValue("@UserID", account.GetUserID());
+                    command.Parameters.AddWithValue("@Day", day.Day);
+                    command.Parameters.AddWithValue("@FromTime", day.FromTime);
+                    command.Parameters.AddWithValue("@ToTime", day.ToTime);
+
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
