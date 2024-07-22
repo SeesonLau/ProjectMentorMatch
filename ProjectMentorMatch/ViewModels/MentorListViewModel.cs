@@ -79,7 +79,7 @@ namespace ProjectMentorMatch.ViewModels
                 {
                     ItemId = account.GetUserID(),
                     ItemName = account.GetFullname(),
-                    addressCity = profile.GetAddressCity(account.GetUserID()),  // Fetch address city
+                    addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
                     addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
                     aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me
                                                                         //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
@@ -95,7 +95,7 @@ namespace ProjectMentorMatch.ViewModels
 
 
             // ALSO TRIED TO USE GETALLPROFILES FROM PROFILE BUT WONT WORK
-            //var profiles = ProfileModels.GetAllProfiles();
+            // var profiles = ProfileModels.GetAllProfiles();
 
             //foreach (var profile in profiles)
             //{
