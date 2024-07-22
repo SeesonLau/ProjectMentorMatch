@@ -8,39 +8,47 @@
              xmlns:chip="clr-namespace:Syncfusion.Maui.Core;assembly=Syncfusion.Maui.Core"
              xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
              x:Class="ProjectMentorMatch.Views.Profile"
-             Shell.NavBarIsVisible="False"
-             >
+             Shell.NavBarIsVisible="False">
+
     <ContentPage.BindingContext>
         <local:ProfileViewModels/>
     </ContentPage.BindingContext>
 
-
     <Grid RowDefinitions=".1*, *" Margin="0,9,0,0">
         <!-- Header Section -->
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
-
-
             <Label Grid.Column="1"
-               FontSize="24"
-               HorizontalTextAlignment="Center"
-               Text="Profile"
-               TextColor="#006EBB"
-               FontAttributes="Bold"
-               VerticalOptions="Center" />
+                   FontSize="24"
+                   HorizontalTextAlignment="Center"
+                   Text="Profile"
+                   TextColor="#006EBB"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center" />
 
             <ImageButton Source="settings_icon.png"
-                     Grid.Column="2"
-                     HorizontalOptions="End"
-                     VerticalOptions="Center"
-                     WidthRequest="28"
-                     HeightRequest="28"
-                     Clicked="SettingsButton_Clicked"/>
+                         Grid.Column="2"
+                         HorizontalOptions="End"
+                         VerticalOptions="Center"
+                         WidthRequest="28"
+                         HeightRequest="28"
+                         Clicked="SettingsButton_Clicked"/>
         </Grid>
 
         <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
             <VerticalStackLayout Padding="15,5,0,0">
 
                 <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,10">
+                    <buttons:SfSwitch x:Name="SwitchMentor" 
+                                      WidthRequest="50" 
+                                      Grid.Column="2"
+                                      HeightRequest="30" 
+                                      HorizontalOptions="Start"
+                                      VerticalOptions="Center" 
+                                      Margin="0,0,160,0"            
+                                      StateChanged="SwitchMentor_StateChanged"
+                                      StateChanging="SwitchMentor_StateChanging"
+                                      Background="Transparent" />
+
                     <buttons:SfButton Grid.Column="2" 
                                       x:Name="sfButton" 
                                       Text="Apply as Mentor" 
@@ -55,18 +63,18 @@
                                       FontAttributes="Bold"
                                       Clicked="OnApplyMentorClicked"/>
                 </HorizontalStackLayout>
-                
+
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <chip:SfAvatarView x:Name="ProfileImage"
-                                   ContentType="Initials"
-                                   AvatarName="Alex"
-                                   VerticalOptions="Center"
-                                   HorizontalOptions="Center"  
-                                   HeightRequest="120"
-                                   CornerRadius="60"
-                                   WidthRequest="120"
-                                   ImageSource="profile_icon.png"/>
-                    
+                                       ContentType="Initials"
+                                       AvatarName="Alex"
+                                       VerticalOptions="Center"
+                                       HorizontalOptions="Center"  
+                                       HeightRequest="120"
+                                       CornerRadius="60"
+                                       WidthRequest="120"
+                                       ImageSource="profile_icon.png"/>
+
                     <!-- Edit/Upload Profile Picture -->
                     <ImageButton Source="edit_icon.png" 
                                  WidthRequest="20" 
@@ -78,13 +86,12 @@
                     </ImageButton>
                 </HorizontalStackLayout>
 
-
                 <VerticalStackLayout>
                     <Label Text="Personal Information" 
-                       FontSize="18" 
-                       FontAttributes="Bold" 
-                       TextColor="#006EBB"  
-                       Margin="0,20,0,15" />
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#006EBB"  
+                           Margin="0,20,0,15" />
 
                     <Label Text="Name" 
                            FontSize="15" 
@@ -94,22 +101,20 @@
                                         Text="{Binding UserName}" 
                                         Title="Enter your name" 
                                         Margin="0,5,0,5" 
-                                        WidthRequest="330"
-                                        />
+                                        WidthRequest="330" />
 
                     <Label Text="Gender" 
                            FontSize="15"
                            FontAttributes="Bold"
                            Margin="0,5,0,0" />
 
-
                     <HorizontalStackLayout>
                         <chip:SfChipGroup x:Name="genderChipGroup"
-                                            ChipType="Choice"
-                                            Margin="8,0"
-                                            Padding="10,0,0,0"
-                                            SelectedChipBackground="LightBlue"
-                                            SelectedItem="{Binding SelectedGender}">
+                                          ChipType="Choice"
+                                          Margin="8,0"
+                                          Padding="10,0,0,0"
+                                          SelectedChipBackground="LightBlue"
+                                          SelectedItem="{Binding SelectedGender}">
                             <chip:SfChipGroup.Items>
                                 <chip:SfChip Text="Male" Margin="10"/>
                                 <chip:SfChip Text="Female" Margin="10"/>
@@ -118,35 +123,32 @@
                         </chip:SfChipGroup>
                     </HorizontalStackLayout>
 
-
                     <Label Text="Birth-date" 
-                            FontSize="15" 
-                            Margin="0,10,0,0"
-                            FontAttributes="Bold"/>
+                           FontSize="15" 
+                           Margin="0,10,0,0"
+                           FontAttributes="Bold"/>
 
                     <material:DatePickerField x:Name="birthDatePicker"
-                                                Date="{Binding BirthDate}"
-                                                Format="MM/dd/yyyy" 
-                                                FontSize="16" 
-                                                WidthRequest="330" 
-                                                Icon="day_icon.png" 
-                                                Margin="0,5,0,5"/>
+                                              Date="{Binding BirthDate}"
+                                              Format="MM/dd/yyyy" 
+                                              FontSize="16" 
+                                              WidthRequest="330" 
+                                              Icon="day_icon.png" 
+                                              Margin="0,5,0,5"/>
 
                     <Label Text="Course" 
-                            FontSize="15" 
-                            Margin="0,10,0,0" 
-                            FontAttributes="Bold"/>
+                           FontSize="15" 
+                           Margin="0,10,0,0" 
+                           FontAttributes="Bold"/>
 
                     <material:EditorField x:Name="gradeCourseEditor"
-                                            Text="{Binding GradeCourse}"
-                                            Title="Enter Course " 
-                                            WidthRequest="330"
-                                            Margin="0,5,0,5"/>
+                                          Text="{Binding GradeCourse}"
+                                          Title="Enter Course " 
+                                          WidthRequest="330"
+                                          Margin="0,5,0,5"/>
                 </VerticalStackLayout>
 
-
                 <VerticalStackLayout>
-
                     <Label Text="Contact Information" 
                            FontSize="18" 
                            FontAttributes="Bold" 
@@ -175,7 +177,6 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout>
-
                     <Label Text="Address Information" 
                            FontSize="18" 
                            FontAttributes="Bold" 
@@ -201,28 +202,23 @@
                                         Title="Enter your city/municipality" 
                                         Margin="0,5,0,5" 
                                         WidthRequest="330"/>
-
                 </VerticalStackLayout>
 
                 <VerticalStackLayout>
-
                     <Label Text="Educational Background" 
                            FontSize="18" 
                            FontAttributes="Bold" 
                            TextColor="#006EBB" 
                            Margin="0,20,0,15" />
 
-
                     <material:EditorField x:Name="educationalBackgroundEditor"
                                           Text="{Binding EducationalBackground}"
                                           Title="Enter your educational background" 
                                           Margin="0,5,0,5" 
                                           WidthRequest="330"/>
-
                 </VerticalStackLayout>
 
                 <VerticalStackLayout>
-
                     <Label Text="Subject Preferences" 
                            FontSize="18" 
                            FontAttributes="Bold" 
@@ -247,7 +243,7 @@
                     <Label Text="Non-Academic Subject" 
                            FontSize="15" 
                            FontAttributes="Bold"/>
-                    
+
                     <material:MultiplePickerField 
                               x:Name="nonAcademicSubjectsPicker"
                               Title="Non-academic Subjects" 
@@ -258,19 +254,16 @@
                               ItemsSource="{Binding Subjects.AvailableNonSub}"
                               SelectedItems="{Binding Subjects.SelectedNonSub}">
                     </material:MultiplePickerField>
-                    
-                    <!-- Mao ni ang buttonpara display sa mga selected subjects-->
+
                     <Button Text="Display Selected Subjects" 
                             Margin="0,10,0,10" 
                             Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
-                    <!-- Mao ni ang label sa mga selected subjects -->
+
                     <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
                     <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
-                                                       
                 </VerticalStackLayout>
-                <!-- WILL CONNECT LATER. YES -->
-                <VerticalStackLayout Spacing="20">
 
+                <VerticalStackLayout Spacing="20">
                     <Label Text="Available Schedule" 
                            FontSize="18" 
                            FontAttributes="Bold" 
@@ -302,10 +295,7 @@
                                                               Margin="5" 
                                                               VerticalOptions="Center" 
                                                               HorizontalOptions="Center"/>
-
-
                                 </StackLayout>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>

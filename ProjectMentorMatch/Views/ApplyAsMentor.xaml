@@ -17,7 +17,7 @@
         <local:ProfileViewModels />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions=".1*, .15*, *" Margin="0,5,0,0">
+    <Grid RowDefinitions=".1*, *" Margin="0,5,0,0">
         <!-- Header Section -->
         <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
 
@@ -37,31 +37,6 @@
             VerticalOptions="Center" />
 
 
-        </Grid>
-
-        <Grid Grid.Row="1">
-
-            <Image Grid.Column="0" 
-            Source="dotnet_bot.png" 
-            WidthRequest="80" 
-            HeightRequest="80" 
-            HorizontalOptions="Start" 
-            VerticalOptions="Center" 
-            Margin="20"/>
-
-            <VerticalStackLayout Grid.Column="1" Spacing="0" HorizontalOptions="Center" Margin="0,0,40,0" VerticalOptions="Center">
-                <Label Margin="2"
-                x:Name="UpperNameEntry"
-                Text="{Binding PlaceholderText}"
-                HorizontalOptions="Start"
-                FontSize="15"
-                FontAttributes="Bold"/>
-
-
-                <Label Margin="2" 
-                 Text="BSCPE - 2"
-                 FontSize="12"/>
-            </VerticalStackLayout>
         </Grid>
         <ScrollView Grid.Row="2">
             <VerticalStackLayout Padding="30">
@@ -108,32 +83,35 @@
                     TextColor="#006EBB" 
                     Margin="0,20,0,10" />
 
-                    <CollectionView ItemsSource="{Binding Days}">
+                    <CollectionView ItemsSource="{Binding Schedule.Days}">
                         <CollectionView.ItemTemplate>
                             <DataTemplate>
                                 <StackLayout Orientation="Horizontal" Spacing="5">
                                     <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
                                     <Label Text="{Binding Day}" VerticalOptions="Center"/>
                                     <material:TimePickerField Time="{Binding FromTime}" 
-                                              IsVisible="{Binding IsSelected}" 
-                                              Title="FROM" 
-                                              Format="hh:mm tt" 
-                                              FontSize="13" 
-                                              HeightRequest="50" 
-                                              Margin="5" 
-                                              VerticalOptions="Center" 
-                                              HorizontalOptions="Center"/>
+                                          IsVisible="{Binding IsSelected}" 
+                                          Title="FROM" 
+                                          Format="hh:mm tt" 
+                                          FontSize="13" 
+                                          HeightRequest="50" 
+                                          Margin="5" 
+                                          VerticalOptions="Center" 
+                                          HorizontalOptions="Center"/>
 
                                     <material:TimePickerField Time="{Binding ToTime}" 
-                                              IsVisible="{Binding IsSelected}" 
-                                              Title="TO" 
-                                              Format="hh:mm tt" 
-                                              HeightRequest="50" 
-                                              FontSize="13" 
-                                              Margin="5" 
-                                              VerticalOptions="Center" 
-                                              HorizontalOptions="Center"/>
+                                          IsVisible="{Binding IsSelected}" 
+                                          Title="TO" 
+                                          Format="hh:mm tt" 
+                                          HeightRequest="50" 
+                                          FontSize="13" 
+                                          Margin="5" 
+                                          VerticalOptions="Center" 
+                                          HorizontalOptions="Center"/>
+
+
                                 </StackLayout>
+
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
