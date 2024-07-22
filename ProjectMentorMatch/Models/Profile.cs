@@ -463,7 +463,21 @@ namespace ProjectMentorMatch.Models
             return null;
         }
 
+        public void ApplyAsMentor(int userID)
+        {
+            string query = "UPDATE Profile SET isMentor = @isMentor WHERE UserID = @UserID";
 
+            using (var connection = GetConnection())
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@isMentor", 1);
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
 
     }
 }

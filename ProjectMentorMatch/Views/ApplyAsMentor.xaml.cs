@@ -1,25 +1,39 @@
 using static System.Runtime.InteropServices.JavaScript.JSType;
 using System.Collections.ObjectModel;
+using ProjectMentorMatch.ViewModels;
+using UraniumUI.Material.Controls;
+using ProjectMentorMatch.Models;
+using Microsoft.Data.SqlClient;
+using Microsoft.Maui.ApplicationModel.Communication;
+using Syncfusion.Maui.Core;
 
 namespace ProjectMentorMatch.Views;
 
 public partial class ApplyAsMentor : ContentPage
 {
-	public ApplyAsMentor()
+    ProfileModels profile;
+    public ApplyAsMentor()
 	{
 		InitializeComponent();
-        
+        profile = new ProfileModels();
+
     }
     private async void GoBackButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//Profile", animate: true);
     }
 
-    private void ApplyButton_Clicked(object sender, EventArgs e)
+    private async void ApplyButton_Clicked(object sender, EventArgs e)
     {
-        int userID = App.UserID;
-        int profileID = App.ProfileID;
-
-
+        try
+        {
+            int userID = App.UserID;
+        profile.ApplyAsMentor(userID);
+            await DisplayAlert("Success", "You're now a mentor bish.", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+        }
     }
 }
