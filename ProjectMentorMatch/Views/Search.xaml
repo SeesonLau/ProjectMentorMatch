@@ -8,6 +8,8 @@
              x:Class="ProjectMentorMatch.Views.Search"
              Shell.NavBarIsVisible="False"
              Title="Search">
+    
+    
 
     <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
         <syncfusion:SfNavigationDrawer.DrawerSettings>

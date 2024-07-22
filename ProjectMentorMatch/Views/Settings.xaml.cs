@@ -1,6 +1,7 @@
 using CommunityToolkit.Maui.Views;
 using ProjectMentorMatch.ViewModels;
 using Plugin.LocalNotification;
+using Syncfusion.Maui.Core;
 
 namespace ProjectMentorMatch.Views;
 
