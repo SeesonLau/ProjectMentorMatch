@@ -75,7 +75,7 @@ namespace ProjectMentorMatch.Models
                                 contactNumber = reader["ContactNumber"].ToString(),
                                 aboutMe = reader["AboutMe"].ToString(),
                                 qualification = reader["Qualification"].ToString(),
-                                isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")),
+                                 isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
                                 gender = reader["Gender"].ToString(),
                                 addressCity = reader["City"].ToString(),
                                 addressProvince = reader["Province"].ToString(),

@@ -263,14 +263,14 @@
                                
                         <!-- Address Field -->
                         <Label x:Name="lblAddressCity"
-                        Text="{Binding CurrentItem.addressCity}"
+                        Text="{Binding CurrentItemAddressCity}"
                         Margin="0,5,0,10" 
                         FontAttributes="Bold" 
                         FontSize="17" 
                    TextColor="Gray"/>
 
                         <Label x:Name="lblAddressProvince"
-                         Text="{Binding CurrentItemAddressCity}"
+                         Text="{Binding CurrentItemAddressProvince}"
                           Margin="0,5,0,10" 
                             FontAttributes="Bold" 
                              FontSize="17" 
@@ -399,7 +399,7 @@
 
                     <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Spacing="5">
 
-                        <Label Text="{Binding CurrentItem.aboutMe}" 
+                        <Label Text="{Binding CurrentItemAboutMe}" 
                     FontAttributes="Bold" 
                     FontSize="16" 
                     Margin="0,20,0,0"
