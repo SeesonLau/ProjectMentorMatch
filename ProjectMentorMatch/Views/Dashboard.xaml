@@ -270,7 +270,7 @@
                    TextColor="Gray"/>
 
                         <Label x:Name="lblAddressProvince"
-                         Text="{Binding CurrentItem.addressProvince}"
+                         Text="{Binding CurrentItemAddressCity}"
                           Margin="0,5,0,10" 
                             FontAttributes="Bold" 
                              FontSize="17" 
