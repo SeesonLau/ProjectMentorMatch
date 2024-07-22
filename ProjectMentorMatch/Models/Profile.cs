@@ -23,7 +23,7 @@ namespace ProjectMentorMatch.Models
         private string? birthday;
         private string? aboutMe;
         private string? qualification;
-        private int isMentor; // can also be bool
+        private bool isMentor = false; 
         private string? contactNumber;
         private string? gender;
         private string? addressCity;
@@ -243,7 +243,7 @@ namespace ProjectMentorMatch.Models
         }
         public void SetAboutMe(string aboutMe) { this.aboutMe = aboutMe;}
         public void SetQualification(string? qualification) { this.qualification = qualification; }
-        public void SetIsMentor(int isMentor) { this.isMentor = isMentor; }
+        public void SetIsMentor(bool isMentor) { this.isMentor = isMentor; }
         public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
 
         public void SetPicture(byte[]? selectedImageBytes) { this.selectedImageBytes = selectedImageBytes; }
@@ -377,20 +377,26 @@ namespace ProjectMentorMatch.Models
 
         public void InsertProfileData(int userID)
         {
+            string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
+            string selectedNonAcademic = string.Join(", ", SubjectService.SelectedNonSub);
+
             // Check if a profile for the userID already exists
             bool profileExists = CheckProfileExists(userID);
             string query;
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [isMentor] = @isMentor, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [isMentor] = @isMentor, [Gender] = @Gender, " +
+                        "[City] = @City, [Province] = @Province, [Academic] = @Academic, [NonAcademic] = @NonAcademic " +
+                        //",[Day] = @Day, [FromTime] = @FromTime, [ToTime] = @ToTime " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [isMentor], [Gender], [City], [Province]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @isMentor, @Gender, @City, @Province)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [isMentor], [Gender], [City], [Province]," +
+                        "[Academic], [NonAcademic]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @isMentor, @Gender, @City, @Province, @Academic, @NonAcademic)";
             }
 
             using (var connection = GetConnection())
@@ -402,10 +408,12 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
                 command.Parameters.AddWithValue("@Qualification", qualification);
-                command.Parameters.AddWithValue("@isMentor", 0);
+                command.Parameters.AddWithValue("@isMentor", isMentor);
                 command.Parameters.AddWithValue("@Gender", gender);
                 command.Parameters.AddWithValue("@City", addressCity);
                 command.Parameters.AddWithValue("@Province", addressProvince);
+                command.Parameters.AddWithValue("@Academic", selectedAcademic);
+                command.Parameters.AddWithValue("@NonAcademic", selectedNonAcademic);           
 
                 // Add the picture parameter
                 byte[] pictureData = selectedImageBytes ?? new byte[0];
@@ -522,21 +530,60 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
-        public void InsertScheduleMentee(int userID, List<DaySchedule> selectedSchedules)
+        public async Task InsertScheduleMentee(int userID, List<DaySchedule> selectedSchedules)
         {
-            using (var connection = GetConnection())
+            try
             {
-                connection.Open();
-                foreach (var schedule in selectedSchedules)
+                using (var connection = GetConnection())
                 {
-                    var command = new SqlCommand("INSERT INTO ScheduleMentee (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
-                    command.Parameters.AddWithValue("@UserID", userID);
-                    command.Parameters.AddWithValue("@Day", schedule.Day);
-                    command.Parameters.AddWithValue("@FromTime", schedule.FromTime);
-                    command.Parameters.AddWithValue("@ToTime", schedule.ToTime);
+                    await connection.OpenAsync();
 
-                    command.ExecuteNonQuery();
+                    foreach (var schedule in selectedSchedules)
+                    {
+                        // Check if the schedule already exists
+                        var checkCommand = new SqlCommand("SELECT COUNT(*) FROM Profile WHERE UserID = @UserID AND Day = @Day AND FromTime = @FromTime AND ToTime = @ToTime", connection);
+                        checkCommand.Parameters.AddWithValue("@UserID", userID);
+                        checkCommand.Parameters.AddWithValue("@Day", schedule.Day);
+                        checkCommand.Parameters.AddWithValue("@FromTime", schedule.FromTime);
+                        checkCommand.Parameters.AddWithValue("@ToTime", schedule.ToTime);
+
+                        int existingCount = Convert.ToInt32(await checkCommand.ExecuteScalarAsync());
+
+                        string query;
+
+                        if (existingCount > 0)
+                        {
+                            // Update existing schedule
+                            query = @"
+                                UPDATE Profile 
+                                SET [Day] = @Day, [FromTime] = @FromTime, [ToTime] = @ToTime 
+                                WHERE [UserID] = @UserID AND [Day] = @Day AND [FromTime] = @FromTime AND [ToTime] = @ToTime";
+                        }
+                        else
+                        {
+                            // Insert new schedule
+                            query = @"
+                                INSERT INTO Profile (UserID, Day, FromTime, ToTime) 
+                                VALUES (@UserID, @Day, @FromTime, @ToTime)";
+                        }
+
+                        var command = new SqlCommand(query, connection);
+                        command.Parameters.AddWithValue("@UserID", userID);
+                        command.Parameters.AddWithValue("@Day", schedule.Day);
+                        command.Parameters.AddWithValue("@FromTime", schedule.FromTime);
+                        command.Parameters.AddWithValue("@ToTime", schedule.ToTime);
+
+                        await command.ExecuteNonQueryAsync();
+                    }
                 }
+            }
+            catch (SqlException ex)
+            {
+                Console.WriteLine($"SQL error: {ex.Message}");
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"An error occurred: {ex.Message}");
             }
         }
         public byte[]? GetProfileImage(int userID)
