@@ -81,8 +81,6 @@
                         <Label x:Name="Mentor5Label" Text="Mentor 5" FontSize="14" HorizontalOptions="Center"/>
                     </VerticalStackLayout>
 
-                    <!-- Mentor 6-->
-                    
                 </HorizontalStackLayout>
             </ScrollView>
 
@@ -94,10 +92,7 @@
                    Margin="0,20,0,10"/>
 
             <!-- Chat 1 -->
-            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                <Grid.BindingContext>
-                    <x:String>Chat 1</x:String>
-                </Grid.BindingContext>
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" x:Name="Chat1Grid">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
                 </Grid.GestureRecognizers>
@@ -117,10 +112,7 @@
             </Grid>
 
             <!-- Chat 2 -->
-            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                <Grid.BindingContext>
-                    <x:String>Chat 2</x:String>
-                </Grid.BindingContext>
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" x:Name="Chat2Grid">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
                 </Grid.GestureRecognizers>
@@ -140,10 +132,7 @@
             </Grid>
 
             <!-- Chat 3 -->
-            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                <Grid.BindingContext>
-                    <x:String>Chat 3</x:String>
-                </Grid.BindingContext>
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" x:Name="Chat3Grid">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
                 </Grid.GestureRecognizers>
@@ -163,10 +152,7 @@
             </Grid>
 
             <!-- Chat 4 -->
-            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                <Grid.BindingContext>
-                    <x:String>Chat 4</x:String>
-                </Grid.BindingContext>
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" x:Name="Chat4Grid">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
                 </Grid.GestureRecognizers>
@@ -185,30 +171,26 @@
                              VerticalOptions="Center"/>
             </Grid>
 
-
             <!-- Chat 5 -->
-            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                <Grid.BindingContext>
-                    <x:String>Chat 5</x:String>
-                </Grid.BindingContext>
+            <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" x:Name="Chat5Grid">
                 <Grid.GestureRecognizers>
                     <TapGestureRecognizer Tapped="OnChatClicked" CommandParameter="{Binding .}"/>
                 </Grid.GestureRecognizers>
                 <Image Source="chat_placeholder.png"
-           WidthRequest="50"
-           HeightRequest="50"
-           VerticalOptions="Center"/>
+                       WidthRequest="50"
+                       HeightRequest="50"
+                       VerticalOptions="Center"/>
                 <VerticalStackLayout Grid.Column="1" Spacing="2">
                     <Label x:Name="Chat5ReceiverLabel" Text="Receiver Name" FontSize="16" FontAttributes="Bold"/>
                     <Label x:Name="Chat5MessageLabel" Text="Message" FontSize="14" TextColor="Gray"/>
                 </VerticalStackLayout>
                 <ImageButton Source="more_vert_icon.png"
-                 Grid.Column="2"
-                 WidthRequest="24"
-                 HeightRequest="24"
-                 VerticalOptions="Center"/>
+                             Grid.Column="2"
+                             WidthRequest="24"
+                             HeightRequest="24"
+                             VerticalOptions="Center"/>
             </Grid>
-            
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

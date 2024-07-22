@@ -77,21 +77,24 @@ namespace ProjectMentorMatch.Views
 
         private void BindChatsToUI(List<(string ReceiverName, string Message)> chats)
         {
+            var chatGrids = new List<Grid> { Chat1Grid, Chat2Grid, Chat3Grid, Chat4Grid, Chat5Grid };
             var chatLabels = new List<(Label name, Label message)>
-            {
-                (Chat1ReceiverLabel, Chat1MessageLabel),
-                (Chat2ReceiverLabel, Chat2MessageLabel),
-                (Chat3ReceiverLabel, Chat3MessageLabel),
-                (Chat4ReceiverLabel, Chat4MessageLabel),
-                (Chat5ReceiverLabel, Chat5MessageLabel)
-            };
+    {
+        (Chat1ReceiverLabel, Chat1MessageLabel),
+        (Chat2ReceiverLabel, Chat2MessageLabel),
+        (Chat3ReceiverLabel, Chat3MessageLabel),
+        (Chat4ReceiverLabel, Chat4MessageLabel),
+        (Chat5ReceiverLabel, Chat5MessageLabel)
+    };
 
             for (int i = 0; i < chats.Count; i++)
             {
+                chatGrids[i].BindingContext = chats[i].ReceiverName; // Set the BindingContext to ReceiverName
                 chatLabels[i].name.Text = chats[i].ReceiverName;
                 chatLabels[i].message.Text = chats[i].Message;
             }
         }
+
 
         async void OnMentorClicked(object sender, EventArgs e)
         {
