@@ -305,14 +305,14 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [isMentor] = @isMentor, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Gender], [City], [Province]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Gender, @City, @Province)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [isMentor], [Gender], [City], [Province]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @isMentor, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
@@ -373,22 +373,20 @@ namespace ProjectMentorMatch.Models
                         query = @"
                     UPDATE Profile 
                     SET [Academic] = @academic, [NonAcademic] = @nonAcademic 
-                    WHERE [UserID] = @userID
-                    ";
+                    WHERE [UserID] = @userID";
                     }
                     else
                     {
                         // Insert a new profile
                         query = @"
                     INSERT INTO Profile ([Academic], [NonAcademic], [UserID])
-                    VALUES (@academic, @nonAcademic, @userID)
-                    ";
+                    VALUES (@academic, @nonAcademic, @userID)";
                     }
 
                     var command = connection.CreateCommand();
                     command.CommandText = query;
-                    command.Parameters.AddWithValue("@academic", selectedAcademic);
-                    command.Parameters.AddWithValue("@nonAcademic", selectedNonAcademic);
+                    command.Parameters.AddWithValue("@academic", selectedAcademic ?? (object)DBNull.Value);
+                    command.Parameters.AddWithValue("@nonAcademic", selectedNonAcademic ?? (object)DBNull.Value);
                     command.Parameters.AddWithValue("@userID", userID);
 
                     await command.ExecuteNonQueryAsync();

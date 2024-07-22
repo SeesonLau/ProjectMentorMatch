@@ -43,7 +43,7 @@ namespace ProjectMentorMatch.Models
         public void SetFullname(string fullname) {this.fullname = fullname;}  
         public void SetEmail(string email) {this.email = email;}
         public void SetPassword(string password) {this.password = password;}
-
+       
         public void SignUp()
         {
             if (email != null && CheckEmailIsTaken(email))
