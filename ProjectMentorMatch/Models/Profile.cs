@@ -295,8 +295,8 @@ namespace ProjectMentorMatch.Models
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Picture] = @Picture, [Gender], [City], [Province]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Gender, @City, @Province)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [Picture], [Gender], [City], [Province]) " +
+                         "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Picture, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
