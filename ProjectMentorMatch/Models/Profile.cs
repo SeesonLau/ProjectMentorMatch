@@ -400,7 +400,7 @@ namespace ProjectMentorMatch.Models
             {
                 Console.WriteLine($"An error occurred: {ex.Message}");
             }
-        }
+        } 
         private bool CheckProfileExists(int userID)
         {
             string query = "SELECT COUNT(*) FROM Profile WHERE [UserID] = @UserID";
@@ -444,7 +444,23 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
+        public void InsertScheduleMentee(int userID, List<DaySchedule> selectedSchedules)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                foreach (var schedule in selectedSchedules)
+                {
+                    var command = new SqlCommand("INSERT INTO ScheduleMentee (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    command.Parameters.AddWithValue("@Day", schedule.Day);
+                    command.Parameters.AddWithValue("@FromTime", schedule.FromTime);
+                    command.Parameters.AddWithValue("@ToTime", schedule.ToTime);
 
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
         public byte[]? GetProfileImage(int userID)
         {
             string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
