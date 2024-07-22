@@ -31,6 +31,8 @@ public partial class Profile : ContentPage
 
 
     }
+
+    // Fetch image bytes from the database
     private async void LoadProfileData()
     {
         try
@@ -42,15 +44,16 @@ public partial class Profile : ContentPage
             string? cN = profile.GetContactNumber(userID);
             DateTime? birthday = profile.GetBirthday(userID);
             string? qualification = profile.GetQualification(userID);
+            //string? gender = profileInfo.GetGender(profileID);
             string? gender = profile.GetGender(userID);
 
+            //int profileID = App.ProfileID;
             var subjects = await profile.GetSubjectsAsync(userID);
 
             string? addressCity = profile.GetAddressCity(userID);
             string? addressProvince = profile.GetAddressProvince(userID);
             string? educBack = profile.GetAboutMe(userID);
 
-            // Fetch image bytes from the database
             byte[]? profileImageBytes = profile.GetProfileImage(userID);
 
             MainThread.BeginInvokeOnMainThread(() =>
@@ -66,6 +69,11 @@ public partial class Profile : ContentPage
                 academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
                 nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
+                if (profileImageBytes != null)
+                {
+                    ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(profileImageBytes));
+                }
+
                 if (birthday.HasValue)
                 {
                     birthDatePicker.Date = birthday.Value;
@@ -77,12 +85,6 @@ public partial class Profile : ContentPage
                     {
                         genderChipGroup.SelectedItem = chipToSelect;
                     }
-                }
-
-                // Display the profile image
-                if (profileImageBytes != null && profileImageBytes.Length > 0)
-                {
-                    ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(profileImageBytes));
                 }
             });
         }

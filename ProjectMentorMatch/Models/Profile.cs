@@ -289,24 +289,26 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Picture] = @Picture, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Academic] = @Academic, [NonAcademic] = @NonAcademic, [Picture] = @Picture, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [Picture], [Gender], [City], [Province]) " +
-                         "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Picture, @Gender, @City, @Province)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Academic], [NonAcademic], [Qualification], [Picture], [Gender], [City], [Province]) " +
+                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Academic, @NonAcademic, @Qualification, @Picture, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ProfileID", profileRID); 
+                command.Parameters.AddWithValue("@ProfileID", profileRID);
                 command.Parameters.AddWithValue("@UserID", userID);
-                command.Parameters.AddWithValue("@Birthday", GetparsedBirthday()); 
+                command.Parameters.AddWithValue("@Birthday", GetparsedBirthday());
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
+                command.Parameters.AddWithValue("@Academic", string.Join(", ", SubjectService.SelectedSub));
+                command.Parameters.AddWithValue("@NonAcademic", string.Join(", ", SubjectService.SelectedNonSub));
                 command.Parameters.AddWithValue("@Qualification", qualification);
                 command.Parameters.AddWithValue("@Gender", gender);
                 command.Parameters.AddWithValue("@City", addressCity);
@@ -320,6 +322,7 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
+
 
         private byte[] GetProfilePictureData(Stream imageStream)
         {
