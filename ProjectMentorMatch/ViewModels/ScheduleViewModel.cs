@@ -71,10 +71,29 @@ namespace ProjectMentorMatch.ViewModels
             return Days.Where(day => day.IsSelected).ToList();
         }
 
+        //SISON METHOD FOR 3 COLUMNS
+        public List<DaySchedule> GetSelectedSchedules()
+        {
+            var selectedSchedules = new List<DaySchedule>();
+            foreach (var day in Days)
+            {
+                if (day.IsSelected)
+                {
+                    selectedSchedules.Add(new DaySchedule
+                    {
+                        Day = day.Day,
+                        FromTime = day.FromTime,
+                        ToTime = day.ToTime
+                    });
+                }
+            }
+            return selectedSchedules;
+        }
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
+
     }
 
     public class DaySchedule : INotifyPropertyChanged
