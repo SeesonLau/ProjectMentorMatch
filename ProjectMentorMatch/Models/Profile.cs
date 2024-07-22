@@ -479,6 +479,14 @@ namespace ProjectMentorMatch.Models
             }
         }
 
+<<<<<<< HEAD
+        // =====================================
+        // HERE LIES THE APPLY AS MENTOR FUNCTIONS
+        //======================================
+
+
+
+=======
 
         // Ako gi try Union ang Tables para makuha ang Profile Table og ang Create Account Table
         public static List<ProfileModels> GetAllMentors()
@@ -543,6 +551,7 @@ namespace ProjectMentorMatch.Models
 
             return mentors;
         }
+>>>>>>> de345928fe5e903c34426cca6e4ebe5218b621f8
 
 
 

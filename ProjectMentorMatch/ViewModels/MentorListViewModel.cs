@@ -9,10 +9,12 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace ProjectMentorMatch.ViewModels
 {
     public partial class MentorListViewModel: ObservableObject, INotifyPropertyChanged
     {
+        Database database = new Database();
         public ObservableCollection<ItemInfo> ItemList { get; set; } = new();
 
         private ItemInfo _currentItem;
@@ -43,12 +45,20 @@ namespace ProjectMentorMatch.ViewModels
 
         public MentorListViewModel() 
         {
+<<<<<<< HEAD
+
+            ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
+            ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
+            ItemList.Add(new ItemInfo() { ItemId = 3, ItemName = "Lapinig", ImageSource = "model.jpg" });
+            ItemList.Add(new ItemInfo() { ItemId = 4, ItemName = "Sison", ImageSource = "model2.jpg" });
+=======
             LoadItems();
 
             //ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
             //ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
             //ItemList.Add(new ItemInfo() { ItemId = 3, ItemName = "Lapinig", ImageSource = "model.jpg" });
             //ItemList.Add(new ItemInfo() { ItemId = 4, ItemName = "Sison", ImageSource = "model2.jpg" });
+>>>>>>> de345928fe5e903c34426cca6e4ebe5218b621f8
 
             CurrentItem = ItemList.FirstOrDefault();
         }

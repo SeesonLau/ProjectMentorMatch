@@ -7,9 +7,7 @@ using System;
 namespace ProjectMentorMatch;
 
 public partial class SignIn : ContentPage
-{
-   // Database db = new Database();
-    
+{   
     public SignIn()
 	{
 		InitializeComponent();
