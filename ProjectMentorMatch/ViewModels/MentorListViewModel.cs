@@ -75,7 +75,7 @@ namespace ProjectMentorMatch.ViewModels
                 ItemList.Add(itemInfo);
             }
 
-            var mentors = ProfileModels.GetAllMentors();
+              var mentors = ProfileModels.GetAllMentors();
 
         }
 
