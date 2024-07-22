@@ -46,6 +46,7 @@ namespace ProjectMentorMatch.Models
        
         public void SignUp()
         {
+            /*
             if (email != null && CheckEmailIsTaken(email))
             {
                 throw new Exception("Email already exists. Please use a different email.");
@@ -56,6 +57,17 @@ namespace ProjectMentorMatch.Models
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@UserID", userID);
+                command.Parameters.AddWithValue("@Fullname", fullname);
+                command.Parameters.AddWithValue("@Email", email);
+                command.Parameters.AddWithValue("@Password", password);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }*/
+            string query = "INSERT INTO CreateAccount (fullname, email, password) VALUES (@Fullname, @Email, @Password)";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
                 command.Parameters.AddWithValue("@Fullname", fullname);
                 command.Parameters.AddWithValue("@Email", email);
                 command.Parameters.AddWithValue("@Password", password);

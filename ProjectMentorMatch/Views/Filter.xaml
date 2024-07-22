@@ -4,6 +4,7 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              x:Class="ProjectMentorMatch.Views.Filter"
              Shell.TabBarIsVisible="False"
+             BackgroundColor="White"
              Title="Filter">
     <ScrollView Padding="10">
         <StackLayout Spacing="10" Padding="10">
