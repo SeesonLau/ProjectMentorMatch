@@ -151,6 +151,8 @@ namespace ProjectMentorMatch.Models
         public void SetQualification(string? qualification) { this.qualification = qualification; }
         public void SetIsMentor(string isMentor) { this.isMentor = isMentor; }
         public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
+
+        public void SetPicture(byte[]? selectedImageBytes) { this.selectedImageBytes = selectedImageBytes; }
         public void SetAddressCity(string addressCity)
         {
             this.addressCity = addressCity;
@@ -287,13 +289,13 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Picture] = @Picture, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Gender], [City], [Province]) " +
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Picture] = @Picture, [Gender], [City], [Province]) " +
                         "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Gender, @City, @Province)";
             }
 
@@ -310,10 +312,24 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@City", addressCity);
                 command.Parameters.AddWithValue("@Province", addressProvince);
 
+                // Add the picture parameter
+                byte[] pictureData = selectedImageBytes ?? new byte[0];
+                command.Parameters.AddWithValue("@Picture", pictureData);
+
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
+        private byte[] GetProfilePictureData(Stream imageStream)
+        {
+            using (MemoryStream ms = new MemoryStream())
+            {
+                imageStream.CopyTo(ms);
+                return ms.ToArray();
+            }
+        }
+
         public async void InsertProfileSubject(int userID)
         {
             string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
@@ -414,7 +430,25 @@ namespace ProjectMentorMatch.Models
             }
         }
 
-        
+        public byte[]? GetProfileImage(int userID)
+        {
+            string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null && result != DBNull.Value)
+                {
+                    return (byte[])result;
+                }
+            }
+            return null;
+        }
+
+
 
     }
 }

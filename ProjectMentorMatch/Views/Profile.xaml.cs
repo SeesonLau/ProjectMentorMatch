@@ -13,6 +13,13 @@ public partial class Profile : ContentPage
     ProfileModels profile;
     ProfileInformation profileInfo;
 
+    private byte[]? selectedImageBytes;
+
+    public void SetProfilePicture(byte[]? imageBytes)
+    {
+        selectedImageBytes = imageBytes;
+    }
+
     public Profile()
 	{
         InitializeComponent();
@@ -35,15 +42,16 @@ public partial class Profile : ContentPage
             string? cN = profile.GetContactNumber(userID);
             DateTime? birthday = profile.GetBirthday(userID);
             string? qualification = profile.GetQualification(userID);
-            //string? gender = profileInfo.GetGender(profileID);
             string? gender = profile.GetGender(userID);
-        
-            //int profileID = App.ProfileID;
+
             var subjects = await profile.GetSubjectsAsync(userID);
 
             string? addressCity = profile.GetAddressCity(userID);
             string? addressProvince = profile.GetAddressProvince(userID);
             string? educBack = profile.GetAboutMe(userID);
+
+            // Fetch image bytes from the database
+            byte[]? profileImageBytes = profile.GetProfileImage(userID);
 
             MainThread.BeginInvokeOnMainThread(() =>
             {
@@ -54,7 +62,7 @@ public partial class Profile : ContentPage
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
                 educationalBackgroundEditor.Text = educBack;
-      
+
                 academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
                 nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
@@ -70,6 +78,12 @@ public partial class Profile : ContentPage
                         genderChipGroup.SelectedItem = chipToSelect;
                     }
                 }
+
+                // Display the profile image
+                if (profileImageBytes != null && profileImageBytes.Length > 0)
+                {
+                    ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(profileImageBytes));
+                }
             });
         }
         catch (Exception ex)
@@ -77,6 +91,7 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
+
     private void OnApplyMentorClicked(object sender, EventArgs e)
     {
 		Navigation.PushAsync(new ApplyAsMentor());
@@ -151,7 +166,7 @@ public partial class Profile : ContentPage
         {
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
-    } 
+    }
 
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
@@ -161,13 +176,35 @@ public partial class Profile : ContentPage
             FileTypes = FilePickerFileType.Images
         });
 
-        if (result == null) { 
+        if (result == null)
+        {
             return;
         }
 
-        var stream = await result.OpenReadAsync();
-
-        //ProfileImage.ImageSource = ImageSource.FromStream(() => stream);
+        using (var stream = await result.OpenReadAsync())
+        {
+            selectedImageBytes = GetProfilePictureData(stream);
+            ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(selectedImageBytes));
+        }
     }
 
+    private byte[] GetProfilePictureData(Stream imageStream)
+    {
+        using (MemoryStream ms = new MemoryStream())
+        {
+            imageStream.CopyTo(ms);
+            return ms.ToArray();
+        }
+    }
+
+
+    private void SwitchMentor_StateChanged(object sender, Syncfusion.Maui.Buttons.SwitchStateChangedEventArgs e)
+    {
+
+    }
+
+    private void SwitchMentor_StateChanging(object sender, Syncfusion.Maui.Buttons.SwitchStateChangingEventArgs e)
+    {
+
+    }
 }
