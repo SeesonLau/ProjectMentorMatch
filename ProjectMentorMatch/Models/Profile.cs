@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using ProjectMentorMatch.ViewModels;
 using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
+//using Windows.System;
 
 namespace ProjectMentorMatch.Models
 {
@@ -18,7 +19,7 @@ namespace ProjectMentorMatch.Models
         private string? birthday;
         private string? aboutMe;
         private string? qualification;
-        private string? isMentor; // can also be bool
+        private int isMentor; // can also be bool
         private string? contactNumber;
         private string? gender;
         private string? addressCity;
@@ -87,10 +88,25 @@ namespace ProjectMentorMatch.Models
             }
             return qualification;
         }
-        public string? GetIsMentor()
+        public int GetIsMentor(int userID)
         {
+            int isMentor = 0;
+            string query = "SELECT isMentor FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    isMentor = Convert.ToInt32(result);
+                }
+            }
             return isMentor;
         }
+
         public string? GetGender(int userID)
         {
             string? gender = "";
@@ -149,7 +165,7 @@ namespace ProjectMentorMatch.Models
         }
         public void SetAboutMe(string aboutMe) { this.aboutMe = aboutMe;}
         public void SetQualification(string? qualification) { this.qualification = qualification; }
-        public void SetIsMentor(string isMentor) { this.isMentor = isMentor; }
+        public void SetIsMentor(int isMentor) { this.isMentor = isMentor; }
         public void SetContactNumber(string? contactNumber) { this.contactNumber = contactNumber; }
         public void SetAddressCity(string addressCity)
         {
@@ -287,14 +303,14 @@ namespace ProjectMentorMatch.Models
             if (profileExists)
             {
                 // Update the existing profile
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
-                        "WHERE [UserID] = @UserID";
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [ContactNumber] = @ContactNumber, [AboutMe] = @AboutMe, [Qualification] = @Qualification, [isMentor] = @isMentor, [Gender] = @Gender, [City] = @City, [Province] = @Province " +
+              "WHERE [UserID] = @UserID";
             }
             else
             {
                 // Insert a new profile
-                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [Qualification], [Gender], [City], [Province]) " +
-                        "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @Gender, @City, @Province)";
+                query = "INSERT INTO Profile ([ProfileID], [UserID], [Birthday], [ContactNumber], [AboutMe], [Qualification], [isMentor], [Gender], [City], [Province]) " +
+                "VALUES (@ProfileID, @UserID, @Birthday, @ContactNumber, @AboutMe, @Qualification, @isMentor, @Gender, @City, @Province)";
             }
 
             using (var connection = GetConnection())
@@ -306,6 +322,7 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
                 command.Parameters.AddWithValue("@Qualification", qualification);
+                command.Parameters.AddWithValue("@isMentor", 0);
                 command.Parameters.AddWithValue("@Gender", gender);
                 command.Parameters.AddWithValue("@City", addressCity);
                 command.Parameters.AddWithValue("@Province", addressProvince);
