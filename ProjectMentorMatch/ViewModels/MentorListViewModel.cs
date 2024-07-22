@@ -45,15 +45,14 @@ namespace ProjectMentorMatch.ViewModels
 
         public MentorListViewModel() 
         {
-<<<<<<< HEAD
             ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
             ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
             ItemList.Add(new ItemInfo() { ItemId = 3, ItemName = "Lapinig", ImageSource = "model.jpg" });
             ItemList.Add(new ItemInfo() { ItemId = 4, ItemName = "Sison", ImageSource = "model2.jpg" });
-=======
+
      
             LoadItems();
->>>>>>> d9098d6c76d7be6f4519f60e79357cd40720274f
+
 
             //ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
             //ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
