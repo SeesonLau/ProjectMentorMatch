@@ -9,7 +9,6 @@ using System.Threading.Tasks;
 using ProjectMentorMatch.ViewModels;
 using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
 using Microsoft.Maui.Controls;
-//using Windows.System;
 
 namespace ProjectMentorMatch.Models
 {
@@ -76,15 +75,9 @@ namespace ProjectMentorMatch.Models
                                 contactNumber = reader["ContactNumber"].ToString(),
                                 aboutMe = reader["AboutMe"].ToString(),
                                 qualification = reader["Qualification"].ToString(),
-<<<<<<< HEAD
-<<<<<<< HEAD
-                                //isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")),
-=======
-                                 isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
->>>>>>> 48d05a53af10e5e93d102b8e1c9b42ff3b5505de
-=======
-                                 isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
->>>>>>> 48d05a53af10e5e93d102b8e1c9b42ff3b5505de
+
+                                isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
+
                                 gender = reader["Gender"].ToString(),
                                 addressCity = reader["City"].ToString(),
                                 addressProvince = reader["Province"].ToString(),
