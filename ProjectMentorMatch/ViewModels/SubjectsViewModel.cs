@@ -89,7 +89,6 @@ namespace ProjectMentorMatch.ViewModels
 
         public SubjectsViewModel()
         {
-            // Initialize fields to ensure they are non-nullable
             _availableSub = new ObservableCollection<string>
         {
             "Business", "Calculus", "Chemistry", "Computer Programming",
