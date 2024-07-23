@@ -27,14 +27,29 @@ namespace ProjectMentorMatch.ViewModels
             {
                 if (_currentItem != value)
                 {
+                    // Binding Declaration
                     _currentItem = value;
                     OnPropertyChanged();
                     OnPropertyChanged(nameof(CurrentItemName)); // Notify change of the ItemName
+                    OnPropertyChanged(nameof(CurrentItemAddressCity)); // Notify change of the address city
+                    OnPropertyChanged(nameof(CurrentItemAddressProvince)); // Notify change of the address province
+                    OnPropertyChanged(nameof(CurrentItemAboutMe)); // Notify change of the about me
+                    OnPropertyChanged(nameof(CurrentItemQualifications)); // Notify change of the qualifications
+
                 }
             }
         }
 
+
+        // To be put in the Binding of the Dashboard
         public string CurrentItemName => CurrentItem?.ItemName;
+        public string CurrentItemAddressCity => CurrentItem?.addressCity;
+        public string CurrentItemAddressProvince => CurrentItem?.addressProvince;
+        public string CurrentItemAboutMe => CurrentItem?.aboutMe;
+        public string CurrentItemQualifications => CurrentItem?.qualifications;
+
+
+
 
         public event PropertyChangedEventHandler PropertyChanged;
 
@@ -45,78 +60,73 @@ namespace ProjectMentorMatch.ViewModels
 
         public MentorListViewModel() 
         {
-            ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
-            ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
-            ItemList.Add(new ItemInfo() { ItemId = 3, ItemName = "Lapinig", ImageSource = "model.jpg" });
-            ItemList.Add(new ItemInfo() { ItemId = 4, ItemName = "Sison", ImageSource = "model2.jpg" });
+        
+            //LoadItems();
 
-     
-            LoadItems();
-
-
-            //ItemList.Add(new ItemInfo() { ItemId = 1, ItemName = "Jamel", ImageSource = "sample_profile.png" });
-            //ItemList.Add(new ItemInfo() { ItemId = 2, ItemName = "Ana", ImageSource = "dotnet_bot.png" });
-            //ItemList.Add(new ItemInfo() { ItemId = 3, ItemName = "Lapinig", ImageSource = "model.jpg" });
-            //ItemList.Add(new ItemInfo() { ItemId = 4, ItemName = "Sison", ImageSource = "model2.jpg" });
-
+       
             CurrentItem = ItemList.FirstOrDefault();
         }
 
-
-        // Sa kani na method kay maka next ka sa names pero wla tung IsMentor and Other profile info
-        private void LoadItems()
-        {
-            var accounts = Account.GetAllAccounts();
+        /*
+       private void LoadItems()
+    {
+        var accounts = Account.GetAllAccounts();
 
             foreach (var account in accounts)
             {
+                var profile = new ProfileModels();
+
                 var itemInfo = new ItemInfo
                 {
-                    ItemId = account.GetUserID(), 
+                    ItemId = account.GetUserID(),
                     ItemName = account.GetFullname(),
-                    ImageSource = "dotnet_bot.png" 
+                    addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
+                    addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
+                    aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me
+                                                                        //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
+                    qualifications = profile.GetQualification(account.GetUserID()),  // Fetch qualifications
+                                                                                     //   availability = profile.GetAvailability(account.GetUserID()),  // Fetch availability
+                    ImageSource = "dotnet_bot.png"
+                    //   ImageSource = profile.GetProfileImage(account.GetUserID())
+
                 };
 
                 ItemList.Add(itemInfo);
             }
 
-            //var mentors = ProfileModels.GetAllMentors();
 
-        }
+            // ALSO TRIED TO USE GETALLPROFILES FROM PROFILE BUT WONT WORK
+            // var profiles = ProfileModels.GetAllProfiles();
+
+            //foreach (var profile in profiles)
+            //{
+            //    var mentor = new ProfileModels();
+
+            //    var itemInfo = new ItemInfo
+            //    {
+            //        ItemId = mentor.GetUserID(),
+            //        ItemName = mentor.GetFullname(),
+            //        addressCity = mentor.GetAddressCity(mentor.GetUserID()),  // Fetch address city
+            //        addressProvince = profile.GetAddressProvince(mentor.GetUserID()),  // Fetch address province
+            //        aboutMe = profile.GetAboutMe(mentor.GetUserID()),  // Fetch about me
+            //                                                            //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
+            //        qualifications = profile.GetQualification(mentor.GetUserID()),  // Fetch qualifications
+            //                                                                         //   availability = profile.GetAvailability(account.GetUserID()),  // Fetch availability
 
 
-        // Sa kani kay ako gi try integrate both tables para makuha ang Profile Table pero dili mag next,
+            //        ImageSource = "dotnet_bot.png"
+            //        //   ImageSource = profile.GetProfileImage(account.GetUserID())
 
-        //private void LoadItems()
-        //{
+            //    };
 
-
-        //    // Fetch mentor data
-        //    var mentors = ProfileModels.GetAllMentors();
-
-        //    // Fetch account data and join with mentor data
-        //    var accounts = Account.GetAllAccounts();
-
-        //    foreach (var mentor in mentors)
-        //    {
-        //        // Find the account corresponding to the mentor
-        //        var account = accounts.FirstOrDefault(acc => acc.GetUserID() == mentor.GetUserID());
-
-        //        if (account != null)
-        //        {
-        //            var itemInfo = new ItemInfo
-        //            { 
-        //                ItemId = mentor.GetUserID(),
-        //                ItemName = account.GetFullname(),
-        //                ImageSource = "dotnet_bot.png",
-        //                Address = mentor.GetAddressCity(mentor.GetUserID())
-                            // Other fields here
-        //            };
-
-        //            ItemList.Add(itemInfo);
-        //        }
-        //    }
+            //    ItemList.Add(itemInfo);
+            //}
 
 
         }
+
+
+  */
+
+    }
 }

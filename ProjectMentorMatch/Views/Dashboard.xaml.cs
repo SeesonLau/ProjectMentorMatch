@@ -1,11 +1,17 @@
 using ProjectMentorMatch.Models;
+using System.Collections.ObjectModel;
 using ProjectMentorMatch.ViewModels;
+using Microsoft.Data.SqlClient;
+using Microsoft.Maui.ApplicationModel.Communication;
 using CommunityToolkit.Mvvm.ComponentModel;
+using Syncfusion.Maui.Core;
+
 
 namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
+
     private bool _isRefreshing;
 
     // INSTRUCTIONS HOW TO BIND DATA: 
@@ -19,14 +25,11 @@ public partial class Dashboard : ContentPage
     public List<Account> CarouselItems { get; set; } = new List<Account>();
 
     // Add profile list once we had the profile page
-    
-    private Analytics analytics;
     public Dashboard(MentorListViewModel mentorListViewModel)
 	{
 		InitializeComponent();
        // InitializeCarouselAsync();
        BindingContext = mentorListViewModel;
-        analytics = new Analytics();
     }
     private void OnClickedFilter(object sender, EventArgs e)
     {
@@ -211,14 +214,13 @@ public partial class Dashboard : ContentPage
             viewModel.CurrentItem = viewModel.ItemList[nextIndex];
         }
     }
+    // Palihug kog bind aning button sa mentor hihi, gamita lang profileID sa pag bind
     private void btnHeart_Click(object sender, EventArgs e)
     {
-     
-        // Update brainReact count
-    //    analytics.UpdateBrainReact();
-
-        // Retrieve the updated brainReact count
-      //  int updatedBrainReact = analytics.GetBrainReact();
-      
+   //   int userID = App.UserID;
+        int profileID = App.ProfileID;
+        Analytics analytics = new Analytics();
+ 
+    //  analytics.UpdateBrainReact(profileID);
     }
 }

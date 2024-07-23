@@ -25,37 +25,33 @@ public partial class Profile : ContentPage
         InitializeComponent();
         profile = new ProfileModels();
         profileInfo = new ProfileInformation();
-
         LoadProfileData();
-        //BindingContext = new ProfileViewModels();
-
-
     }
 
-    // Fetch image bytes from the database
+    
     private async void LoadProfileData()
     {
         try
         {
             int userID = App.UserID;
             int profileID = App.ProfileID;
+
             string? fullname = profile.GetFullName(userID);
             string? email = profile.GetEmail(userID);
+
             string? cN = profile.GetContactNumber(userID);
             DateTime? birthday = profile.GetBirthday(userID);
             string? qualification = profile.GetQualification(userID);
-            //string? gender = profileInfo.GetGender(profileID);
+            string? eduback = profile.GetEducBack(userID);
             string? gender = profile.GetGender(userID);
-
-            //int profileID = App.ProfileID;
-            var subjects = await profile.GetSubjectsAsync(userID);
 
             string? addressCity = profile.GetAddressCity(userID);
             string? addressProvince = profile.GetAddressProvince(userID);
-            string? educBack = profile.GetAboutMe(userID);
+         
+            var subjects = await profile.GetSubjectMenteeAsync(userID);
 
             byte[]? profileImageBytes = profile.GetProfileImage(userID);
-
+            
             MainThread.BeginInvokeOnMainThread(() =>
             {
                 userNameEntry.Text = fullname;
@@ -64,8 +60,12 @@ public partial class Profile : ContentPage
                 gradeCourseEditor.Text = qualification;
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
-                educationalBackgroundEditor.Text = educBack;
-
+                educationalBackgroundEditor.Text = eduback;
+                if (birthday.HasValue)
+                {
+                    birthDatePicker.Date = birthday.Value;
+                }
+                
                 academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
                 nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
@@ -74,10 +74,6 @@ public partial class Profile : ContentPage
                     ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(profileImageBytes));
                 }
 
-                if (birthday.HasValue)
-                {
-                    birthDatePicker.Date = birthday.Value;
-                }
                 if (genderChipGroup.Items != null)
                 {
                     var chipToSelect = genderChipGroup.Items.FirstOrDefault(chip => chip.Text == gender);
@@ -93,7 +89,6 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
     private void OnApplyMentorClicked(object sender, EventArgs e)
     {
 		Navigation.PushAsync(new ApplyAsMentor());
@@ -124,9 +119,7 @@ public partial class Profile : ContentPage
 
         var scheduleViewModel = new ScheduleViewModel();
         var selectedSchedules = scheduleViewModel.GetSelectedDays();
-        //string? aboutMe;
-        //string? qualification = q;
-        // string? isMentor;
+
         try
         {
             profile.SetBirthday(birthday);
@@ -140,8 +133,15 @@ public partial class Profile : ContentPage
             int userID = App.UserID;
             int profileID = App.ProfileID;
 
-            profile.InsertProfileData(userID);
-            profile.InsertProfileSubject(userID);
+            profile.InsertProfile(userID);
+            profile.InsertAddress(userID);
+            profile.InsertSubject(userID);
+
+            if (profile.CheckScheduleMenteeExist(userID))
+            {
+                profile.DeleteScheduleMentee(userID);
+            }
+
             profile.InsertScheduleMentee(userID, selectedSchedules);
 
 
@@ -174,7 +174,6 @@ public partial class Profile : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
     private async void ImageButton_Clicked(object sender, EventArgs e)
     {
         var result = await FilePicker.PickAsync(new PickOptions
@@ -194,7 +193,6 @@ public partial class Profile : ContentPage
             ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(selectedImageBytes));
         }
     }
-
     private byte[] GetProfilePictureData(Stream imageStream)
     {
         using (MemoryStream ms = new MemoryStream())
@@ -203,13 +201,10 @@ public partial class Profile : ContentPage
             return ms.ToArray();
         }
     }
-
-
     private void SwitchMentor_StateChanged(object sender, Syncfusion.Maui.Buttons.SwitchStateChangedEventArgs e)
     {
 
     }
-
     private void SwitchMentor_StateChanging(object sender, Syncfusion.Maui.Buttons.SwitchStateChangingEventArgs e)
     {
 
