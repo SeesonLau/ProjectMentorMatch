@@ -1,9 +1,16 @@
 ﻿using Microsoft.Data.SqlClient;
+using Microsoft.Maui.ApplicationModel.Communication;
+using Syncfusion.Maui.Core;
+
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectMentorMatch.ViewModels;
+using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
+using Microsoft.Maui.Controls;
+
 
 namespace ProjectMentorMatch.Models
 {
@@ -14,22 +21,35 @@ namespace ProjectMentorMatch.Models
         private double points = 0; // unsa ang formula para ani??
         private int profileID = 0;
 
-        public int GetAnalyticsID()
+        public int GetAnalyticsID(int profileID)
         {
+            string analyticsIDQuery = "SELECTP analyticsID FROM Profile WHERE profileID = @profileID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(analyticsIDQuery, connection))
+            {
+                command.Parameters.AddWithValue("@profileID", profileID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    analyticsID = Convert.ToInt32(result);
+                    SetProfileID(profileID);
+                }
+            }
             return analyticsID;
         }
 
         // not yet tested
-        public int GetBrainReact()
+        public int GetBrainReact(int profileID)
         {
-            string query = "SELECT brainReact FROM Analytics WHERE analyticsID = @analyticsID AND profileID = @profileID";
+            string query = "SELECT brainReact FROM Analytics WHERE profileID = @profileID";
 
             using (var connection = GetConnection())
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@analyticsID", analyticsID);
                     command.Parameters.AddWithValue("@profileID", profileID);
                 }
             }
@@ -41,30 +61,23 @@ namespace ProjectMentorMatch.Models
             return points;
         }
 
-        public void SetBrainReact(int brainReact)
-        {
-            this.brainReact = brainReact;
-        }
-
-        public void SetPoints(double points)
-        {
-            this.points = points;
-        }
+        public void SetAnalyticsID(int analyticsID) { this.analyticsID = analyticsID; }
+        public void SetBrainReact(int brainReact) { this.brainReact = brainReact; }
+        public void SetPoints(double points) { this.points = points; }
 
         // not yet tested
-        public void UpdateBrainReact()
+        public void UpdateBrainReact(int profileID)
         {
             brainReact += 1;
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-            string query = "UPDATE Analytics SET brainReact = brainReact + 1, day = @day WHERE analyticsID = @analyticsID AND profileID = @profileID";
+            string query = "UPDATE Analytics SET brainReact = brainReact + 1, day = @day WHERE profileID = @profileID";
 
             using (var connection = GetConnection())
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@analyticsID", analyticsID);
                     command.Parameters.AddWithValue("@profileID", profileID);
                     command.Parameters.AddWithValue("@day", currentDate);
 

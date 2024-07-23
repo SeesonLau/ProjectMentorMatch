@@ -216,12 +216,12 @@
                            Margin="0,-50,0,0"  
                            ShowIcon="True" 
                            BackgroundColor="White" 
-                           Background="#f858a4" 
-                           ImageSource="heart_icon.png" 
+                           Background="#FFE760" 
+                           ImageSource="brain_icon.png" 
                            HeightRequest="110" 
                            WidthRequest="110" 
                            CornerRadius="55" 
-                           ImageSize="60" 
+                           ImageSize="100" 
                            ImageAlignment="Default">
                         <buttons:SfButton.Shadow>
                             <Shadow Brush="#f8bcd9"

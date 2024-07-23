@@ -123,7 +123,25 @@
                     <material:TextField Title="Rates" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
                 </VerticalStackLayout>
                 <!-- Apply Button-->
-                <Button x:Name="ApplyButton" Text="Apply" WidthRequest="150" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
+                <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
+                <Label Text="or" 
+                       Padding ="5" 
+                       HorizontalOptions="Center" 
+                       VerticalOptions="Center"
+                       FontAttributes="Bold">
+                </Label>
+                <Button Text="Withdraw as Mentor"
+                        x:Name="btnWithdrawMentor"
+                        TextColor="Black"
+                        BackgroundColor="Yellow"
+                        BorderColor="LightYellow"
+                        BorderWidth="1.5"                      
+                        FontAttributes="Bold" 
+                        HeightRequest="39" 
+                        WidthRequest="200" 
+                        HorizontalOptions="Center" 
+                        VerticalOptions="Center">
+                </Button>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>
