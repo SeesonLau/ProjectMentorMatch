@@ -303,7 +303,7 @@ namespace ProjectMentorMatch.Models
                 await connection.OpenAsync();
 
                 var command = connection.CreateCommand();
-                command.CommandText = "SELECT [Academic], [NonAcademic] FROM SubjectMentee WHERE [UserID] = @UserID";
+                command.CommandText = "SELECT [Academic], [Nonacademic] FROM SubjectMentee WHERE [UserID] = @UserID";
                 command.Parameters.AddWithValue("@UserID", userID);
 
                 using (var reader = await command.ExecuteReaderAsync())
@@ -311,7 +311,7 @@ namespace ProjectMentorMatch.Models
                     if (await reader.ReadAsync())
                     {
                         string? academicSubjects = reader["Academic"].ToString();
-                        string? nonAcademicSubjects = reader["NonAcademic"].ToString();
+                        string? nonAcademicSubjects = reader["Nonacademic"].ToString();
 
                         string[] academicArray = (academicSubjects ?? string.Empty).Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
                         string[] nonAcademicArray = (nonAcademicSubjects ?? string.Empty).Split(new[] { ", " }, StringSplitOptions.RemoveEmptyEntries);
@@ -458,26 +458,44 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE [SubjectMentee] SET [Academic] = @Academic, [NonAcademic] = @NonAcademic " +
+                query = "UPDATE [SubjectMentee] SET [Academic] = @Academic, [Nonacademic] = @Nonacademic " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO [SubjectMentee] ([UserID], [Academic], [NonAcademic]) " +
-                        "VALUES (@UserID, @Academic, @NonAcademic)";
+                query = "INSERT INTO [SubjectMentee] ([UserID], [Academic], [Nonacademic]) " +
+                        "VALUES (@UserID, @Academic, @Nonacademic)";
             }
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
                 command.Parameters.AddWithValue("@UserID", userID);
                 command.Parameters.AddWithValue("@Academic", selectedAcademic);
-                command.Parameters.AddWithValue("@NonAcademic", selectedNonAcademic);
+                command.Parameters.AddWithValue("@Nonacademic", selectedNonAcademic);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
-        
+        public async Task InsertSchedulesAsync(List<DaySchedule> schedules, int userID)
+        {
+
+            using (var connection = GetConnection())
+            {
+                await connection.OpenAsync();
+
+                foreach (var schedule in schedules)
+                {
+                    var command = new SqlCommand("INSERT INTO ScheduleMentee (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    command.Parameters.AddWithValue("@Day", schedule.Day);
+                    command.Parameters.AddWithValue("@FromTime", schedule.FromTime);
+                    command.Parameters.AddWithValue("@ToTime", schedule.ToTime);
+
+                    await command.ExecuteNonQueryAsync();
+                }
+            }
+        }
 
         //OLD
         public void InsertProfileData(int userID)

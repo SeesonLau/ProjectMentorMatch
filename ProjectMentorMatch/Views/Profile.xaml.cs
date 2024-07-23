@@ -5,6 +5,7 @@ using ProjectMentorMatch.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Syncfusion.Maui.Core;
+using Syncfusion.Maui.Core.Carousel;
 
 namespace ProjectMentorMatch.Views;
 
@@ -104,6 +105,9 @@ public partial class Profile : ContentPage
     }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
+        ScheduleMenteeViewModel SVM = new ScheduleMenteeViewModel();
+
+
         DateTime? birthday = birthDatePicker.Date;
         string? contactNumber = contactNumberTextField.Text;
         string? gender = "";
@@ -116,9 +120,10 @@ public partial class Profile : ContentPage
         string? addressCity = cityTextField.Text;
         string? addressProvince = provinceTextField.Text;
         string? educback = educationalBackgroundEditor.Text;
+        //var selectedSchedules = SVM.GetSelectedDays();
 
-        var scheduleViewModel = new ScheduleViewModel();
-        var selectedSchedules = scheduleViewModel.GetSelectedDays();
+        //var scheduleViewModel = new ScheduleViewModel();
+        //var selectedSchedules = scheduleViewModel.GetSelectedDays();
 
         try
         {
@@ -137,12 +142,12 @@ public partial class Profile : ContentPage
             profile.InsertAddress(userID);
             profile.InsertSubject(userID);
 
-            if (profile.CheckScheduleMenteeExist(userID))
-            {
-                profile.DeleteScheduleMentee(userID);
-            }
+            //if (profile.CheckScheduleMenteeExist(userID))
+            //{
+           //     profile.DeleteScheduleMentee(userID);
+            //}
 
-            profile.InsertScheduleMentee(userID, selectedSchedules);
+            //profile.InsertScheduleMentee(userID, selectedSchedules);
 
 
             await DisplayAlert("Success", "User information has been saved.", "OK");
