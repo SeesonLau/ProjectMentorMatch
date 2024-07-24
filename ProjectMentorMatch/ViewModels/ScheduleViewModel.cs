@@ -14,7 +14,7 @@ namespace ProjectMentorMatch.ViewModels
 {
     public class ScheduleViewModel : INotifyPropertyChanged
     {
-
+        ProfileModels profile;
         public event PropertyChangedEventHandler? PropertyChanged;
 
         private ObservableCollection<DaySchedule> _days = new ObservableCollection<DaySchedule>
@@ -85,6 +85,27 @@ namespace ProjectMentorMatch.ViewModels
         public List<DaySchedule> GetSelectedDays()
         {
             return Days.Where(day => day.IsSelected).ToList();
+        }
+
+        public async Task LoadSchedules(int userID)
+        {
+            var schedules = await Task.Run(() => profile.GetSchedules(userID));
+            foreach (var schedule in schedules)
+            {
+                var daySchedule = Days.FirstOrDefault(d => d.Day == schedule.Day);
+                if (daySchedule != null)
+                {
+                    daySchedule.IsSelected = true;
+                    daySchedule.FromTime = schedule.FromTime;
+                    daySchedule.ToTime = schedule.ToTime;
+                }
+            }
+        }
+
+        public async Task SaveSchedules(int userID)
+        {
+            var selectedSchedules = GetSelectedDays();
+            await Task.Run(() => profile.SaveSchedule(userID, selectedSchedules));
         }
 
         protected void OnPropertyChanged([CallerMemberName] string propertyName = null)

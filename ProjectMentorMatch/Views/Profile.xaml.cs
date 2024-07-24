@@ -197,7 +197,7 @@ public partial class Profile : ContentPage
 
         // Set the ImageSource with the full path including the file extension
         ProfileImage.ImageSource = "Resources/Images/" + fileName;
-        profile.SetImage(fileName);
+       // profile.SetImage(fileName);
         // Optionally, save the image file name in the database
         // await SaveImageFileNameToDatabase(fileName);
 

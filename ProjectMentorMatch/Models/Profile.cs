@@ -851,5 +851,64 @@ namespace ProjectMentorMatch.Models
             }
         }
 
+        public void SaveSchedule(int userID, List<DaySchedule> schedules)
+        {
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                string deleteQuery = "DELETE FROM UserSchedules WHERE UserID = @UserId";
+                using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, connection))
+                {
+                    deleteCmd.Parameters.AddWithValue("@UserId", userID);
+                    deleteCmd.ExecuteNonQuery();
+                }
+
+                string insertQuery = "INSERT INTO UserSchedules (UserID, Day, FromTime, ToTime) VALUES (@UserId, @Day, @FromTime, @ToTime)";
+                using (SqlCommand insertCmd = new SqlCommand(insertQuery, connection))
+                {
+                    foreach (var schedule in schedules)
+                    {
+                        insertCmd.Parameters.Clear();
+                        insertCmd.Parameters.AddWithValue("@UserId", userID);
+                        insertCmd.Parameters.AddWithValue("@Day", schedule.Day);
+                        insertCmd.Parameters.AddWithValue("@FromTime", schedule.FromTime);
+                        insertCmd.Parameters.AddWithValue("@ToTime", schedule.ToTime);
+                        insertCmd.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+
+        public List<DaySchedule> GetSchedules(int userId)
+        {
+            List<DaySchedule> schedules = new List<DaySchedule>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                string selectQuery = "SELECT Day, FromTime, ToTime FROM UserSchedules WHERE UserID = @UserId";
+                using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
+                {
+                    cmd.Parameters.AddWithValue("@UserId", userId);
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            schedules.Add(new DaySchedule
+                            {
+                                Day = reader.GetString(0),
+                                FromTime = reader.GetTimeSpan(1),
+                                ToTime = reader.GetTimeSpan(2)
+                            });
+                        }
+                    }
+                }
+            }
+
+            return schedules;
+        }
+
+
+
     }
 }
