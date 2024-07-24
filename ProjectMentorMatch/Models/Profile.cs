@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ProjectMentorMatch.ViewModels;
 using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
 using Microsoft.Maui.Controls;
+using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace ProjectMentorMatch.Models
 {
@@ -34,6 +35,7 @@ namespace ProjectMentorMatch.Models
         private string? fullName;
         TimeSpan FromTime;
         TimeSpan ToTime;
+        private string? rate;
 
         public static List<ProfileModels> GetAllProfiles()
         {
@@ -398,7 +400,26 @@ namespace ProjectMentorMatch.Models
             return isMentor;
         }
 
+        public string GetRate(int userID)
+        {
+            string query = "SELECT Rate FROM Mentor WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    rate = result.ToString();
+                }
+            }
+            return rate;
+        }
+
         // SET
+        public void SetRate(string rate) { this.rate = rate; }
         public void SetProfileID(int profileID) {this.profileID = profileID;}
         public void SetBirthday(DateTime? birthday) 
         { 
@@ -767,12 +788,15 @@ namespace ProjectMentorMatch.Models
 
         public void ApplyAsMentor(int userID)
         {
-            string query = "UPDATE Profile SET isMentor = @isMentor WHERE UserID = @UserID";
+            string query = "INSERT INTO Mentor ([UserID] [isMentor])" +
+
+                        "VALUES (@UserID, @isMentor)";
 
             using (var connection = GetConnection())
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = query;
+             //   command.Parameters.AddWithValue(@AboutMe, aboutme);
                 command.Parameters.AddWithValue("@isMentor", 1);
                 command.Parameters.AddWithValue("@UserID", userID);
 
