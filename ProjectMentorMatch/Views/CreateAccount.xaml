@@ -108,9 +108,11 @@
                                             Title = "Enter your password"
                                             TitleColor="Gray"
                                             FontSize="14"
-                                            TitleFontSize="13.5">
+                                            TitleFontSize="13.5"
+                                            IsPassword="True">
+                            
                         </material:TextField>
-
+                            
                     </VerticalStackLayout>
                 </Grid>
 
@@ -125,7 +127,8 @@
                                             Title = "Confirm your password"
                                             TitleColor="Gray"
                                             FontSize="14"
-                                            TitleFontSize="13.5">
+                                            TitleFontSize="13.5"
+                                            IsPassword="True">
                         </material:TextField>
 
                     </VerticalStackLayout>

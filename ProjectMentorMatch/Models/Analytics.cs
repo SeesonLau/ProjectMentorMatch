@@ -14,7 +14,7 @@ using Microsoft.Maui.Controls;
 
 namespace ProjectMentorMatch.Models
 {
-    public class Analytics : ProfileInformation
+    public class AnalyticsModel : ProfileInformation
     {
         private int analyticsID = RandomID.analyticsID();
         private int brainReact = 0;
