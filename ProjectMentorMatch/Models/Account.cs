@@ -83,7 +83,7 @@ namespace ProjectMentorMatch.Models
 
         public bool LogIn(string email, string password)
         {
-            string countQuery = "SELECT COUNT(*) FROM [CreateAccount] WHERE [Email] = @Email AND [Password] = @Password";
+            string countQuery = "SELECT COUNT(*) FROM [CreateAccount] WHERE [Email] = @Email AND [Password] = @Password"; 
             string userIDQuery = "SELECT UserID FROM CreateAccount WHERE Email = @Email";
             string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
  
