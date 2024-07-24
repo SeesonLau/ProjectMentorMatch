@@ -18,17 +18,18 @@ namespace ProjectMentorMatch.Models
     {
         private int analyticsID = RandomID.analyticsID();
         private int brainReact = 0;
-        private double points = 0; // unsa ang formula para ani??
+        private double pointsMax = 0; // unsa ang formula para ani??
+        private double pointsGain = 0;
         private int profileID = 0;
 
         public int GetAnalyticsID(int profileID)
         {
-            string analyticsIDQuery = "SELECTP analyticsID FROM Profile WHERE profileID = @profileID";
+            string analyticsIDQuery = "SELECTP analyticsID FROM Profile WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(analyticsIDQuery, connection))
             {
-                command.Parameters.AddWithValue("@profileID", profileID);
+                command.Parameters.AddWithValue("@ProfileID", profileID);
                 connection.Open();
                 object result = command.ExecuteScalar();
                 if (result != null)
@@ -43,27 +44,32 @@ namespace ProjectMentorMatch.Models
         // not yet tested
         public int GetBrainReact(int profileID)
         {
-            string query = "SELECT brainReact FROM Analytics WHERE profileID = @profileID";
+            string query = "SELECT brainReact FROM Analytics WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@profileID", profileID);
+                    command.Parameters.AddWithValue("@ProfileID", profileID);
                 }
             }
 
             return brainReact;
         }
-        public double GetPoints()
+        public double GetPointsMax()
         {
-            return points;
+            return pointsMax;
+        }
+        public double GetPointsGain()
+        {
+            return pointsGain;
         }
 
         public void SetAnalyticsID(int analyticsID) { this.analyticsID = analyticsID; }
         public void SetBrainReact(int brainReact) { this.brainReact = brainReact; }
-        public void SetPoints(double points) { this.points = points; }
+        public void SetPointsMax(double pointsMax) { this.pointsMax = pointsMax; }
+        public void SetPointsGain(double pointsGain) { this.pointsGain = pointsGain; }
 
         // not yet tested
         public void UpdateBrainReact(int profileID)
@@ -71,14 +77,14 @@ namespace ProjectMentorMatch.Models
             brainReact += 1;
             string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
 
-            string query = "UPDATE Analytics SET brainReact = brainReact + 1, day = @day WHERE profileID = @profileID";
+            string query = "UPDATE Analytics SET brainReact = brainReact + 1, day = @day WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
             {
                 connection.Open();
                 using (SqlCommand command = new SqlCommand(query, connection))
                 {
-                    command.Parameters.AddWithValue("@profileID", profileID);
+                    command.Parameters.AddWithValue("@ProfileID", profileID);
                     command.Parameters.AddWithValue("@day", currentDate);
 
                     command.ExecuteNonQuery();
