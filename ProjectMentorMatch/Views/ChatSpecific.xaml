@@ -7,11 +7,7 @@
              Title="ChatSpecific">
 
 
-
     <ContentPage.Content>
-
-
-
 
         <Grid
         RowDefinitions="Auto, 7*, Auto, Auto">

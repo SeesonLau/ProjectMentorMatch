@@ -11,7 +11,7 @@
              Shell.NavBarIsVisible="False">
 
     <ContentPage.BindingContext>
-        <local:ProfileViewModels/>
+        <local:ViewModels/>
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions=".1*, *" Margin="0,9,0,0">
@@ -66,14 +66,13 @@
 
                 <HorizontalStackLayout HorizontalOptions="Center">
                     <chip:SfAvatarView x:Name="ProfileImage"
-                                       ContentType="Initials"
-                                       AvatarName="Alex"
+                                       ContentType="Default"
                                        VerticalOptions="Center"
                                        HorizontalOptions="Center"  
                                        HeightRequest="120"
                                        CornerRadius="60"
                                        WidthRequest="120"
-                                       ImageSource="profile_icon.png"/>
+                                       ImageSource="{Binding Profile.ProfileImageSource}"/>
 
                     <!-- Edit/Upload Profile Picture -->
                     <ImageButton Source="edit_icon.png" 
@@ -113,7 +112,8 @@
                                           ChipType="Choice"
                                           Margin="8,0"
                                           Padding="10,0,0,0"
-                                          SelectedChipBackground="LightBlue"
+                                          ChipTextColor="Black"
+                                          SelectedChipBackground="#086EBB"
                                           SelectedItem="{Binding SelectedGender}">
                             <chip:SfChipGroup.Items>
                                 <chip:SfChip Text="Male" Margin="10"/>
