@@ -811,17 +811,19 @@ namespace ProjectMentorMatch.Models
 
         public void WithdrewAsMentor(int userID)
         {
-            string query = "UPDATE Profile SET isMentor = @isMentor WHERE UserID = @UserID";
+            string query = "DELETE FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
-            using (var command = connection.CreateCommand())
             {
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@isMentor", 0);
-                command.Parameters.AddWithValue("@UserID", userID);
-
                 connection.Open();
-                command.ExecuteNonQuery();
+
+                // Delete all fields related to the user
+                using (var deleteCommand = connection.CreateCommand())
+                {
+                    deleteCommand.CommandText = query;
+                    deleteCommand.Parameters.AddWithValue("@UserID", userID);
+                    deleteCommand.ExecuteNonQuery();
+                }
             }
         }
 
