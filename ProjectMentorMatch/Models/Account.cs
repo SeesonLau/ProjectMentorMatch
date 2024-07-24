@@ -28,6 +28,8 @@ namespace ProjectMentorMatch.Models
 
         private int retuserID;
 
+ 
+
         public int GetUserID()
         {
             return retuserID;
@@ -98,6 +100,96 @@ namespace ProjectMentorMatch.Models
 
             return null; // Return null if no city is found
         }
+
+        public string? GetQualificationByUserID(int userID)
+        {
+            string query = "SELECT Qualification FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+        public string? GetContactNumberByUserID(int userID)
+        {
+            string query = "SELECT ContactNumber FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+
+        public string? GetSubjectsByUserID(int userID)
+        {
+            string query = "SELECT Academic, Nonacademic FROM SubjectMentee WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+        public string? GetAboutMeByUserID(int userID)
+        {
+            string query = "SELECT AboutMe FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+
+
+
+
 
 
 
