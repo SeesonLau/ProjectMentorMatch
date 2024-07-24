@@ -452,14 +452,14 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [Gender] = @Gender, [ContactNumber] = @ContactNumber, [EducationalBackground] = @EducationalBackground, [Qualification] = @Qualification, [isMentor] = @isMentor " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [Gender] = @Gender, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification, [isMentor] = @isMentor " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO Profile ([UserID], [Birthday], [Gender], [ContactNumber], [EducationalBackground], [Qualification], [isMentor])" +
+                query = "INSERT INTO Profile ([UserID], [Birthday], [Gender], [ContactNumber], [Qualification], [isMentor])" +
 
-                        "VALUES (@UserID, @Birthday, @Gender, @ContactNumber, @EducationalBackground, @Qualification, @isMentor)";
+                        "VALUES (@UserID, @Birthday, @Gender, @ContactNumber, @Qualification, @isMentor)";
             }
 
             using (var connection = GetConnection())
@@ -469,7 +469,6 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@Birthday", GetparsedBirthday());
                 command.Parameters.AddWithValue("@Gender", gender);
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
-                command.Parameters.AddWithValue("@EducationalBackground", aboutMe);
                 command.Parameters.AddWithValue("@Qualification", qualification);
                 command.Parameters.AddWithValue("@isMentor", 0);
 
