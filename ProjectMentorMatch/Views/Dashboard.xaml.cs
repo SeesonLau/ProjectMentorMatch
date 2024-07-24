@@ -201,7 +201,7 @@ public partial class Dashboard : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Booking(null));
+     //   await Navigation.PushAsync(new Booking(null));
     }
 
     private void btnEx_Clicked(object sender, EventArgs e)
@@ -222,12 +222,12 @@ public partial class Dashboard : ContentPage
         if (viewModel != null && viewModel.CurrentItem != null)
         {
             string selectedFullName = viewModel.CurrentItem.ItemName;
-            Navigation.PushAsync(new Booking(selectedFullName));
+//            Navigation.PushAsync(new Booking(selectedFullName));
         }
     }
 
     private void btnHeart_Clicked(object sender, EventArgs e)
-    {
+    { /*
         if (GetProfileID.ProfileID != 0) // Check if a valid ProfileID is set
         {
             LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors());
@@ -236,14 +236,14 @@ public partial class Dashboard : ContentPage
         {
             // Handle the case where no profile is selected
             DisplayAlert("No Profile Selected", "Please select a profile before clicking the button.", "OK");
-        }
+        }*/
     }
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
         var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
         if (selectedProfile != null)
         {
-            GetProfileID.ProfileID = selectedProfile.ProfileID;
+         //   GetProfileID.ProfileID = selectedProfile.ProfileID;
         }
     }
 
