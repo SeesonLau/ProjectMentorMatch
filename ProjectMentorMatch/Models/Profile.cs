@@ -453,8 +453,8 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-        /*
-        public void InsertSubject(int userID)
+      
+        /*public void InsertSubject(int userID)
         {
             string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
             string selectedNonAcademic = string.Join(", ", SubjectService.SelectedNonSub);
@@ -482,40 +482,40 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }*/
-       /* public void  InsertSchedules( int userID)
-        {
-            ScheduleViewModel svm = new ScheduleViewModel();
+        /* public void  InsertSchedules( int userID)
+         {
+             ScheduleViewModel svm = new ScheduleViewModel();
 
-            // Call the methods to get selected days, from times, and to times
-            List<string> selectedDays = svm.GetSelectedDaysNames();
-            List<TimeSpan> selectedFromTimes = svm.GetSelectedFromTimes();
-            List<TimeSpan> selectedToTimes = svm.GetSelectedToTimes();
+             // Call the methods to get selected days, from times, and to times
+             List<string> selectedDays = svm.GetSelectedDaysNames();
+             List<TimeSpan> selectedFromTimes = svm.GetSelectedFromTimes();
+             List<TimeSpan> selectedToTimes = svm.GetSelectedToTimes();
 
-            bool profileExists = CheckSubjectMenteeExist(userID);
-            string query;
-            if (profileExists)
-            {
-                query = "UPDATE [ScheduleMentee] SET [Day] = @Day, [FromTime] = @FromTime, [ToTime] = @ToTime " +
-                        "WHERE [UserID] = @UserID";
-            }
-            else
-            {
-                query = "INSERT INTO [ScheduleMentee] ([UserID], [Day], [FromTime], [ToTime]) " +
-                        "VALUES (@UserID, @Day, @FromTime, @ToTime)";
-            }
+             bool profileExists = CheckSubjectMenteeExist(userID);
+             string query;
+             if (profileExists)
+             {
+                 query = "UPDATE [ScheduleMentee] SET [Day] = @Day, [FromTime] = @FromTime, [ToTime] = @ToTime " +
+                         "WHERE [UserID] = @UserID";
+             }
+             else
+             {
+                 query = "INSERT INTO [ScheduleMentee] ([UserID], [Day], [FromTime], [ToTime]) " +
+                         "VALUES (@UserID, @Day, @FromTime, @ToTime)";
+             }
 
-            using (var connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@UserID", userID);
-                command.Parameters.AddWithValue("@Day", selectedDays);
-                command.Parameters.AddWithValue("@FromTime", selectedFromTimes);
-                command.Parameters.AddWithValue("@ToTime", selectedToTimes);
+             using (var connection = GetConnection())
+             using (SqlCommand command = new SqlCommand(query, connection))
+             {
+                 command.Parameters.AddWithValue("@UserID", userID);
+                 command.Parameters.AddWithValue("@Day", selectedDays);
+                 command.Parameters.AddWithValue("@FromTime", selectedFromTimes);
+                 command.Parameters.AddWithValue("@ToTime", selectedToTimes);
 
-                connection.Open();
-                command.ExecuteNonQuery();
-            }
-        }*/
+                 connection.Open();
+                 command.ExecuteNonQuery();
+             }
+         }*/
 
         //OLD
         public void InsertProfileData(int userID)
@@ -565,7 +565,8 @@ namespace ProjectMentorMatch.Models
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-        }        private byte[] GetProfilePictureData(Stream imageStream)
+        }        
+        private byte[] GetProfilePictureData(Stream imageStream)
         {
             using (MemoryStream ms = new MemoryStream())
             {
