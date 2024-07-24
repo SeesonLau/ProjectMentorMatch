@@ -69,15 +69,30 @@ namespace ProjectMentorMatch.Views
         {
             var messageLabel = new Label
             {
-                Text = $"{user}: {message}",
+                Text = message,
                 TextColor = Colors.Black
+            };
+
+            var userLabel = new Label
+            {
+                Text = user,
+                FontSize = 10,
+                TextColor = Colors.Gray,
+                HorizontalOptions = LayoutOptions.Start
+            };
+
+            var messageStack = new StackLayout
+            {
+                Orientation = StackOrientation.Vertical,
+                Spacing = 5,
+                Children = { userLabel, messageLabel }
             };
 
             var messageFrame = new Frame
             {
-                Content = messageLabel,
+                Content = messageStack,
                 BackgroundColor = isCurrentUser ? Colors.LightBlue : Colors.LightGray,
-                CornerRadius = 5,
+                CornerRadius = 15,
                 Padding = new Thickness(10),
                 Margin = new Thickness(0, 5),
                 HorizontalOptions = isCurrentUser ? LayoutOptions.End : LayoutOptions.Start
