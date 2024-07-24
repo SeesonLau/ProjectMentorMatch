@@ -168,7 +168,7 @@ namespace ProjectMentorMatch.Models
             return (null, null); // Return null tuple if no subjects are found
         }
 
-        public string? GetImageFilenameByUserID(int userID)
+         public string? GetImageFilenameByUserID(int userID)
         {
             string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
 
