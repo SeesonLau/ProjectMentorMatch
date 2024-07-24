@@ -61,30 +61,29 @@ namespace ProjectMentorMatch.ViewModels
         public MentorListViewModel() 
         {
         
-            //LoadItems();
+            LoadItems();
 
        
             CurrentItem = ItemList.FirstOrDefault();
         }
 
-        /*
+        
        private void LoadItems()
     {
-        var accounts = Account.GetAllAccounts();
+        var mentors = Account.GetAllMentors();
 
-            foreach (var account in accounts)
+            foreach (var mentor in mentors)
             {
                 var profile = new ProfileModels();
 
                 var itemInfo = new ItemInfo
                 {
-                    ItemId = account.GetUserID(),
-                    ItemName = account.GetFullname(),
-                    addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
-                    addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
-                    aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me
+                    ItemName = mentor.GetFullname(),
+                 //   addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
+               //     addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
+                 //   aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me
                                                                         //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
-                    qualifications = profile.GetQualification(account.GetUserID()),  // Fetch qualifications
+               //     qualifications = profile.GetQualification(account.GetUserID()),  // Fetch qualifications
                                                                                      //   availability = profile.GetAvailability(account.GetUserID()),  // Fetch availability
                     ImageSource = "dotnet_bot.png"
                     //   ImageSource = profile.GetProfileImage(account.GetUserID())
@@ -96,7 +95,7 @@ namespace ProjectMentorMatch.ViewModels
 
 
             // ALSO TRIED TO USE GETALLPROFILES FROM PROFILE BUT WONT WORK
-            // var profiles = ProfileModels.GetAllProfiles();
+            var profiles = ProfileModels.GetAllProfiles();
 
             //foreach (var profile in profiles)
             //{
@@ -126,7 +125,7 @@ namespace ProjectMentorMatch.ViewModels
         }
 
 
-  */
+  
 
     }
 }
