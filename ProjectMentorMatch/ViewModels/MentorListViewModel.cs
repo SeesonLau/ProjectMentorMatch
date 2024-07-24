@@ -78,8 +78,10 @@ namespace ProjectMentorMatch.ViewModels
 
                 var itemInfo = new ItemInfo
                 {
-                    ItemName = mentor.GetFullname(),
+                     ItemName = mentor.GetFullname(),
                     ProfileID = mentor.ProfileID,
+                    addressCity = mentor.GetCityByUserID(mentor.ProfileID),  
+                    addressProvince = mentor.GetProvinceByUserID(mentor.ProfileID),
                     
                  //   addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
                //     addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province

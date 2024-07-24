@@ -50,7 +50,7 @@ namespace ProjectMentorMatch
 
 
                 account.SignUp();
-             //   account.sendEmail(email); //sends email
+                account.sendEmail(email); //sends email
 
                 await DisplayAlert("Success", "Account created successfully.", "OK");
 

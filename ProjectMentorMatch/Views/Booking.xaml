@@ -64,7 +64,7 @@
             <Label Grid.Column="0" 
                    Grid.Row="3" 
                    Grid.ColumnSpan="3" 
-                   Margin="0, -10, 0,0"
+                   Margin="0, -90, 0,0"
                    FontSize="25"
                    HorizontalTextAlignment="Center"
                    Text="Book now !"
@@ -77,13 +77,26 @@
               x:Name="bookName"
          Grid.Row="3" 
          Grid.ColumnSpan="3" 
-         Margin="0, -10, 0,0"
+         Margin="0, -20, 0,0"
          FontSize="25"
          HorizontalTextAlignment="Center"
          Text="Book now !"
          TextColor="#006EBB"
          FontAttributes="Bold"
          VerticalOptions="Center" >
+            </Label>
+
+            <Label
+         x:Name="bookProfileID"
+        Grid.Row="3" 
+        Grid.ColumnSpan="3" 
+        Margin="0, 70, 0,0"
+        FontSize="25"
+        HorizontalTextAlignment="Center"
+        Text="Book now !"
+        TextColor="#006EBB"
+        FontAttributes="Bold"
+        VerticalOptions="Center" >
             </Label>
 
 
@@ -98,9 +111,10 @@
             </Label>
 
             <Label Grid.Column="0" 
+                   x:Name="lblSubs"
                    Grid.ColumnSpan="3" 
                    Grid.Row="5" 
-                   Text="Bind the available subjects of the mentor" 
+                   Text="To be Bind Subs" 
                    FontAttributes="Bold" 
                    FontSize="16" 
                    TextColor="#a3a3a3">
@@ -119,14 +133,16 @@
 
 
             <Label Grid.Column="0" 
+                   x:Name="lblSched"
                    Grid.ColumnSpan="4" 
                    Grid.Row="7" 
                    Margin="0,0,0,0"
-                   Text="Bind the available schedules of the mentor" 
+                   Text="To be Bind Sched" 
                    FontAttributes="Bold" 
                    FontSize="16" 
                    TextColor="#a3a3a3">
             </Label>
+            
 
             <Label Grid.Column="0" 
                    Grid.ColumnSpan="2" 
@@ -142,22 +158,26 @@
 
                 <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="20,0,0,0">
                     
-                    <RadioButton Content="Face to Face" 
+                    <RadioButton x:Name="rbnF2F"
+                                 Content="Face to Face" 
                                  GroupName="SetupModeGroup" 
                                  CheckedChanged="OnSetupModeCheckedChanged" />
                     
-                    <RadioButton Content="Online" 
+                    <RadioButton x:Name="rbnOnline" 
+                                 Content="Online" 
                                  GroupName="SetupModeGroup" 
                                  CheckedChanged="OnSetupModeCheckedChanged" />
                 </StackLayout>
 
                 <StackLayout Spacing="61" Orientation="Horizontal" HorizontalOptions="Start" Margin="20,0,0,0">
                     
-                    <RadioButton Content="One-on-one" 
+                    <RadioButton x:Name="rbnOneToOne"
+                                  Content="One-on-one" 
                                  GroupName="InteractionModeGroup" 
                                  CheckedChanged="OnInteractionModeCheckedChanged" />
                     
-                    <RadioButton Content="Group" 
+                    <RadioButton x:Name="rbnGroup"
+                                 Content="Group" 
                                  GroupName="InteractionModeGroup" 
                                  CheckedChanged="OnInteractionModeCheckedChanged" />
                 </StackLayout>
@@ -165,10 +185,11 @@
             </VerticalStackLayout>
 
             <buttons:SfButton Grid.Column="0"
+                              x:Name="btnBookNow"
+                              Clicked="btnBookNow_Clicked"
                               Grid.Row="10"
                               CornerRadius="10"
                               Grid.ColumnSpan="4"               
-                              x:Name="sfButton" 
                               Text="Book" 
                               WidthRequest="180" 
                               HeightRequest="42"  
