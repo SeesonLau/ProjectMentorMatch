@@ -43,7 +43,7 @@ public partial class Dashboard : ContentPage
             {
                 // Logic when a gender radio button is selected
                 // For example, you can store the selected gender value
-                string selectedGender = radioButton.Content.ToString();
+                string? selectedGender = radioButton.Content.ToString();
                 Console.WriteLine("Selected Gender: " + selectedGender);
             }
         }
@@ -56,7 +56,7 @@ public partial class Dashboard : ContentPage
             if (radioButton != null)
             {
                 // Logic when a setup mode radio button is selected
-                string selectedSetupMode = radioButton.Content.ToString();
+                string? selectedSetupMode = radioButton.Content.ToString();
                 Console.WriteLine("Selected Setup Mode: " + selectedSetupMode);
             }
         }
@@ -70,7 +70,7 @@ public partial class Dashboard : ContentPage
             if (radioButton != null)
             {
                 // Logic when an interaction mode radio button is selected
-                string selectedInteractionMode = radioButton.Content.ToString();
+                string? selectedInteractionMode = radioButton.Content.ToString();
                 Console.WriteLine("Selected Interaction Mode: " + selectedInteractionMode);
             }
         }
@@ -220,7 +220,7 @@ public partial class Dashboard : ContentPage
         var viewModel = BindingContext as MentorListViewModel;
         if (viewModel != null && viewModel.CurrentItem != null)
         {
-            string selectedFullName = viewModel.CurrentItem.ItemName;
+            string? selectedFullName = viewModel.CurrentItem.ItemName;
             int profileID = viewModel.CurrentItem.ProfileID;
 
             // Navigate to Booking page with both parameters
