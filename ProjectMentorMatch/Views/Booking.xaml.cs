@@ -4,12 +4,17 @@ public partial class Booking : ContentPage
 {
     public Command GoBackCommand { get; }
 
-    public Booking()
-	{
-		InitializeComponent();
-        GoBackCommand = new Command(async () => await GoBack());
-        this.BindingContext = this;
+    public string SelectedFullName { get; set; }
+
+    public Booking(string selectedFullName)
+    {
+        InitializeComponent();
+        // Set the binding context or directly set the property
+        SelectedFullName = selectedFullName;
+        BindingContext = this;
+        bookName.Text = selectedFullName;
     }
+
 
     private async Task GoBack()
     {

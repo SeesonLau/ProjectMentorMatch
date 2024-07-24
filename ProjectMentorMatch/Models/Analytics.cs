@@ -23,7 +23,7 @@ namespace ProjectMentorMatch.Models
 
         public int GetAnalyticsID(int profileID)
         {
-            string analyticsIDQuery = "SELECTP analyticsID FROM Profile WHERE profileID = @profileID";
+            string analyticsIDQuery = "SELECTP AnalyticsID FROM Profile WHERE profileID = @profileID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(analyticsIDQuery, connection))
