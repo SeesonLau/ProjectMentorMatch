@@ -233,7 +233,7 @@ public partial class Dashboard : ContentPage
      
     }
 
-
+    /*
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
         var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
@@ -242,7 +242,7 @@ public partial class Dashboard : ContentPage
             GetProfileID.GetProfileID(userID) = selectedProfile.GetProfileID(userID);
         }
     }
-
+    */
 
 
     public static void LogProfileIDInAnalytics(int profileID)
