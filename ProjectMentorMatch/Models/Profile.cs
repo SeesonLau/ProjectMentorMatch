@@ -118,7 +118,7 @@ namespace ProjectMentorMatch.Models
             return profileID;
         }
 
-        public static int GetProfileIDForMentors()
+        public static int GetProfileIDForMentors(int userID)
         {
             string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
             int profileID = -1; // Default value if no profile is found

@@ -226,17 +226,42 @@ public partial class Dashboard : ContentPage
         }
     }
 
+    public int GetUserID()
+    {
+        try
+        {
+            using (SqlConnection cn = Database.GetConnection())
+            {
+                cn.Open();
+                using (SqlCommand cm = new SqlCommand("SELECT [UserID] FROM [Profile]", cn))
+                {
+                    using (SqlDataReader dr = cm.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            if (dr["UserID"] != DBNull.Value && int.TryParse(dr["UserID"].ToString(), out int ID))
+                            {
+                                return ID;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+            return 0;
+        }
+    }
+
+
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-        if (GetProfileID.ProfileID != 0) // Check if a valid ProfileID is set
-        {
-            LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors());
-        }
-        else
-        {
-            // Handle the case where no profile is selected
-            DisplayAlert("No Profile Selected", "Please select a profile before clicking the button.", "OK");
-        }
+
+        LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors(GetUserID()));
+       
     }
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
