@@ -228,10 +228,18 @@ public partial class Dashboard : ContentPage
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-      
-
+        // Ensure the label is not null and its text can be converted to an integer
+        if (int.TryParse(lblProfileID.Text, out int profileID))
+        {
+            // Call the method to log the profile ID in Analytics
+            LogProfileIDInAnalytics(profileID);
+        }
+        else
+        {
+            // Handle the case where lblProfileID.Text is not a valid integer
+            DisplayAlert("Error", "Invalid Profile ID", "OK");
+        }
     }
-
 
 
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
@@ -254,4 +262,5 @@ public partial class Dashboard : ContentPage
             command.ExecuteNonQuery();
         }
     }
+
 }

@@ -262,8 +262,8 @@
                                FontSize="21"/>
                               <!-- Text="Yang Jungwon, 20" -->
 
-                        <Label x:Name="lblNameAge"
-                         Text="{Binding CurrentItem.ItemName}"
+                        <Label x:Name="lblProfileID"
+                         Text="{Binding CurrentItem.ProfileID}"
                          FontAttributes="Bold" 
                          Margin="0,10,0,0" 
                          FontSize="21"/>

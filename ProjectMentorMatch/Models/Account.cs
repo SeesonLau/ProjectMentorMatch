@@ -181,10 +181,10 @@ namespace ProjectMentorMatch.Models
             List<Account> accounts = new List<Account>();
 
             string query = @"
-    SELECT 
-        p.ProfileID, 
-        c.Fullname         
-    FROM 
+             SELECT 
+              p.ProfileID, 
+               c.Fullname         
+                 FROM 
         Profile p
     INNER JOIN 
         CreateAccount c ON p.UserID = c.UserID
