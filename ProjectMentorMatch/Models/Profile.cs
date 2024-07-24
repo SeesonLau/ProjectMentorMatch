@@ -33,9 +33,12 @@ namespace ProjectMentorMatch.Models
         DateTime parsedBirthday;
         private string? eduback;
         private string? fullName;
+        private string? filename;
         TimeSpan FromTime;
         TimeSpan ToTime;
         private string? rate;
+
+
 
         public static List<ProfileModels> GetAllProfiles()
         {
@@ -79,12 +82,13 @@ namespace ProjectMentorMatch.Models
                                 aboutMe = reader["AboutMe"].ToString(),
                                 qualification = reader["Qualification"].ToString(),
 
-                               // isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
+                                // isMentor = reader.GetInt32(reader.GetOrdinal("IsMentor")) == 0,
 
                                 gender = reader["Gender"].ToString(),
                                 addressCity = reader["City"].ToString(),
                                 addressProvince = reader["Province"].ToString(),
-                                selectedImageBytes = reader["Picture"] != DBNull.Value ? (byte[])reader["Picture"] : null,
+                                filename = reader["Picture"].ToString(),
+                               // selectedImageBytes = reader["Picture"] != DBNull.Value ? (byte[])reader["Picture"] : null,
                                 fullName = reader["FullName"].ToString()
                             };
 
@@ -420,6 +424,24 @@ namespace ProjectMentorMatch.Models
             return rate;
         }
 
+        public string GetImage(int userID)
+        {
+            string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    filename = result.ToString();
+                }
+            }
+            return filename;
+        }
+
         // SET
         public void SetRate(string rate) { this.rate = rate; }
         public void SetProfileID(int profileID) {this.profileID = profileID;}
@@ -445,6 +467,7 @@ namespace ProjectMentorMatch.Models
 
         private byte[]? selectedImageBytes;
 
+        public void SetImage(string filename) { this.filename =  filename; }
         // INSERT
         public void InsertProfile(int userID)
         {
@@ -452,14 +475,14 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE Profile SET [Birthday] = @Birthday, [Gender] = @Gender, [ContactNumber] = @ContactNumber, [Qualification] = @Qualification, [isMentor] = @isMentor " +
+                query = "UPDATE Profile SET [Birthday] = @Birthday, [Gender] = @Gender, [ContactNumber] = @ContactNumber,  [Qualification] = @Qualification, [isMentor] = @isMentor, [Picture] = @picture " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO Profile ([UserID], [Birthday], [Gender], [ContactNumber], [Qualification], [isMentor])" +
+                query = "INSERT INTO Profile ([UserID], [Birthday], [Gender], [ContactNumber], [Qualification], [isMentor], [Picture])" +
 
-                        "VALUES (@UserID, @Birthday, @Gender, @ContactNumber, @Qualification, @isMentor)";
+                        "VALUES (@UserID, @Birthday, @Gender, @ContactNumber, @Qualification, @isMentor, @picture)";
             }
 
             using (var connection = GetConnection())
@@ -471,6 +494,8 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@ContactNumber", contactNumber);
                 command.Parameters.AddWithValue("@Qualification", qualification);
                 command.Parameters.AddWithValue("@isMentor", 0);
+                command.Parameters.AddWithValue("@picture", filename);
+
 
                 connection.Open();
                 command.ExecuteNonQuery();
