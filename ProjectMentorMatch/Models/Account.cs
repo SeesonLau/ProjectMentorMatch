@@ -143,10 +143,53 @@ namespace ProjectMentorMatch.Models
             return null; // Return null if no city is found
         }
 
+        public string? GetContactNumberByUserID(int userID)
+        {
+            string query = "SELECT ContactNumber FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+
+
+        public string? GetProfileImageByUserID(int userID)
+        {
+            string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
 
         public (string? Academic, string? Nonacademic) GetSubjectsByUserID(int userID)
         {
-            string query = "SELECT Academic, Nonacademic FROM SubjectMentee WHERE UserID = @UserID";
+            string query = "SELECT Academic, Nonacademic FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -168,9 +211,9 @@ namespace ProjectMentorMatch.Models
             return (null, null); // Return null tuple if no subjects are found
         }
 
-         public string? GetImageFilenameByUserID(int userID)
+        public string? GetDayByUserID(int userID)
         {
-            string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
+            string query = "SELECT Day FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -186,14 +229,39 @@ namespace ProjectMentorMatch.Models
                 }
             }
 
-            return null; // Return null if no image is found
+            return null; // Return null if no day is found
         }
+
+
+
+        public string? GetRateByUserID(int userID)
+        {
+            string query = "SELECT Rate FROM Mentor WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+
 
 
 
         public string? GetAboutMeByUserID(int userID)
         {
-            string query = "SELECT AboutMe FROM Profile WHERE UserID = @UserID";
+            string query = "SELECT AboutMe FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -354,15 +422,13 @@ namespace ProjectMentorMatch.Models
             List<Account> accounts = new List<Account>();
 
             string query = @"
-             SELECT 
-              p.ProfileID, 
-               c.Fullname         
-                 FROM 
-        Profile p
-    INNER JOIN 
-        CreateAccount c ON p.UserID = c.UserID
-    WHERE 
-        p.IsMentor = 1";
+        SELECT 
+            p.UserID, 
+            c.Fullname
+        FROM 
+            Mentor p
+        INNER JOIN 
+            CreateAccount c ON p.UserID = c.UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -374,7 +440,7 @@ namespace ProjectMentorMatch.Models
                     {
                         accounts.Add(new Account
                         {
-                            ProfileID = (int)reader["ProfileID"],
+                            ProfileID = (int)reader["UserID"],
                             fullname = reader["Fullname"].ToString()
                         });
                     }

@@ -41,7 +41,7 @@ public partial class ApplyAsMentor : ContentPage
             int userID = App.UserID;
         profile.ApplyAsMentor(userID);
             await scheduleViewModel.SaveSchedules(userID);
-            await DisplayAlert("Success", "You're now a mentor bish.", "OK");
+            await DisplayAlert("Success", "You're now a mentor.", "OK");
         }
         catch (Exception ex)
         {
@@ -54,8 +54,8 @@ public partial class ApplyAsMentor : ContentPage
         try
         {
             int userID = App.UserID;
-            profile.WithdrewAsMentor(userID);
-            await DisplayAlert("Success", "You're now not a mentor bish", "OK");
+            profile.WithdrawAsMentor(userID);
+            await DisplayAlert("Success", "You're now not a mentor", "OK");
         }
         catch (Exception ex)
         {

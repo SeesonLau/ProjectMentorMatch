@@ -816,16 +816,18 @@ namespace ProjectMentorMatch.Models
 
         public void ApplyAsMentor(int userID)
         {
-            string query = "INSERT INTO Mentor ([UserID] [isMentor])" +
-
-                        "VALUES (@UserID, @isMentor)";
+            string query = @"
+        IF NOT EXISTS (SELECT 1 FROM Mentor WHERE UserID = @UserID)
+        BEGIN
+            INSERT INTO Mentor (UserID, IsMentor)
+            VALUES (@UserID, @IsMentor);
+        END";
 
             using (var connection = GetConnection())
             using (var command = connection.CreateCommand())
             {
                 command.CommandText = query;
-             //   command.Parameters.AddWithValue(@AboutMe, aboutme);
-                command.Parameters.AddWithValue("@isMentor", 1);
+                command.Parameters.AddWithValue("@IsMentor", 1);
                 command.Parameters.AddWithValue("@UserID", userID);
 
                 connection.Open();
@@ -833,23 +835,26 @@ namespace ProjectMentorMatch.Models
             }
         }
 
-        public void WithdrewAsMentor(int userID)
+
+        public void WithdrawAsMentor(int userID)
         {
-            string query = "DELETE FROM Mentor WHERE UserID = @UserID";
+            string query = @"
+        UPDATE Mentor
+        SET IsMentor = @IsMentor
+        WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
+            using (var command = connection.CreateCommand())
             {
-                connection.Open();
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@IsMentor", 0); // Set IsMentor to 0
+                command.Parameters.AddWithValue("@UserID", userID);
 
-                // Delete all fields related to the user
-                using (var deleteCommand = connection.CreateCommand())
-                {
-                    deleteCommand.CommandText = query;
-                    deleteCommand.Parameters.AddWithValue("@UserID", userID);
-                    deleteCommand.ExecuteNonQuery();
-                }
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
+
 
         public void SaveSchedule(int userID, List<DaySchedule> schedules)
         {

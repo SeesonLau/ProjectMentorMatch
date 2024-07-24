@@ -287,6 +287,14 @@
                         FontSize="17" 
                    TextColor="Gray"/>
 
+                        <Label
+    Text="{Binding CurrentItemImageSource}"
+    Margin="0,5,0,0" 
+    FontAttributes="Bold" 
+    FontSize="17" 
+    TextColor="Gray" />
+
+
                         <Label x:Name="lblAddressProvince"
                          Text="{Binding CurrentItemAddressProvince}"
                           Margin="0,5,0,10" 
@@ -321,7 +329,7 @@
                             </Image>
                             <!-- Fee Field -->
                             <Label x:Name="lblFee"
-                       Text="200.00"  
+                       Text="{Binding CurrentItemRate}"  
                        Margin="0,-1,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
@@ -442,10 +450,7 @@
                         </Label>
                         
                       
-                        <Label  Text="{Binding CurrentItemAboutMe}" 
-                    FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
-
+                  
 
                         <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
@@ -481,7 +486,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                        <Label  Text="{Binding CurrentItemDay}" 
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
@@ -496,13 +501,9 @@
                    TextColor="#086EBB">
                         </Label>
 
-                        <Label  Text="{Binding CurrentItemEmail}" 
+                        <Label  Text="{Binding CurrentItemContactNumber}" 
                                 FontAttributes="Bold" 
                                 FontSize="16" TextColor="#a3a3a3"/>
-
-                        <Label  Text="{Binding CurrentItemAboutMe}" 
-                    FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
 
                     </VerticalStackLayout>
 
