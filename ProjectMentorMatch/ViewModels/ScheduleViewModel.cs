@@ -52,6 +52,7 @@ namespace ProjectMentorMatch.ViewModels
 
         public ScheduleViewModel()
         {
+            profile = new ProfileModels();
             SelectedDaysCommand = new Command(OnSelectedDays);
         }
 

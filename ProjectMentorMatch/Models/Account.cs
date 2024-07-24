@@ -168,6 +168,28 @@ namespace ProjectMentorMatch.Models
             return (null, null); // Return null tuple if no subjects are found
         }
 
+         public string? GetImageFilenameByUserID(int userID)
+        {
+            string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no image is found
+        }
+
+
 
         public string? GetAboutMeByUserID(int userID)
         {
