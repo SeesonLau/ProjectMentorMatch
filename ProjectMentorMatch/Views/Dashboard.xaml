@@ -23,7 +23,7 @@
 
     <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
         <syncfusion:SfNavigationDrawer.DrawerSettings>
-            <syncfusion:DrawerSettings DrawerHeaderHeight="70" DrawerWidth="350" Position="Right">
+            <syncfusion:DrawerSettings ContentBackground ="White" DrawerHeaderHeight="70" DrawerWidth="350" Position="Right">
                 <syncfusion:DrawerSettings.DrawerHeaderView>
                     <HorizontalStackLayout HorizontalOptions="StartAndExpand">
                         <Label Text="Filter Search" 
@@ -217,6 +217,7 @@
                            ShowIcon="True" 
                            BackgroundColor="White" 
                            Background="#FFE760" 
+                           Clicked="btnHeart_Clicked"
                            ImageSource="brain_icon.png" 
                            HeightRequest="110" 
                            WidthRequest="110" 
@@ -244,7 +245,7 @@
                           CornerRadius="40" 
                           ImageSize="30" 
                           ImageAlignment="Default" 
-                          Clicked="Button_Clicked">
+                          Clicked="btnLikeButton_Clicked">
                         <buttons:SfButton.Shadow>
                             <Shadow Brush="#bcbcbc"
                         Offset="5,5"

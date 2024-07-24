@@ -13,30 +13,27 @@
 
     <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
         <syncfusion:SfNavigationDrawer.DrawerSettings>
-            <syncfusion:DrawerSettings DrawerHeaderHeight="80" DrawerWidth="350" Position="Right">
+            <syncfusion:DrawerSettings ContentBackground="White" DrawerHeaderHeight="80" DrawerWidth="350" Position="Right">
                 <syncfusion:DrawerSettings.DrawerHeaderView>
                     <HorizontalStackLayout HorizontalOptions="StartAndExpand">
 
                         <Label Text="Filter Search" 
-FontSize="Large" 
-FontAttributes="Bold" 
-Margin="20,20"
-TextColor="#086EBB">
+                                FontSize="Large" 
+                                FontAttributes="Bold" 
+                                Margin="20,20"
+                                TextColor="#086EBB">
                         </Label>
                     </HorizontalStackLayout>
                 </syncfusion:DrawerSettings.DrawerHeaderView>
                 <syncfusion:DrawerSettings.DrawerContentView>
                     <ScrollView Padding="10">
                         <StackLayout Spacing="10" Padding="10">
-
-
-
                             <!-- Gender Filter -->
                             <Label Text="Gender"
-TextColor="#086EBB"
-FontSize="Medium" 
-FontAttributes="Bold" 
-Margin="5">
+                                    TextColor="#086EBB"
+                                    FontSize="Medium" 
+                                    FontAttributes="Bold" 
+                                    Margin="5">
                             </Label>
 
                             <StackLayout Spacing="30" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
@@ -44,13 +41,12 @@ Margin="5">
                                 <RadioButton Content="Female" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
                                 <RadioButton Content="Non-binary" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
                             </StackLayout>
-
                             <!-- Subject Filter -->
                             <Label Text="Subject" 
-FontSize="Medium" 
-FontAttributes="Bold" 
-Margin="5,15,0,5"
-TextColor="#086EBB">
+        FontSize="Medium" 
+        FontAttributes="Bold" 
+        Margin="5,15,0,5"
+        TextColor="#086EBB">
                             </Label>
 
                             <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
@@ -93,13 +89,12 @@ TextColor="#086EBB">
                                     </x:Array>
                                 </material:MultiplePickerField.ItemsSource>
                             </material:MultiplePickerField>
-
                             <!-- Day Filter -->
                             <Label Text="Schedule" 
-FontSize="Medium" 
-FontAttributes="Bold" 
-Margin="10,10,0,5"
-TextColor="#086EBB">
+                                    FontSize="Medium" 
+                                    FontAttributes="Bold" 
+                                    Margin="10,10,0,5"
+                                    TextColor="#086EBB">
                             </Label>
 
                             <material:MultiplePickerField Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
@@ -118,10 +113,10 @@ TextColor="#086EBB">
 
                             <!-- Preferred Setup Filter -->
                             <Label Text="Setup" 
-FontSize="Medium" 
-FontAttributes="Bold"
-Margin="10,10,0,5"
-TextColor="#086EBB">
+                                    FontSize="Medium" 
+                                    FontAttributes="Bold"
+                                    Margin="10,10,0,5"
+                                    TextColor="#086EBB">
                             </Label>
 
                             <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
@@ -317,226 +312,6 @@ TextColor="#086EBB">
                                                         </control:SfRating>
                                                     </Grid>
                                                 </Grid>
-
-                                                <!-- Mentor 4 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,10,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentor 4</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Text="Mentor 4" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
-                                                                    <control:SfRating.RatingSettings>
-                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
-
-                                                                        </control:RatingSettings>
-                                                                    </control:SfRating.RatingSettings>
-                                                                </control:SfRating>
-                                                            </Grid>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
-                                                            <control:SfRating.RatingSettings>
-                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
-
-                                                                </control:RatingSettings>
-                                                            </control:SfRating.RatingSettings>
-                                                        </control:SfRating>
-                                                    </Grid>
-                                                </Grid>
-
-                                                <!-- Mentor 5 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,10,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentor 5</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Text="Mentor 5" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
-                                                                    <control:SfRating.RatingSettings>
-                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
-
-                                                                        </control:RatingSettings>
-                                                                    </control:SfRating.RatingSettings>
-                                                                </control:SfRating>
-                                                            </Grid>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
-                                                            <control:SfRating.RatingSettings>
-                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
-
-                                                                </control:RatingSettings>
-                                                            </control:SfRating.RatingSettings>
-                                                        </control:SfRating>
-                                                    </Grid>
-                                                </Grid>
-
-                                                <!-- Mentor 6 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,10,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentor 6</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Text="Mentor 6" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
-                                                                    <control:SfRating.RatingSettings>
-                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
-
-                                                                        </control:RatingSettings>
-                                                                    </control:SfRating.RatingSettings>
-                                                                </control:SfRating>
-                                                            </Grid>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
-                                                            <control:SfRating.RatingSettings>
-                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
-
-                                                                </control:RatingSettings>
-                                                            </control:SfRating.RatingSettings>
-                                                        </control:SfRating>
-                                                    </Grid>
-                                                </Grid>
-
-                                                <!-- Mentor 7 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,10,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentor 7</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Text="Mentor 7" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
-                                                                    <control:SfRating.RatingSettings>
-                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
-
-                                                                        </control:RatingSettings>
-                                                                    </control:SfRating.RatingSettings>
-                                                                </control:SfRating>
-                                                            </Grid>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
-                                                            <control:SfRating.RatingSettings>
-                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
-
-                                                                </control:RatingSettings>
-                                                            </control:SfRating.RatingSettings>
-                                                        </control:SfRating>
-                                                    </Grid>
-                                                </Grid>
-
-                                                <!-- Mentor 8 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,10,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentor 8</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Grid>
-                                                                <Grid.ColumnDefinitions>
-                                                                    <ColumnDefinition Width="*" />
-                                                                    <ColumnDefinition Width="auto" />
-                                                                </Grid.ColumnDefinitions>
-                                                                <Label Text="Mentor 8" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
-                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
-                                                                    <control:SfRating.RatingSettings>
-                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
-
-                                                                        </control:RatingSettings>
-                                                                    </control:SfRating.RatingSettings>
-                                                                </control:SfRating>
-                                                            </Grid>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                      TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
-                                                            <control:SfRating.RatingSettings>
-                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
-
-                                                                </control:RatingSettings>
-                                                            </control:SfRating.RatingSettings>
-                                                        </control:SfRating>
-                                                    </Grid>
-                                                </Grid>
                                             </VerticalStackLayout>
                                         </DataTemplate>
                                     </material:TabItem.ContentTemplate>
@@ -622,151 +397,6 @@ TextColor="#086EBB">
                                                     <Grid Grid.Column="1" ColumnDefinitions="*, auto">
                                                         <VerticalStackLayout Padding="10,0,20,0">
                                                             <Label Text="Mentee 3" FontSize="16" FontAttributes="Bold"/>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                    </Grid>
-                                                    <ImageButton Source="more_icon.png"
-                                                     Grid.Column="2"
-                                                     WidthRequest="24"
-                                                     HeightRequest="24"
-                                                     VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <!-- Mentee 4 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentee 4</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Label Text="Mentee 4" FontSize="16" FontAttributes="Bold"/>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                    </Grid>
-                                                    <ImageButton Source="more_icon.png"
-                                                     Grid.Column="2"
-                                                     WidthRequest="24"
-                                                     HeightRequest="24"
-                                                     VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <!-- Mentee 5 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentee 5</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Label Text="Mentee 5" FontSize="16" FontAttributes="Bold"/>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                    </Grid>
-                                                    <ImageButton Source="more_icon.png"
-                                                     Grid.Column="2"
-                                                     WidthRequest="24"
-                                                     HeightRequest="24"
-                                                     VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <!-- Mentee 6 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentee 6</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Label Text="Mentee 6" FontSize="16" FontAttributes="Bold"/>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                    </Grid>
-                                                    <ImageButton Source="more_icon.png"
-                                                     Grid.Column="2"
-                                                     WidthRequest="24"
-                                                     HeightRequest="24"
-                                                     VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <!-- Mentee 7 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentee 7</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Label Text="Mentee 7" FontSize="16" FontAttributes="Bold"/>
-                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
-                                                       FontSize="14" 
-                                                       TextColor="Gray"/>
-                                                        </VerticalStackLayout>
-                                                    </Grid>
-                                                    <ImageButton Source="more_icon.png"
-                                                     Grid.Column="2"
-                                                     WidthRequest="24"
-                                                     HeightRequest="24"
-                                                     VerticalOptions="Center"/>
-                                                </Grid>
-
-                                                <!-- Mentee 8 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
-                                                    <Grid.BindingContext>
-                                                        <x:String>Mentee 8</x:String>
-                                                    </Grid.BindingContext>
-                                                    <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
-                                                    </Grid.GestureRecognizers>
-                                                    <VerticalStackLayout Padding="10,0,0,0">
-                                                        <Image Source="circle_logo.png"
-                                                   WidthRequest="60"
-                                                   HeightRequest="60"
-                                                   VerticalOptions="Center"/>
-                                                    </VerticalStackLayout>
-                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
-                                                        <VerticalStackLayout Padding="10,0,20,0">
-                                                            <Label Text="Mentee 8" FontSize="16" FontAttributes="Bold"/>
                                                             <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
                                                        FontSize="14" 
                                                        TextColor="Gray"/>

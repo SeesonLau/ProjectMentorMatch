@@ -11,7 +11,7 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-
+    ProfileModels GetProfileID = new ProfileModels();
     private bool _isRefreshing;
 
     // INSTRUCTIONS HOW TO BIND DATA: 
@@ -201,7 +201,7 @@ public partial class Dashboard : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Booking());
+        await Navigation.PushAsync(new Booking(null));
     }
 
     private void btnEx_Clicked(object sender, EventArgs e)
@@ -215,12 +215,51 @@ public partial class Dashboard : ContentPage
         }
     }
     // Palihug kog bind aning button sa mentor hihi, gamita lang profileID sa pag bind
-    private void btnHeart_Click(object sender, EventArgs e)
+
+    private void btnLikeButton_Clicked(object sender, EventArgs e)
     {
-   //   int userID = App.UserID;
-         //  int profileID = App.ProfileID;
-        AnalyticsModel analytics = new AnalyticsModel();
- 
-     //  analytics.UpdateBrainReact(profileID);
+        var viewModel = BindingContext as MentorListViewModel;
+        if (viewModel != null && viewModel.CurrentItem != null)
+        {
+            string selectedFullName = viewModel.CurrentItem.ItemName;
+            Navigation.PushAsync(new Booking(selectedFullName));
+        }
+    }
+
+    private void btnHeart_Clicked(object sender, EventArgs e)
+    {
+        if (GetProfileID.ProfileID != 0) // Check if a valid ProfileID is set
+        {
+            LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors());
+        }
+        else
+        {
+            // Handle the case where no profile is selected
+            DisplayAlert("No Profile Selected", "Please select a profile before clicking the button.", "OK");
+        }
+    }
+    private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
+        if (selectedProfile != null)
+        {
+            GetProfileID.ProfileID = selectedProfile.ProfileID;
+        }
+    }
+
+
+
+    public static void LogProfileIDInAnalytics(int profileID)
+    {
+        string query = "INSERT INTO Analytics (ProfileID) VALUES (@ProfileID)";
+
+        using (var connection = Database.GetConnection())
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@ProfileID", profileID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
     }
 }
