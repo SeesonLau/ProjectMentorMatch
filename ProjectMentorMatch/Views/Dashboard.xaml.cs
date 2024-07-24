@@ -218,9 +218,9 @@ public partial class Dashboard : ContentPage
     private void btnHeart_Click(object sender, EventArgs e)
     {
    //   int userID = App.UserID;
-        int profileID = App.ProfileID;
+         //  int profileID = App.ProfileID;
         AnalyticsModel analytics = new AnalyticsModel();
  
-       analytics.UpdateBrainReact(profileID);
+     //  analytics.UpdateBrainReact(profileID);
     }
 }
