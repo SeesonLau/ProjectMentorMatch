@@ -53,7 +53,7 @@
                                 </Label>
 
                                 <material:TextField x:Name="FullnameEntry" 
-                                                    Title = "Enter your firstname"
+                                                    Title = "Enter Firstname"
                                                     TitleColor="Gray"
                                                     FontSize="14"
                                                     TitleFontSize="13.5">
@@ -71,7 +71,7 @@
                                 </Label>
 
                                 <material:TextField x:Name="LastnameEntry" 
-                                                    Title = "Enter your lastname"
+                                                    Title = "Enter Lastname"
                                                     TitleColor="Gray"
                                                     FontSize="14"
                                                     TitleFontSize="13.5">
@@ -89,7 +89,7 @@
                         </Label>
                         <!-- Email Field -->
                         <material:TextField x:Name="EmailEntry" 
-                                            Title = "Enter your email"
+                                            Title = "Enter Email"
                                             TitleColor="Gray"
                                             FontSize="14"
                                             TitleFontSize="13.5">
@@ -105,7 +105,7 @@
                         </Label>
                         <!-- Password Field -->
                         <material:TextField x:Name="PasswordEntry" 
-                                            Title = "Enter your password"
+                                            Title = "Enter Password"
                                             TitleColor="Gray"
                                             FontSize="14"
                                             TitleFontSize="13.5"
@@ -124,7 +124,7 @@
                         </Label>
                         <!-- Confirm Password Field -->
                         <material:TextField x:Name="ConfirmPasswordEntry" 
-                                            Title = "Confirm your password"
+                                            Title = "Confirm Password"
                                             TitleColor="Gray"
                                             FontSize="14"
                                             TitleFontSize="13.5"
