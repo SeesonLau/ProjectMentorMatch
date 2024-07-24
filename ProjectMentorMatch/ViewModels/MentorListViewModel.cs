@@ -53,7 +53,8 @@ namespace ProjectMentorMatch.ViewModels
 
         public string? CurrentItemEmail => CurrentItem?.email;  
 
-        public string CurrentItemSubjects => CurrentItem?.subjects;
+        public string? CurrentItemSubjects => CurrentItem?.subjects;
+        public string? CurrentItemImageSource => CurrentItem?.ImageSource;
 
 
 
@@ -82,6 +83,9 @@ namespace ProjectMentorMatch.ViewModels
             {
                 var profile = new ProfileModels();
                 var subjects = mentor.GetSubjectsByUserID(mentor.ProfileID);
+                var imageFilename = mentor.GetImageFilenameByUserID(mentor.ProfileID);
+
+
 
                 var itemInfo = new ItemInfo
                 {
@@ -93,12 +97,17 @@ namespace ProjectMentorMatch.ViewModels
                     email = mentor.GetEmailByUserID(mentor.ProfileID),
                     subjects = $"{subjects.Academic}, {subjects.Nonacademic}",
                     qualifications = mentor.GetQualificationByUserID(mentor.ProfileID),
-                   
-                                                                           
-                    ImageSource = "dotnet_bot.png"
-                    //   ImageSource = profile.GetProfileImage(account.GetUserID())
 
-                };
+                
+                  //  ImageSource = "Resources/Images/" + imageFilename : null
+
+
+
+
+                   ImageSource = imageFilename != null ? "Resources/Images/jennie.jpg" + imageFilename : null // Set the image path
+                // ImageSource = imageFilename != null ? $"Resources/Images/jennie.jpg" : null // Set the image path
+
+            };
 
                 ItemList.Add(itemInfo);
             }
