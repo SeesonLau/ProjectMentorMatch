@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.Data.SqlClient;
+using ProjectMentorMatch.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
@@ -6,11 +8,13 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using UraniumUI.Material.Controls;
 
 namespace ProjectMentorMatch.ViewModels
 {
     public class SubjectsViewModel : INotifyPropertyChanged
     {
+        ProfileModels profile = new ProfileModels();
         private ObservableCollection<string> _availableSub;
         private ObservableCollection<string> _selectedSub;
         private string _selectedSubjectsText;
@@ -116,6 +120,102 @@ namespace ProjectMentorMatch.ViewModels
         {
             SelectedSubjectsText = string.Join(", ", SelectedSub);
             SelectedNonSubjectsText = string.Join(", ", SelectedNonSub);
+        }
+
+        public void SaveSubjects(int userId)
+        {
+            using (SqlConnection connection = Database.GetConnection())
+            {
+                bool profileExists = profile.CheckSchedExist(userId);
+                string query;
+                if (profileExists)
+                {
+                    // Update the existing profile
+                    query = "UPDATE [Mentor] SET [Academic] = @Academic, [NonAcademic] = @NonAcademic WHERE [UserID] = @UserID";
+                }
+                else
+                {
+                    // Insert a new profile
+                    query = "INSERT INTO [Mentor] ([UserID], [Academic], [NonAcademic]) VALUES (@UserID, @Academic, @NonAcademic)";
+                }
+                connection.Open();
+
+                // Concatenate the selected days into a single string
+                SelectedSubjectsText = string.Join(", ", SelectedSub);
+                SelectedNonSubjectsText = string.Join(", ", SelectedNonSub);
+
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userId);
+                    command.Parameters.AddWithValue("@Academic", SelectedSubjectsText);
+                    command.Parameters.AddWithValue("@NonAcademic", SelectedNonSubjectsText);
+                    command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public string GetAcademicSubs(int userId)
+        {
+            string query = "SELECT [Academic] FROM [Mentor] WHERE [UserID] = @UserID";
+            using (var connection = Database.GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userId);
+                connection.Open();
+                return (string)command.ExecuteScalar();
+            }
+        }
+
+        public void LoadAcademicSubs(int userId, MultiplePickerField schedulePick)
+        {
+            string selectedSubs = GetAcademicSubs(userId);
+
+            if (selectedSubs == null)
+            {
+                SelectedSub.Clear();
+            }
+            else
+            {
+                var acadSub = selectedSubs.Split(new[] { ", " }, StringSplitOptions.None).ToList();
+
+                SelectedSub.Clear();
+                foreach (var sub in acadSub)
+                {
+                    SelectedSub.Add(sub);
+                }
+            }
+        }
+
+        public string GetNonAcademicSubs(int userId)
+        {
+            string query = "SELECT [NonAcademic] FROM [Mentor] WHERE [UserID] = @UserID";
+            using (var connection = Database.GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userId);
+                connection.Open();
+                return (string)command.ExecuteScalar();
+            }
+        }
+
+        public void LoadNonAcademicSubs(int userId, MultiplePickerField schedulePicker)
+        {
+            string selectedNonSubs = GetNonAcademicSubs(userId);
+
+            if (selectedNonSubs == null)
+            {
+                SelectedSub.Clear();
+            }
+            else
+            {
+                var nonacadSub = selectedNonSubs.Split(new[] { ", " }, StringSplitOptions.None).ToList();
+
+                SelectedSub.Clear();
+                foreach (var sub in nonacadSub)
+                {
+                    SelectedSub.Add(sub);
+                }
+            }
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;

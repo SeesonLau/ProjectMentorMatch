@@ -14,19 +14,24 @@ public partial class ApplyAsMentor : ContentPage
 {
     ProfileModels profile;
     ScheduleViewModel scheduleViewModel;
+    SubjectsViewModel subjectsViewModel;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
         scheduleViewModel = new ScheduleViewModel();
-        LoadSchedules();
+        subjectsViewModel = new SubjectsViewModel();
 
+        int userID = App.UserID;
+        subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
+        subjectsViewModel.LoadAcademicSubs(userID, nonAcademicSubjectsPicker);
+        scheduleViewModel.LoadSelectedDays(userID, SchedulePicker);
     }
 
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-        await scheduleViewModel.LoadSchedules(userId);
+      //  await scheduleViewModel.LoadSchedulesFromDatabase(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
@@ -34,13 +39,14 @@ public partial class ApplyAsMentor : ContentPage
         await Shell.Current.GoToAsync("//Profile", animate: true);
     }
 
+
+
     private async void ApplyButton_Clicked(object sender, EventArgs e)
     {
         try
         {
             int userID = App.UserID;
-        profile.ApplyAsMentor(userID);
-            await scheduleViewModel.SaveSchedules(userID);
+            profile.ApplyAsMentor(userID);            
             await DisplayAlert("Success", "You're now a mentor bish.", "OK");
         }
         catch (Exception ex)
@@ -61,5 +67,13 @@ public partial class ApplyAsMentor : ContentPage
         {
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
+    }
+
+    private void ApplyButton_Clicked_1(object sender, EventArgs e)
+    {
+        int userID = App.UserID;
+        scheduleViewModel.SaveSelectedDaysToDatabase(userID);
+        subjectsViewModel.SaveSubjects(userID);
+
     }
 }

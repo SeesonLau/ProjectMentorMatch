@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using ProjectMentorMatch.ViewModels;
 using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
 using Microsoft.Maui.Controls;
+//using static Android.App.DownloadManager;
 //using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace ProjectMentorMatch.Models
@@ -37,6 +38,7 @@ namespace ProjectMentorMatch.Models
         TimeSpan FromTime;
         TimeSpan ToTime;
         private string? rate;
+        private string? sched;
 
 
 
@@ -369,6 +371,24 @@ namespace ProjectMentorMatch.Models
             }
         }
 
+        public string? GetSched(int userID)
+        {
+            string query = "SELECT [Day] FROM [Mentor] WHERE [UserID] = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    sched = result.ToString();
+                }
+            }
+            return sched;
+        }
+
 
         public string? GetAboutMe(int userID)
         {
@@ -468,6 +488,7 @@ namespace ProjectMentorMatch.Models
         private byte[]? selectedImageBytes;
 
         public void SetImage(string filename) { this.filename =  filename; }
+        public void SetSched(string  sched) { this.sched = sched; }
         // INSERT
         public void InsertProfile(int userID)
         {
@@ -532,9 +553,8 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
+       
 
-
-      
         /*public void InsertSubject(int userID)
         {
             string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
@@ -739,6 +759,21 @@ namespace ProjectMentorMatch.Models
                 return count > 0;
             }
         }
+
+        public bool CheckSchedExist(int userID)
+        {
+            string query = "SELECT COUNT(*) FROM [Mentor] WHERE [UserID] = @UserID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                int count = (int)command.ExecuteScalar();
+
+                return count > 0;
+            }
+        }
         public bool CheckSubjectMenteeExist(int userID)
         {
             string query = "SELECT COUNT(*) FROM [SubjectMentee] WHERE [UserID] = @UserID";
@@ -779,7 +814,7 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-        public void InsertScheduleMentee(int userID, List<DaySchedule> selectedSchedules)
+        /*public void InsertScheduleMentee(int userID, List<DaySchedule> selectedSchedules)
         {
             using (var connection = GetConnection())
             {
@@ -795,7 +830,7 @@ namespace ProjectMentorMatch.Models
                     command.ExecuteNonQuery();
                 }
             }
-        }
+        }*/
         public byte[]? GetProfileImage(int userID)
         {
             string query = "SELECT Picture FROM Profile WHERE UserID = @UserID";
@@ -850,65 +885,6 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
-
-        public void SaveSchedule(int userID, List<DaySchedule> schedules)
-        {
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-                string deleteQuery = "DELETE FROM UserSchedules WHERE UserID = @UserId";
-                using (SqlCommand deleteCmd = new SqlCommand(deleteQuery, connection))
-                {
-                    deleteCmd.Parameters.AddWithValue("@UserId", userID);
-                    deleteCmd.ExecuteNonQuery();
-                }
-
-                string insertQuery = "INSERT INTO UserSchedules (UserID, Day, FromTime, ToTime) VALUES (@UserId, @Day, @FromTime, @ToTime)";
-                using (SqlCommand insertCmd = new SqlCommand(insertQuery, connection))
-                {
-                    foreach (var schedule in schedules)
-                    {
-                        insertCmd.Parameters.Clear();
-                        insertCmd.Parameters.AddWithValue("@UserId", userID);
-                        insertCmd.Parameters.AddWithValue("@Day", schedule.Day);
-                        insertCmd.Parameters.AddWithValue("@FromTime", schedule.FromTime);
-                        insertCmd.Parameters.AddWithValue("@ToTime", schedule.ToTime);
-                        insertCmd.ExecuteNonQuery();
-                    }
-                }
-            }
-        }
-
-        public List<DaySchedule> GetSchedules(int userId)
-        {
-            List<DaySchedule> schedules = new List<DaySchedule>();
-
-            using (var connection = GetConnection())
-            {
-                connection.Open();
-                string selectQuery = "SELECT Day, FromTime, ToTime FROM UserSchedules WHERE UserID = @UserId";
-                using (SqlCommand cmd = new SqlCommand(selectQuery, connection))
-                {
-                    cmd.Parameters.AddWithValue("@UserId", userId);
-                    using (SqlDataReader reader = cmd.ExecuteReader())
-                    {
-                        while (reader.Read())
-                        {
-                            schedules.Add(new DaySchedule
-                            {
-                                Day = reader.GetString(0),
-                                FromTime = reader.GetTimeSpan(1),
-                                ToTime = reader.GetTimeSpan(2)
-                            });
-                        }
-                    }
-                }
-            }
-
-            return schedules;
-        }
-
-
 
     }
 }
