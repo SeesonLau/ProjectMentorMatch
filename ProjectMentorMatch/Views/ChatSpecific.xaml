@@ -6,13 +6,13 @@
              Title="ChatSpecific">
 
     <ContentPage.Content>
-        <Grid RowDefinitions="Auto, *, Auto">
+        <Grid RowDefinitions="Auto, *, Auto" Padding="10">
             <!-- Username entry -->
             <Entry Grid.Row="0" x:Name="txtUsername" Placeholder="Your name" IsVisible="False" />
 
             <!-- Chat area -->
             <ScrollView Grid.Row="1">
-                <StackLayout x:Name="ChatMessagesStack" Padding="10">
+                <StackLayout x:Name="ChatMessagesStack" Spacing="10">
                     <!-- Messages will be dynamically added here -->
                 </StackLayout>
             </ScrollView>
