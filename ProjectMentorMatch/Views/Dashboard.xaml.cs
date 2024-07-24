@@ -226,43 +226,14 @@ public partial class Dashboard : ContentPage
         }
     }
 
-    public int GetUserID()
-    {
-        try
-        {
-            using (SqlConnection cn = Database.GetConnection())
-            {
-                cn.Open();
-                using (SqlCommand cm = new SqlCommand("SELECT [UserID] FROM [Profile]", cn))
-                {
-                    using (SqlDataReader dr = cm.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            if (dr["UserID"] != DBNull.Value && int.TryParse(dr["UserID"].ToString(), out int ID))
-                            {
-                                return ID;
-                            }
-                        }
-                    }
-                }
-            }
-            return 0;
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Error", ex.Message, "OK");
-            return 0;
-        }
-    }
-
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-
-        LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors(GetUserID()));
-       
+        
+     
     }
+
+
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
         var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
