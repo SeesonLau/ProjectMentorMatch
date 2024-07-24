@@ -71,26 +71,72 @@ namespace ProjectMentorMatch.Models
         public void SetPointsMax(double pointsMax) { this.pointsMax = pointsMax; }
         public void SetPointsGain(double pointsGain) { this.pointsGain = pointsGain; }
 
-        // not yet tested
-        public void UpdateBrainReact(int profileID)
+        public static void CheckProfileIDInAnalytics(int profileID)
         {
-            brainReact += 1;
-            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+            string checkQuery = "SELECT COUNT(*) FROM Analytics WHERE ProfileID = @ProfileID";
 
-            string query = "UPDATE Analytics SET brainReact = brainReact + 1, day = @day WHERE ProfileID = @ProfileID";
-
-            using (var connection = GetConnection())
+            using (var connection = Database.GetConnection())
             {
                 connection.Open();
-                using (SqlCommand command = new SqlCommand(query, connection))
-                {
-                    command.Parameters.AddWithValue("@ProfileID", profileID);
-                    command.Parameters.AddWithValue("@day", currentDate);
 
-                    command.ExecuteNonQuery();
+                // Check if the ProfileID already exists
+                using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+                {
+                    checkCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                    int count = (int)checkCommand.ExecuteScalar();
                 }
             }
         }
 
+        public void UpdateBrainReact(int profileID)
+        {
+            string currentDate = DateTime.Now.ToString("yyyy-MM-dd");
+
+            // Ensure the ProfileID is logged with default values if not already present
+            CheckProfileIDInAnalytics(profileID);
+
+            // Query to check if an entry exists for the current date and profileID
+            string checkQuery = "SELECT COUNT(*) FROM Analytics WHERE ProfileID = @ProfileID AND day = @day";
+
+            // Query to update brainReact if entry exists
+            string updateQuery = "UPDATE Analytics SET brainReact = ISNULL(brainReact, 0) + 1 WHERE ProfileID = @ProfileID AND day = @day";
+
+            // Query to insert a new entry if no entry exists for the current date and profileID
+            string insertQuery = "INSERT INTO Analytics (ProfileID, brainReact, day) VALUES (@ProfileID, 1, @day)";
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+
+                // Check if the entry for the current date exists
+                using (SqlCommand checkDateCommand = new SqlCommand(checkQuery, connection))
+                {
+                    checkDateCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                    checkDateCommand.Parameters.AddWithValue("@day", currentDate);
+                    int dateCount = (int)checkDateCommand.ExecuteScalar();
+
+                    if (dateCount > 0)
+                    {
+                        // Date entry exists, update brainReact
+                        using (SqlCommand updateCommand = new SqlCommand(updateQuery, connection))
+                        {
+                            updateCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                            updateCommand.Parameters.AddWithValue("@day", currentDate);
+                            updateCommand.ExecuteNonQuery();
+                        }
+                    }
+                    else
+                    {
+                        // Date entry does not exist, insert a new entry
+                        using (SqlCommand insertCommand = new SqlCommand(insertQuery, connection))
+                        {
+                            insertCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                            insertCommand.Parameters.AddWithValue("@day", currentDate);
+                            insertCommand.ExecuteNonQuery();
+                        }
+                    }
+                }
+            }
+        }
     }
 }

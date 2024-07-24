@@ -228,11 +228,12 @@ public partial class Dashboard : ContentPage
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
+        AnalyticsModel analytics = new AnalyticsModel();
         // Ensure the label is not null and its text can be converted to an integer
         if (int.TryParse(lblProfileID.Text, out int profileID))
         {
             // Call the method to log the profile ID in Analytics
-            LogProfileIDInAnalytics(profileID);
+            analytics.UpdateBrainReact(profileID);
         }
         else
         {
@@ -248,19 +249,35 @@ public partial class Dashboard : ContentPage
     }
 
 
-
+    /*
     public static void LogProfileIDInAnalytics(int profileID)
     {
+        // Query to check if the ProfileID already exists on the Analytics table
+        string checkQuery = "SELECT COUNT(*) FROM Analytics WHERE ProfileID = @ProfileID";
+
         string query = "INSERT INTO Analytics (ProfileID) VALUES (@ProfileID)";
 
         using (var connection = Database.GetConnection())
-        using (SqlCommand command = new SqlCommand(query, connection))
         {
-            command.Parameters.AddWithValue("@ProfileID", profileID);
-
             connection.Open();
-            command.ExecuteNonQuery();
-        }
-    }
 
+            // Check if the ProfileID already exists
+            using (SqlCommand checkCommand = new SqlCommand(checkQuery, connection))
+            {
+                checkCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                int count = (int)checkCommand.ExecuteScalar();
+
+                if (count == 0)
+                {
+                    // ProfileID does not exist, insert profileID
+                    using (SqlCommand insertCommand = new SqlCommand(query, connection))
+                    {
+                        insertCommand.Parameters.AddWithValue("@ProfileID", profileID);
+                        insertCommand.ExecuteNonQuery();
+                    }
+                }
+            }
+        }
+    }*/
+    
 }
