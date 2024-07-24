@@ -122,9 +122,9 @@ namespace ProjectMentorMatch.Models
             return null; // Return null if no city is found
         }
 
-        public string? GetContactNumberByUserID(int userID)
+        public string? GetEmailByUserID(int userID)
         {
-            string query = "SELECT ContactNumber FROM Profile WHERE UserID = @UserID";
+            string query = "SELECT Email FROM CreateAccount WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
@@ -144,7 +144,7 @@ namespace ProjectMentorMatch.Models
         }
 
 
-        public string? GetSubjectsByUserID(int userID)
+        public (string? Academic, string? Nonacademic) GetSubjectsByUserID(int userID)
         {
             string query = "SELECT Academic, Nonacademic FROM SubjectMentee WHERE UserID = @UserID";
 
@@ -154,16 +154,20 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@UserID", userID);
 
                 connection.Open();
-                object result = command.ExecuteScalar();
-
-                if (result != null && result != DBNull.Value)
+                using (SqlDataReader reader = command.ExecuteReader())
                 {
-                    return result.ToString();
+                    if (reader.Read())
+                    {
+                        string? academic = reader["Academic"] as string;
+                        string? nonacademic = reader["Nonacademic"] as string;
+                        return (academic, nonacademic);
+                    }
                 }
             }
 
-            return null; // Return null if no city is found
+            return (null, null); // Return null tuple if no subjects are found
         }
+
 
         public string? GetAboutMeByUserID(int userID)
         {

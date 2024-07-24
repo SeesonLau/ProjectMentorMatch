@@ -44,11 +44,14 @@ namespace ProjectMentorMatch.ViewModels
         // To be put in the Binding of the Dashboard
         public string CurrentItemName => CurrentItem?.ItemName;
         public string CurrentItemAddressCity => CurrentItem?.addressCity;
+
         public string CurrentItemAddressProvince => CurrentItem?.addressProvince;
         public string CurrentItemAboutMe => CurrentItem?.aboutMe;
         public string CurrentItemQualifications => CurrentItem?.qualifications;
 
-        public string CurrentItemContactNumber => CurrentItem?.contactNumber;   
+        public string? CurrentItemContactNumber => CurrentItem?.contactNumber;   
+
+        public string? CurrentItemEmail => CurrentItem?.email;  
 
         public string CurrentItemSubjects => CurrentItem?.subjects;
 
@@ -78,6 +81,7 @@ namespace ProjectMentorMatch.ViewModels
             foreach (var mentor in mentors)
             {
                 var profile = new ProfileModels();
+                var subjects = mentor.GetSubjectsByUserID(mentor.ProfileID);
 
                 var itemInfo = new ItemInfo
                 {
@@ -86,19 +90,11 @@ namespace ProjectMentorMatch.ViewModels
                     aboutMe = mentor.GetAboutMeByUserID(mentor.ProfileID),
                     addressCity = mentor.GetCityByUserID(mentor.ProfileID),  
                     addressProvince = mentor.GetProvinceByUserID(mentor.ProfileID),
-                    contactNumber = mentor.GetContactNumberByUserID(mentor.ProfileID),
-                    subjects = mentor.GetSubjectsByUserID(mentor.ProfileID),
+                    email = mentor.GetEmailByUserID(mentor.ProfileID),
+                    subjects = $"{subjects.Academic}, {subjects.Nonacademic}",
                     qualifications = mentor.GetQualificationByUserID(mentor.ProfileID),
                    
-
-
-                
-                 //   addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
-               //     addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
-                 //   aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me
-                                                                        //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
-               //     qualifications = profile.GetQualification(account.GetUserID()),  // Fetch qualifications
-                                                                                     //   availability = profile.GetAvailability(account.GetUserID()),  // Fetch availability
+                                                                           
                     ImageSource = "dotnet_bot.png"
                     //   ImageSource = profile.GetProfileImage(account.GetUserID())
 
@@ -108,33 +104,7 @@ namespace ProjectMentorMatch.ViewModels
             }
 
 
-            // ALSO TRIED TO USE GETALLPROFILES FROM PROFILE BUT WONT WORK
-            var profiles = ProfileModels.GetAllProfiles();
-
-            //foreach (var profile in profiles)
-            //{
-            //    var mentor = new ProfileModels();
-
-            //    var itemInfo = new ItemInfo
-            //    {
-            //        ItemId = mentor.GetUserID(),
-            //        ItemName = mentor.GetFullname(),
-            //        addressCity = mentor.GetAddressCity(mentor.GetUserID()),  // Fetch address city
-            //        addressProvince = profile.GetAddressProvince(mentor.GetUserID()),  // Fetch address province
-            //        aboutMe = profile.GetAboutMe(mentor.GetUserID()),  // Fetch about me
-            //                                                            //   subjects = profile.GetSubjectsAsync(account.GetUserID()),  // Fetch subjects
-            //        qualifications = profile.GetQualification(mentor.GetUserID()),  // Fetch qualifications
-            //                                                                         //   availability = profile.GetAvailability(account.GetUserID()),  // Fetch availability
-
-
-            //        ImageSource = "dotnet_bot.png"
-            //        //   ImageSource = profile.GetProfileImage(account.GetUserID())
-
-            //    };
-
-            //    ItemList.Add(itemInfo);
-            //}
-
+         
 
         }
 

@@ -12,6 +12,8 @@ namespace ProjectMentorMatch.Models
 
         public int ProfileID { get; set; }
 
+        public string? email { get; set; }
+
         public string? ItemName { get; set; }
         public string? ImageSource { get; set; }
 

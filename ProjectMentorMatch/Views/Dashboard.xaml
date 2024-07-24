@@ -265,13 +265,14 @@
                         <Label x:Name="lblProfileID"
                          Text="{Binding CurrentItem.ProfileID}"
                          FontAttributes="Bold" 
+                         IsVisible="False"
                          Margin="0,10,0,0" 
                          FontSize="21"/>
 
                         <!-- Address Field -->
                         <Label x:Name="lblAddressCity"
                         Text="{Binding CurrentItemAddressCity}"
-                        Margin="0,5,0,10" 
+                        Margin="0,5,0,0" 
                         FontAttributes="Bold" 
                         FontSize="17" 
                    TextColor="Gray"/>
@@ -431,6 +432,11 @@
                         </Label>
 
 
+                        <Label  Text="{Binding CurrentItemAboutMe}" 
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+
                         <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
@@ -480,8 +486,11 @@
                    TextColor="#086EBB">
                         </Label>
 
+                        <Label  Text="{Binding CurrentItemEmail}" 
+                                FontAttributes="Bold" 
+                                FontSize="16" TextColor="#a3a3a3"/>
 
-                        <Label  Text="{Binding CurrentItemContactNumber}" 
+                        <Label  Text="{Binding CurrentItemAboutMe}" 
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
