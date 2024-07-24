@@ -7,10 +7,10 @@ using System;
 namespace ProjectMentorMatch;
 
 public partial class SignIn : ContentPage
-{   
+{
     public SignIn()
-	{
-		InitializeComponent();
+    {
+        InitializeComponent();
         //push mo yan Te
     }
 
@@ -129,7 +129,7 @@ public partial class SignIn : ContentPage
         }
     }
     private async void OnSignUpClicked(object sender, EventArgs e)
-	{
+    {
         await Navigation.PushAsync(new CreateAccount());
     }
 }

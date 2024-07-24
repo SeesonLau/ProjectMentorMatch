@@ -11,7 +11,6 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-    ProfileModels GetProfileID = new ProfileModels();
     private bool _isRefreshing;
 
     // INSTRUCTIONS HOW TO BIND DATA: 
@@ -226,50 +225,26 @@ public partial class Dashboard : ContentPage
         }
     }
 
-    public int GetUserID()
-    {
-        try
-        {
-            using (SqlConnection cn = Database.GetConnection())
-            {
-                cn.Open();
-                using (SqlCommand cm = new SqlCommand("SELECT [UserID] FROM [Profile]", cn))
-                {
-                    using (SqlDataReader dr = cm.ExecuteReader())
-                    {
-                        if (dr.Read())
-                        {
-                            if (dr["UserID"] != DBNull.Value && int.TryParse(dr["UserID"].ToString(), out int ID))
-                            {
-                                return ID;
-                            }
-                        }
-                    }
-                }
-            }
-            return 0;
-        }
-        catch (Exception ex)
-        {
-            DisplayAlert("Error", ex.Message, "OK");
-            return 0;
-        }
-    }
-
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-
-        LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors(GetUserID()));
-       
+        // Ensure the label is not null and its text can be converted to an integer
+        if (int.TryParse(lblProfileID.Text, out int profileID))
+        {
+            // Call the method to log the profile ID in Analytics
+            LogProfileIDInAnalytics(profileID);
+        }
+        else
+        {
+            // Handle the case where lblProfileID.Text is not a valid integer
+            DisplayAlert("Error", "Invalid Profile ID", "OK");
+        }
     }
+
+
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
-        if (selectedProfile != null)
-        {
-            GetProfileID.ProfileID = selectedProfile.ProfileID;
-        }
+      
     }
 
 
@@ -287,4 +262,5 @@ public partial class Dashboard : ContentPage
             command.ExecuteNonQuery();
         }
     }
+
 }

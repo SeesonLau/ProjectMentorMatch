@@ -105,9 +105,11 @@ namespace ProjectMentorMatch.Models
 
             return profiles;
         }
-        public int GetProfileID(int userID)
+        public int GetProfileID()
         {
-            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+
+            // COUNT (*) 
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID AND isMentor = 1";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
@@ -126,12 +128,12 @@ namespace ProjectMentorMatch.Models
 
         public static int GetProfileIDForMentors(int userID)
         {
-            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID AND IsMentor = 1";
             int profileID = -1; // Default value if no profile is found
 
             try
             {
-                using (var connection = GetConnection())
+                using (var connection = Database.GetConnection())
                 using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
                 {
                     command.Parameters.AddWithValue("@UserID", userID);
@@ -141,7 +143,6 @@ namespace ProjectMentorMatch.Models
                     if (result != null)
                     {
                         profileID = Convert.ToInt32(result);
-                        // Optional: SetProfileID(profileID); if you need to set the profile ID somewhere
                     }
                 }
             }
@@ -153,6 +154,7 @@ namespace ProjectMentorMatch.Models
 
             return profileID;
         }
+
 
 
 
@@ -530,6 +532,8 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
+
+
       
         /*public void InsertSubject(int userID)
         {
@@ -831,17 +835,19 @@ namespace ProjectMentorMatch.Models
 
         public void WithdrewAsMentor(int userID)
         {
-            string query = "UPDATE Profile SET isMentor = @isMentor WHERE UserID = @UserID";
+            string query = "DELETE FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
-            using (var command = connection.CreateCommand())
             {
-                command.CommandText = query;
-                command.Parameters.AddWithValue("@isMentor", 0);
-                command.Parameters.AddWithValue("@UserID", userID);
-
                 connection.Open();
-                command.ExecuteNonQuery();
+
+                // Delete all fields related to the user
+                using (var deleteCommand = connection.CreateCommand())
+                {
+                    deleteCommand.CommandText = query;
+                    deleteCommand.Parameters.AddWithValue("@UserID", userID);
+                    deleteCommand.ExecuteNonQuery();
+                }
             }
         }
 

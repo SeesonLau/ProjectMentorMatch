@@ -112,7 +112,8 @@
                                           ChipType="Choice"
                                           Margin="8,0"
                                           Padding="10,0,0,0"
-                                          SelectedChipBackground="LightBlue"
+                                          ChipTextColor="Black"
+                                          SelectedChipBackground="#086EBB"
                                           SelectedItem="{Binding SelectedGender}">
                             <chip:SfChipGroup.Items>
                                 <chip:SfChip Text="Male" Margin="10"/>

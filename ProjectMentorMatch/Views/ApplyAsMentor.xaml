@@ -136,11 +136,32 @@
 
                     <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
                 </VerticalStackLayout>
+                <!-- Preferred Setup Filter -->
+                <Label Text="Preferred Setup" 
+                        FontSize="Medium" 
+                        FontAttributes="Bold"
+                        Margin="0,10,0,5"
+                        TextColor="#086EBB">
+                </Label>
 
+                <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                    <RadioButton Content="Face to Face" GroupName="SetupModeGroup"  />
+                    <RadioButton Content="Online" GroupName="SetupModeGroup"  />
+                </StackLayout>
+
+                <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                    <RadioButton Content="One-on-one" GroupName="InteractionModeGroup"  />
+                    <RadioButton Content="Group" GroupName="InteractionModeGroup"  />
+                </StackLayout>
                 <VerticalStackLayout>
                     <!-- Session Rates -->
-                    <Label Text="Session Rates" FontAttributes="Bold" Margin="0,10,0,10"/>
-                    <material:TextField Title="Rates" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
+                    <Label Text="Session Fee" 
+                            FontSize="Medium" 
+                            FontAttributes="Bold"
+                            Margin="0,50,0,5"
+                            TextColor="#086EBB">
+                    </Label>
+                    <material:TextField Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
                 </VerticalStackLayout>
                 <!-- Apply Button-->
                 <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
