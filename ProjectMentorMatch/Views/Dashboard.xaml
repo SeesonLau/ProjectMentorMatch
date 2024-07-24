@@ -23,136 +23,147 @@
 
     <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
         <syncfusion:SfNavigationDrawer.DrawerSettings>
-            <syncfusion:DrawerSettings ContentBackground ="White" DrawerHeaderHeight="70" DrawerWidth="350" Position="Right">
+            <syncfusion:DrawerSettings ContentBackground ="White" DrawerHeaderHeight="0" DrawerWidth="350" Position="Right">
                 <syncfusion:DrawerSettings.DrawerHeaderView>
                     <HorizontalStackLayout HorizontalOptions="StartAndExpand">
-                        <Label Text="Filter Search" 
-                               FontSize="Large" 
-                               FontAttributes="Bold" 
-                               Margin="20,20"
-                               TextColor="#086EBB">
-                        </Label>
+                        
                     </HorizontalStackLayout>
                 </syncfusion:DrawerSettings.DrawerHeaderView>
                 <syncfusion:DrawerSettings.DrawerContentView>
-                    <ScrollView Padding="10">
-                        <StackLayout Spacing="10" Padding="5">
-                            <!-- Gender Filter -->
-                            <Label Text="Gender"
-                                    TextColor="#086EBB"
-                                    FontSize="Medium" 
-                                    FontAttributes="Bold" 
-                                    Margin="5">
-                            </Label>
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#D8ECFF" Offset="0.0" />
+                                <GradientStop Color="#95C2EC" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <ScrollView Padding="10">
+                            <StackLayout Spacing="10" Padding="5">
+                                <Label Text="Filter Search" 
+               FontSize="Large" 
+               FontAttributes="Bold" 
+               Margin="0,20"
+               TextColor="#086EBB">
+                                </Label>
+                                <!-- Gender Filter -->
+                                <Label Text="Gender"
+                TextColor="#086EBB"
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="5">
+                                </Label>
 
-                            <StackLayout Spacing="30" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                                <RadioButton Content="Male" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
-                                <RadioButton Content="Female" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
-                                <RadioButton Content="Non-binary" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                <StackLayout Spacing="30" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="Male" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                    <RadioButton Content="Female" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                    <RadioButton Content="Non-binary" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                </StackLayout>
+
+                                <!-- Subject Filter -->
+                                <Label Text="Subject" 
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="5,15,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
+                                    <material:MultiplePickerField.ItemsSource BackgroundColor="White">
+                                        <x:Array Type="{x:Type x:String}" >
+                                            <x:String>Business</x:String>
+                                            <x:String>Calculus</x:String>
+                                            <x:String>Chemistry</x:String>
+                                            <x:String>Computer Programming</x:String>
+                                            <x:String>Economics</x:String>
+                                            <x:String>Engineering</x:String>
+                                            <x:String>Foreign Language</x:String>
+                                            <x:String>Health/Nutrition</x:String>
+                                            <x:String>History</x:String>
+                                            <x:String>Literacy</x:String>
+                                            <x:String>Mathematics</x:String>
+                                            <x:String>Medical</x:String>
+                                            <x:String>Philosophy</x:String>
+                                            <x:String>Physics</x:String>
+                                            <x:String>Science</x:String>
+                                            <x:String>Sex Education</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
+                                    <material:MultiplePickerField.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Art/Design</x:String>
+                                            <x:String>Cooking/Culinary Arts</x:String>
+                                            <x:String>Creative Writing</x:String>
+                                            <x:String>Dance</x:String>
+                                            <x:String>Fitness Training</x:String>
+                                            <x:String>Music</x:String>
+                                            <x:String>Performing Arts</x:String>
+                                            <x:String>Photography and Photo Editing</x:String>
+                                            <x:String>Physical Education</x:String>
+                                            <x:String>Public Speaking</x:String>
+                                            <x:String>Video Editing</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <!-- Day Filter -->
+                                <Label Text="Schedule" 
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="10,10,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <material:MultiplePickerField Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
+                                    <material:MultiplePickerField.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Monday</x:String>
+                                            <x:String>Tuesday</x:String>
+                                            <x:String>Wednesday</x:String>
+                                            <x:String>Thursday</x:String>
+                                            <x:String>Friday</x:String>
+                                            <x:String>Saturday</x:String>
+                                            <x:String>Sunday</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <!-- Preferred Setup Filter -->
+                                <Label Text="Preferred Setup" 
+                FontSize="Medium" 
+                FontAttributes="Bold"
+                Margin="10,10,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="Face to Face" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+                                    <RadioButton Content="Online" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+                                </StackLayout>
+
+                                <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="One-on-one" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+                                    <RadioButton Content="Group" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+                                </StackLayout>
+                                <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <!-- Apply Button -->
+                                    <Button Text="Apply"  
+                    WidthRequest="200" 
+                    HeightRequest ="40" 
+                    Margin="0,20,0,20"
+                    HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
                             </StackLayout>
-
-                            <!-- Subject Filter -->
-                            <Label Text="Subject" 
-                                    FontSize="Medium" 
-                                    FontAttributes="Bold" 
-                                    Margin="5,15,0,5"
-                                    TextColor="#086EBB">
-                            </Label>
-
-                            <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
-                                <material:MultiplePickerField.ItemsSource BackgroundColor="White">
-                                    <x:Array Type="{x:Type x:String}" >
-                                        <x:String>Business</x:String>
-                                        <x:String>Calculus</x:String>
-                                        <x:String>Chemistry</x:String>
-                                        <x:String>Computer Programming</x:String>
-                                        <x:String>Economics</x:String>
-                                        <x:String>Engineering</x:String>
-                                        <x:String>Foreign Language</x:String>
-                                        <x:String>Health/Nutrition</x:String>
-                                        <x:String>History</x:String>
-                                        <x:String>Literacy</x:String>
-                                        <x:String>Mathematics</x:String>
-                                        <x:String>Medical</x:String>
-                                        <x:String>Philosophy</x:String>
-                                        <x:String>Physics</x:String>
-                                        <x:String>Science</x:String>
-                                        <x:String>Sex Education</x:String>
-                                    </x:Array>
-                                </material:MultiplePickerField.ItemsSource>
-                            </material:MultiplePickerField>
-
-                            <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
-                                <material:MultiplePickerField.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>Art/Design</x:String>
-                                        <x:String>Cooking/Culinary Arts</x:String>
-                                        <x:String>Creative Writing</x:String>
-                                        <x:String>Dance</x:String>
-                                        <x:String>Fitness Training</x:String>
-                                        <x:String>Music</x:String>
-                                        <x:String>Performing Arts</x:String>
-                                        <x:String>Photography and Photo Editing</x:String>
-                                        <x:String>Physical Education</x:String>
-                                        <x:String>Public Speaking</x:String>
-                                        <x:String>Video Editing</x:String>
-                                    </x:Array>
-                                </material:MultiplePickerField.ItemsSource>
-                            </material:MultiplePickerField>
-
-                            <!-- Day Filter -->
-                            <Label Text="Schedule" 
-                                    FontSize="Medium" 
-                                    FontAttributes="Bold" 
-                                    Margin="10,10,0,5"
-                                    TextColor="#086EBB">
-                            </Label>
-
-                            <material:MultiplePickerField Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
-                                <material:MultiplePickerField.ItemsSource>
-                                    <x:Array Type="{x:Type x:String}">
-                                        <x:String>Monday</x:String>
-                                        <x:String>Tuesday</x:String>
-                                        <x:String>Wednesday</x:String>
-                                        <x:String>Thursday</x:String>
-                                        <x:String>Friday</x:String>
-                                        <x:String>Saturday</x:String>
-                                        <x:String>Sunday</x:String>
-                                    </x:Array>
-                                </material:MultiplePickerField.ItemsSource>
-                            </material:MultiplePickerField>
-
-                            <!-- Preferred Setup Filter -->
-                            <Label Text="Preferred Setup" 
-                                    FontSize="Medium" 
-                                    FontAttributes="Bold"
-                                    Margin="10,10,0,5"
-                                    TextColor="#086EBB">
-                            </Label>
-
-                            <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                                <RadioButton Content="Face to Face" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
-                                <RadioButton Content="Online" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
-                            </StackLayout>
-
-                            <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                                <RadioButton Content="One-on-one" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
-                                <RadioButton Content="Group" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
-                            </StackLayout>
-                            <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
-                                <!-- Accept Button -->
-                                <Button Text="Apply"  
-                                        WidthRequest="200" 
-                                        HeightRequest ="40" 
-                                        HorizontalOptions="Center"/>
-                            </VerticalStackLayout>
-                        </StackLayout>
-                    </ScrollView>
+                        </ScrollView>
+                    </Grid>
                 </syncfusion:DrawerSettings.DrawerContentView>
             </syncfusion:DrawerSettings>
         </syncfusion:SfNavigationDrawer.DrawerSettings>
         <syncfusion:SfNavigationDrawer.ContentView>
-            <ScrollView Margin="0,10,0,5" VerticalScrollBarVisibility="Never">
+         
+                <ScrollView Margin="0,10,0,5" VerticalScrollBarVisibility="Never">
 
                 <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto, Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
 
@@ -265,16 +276,25 @@
                         <Label x:Name="lblProfileID"
                          Text="{Binding CurrentItem.ProfileID}"
                          FontAttributes="Bold" 
+                         IsVisible="False"
                          Margin="0,10,0,0" 
                          FontSize="21"/>
 
                         <!-- Address Field -->
                         <Label x:Name="lblAddressCity"
                         Text="{Binding CurrentItemAddressCity}"
-                        Margin="0,5,0,10" 
+                        Margin="0,5,0,0" 
                         FontAttributes="Bold" 
                         FontSize="17" 
                    TextColor="Gray"/>
+
+                        <Label
+    Text="{Binding CurrentItemImageSource}"
+    Margin="0,5,0,0" 
+    FontAttributes="Bold" 
+    FontSize="17" 
+    TextColor="Gray" />
+
 
                         <Label x:Name="lblAddressProvince"
                          Text="{Binding CurrentItemAddressProvince}"
@@ -284,22 +304,23 @@
                             TextColor="Gray"/>
 
 
-                        <HorizontalStackLayout Spacing="10">
+                        <!--<HorizontalStackLayout Spacing="10">
                             <Image Source="course_icon.png" 
                        WidthRequest="22" 
                        HeightRequest="22"
                        VerticalOptions="Center" 
                        HorizontalOptions="Start">
                             </Image>
-                            <!-- Course Field -->
-                            <Label x:Name="lblCourse"
+                            --><!-- Course Field --><!--
+                        
+                        <Label x:Name="lblCourse"
                        Text="Civil Engineer"  
                        Margin="0,5,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
                        TextColor="Gray"
                        VerticalOptions="Center"/>
-                        </HorizontalStackLayout>
+                        </HorizontalStackLayout>-->
 
                         <HorizontalStackLayout Spacing="10">
                             <Image Source="pesosign_icon.png" 
@@ -310,8 +331,8 @@
                             </Image>
                             <!-- Fee Field -->
                             <Label x:Name="lblFee"
-                       Text="200.00"  
-                       Margin="0,5,0,0" 
+                       Text="{Binding CurrentItemRate}"  
+                       Margin="0,-1,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
                        TextColor="Gray"
@@ -326,11 +347,11 @@
                        FontSize="15.5" 
                        TextColor="#086EBB"/>
 
-                            <Image Source="arrow_down.png" 
+                            <!--<Image Source="arrow_down.png" 
                        WidthRequest="18" 
                        HeightRequest="18" 
                        Margin="12">
-                            </Image>
+                            </Image>-->
                         </HorizontalStackLayout>
 
                     </VerticalStackLayout>
@@ -429,7 +450,9 @@
                    Margin="0,20,0,0"
                    TextColor="#086EBB">
                         </Label>
-
+                        
+                      
+                  
 
                         <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
@@ -465,7 +488,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                        <Label  Text="{Binding CurrentItemDay}" 
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
@@ -480,10 +503,9 @@
                    TextColor="#086EBB">
                         </Label>
 
-
                         <Label  Text="{Binding CurrentItemContactNumber}" 
-                    FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
+                                FontAttributes="Bold" 
+                                FontSize="16" TextColor="#a3a3a3"/>
 
                     </VerticalStackLayout>
 
@@ -506,7 +528,9 @@
                 </Grid>
             </ScrollView>
         </syncfusion:SfNavigationDrawer.ContentView>
+            
     </syncfusion:SfNavigationDrawer>
+
     <!-- <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Refreshing="OnRefresh">
         <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
             <CarouselView.ItemTemplate>

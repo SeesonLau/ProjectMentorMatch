@@ -12,6 +12,8 @@ namespace ProjectMentorMatch.Models
 
         public int ProfileID { get; set; }
 
+        public string? email { get; set; }
+
         public string? ItemName { get; set; }
         public string? ImageSource { get; set; }
 
@@ -27,6 +29,10 @@ namespace ProjectMentorMatch.Models
         public string? availability { get; set; }
 
         public string? contactNumber { get; set; }
+
+        public string? Day { get; set; }
+
+        public string? Rate { get; set; }
 
         // Convert byte[] to Base64 string
         private static string ConvertToBase64(byte[] imageBytes)
