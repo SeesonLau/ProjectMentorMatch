@@ -36,4 +36,18 @@ public partial class ApplyAsMentor : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
+
+    private async void btnWithdrawMentor_Clicked(object sender, EventArgs e)
+    {
+        try
+        {
+            int userID = App.UserID;
+            profile.WithdrewAsMentor(userID);
+            await DisplayAlert("Success", "You're now not a mentor bish", "OK");
+        }
+        catch (Exception ex)
+        {
+            await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
+        }
+    }
 }
