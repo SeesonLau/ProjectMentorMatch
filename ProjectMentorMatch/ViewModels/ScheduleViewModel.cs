@@ -66,6 +66,21 @@ namespace ProjectMentorMatch.ViewModels
             SelectedDaysText = sb.ToString();
         }
 
+        public List<string> GetSelectedDaysNames()
+        {
+            return Days.Where(day => day.IsSelected).Select(day => day.Day).ToList();
+        }
+
+        public List<TimeSpan> GetSelectedFromTimes()
+        {
+            return Days.Where(day => day.IsSelected).Select(day => day.FromTime).ToList();
+        }
+
+        public List<TimeSpan> GetSelectedToTimes()
+        {
+            return Days.Where(day => day.IsSelected).Select(day => day.ToTime).ToList();
+        }
+
         // CALL THIS TO GETSELECTED SCHEDULE
         public List<DaySchedule> GetSelectedDays()
         {
