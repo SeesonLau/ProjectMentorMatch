@@ -11,7 +11,7 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-
+    ProfileModels GetProfileID = new ProfileModels();
     private bool _isRefreshing;
 
     // INSTRUCTIONS HOW TO BIND DATA: 
@@ -201,7 +201,7 @@ public partial class Dashboard : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Booking());
+        await Navigation.PushAsync(new Booking(null));
     }
 
     private void btnEx_Clicked(object sender, EventArgs e)
@@ -215,12 +215,76 @@ public partial class Dashboard : ContentPage
         }
     }
     // Palihug kog bind aning button sa mentor hihi, gamita lang profileID sa pag bind
-    private void btnHeart_Click(object sender, EventArgs e)
+
+    private void btnLikeButton_Clicked(object sender, EventArgs e)
     {
-   //   int userID = App.UserID;
-         //  int profileID = App.ProfileID;
-        AnalyticsModel analytics = new AnalyticsModel();
- 
-     //  analytics.UpdateBrainReact(profileID);
+        var viewModel = BindingContext as MentorListViewModel;
+        if (viewModel != null && viewModel.CurrentItem != null)
+        {
+            string selectedFullName = viewModel.CurrentItem.ItemName;
+            Navigation.PushAsync(new Booking(selectedFullName));
+        }
+    }
+
+    public int GetUserID()
+    {
+        try
+        {
+            using (SqlConnection cn = Database.GetConnection())
+            {
+                cn.Open();
+                using (SqlCommand cm = new SqlCommand("SELECT [UserID] FROM [Profile]", cn))
+                {
+                    using (SqlDataReader dr = cm.ExecuteReader())
+                    {
+                        if (dr.Read())
+                        {
+                            if (dr["UserID"] != DBNull.Value && int.TryParse(dr["UserID"].ToString(), out int ID))
+                            {
+                                return ID;
+                            }
+                        }
+                    }
+                }
+            }
+            return 0;
+        }
+        catch (Exception ex)
+        {
+            DisplayAlert("Error", ex.Message, "OK");
+            return 0;
+        }
+    }
+
+
+    private void btnHeart_Clicked(object sender, EventArgs e)
+    {
+
+        LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors(GetUserID()));
+       
+    }
+    private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
+        if (selectedProfile != null)
+        {
+            GetProfileID.ProfileID = selectedProfile.ProfileID;
+        }
+    }
+
+
+
+    public static void LogProfileIDInAnalytics(int profileID)
+    {
+        string query = "INSERT INTO Analytics (ProfileID) VALUES (@ProfileID)";
+
+        using (var connection = Database.GetConnection())
+        using (SqlCommand command = new SqlCommand(query, connection))
+        {
+            command.Parameters.AddWithValue("@ProfileID", profileID);
+
+            connection.Open();
+            command.ExecuteNonQuery();
+        }
     }
 }

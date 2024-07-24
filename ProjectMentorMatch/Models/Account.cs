@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using System.Net.Mail;
 using System.Net.Mime;
 using System.Net;
+using ProjectMentorMatch.ViewModels;
 //using Intents;
 //using MetalPerformanceShaders;
 
@@ -16,6 +17,8 @@ namespace ProjectMentorMatch.Models
     {
         RandomID randomID = new RandomID();
         private int userID = RandomID.userID();
+        public int ProfileID { get; set; }
+
 
         private string? fullname;
         private string? email;
@@ -172,6 +175,43 @@ namespace ProjectMentorMatch.Models
 
             return accounts;
         }
+
+        public static List<Account> GetAllMentors()
+        {
+            List<Account> accounts = new List<Account>();
+
+            string query = @"
+    SELECT 
+        p.ProfileID, 
+        c.Fullname         
+    FROM 
+        Profile p
+    INNER JOIN 
+        CreateAccount c ON p.UserID = c.UserID
+    WHERE 
+        p.IsMentor = 1";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        accounts.Add(new Account
+                        {
+                            ProfileID = (int)reader["ProfileID"],
+                            fullname = reader["Fullname"].ToString()
+                        });
+                    }
+                }
+            }
+
+            return accounts;
+        }
+
+
 
         //sends email confirmation upon successful login; check CreateAccount.xaml.cs, under OnSignUpClicked
         public void sendEmail(string email)
