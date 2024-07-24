@@ -26,7 +26,7 @@ public partial class ChatSpecific : ContentPage
 
        hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
         {
-           // lblChat.Text += $"<b>{user}</b>: {message}<br/>";
+           lblChat.Text += $"<b>{user}</b>: {message}<br/>";
         }); 
 
         Task.Run(() =>
@@ -36,5 +36,16 @@ public partial class ChatSpecific : ContentPage
                 await hubConnection.StartAsync();
             });
         });
+   
+    }
+    private async void btnSend_Clicked(object sender, EventArgs e)
+    {
+        await hubConnection.InvokeCoreAsync("SendMessageToAll", args: new[]
+        {
+                txtUsername.Text,
+                txtMessage.Text
+            });
+
+        txtMessage.Text = String.Empty;
     }
 }
