@@ -140,7 +140,7 @@ public partial class Profile : ContentPage
 
             profile.InsertProfile(userID);
             profile.InsertAddress(userID);
-            profile.InsertSubject(userID);
+            //profile.InsertSubject(userID);
             //profile.InsertSchedules(userID);
 
 
