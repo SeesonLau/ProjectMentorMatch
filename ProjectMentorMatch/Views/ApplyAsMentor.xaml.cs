@@ -6,18 +6,29 @@ using ProjectMentorMatch.Models;
 using Microsoft.Data.SqlClient;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Syncfusion.Maui.Core;
+//using Windows.System;
 
 namespace ProjectMentorMatch.Views;
 
 public partial class ApplyAsMentor : ContentPage
 {
     ProfileModels profile;
+    ScheduleViewModel scheduleViewModel;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
+        scheduleViewModel = new ScheduleViewModel();
+        LoadSchedules();
 
     }
+
+    private async void LoadSchedules()
+    {
+        int userId = App.UserID;
+        await scheduleViewModel.LoadSchedules(userId);
+    }
+
     private async void GoBackButton_Clicked(object sender, EventArgs e)
     {
         await Shell.Current.GoToAsync("//Profile", animate: true);
@@ -29,6 +40,7 @@ public partial class ApplyAsMentor : ContentPage
         {
             int userID = App.UserID;
         profile.ApplyAsMentor(userID);
+            await scheduleViewModel.SaveSchedules(userID);
             await DisplayAlert("Success", "You're now a mentor bish.", "OK");
         }
         catch (Exception ex)
