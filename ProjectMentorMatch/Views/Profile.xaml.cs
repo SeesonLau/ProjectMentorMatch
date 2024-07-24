@@ -105,7 +105,7 @@ public partial class Profile : ContentPage
     }
     private async void OnSaveProfileClicked(object sender, EventArgs e)
     {
-        ScheduleMenteeViewModel SVM = new ScheduleMenteeViewModel();
+       // ScheduleMenteeViewModel SVM = new ScheduleMenteeViewModel();
 
 
         DateTime? birthday = birthDatePicker.Date;

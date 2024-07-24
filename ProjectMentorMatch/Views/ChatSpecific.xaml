@@ -10,6 +10,8 @@
 
     <ContentPage.Content>
 
+       
+
         <sfchat:SfChat x:Name="sfChat"
                            Messages="{Binding Messages}"
                            CurrentUser="{Binding CurrentUser}" 
@@ -17,7 +19,10 @@
                            MessageSpacing="24"
                            MessageShape="DualTearDrop"
                            BackgroundColor="LightBlue"
+                       
                        />
+
+       
         <!-- this makes sure current user is different from other receiver/sender among other things-->
 
 
