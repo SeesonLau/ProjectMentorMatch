@@ -17,174 +17,182 @@
         <local:ViewModels />
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions=".1*, *" Margin="0,5,0,0">
-        <!-- Header Section -->
-        <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#D8ECFF" Offset="0.0" />
+                <GradientStop Color="#95C2EC" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid RowDefinitions=".1*, *" Margin="0,5,0,0">
+            <!-- Header Section -->
+            <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
 
-            <ImageButton Source="goback_icon.png" 
-             HorizontalOptions="Start" 
-             VerticalOptions="Center"
-             WidthRequest="40"
-             HeightRequest="40"
-             Clicked="GoBackButton_Clicked"/>
+                <ImageButton Source="goback_icon.png" 
+         HorizontalOptions="Start" 
+         VerticalOptions="Center"
+         WidthRequest="40"
+         HeightRequest="40"
+         Clicked="GoBackButton_Clicked"/>
 
-            <Label Grid.Column="1"
-            FontSize="24"
-            HorizontalTextAlignment="Center"
-            Text="Apply as Mentor"
-            TextColor="#006EBB"
-            FontAttributes="Bold"
-            VerticalOptions="Center" />
+                <Label Grid.Column="1"
+        FontSize="24"
+        HorizontalTextAlignment="Center"
+        Text="Apply as Mentor"
+        TextColor="#006EBB"
+        FontAttributes="Bold"
+        VerticalOptions="Center" />
 
 
-        </Grid>
-        <ScrollView Grid.Row="2">
-            <VerticalStackLayout Padding="30">
-                <VerticalStackLayout>
-                    <!-- About Me Section -->
-                    <Label Text="About me" 
-                    FontSize="18" 
-                    FontAttributes="Bold" 
-                    TextColor="#006EBB"  
-                    Margin="0,0,0,10" />
-                    <material:EditorField Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
-                </VerticalStackLayout>
+            </Grid>
+            <ScrollView Grid.Row="2">
+                <VerticalStackLayout Padding="30">
+                    <VerticalStackLayout>
+                        <!-- About Me Section -->
+                        <Label Text="About me" 
+                FontSize="18" 
+                FontAttributes="Bold" 
+                TextColor="#006EBB"  
+                Margin="0,0,0,10" />
+                        <material:EditorField Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
+                    </VerticalStackLayout>
 
-                <VerticalStackLayout>
-                    <Label Text="Subject Preferences" 
-                               FontSize="18" 
-                               FontAttributes="Bold" 
-                               TextColor="#006EBB" 
-                               Margin="0,20,0,15" />
-
-                    <Label Text="Academic Subjects" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
-
-                    <material:MultiplePickerField 
-                              x:Name="academicSubjectsPicker"
-                              Title="Academic Subjects" 
-                              Icon="subject_icon.png" 
-                              Margin="0,5,0,5" 
-                              AccentColor="White" 
-                              WidthRequest="330"
-                              ItemsSource="{Binding Subjects.AvailableSub}"
-                              SelectedItems="{Binding Subjects.SelectedSub}">
-                    </material:MultiplePickerField>
-
-                    <Label Text="Non-Academic Subject" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
-
-                    <material:MultiplePickerField 
-                              x:Name="nonAcademicSubjectsPicker"
-                              Title="Non-academic Subjects" 
-                              Icon="subject_icon.png" 
-                              Margin="0,5,0,5" 
-                              WidthRequest="330" 
-                              AccentColor="LightBlue"
-                              ItemsSource="{Binding Subjects.AvailableNonSub}"
-                              SelectedItems="{Binding Subjects.SelectedNonSub}">
-                    </material:MultiplePickerField>
-
-                    <Button Text="Display Selected Subjects" 
-                            Margin="0,10,0,10" 
-                            Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
-
-                    <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
-                    <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="Available Schedule" 
+                    <VerticalStackLayout>
+                        <Label Text="Subject Preferences" 
                            FontSize="18" 
                            FontAttributes="Bold" 
                            TextColor="#006EBB" 
                            Margin="0,20,0,15" />
 
-                    <CollectionView ItemsSource="{Binding Schedule.Days}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal" Spacing="5">
-                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Day}" VerticalOptions="Center"/>
-                                    <material:TimePickerField Time="{Binding FromTime}" 
-                                              IsVisible="{Binding IsSelected}" 
-                                              Title="FROM" 
-                                              Format="hh:mm tt" 
-                                              FontSize="13" 
-                                              HeightRequest="50" 
-                                              Margin="5" 
-                                              VerticalOptions="Center" 
-                                              HorizontalOptions="Center"/>
+                        <Label Text="Academic Subjects" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                                    <material:TimePickerField Time="{Binding ToTime}" 
-                                              IsVisible="{Binding IsSelected}" 
-                                              Title="TO" 
-                                              Format="hh:mm tt" 
-                                              HeightRequest="50" 
-                                              FontSize="13" 
-                                              Margin="5" 
-                                              VerticalOptions="Center" 
-                                              HorizontalOptions="Center"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
+                        <material:MultiplePickerField 
+                          x:Name="academicSubjectsPicker"
+                          Title="Academic Subjects" 
+                          Icon="subject_icon.png" 
+                          Margin="0,5,0,5" 
+                          AccentColor="White" 
+                          WidthRequest="330"
+                          ItemsSource="{Binding Subjects.AvailableSub}"
+                          SelectedItems="{Binding Subjects.SelectedSub}">
+                        </material:MultiplePickerField>
 
-                    <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
+                        <Label Text="Non-Academic Subject" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                    <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
-                </VerticalStackLayout>
-                <!-- Preferred Setup Filter -->
-                <Label Text="Preferred Setup" 
+                        <material:MultiplePickerField 
+                          x:Name="nonAcademicSubjectsPicker"
+                          Title="Non-academic Subjects" 
+                          Icon="subject_icon.png" 
+                          Margin="0,5,0,5" 
+                          WidthRequest="330" 
+                          AccentColor="LightBlue"
+                          ItemsSource="{Binding Subjects.AvailableNonSub}"
+                          SelectedItems="{Binding Subjects.SelectedNonSub}">
+                        </material:MultiplePickerField>
+
+                        <Button Text="Display Selected Subjects" 
+                        Margin="0,10,0,10" 
+                        Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
+
+                        <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
+                        <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Spacing="20">
+                        <Label Text="Available Schedule" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
+
+                        <CollectionView ItemsSource="{Binding Schedule.Days}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout Orientation="Horizontal" Spacing="5">
+                                        <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                                        <Label Text="{Binding Day}" VerticalOptions="Center"/>
+                                        <material:TimePickerField Time="{Binding FromTime}" 
+                                          IsVisible="{Binding IsSelected}" 
+                                          Title="FROM" 
+                                          Format="hh:mm tt" 
+                                          FontSize="13" 
+                                          HeightRequest="50" 
+                                          Margin="5" 
+                                          VerticalOptions="Center" 
+                                          HorizontalOptions="Center"/>
+
+                                        <material:TimePickerField Time="{Binding ToTime}" 
+                                          IsVisible="{Binding IsSelected}" 
+                                          Title="TO" 
+                                          Format="hh:mm tt" 
+                                          HeightRequest="50" 
+                                          FontSize="13" 
+                                          Margin="5" 
+                                          VerticalOptions="Center" 
+                                          HorizontalOptions="Center"/>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+
+                        <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
+
+                        <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
+                    </VerticalStackLayout>
+                    <!-- Preferred Setup Filter -->
+                    <Label Text="Preferred Setup" 
+                    FontSize="Medium" 
+                    FontAttributes="Bold"
+                    Margin="0,10,0,5"
+                    TextColor="#086EBB">
+                    </Label>
+
+                    <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                        <RadioButton Content="Face to Face" GroupName="SetupModeGroup"  />
+                        <RadioButton Content="Online" GroupName="SetupModeGroup"  />
+                    </StackLayout>
+
+                    <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                        <RadioButton Content="One-on-one" GroupName="InteractionModeGroup"  />
+                        <RadioButton Content="Group" GroupName="InteractionModeGroup"  />
+                    </StackLayout>
+                    <VerticalStackLayout>
+                        <!-- Session Rates -->
+                        <Label Text="Session Fee" 
                         FontSize="Medium" 
                         FontAttributes="Bold"
-                        Margin="0,10,0,5"
+                        Margin="0,50,0,5"
                         TextColor="#086EBB">
-                </Label>
-
-                <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                    <RadioButton Content="Face to Face" GroupName="SetupModeGroup"  />
-                    <RadioButton Content="Online" GroupName="SetupModeGroup"  />
-                </StackLayout>
-
-                <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                    <RadioButton Content="One-on-one" GroupName="InteractionModeGroup"  />
-                    <RadioButton Content="Group" GroupName="InteractionModeGroup"  />
-                </StackLayout>
-                <VerticalStackLayout>
-                    <!-- Session Rates -->
-                    <Label Text="Session Fee" 
-                            FontSize="Medium" 
-                            FontAttributes="Bold"
-                            Margin="0,50,0,5"
-                            TextColor="#086EBB">
+                        </Label>
+                        <material:TextField Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
+                    </VerticalStackLayout>
+                    <!-- Apply Button-->
+                    <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
+                    <Label Text="or" 
+                   Padding ="5" 
+                   HorizontalOptions="Center" 
+                   VerticalOptions="Center"
+                   FontAttributes="Bold">
                     </Label>
-                    <material:TextField Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
+                    <Button Text="Withdraw as Mentor"
+                    x:Name="btnWithdrawMentor"
+                    TextColor="Black"
+                    BackgroundColor="Yellow"
+                    BorderColor="Yellow"
+                    BorderWidth="1.5"                      
+                    FontAttributes="Bold" 
+                    HeightRequest="39" 
+                    WidthRequest="200" 
+                    Clicked="btnWithdrawMentor_Clicked"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center">
+                    </Button>
                 </VerticalStackLayout>
-                <!-- Apply Button-->
-                <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
-                <Label Text="or" 
-                       Padding ="5" 
-                       HorizontalOptions="Center" 
-                       VerticalOptions="Center"
-                       FontAttributes="Bold">
-                </Label>
-                <Button Text="Withdraw as Mentor"
-                        x:Name="btnWithdrawMentor"
-                        TextColor="Black"
-                        BackgroundColor="Yellow"
-                        BorderColor="LightYellow"
-                        BorderWidth="1.5"                      
-                        FontAttributes="Bold" 
-                        HeightRequest="39" 
-                        WidthRequest="200" 
-                        Clicked="btnWithdrawMentor_Clicked"
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center">
-                </Button>
-            </VerticalStackLayout>
-        </ScrollView>
+            </ScrollView>
+        </Grid>
     </Grid>
 </ContentPage>

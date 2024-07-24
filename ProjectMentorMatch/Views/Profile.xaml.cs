@@ -40,18 +40,13 @@ public partial class Profile : ContentPage
 
             string? fullname = profile.GetFullName(userID);
             string? email = profile.GetEmail(userID);
-
             string? cN = profile.GetContactNumber(userID);
             DateTime? birthday = profile.GetBirthday(userID);
             string? qualification = profile.GetQualification(userID);
-            string? eduback = profile.GetEducBack(userID);
             string? gender = profile.GetGender(userID);
-
             string? addressCity = profile.GetAddressCity(userID);
-            string? addressProvince = profile.GetAddressProvince(userID);
-         
-            var subjects = await profile.GetSubjectMenteeAsync(userID);
-
+            string? addressProvince = profile.GetAddressProvince(userID);   
+            //var subjects = await profile.GetSubjectMenteeAsync(userID);
             string profileImage = profile.GetImage(userID);
             
             MainThread.BeginInvokeOnMainThread(() =>
@@ -62,18 +57,10 @@ public partial class Profile : ContentPage
                 gradeCourseEditor.Text = qualification;
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
-                //educationalBackgroundEditor.Text = eduback;
                 if (birthday.HasValue)
                 {
                     birthDatePicker.Date = birthday.Value;
                 }
-                
-                //academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
-                //nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
-
-
-                    ProfileImage.ImageSource = "Resources/Images/" + profileImage;
-
                 if (genderChipGroup.Items != null)
                 {
                     var chipToSelect = genderChipGroup.Items.FirstOrDefault(chip => chip.Text == gender);
@@ -81,6 +68,10 @@ public partial class Profile : ContentPage
                     {
                         genderChipGroup.SelectedItem = chipToSelect;
                     }
+                }
+                if (!string.IsNullOrWhiteSpace(profileImage))
+                {
+                    ProfileImage.ImageSource = "Resources/Images/" + profileImage;
                 }
             });
         }

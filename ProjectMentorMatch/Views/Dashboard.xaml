@@ -406,7 +406,7 @@
 
                     <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Spacing="5">
 
-                        <Label Text="{Binding CurrentItemAboutMe}" 
+                        <Label Text="About Me" 
                     FontAttributes="Bold" 
                     FontSize="16" 
                     Margin="0,20,0,0"
@@ -414,8 +414,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ...        
-                    For binding pa ning mga content diri" 
+                        <Label  Text="{Binding CurrentItemAboutMe}" 
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
@@ -432,7 +431,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                        <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
@@ -450,7 +449,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                        <Label  Text="{Binding CurrentItemQualifications}"
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 
@@ -482,7 +481,7 @@
                         </Label>
 
 
-                        <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                        <Label  Text="{Binding CurrentItemContactNumber}" 
                     FontAttributes="Bold" 
                     FontSize="16" TextColor="#a3a3a3"/>
 

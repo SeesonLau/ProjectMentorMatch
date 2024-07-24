@@ -48,6 +48,9 @@ namespace ProjectMentorMatch.ViewModels
         public string CurrentItemAboutMe => CurrentItem?.aboutMe;
         public string CurrentItemQualifications => CurrentItem?.qualifications;
 
+        public string CurrentItemContactNumber => CurrentItem?.contactNumber;   
+
+        public string CurrentItemSubjects => CurrentItem?.subjects;
 
 
 
@@ -80,9 +83,16 @@ namespace ProjectMentorMatch.ViewModels
                 {
                      ItemName = mentor.GetFullname(),
                     ProfileID = mentor.ProfileID,
+                    aboutMe = mentor.GetAboutMeByUserID(mentor.ProfileID),
                     addressCity = mentor.GetCityByUserID(mentor.ProfileID),  
                     addressProvince = mentor.GetProvinceByUserID(mentor.ProfileID),
-                    
+                    contactNumber = mentor.GetContactNumberByUserID(mentor.ProfileID),
+                    subjects = mentor.GetSubjectsByUserID(mentor.ProfileID),
+                    qualifications = mentor.GetQualificationByUserID(mentor.ProfileID),
+                   
+
+
+                
                  //   addressCity = profile.GetAddressCity(App.UserID),  // Fetch address city
                //     addressProvince = profile.GetAddressProvince(account.GetUserID()),  // Fetch address province
                  //   aboutMe = profile.GetAboutMe(account.GetUserID()),  // Fetch about me

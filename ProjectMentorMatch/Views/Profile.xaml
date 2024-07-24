@@ -14,306 +14,314 @@
         <local:ViewModels/>
     </ContentPage.BindingContext>
 
-    <Grid RowDefinitions=".1*, *" Margin="0,9,0,0">
-        <!-- Header Section -->
-        <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
-            <Label Grid.Column="1"
-                   FontSize="24"
-                   HorizontalTextAlignment="Center"
-                   Text="Profile"
-                   TextColor="#006EBB"
-                   FontAttributes="Bold"
-                   VerticalOptions="Center" />
+    <Grid>
+        <Grid.Background>
+            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                <GradientStop Color="#D8ECFF" Offset="0.0" />
+                <GradientStop Color="#95C2EC" Offset="1.0" />
+            </LinearGradientBrush>
+        </Grid.Background>
+        <Grid RowDefinitions=".1*, *" Margin="0,9,0,0">
+            <!-- Header Section -->
+            <Grid ColumnDefinitions=".2*,*,.2*" Padding="10,0,15,10">
+                <Label Grid.Column="1"
+               FontSize="24"
+               HorizontalTextAlignment="Center"
+               Text="Profile"
+               TextColor="#006EBB"
+               FontAttributes="Bold"
+               VerticalOptions="Center" />
 
-            <ImageButton Source="settings_icon.png"
-                         Grid.Column="2"
-                         HorizontalOptions="End"
-                         VerticalOptions="Center"
-                         WidthRequest="28"
-                         HeightRequest="28"
-                         Clicked="SettingsButton_Clicked"/>
-        </Grid>
+                <ImageButton Source="settings_icon.png"
+                     Grid.Column="2"
+                     HorizontalOptions="End"
+                     VerticalOptions="Center"
+                     WidthRequest="28"
+                     HeightRequest="28"
+                     Clicked="SettingsButton_Clicked"/>
+            </Grid>
 
-        <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
-            <VerticalStackLayout Padding="15,5,0,0">
+            <ScrollView Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+                <VerticalStackLayout Padding="15,5,0,0">
 
-                <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,10">
-                    <!--<buttons:SfSwitch x:Name="SwitchMentor" 
-                                      WidthRequest="50" 
-                                      Grid.Column="2"
-                                      HeightRequest="30" 
-                                      HorizontalOptions="Start"
-                                      VerticalOptions="Center" 
-                                      Margin="0,0,160,0"            
-                                      StateChanged="SwitchMentor_StateChanged"
-                                      StateChanging="SwitchMentor_StateChanging"
-                                      Background="Transparent" /> -->
+                    <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,10">
+                        <!--<buttons:SfSwitch x:Name="SwitchMentor" 
+                                  WidthRequest="50" 
+                                  Grid.Column="2"
+                                  HeightRequest="30" 
+                                  HorizontalOptions="Start"
+                                  VerticalOptions="Center" 
+                                  Margin="0,0,160,0"            
+                                  StateChanged="SwitchMentor_StateChanged"
+                                  StateChanging="SwitchMentor_StateChanging"
+                                  Background="Transparent" /> -->
 
-                    <buttons:SfButton Grid.Column="2" 
-                                      x:Name="sfButton" 
-                                      Text="Be a Mentor" 
-                                      WidthRequest="125" 
-                                      HeightRequest="42" 
-                                      HorizontalOptions="End"
-                                      VerticalOptions="Center" 
-                                      Margin="0,0,5,0"
-                                      Background="#FFDF26"
-                                      FontSize="13"
-                                      TextColor="#303030" 
-                                      FontAttributes="Bold"
-                                      Clicked="OnApplyMentorClicked"/>
-                </HorizontalStackLayout>
-
-                <HorizontalStackLayout HorizontalOptions="Center">
-                    <chip:SfAvatarView x:Name="ProfileImage"
-                                       ContentType="Default"
-                                       VerticalOptions="Center"
-                                       HorizontalOptions="Center"  
-                                       HeightRequest="120"
-                                       CornerRadius="60"
-                                       WidthRequest="120"
-                                       ImageSource="{Binding Profile.ProfileImageSource}"/>
-
-                    <!-- Edit/Upload Profile Picture -->
-                    <ImageButton Source="edit_icon.png" 
-                                 WidthRequest="20" 
-                                 HeightRequest="20" 
-                                 HorizontalOptions="End" 
-                                 VerticalOptions="End"
-                                 Margin="-12,0,0,0"
-                                 Clicked="ImageButton_Clicked">
-                    </ImageButton>
-                </HorizontalStackLayout>
-
-                <VerticalStackLayout>
-                    <Label Text="Personal Information" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB"  
-                           Margin="0,20,0,15" />
-
-                    <Label Text="Name" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
-                    <!-- ENTRY FOR NAME-->
-                    <material:TextField x:Name="userNameEntry"
-                                        Text="{Binding UserName}" 
-                                        Title="Enter your name" 
-                                        Margin="0,5,0,5" 
-                                        WidthRequest="330" />
-
-                    <Label Text="Gender" 
-                           FontSize="15"
-                           FontAttributes="Bold"
-                           Margin="0,5,0,0" />
-
-                    <HorizontalStackLayout>
-                        <chip:SfChipGroup x:Name="genderChipGroup"
-                                          ChipType="Choice"
-                                          Margin="8,0"
-                                          Padding="10,0,0,0"
-                                          ChipTextColor="Black"
-                                          SelectedChipBackground="#086EBB"
-                                          SelectedItem="{Binding SelectedGender}">
-                            <chip:SfChipGroup.Items>
-                                <chip:SfChip Text="Male" Margin="10"/>
-                                <chip:SfChip Text="Female" Margin="10"/>
-                                <chip:SfChip Text="Non-binary" Margin="10"/>
-                            </chip:SfChipGroup.Items>
-                        </chip:SfChipGroup>
+                        <buttons:SfButton Grid.Column="2" 
+                                  x:Name="sfButton" 
+                                  Text="Be a Mentor" 
+                                  WidthRequest="125" 
+                                  HeightRequest="42" 
+                                  HorizontalOptions="End"
+                                  VerticalOptions="Center" 
+                                  Margin="0,0,5,0"
+                                  Background="#FFDF26"
+                                  FontSize="13"
+                                  TextColor="#303030" 
+                                  FontAttributes="Bold"
+                                  Clicked="OnApplyMentorClicked"/>
                     </HorizontalStackLayout>
 
-                    <Label Text="Birth-date" 
-                           FontSize="15" 
-                           Margin="0,10,0,0"
-                           FontAttributes="Bold"/>
+                    <HorizontalStackLayout HorizontalOptions="Center">
+                        <chip:SfAvatarView x:Name="ProfileImage"
+                                   ContentType="Default"
+                                   VerticalOptions="Center"
+                                   HorizontalOptions="Center"  
+                                   HeightRequest="120"
+                                   CornerRadius="60"
+                                   WidthRequest="120"
+                                   ImageSource="{Binding Profile.ProfileImageSource}"/>
 
-                    <material:DatePickerField x:Name="birthDatePicker"
-                                              Date="{Binding BirthDate}"
-                                              Format="MM/dd/yyyy" 
-                                              FontSize="16" 
-                                              WidthRequest="330" 
-                                              Icon="day_icon.png" 
-                                              Margin="0,5,0,5"/>
+                        <!-- Edit/Upload Profile Picture -->
+                        <ImageButton Source="edit_icon.png" 
+                             WidthRequest="20" 
+                             HeightRequest="20" 
+                             HorizontalOptions="End" 
+                             VerticalOptions="End"
+                             Margin="-12,0,0,0"
+                             Clicked="ImageButton_Clicked">
+                        </ImageButton>
+                    </HorizontalStackLayout>
 
-                    <Label Text="Course" 
-                           FontSize="15" 
-                           Margin="0,10,0,0" 
-                           FontAttributes="Bold"/>
+                    <VerticalStackLayout>
+                        <Label Text="Personal Information" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB"  
+                       Margin="0,20,0,15" />
 
-                    <material:EditorField x:Name="gradeCourseEditor"
-                                          Text="{Binding GradeCourse}"
-                                          Title="Enter Course " 
-                                          WidthRequest="330"
+                        <Label Text="Name" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
+                        <!-- ENTRY FOR NAME-->
+                        <material:TextField x:Name="userNameEntry"
+                                    Text="{Binding UserName}" 
+                                    Title="Enter your name" 
+                                    Margin="0,5,0,5" 
+                                    WidthRequest="330" />
+
+                        <Label Text="Gender" 
+                       FontSize="15"
+                       FontAttributes="Bold"
+                       Margin="0,5,0,0" />
+
+                        <HorizontalStackLayout>
+                            <chip:SfChipGroup x:Name="genderChipGroup"
+                                      ChipType="Choice"
+                                      Margin="8,0"
+                                      Padding="10,0,0,0"
+                                      ChipTextColor="Black"
+                                      SelectedChipBackground="#086EBB"
+                                      SelectedItem="{Binding SelectedGender}">
+                                <chip:SfChipGroup.Items>
+                                    <chip:SfChip Text="Male" Margin="10"/>
+                                    <chip:SfChip Text="Female" Margin="10"/>
+                                    <chip:SfChip Text="Non-binary" Margin="10"/>
+                                </chip:SfChipGroup.Items>
+                            </chip:SfChipGroup>
+                        </HorizontalStackLayout>
+
+                        <Label Text="Birth-date" 
+                       FontSize="15" 
+                       Margin="0,10,0,0"
+                       FontAttributes="Bold"/>
+
+                        <material:DatePickerField x:Name="birthDatePicker"
+                                          Date="{Binding BirthDate}"
+                                          Format="MM/dd/yyyy" 
+                                          FontSize="16" 
+                                          WidthRequest="330" 
+                                          Icon="day_icon.png" 
                                           Margin="0,5,0,5"/>
-                </VerticalStackLayout>
 
-                <VerticalStackLayout>
-                    <Label Text="Contact Information" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB" 
-                           Margin="0,20,0,15" />
+                        <Label Text="Course" 
+                       FontSize="15" 
+                       Margin="0,10,0,0" 
+                       FontAttributes="Bold"/>
 
-                    <Label Text="Email" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
+                        <material:EditorField x:Name="gradeCourseEditor"
+                                      Text="{Binding GradeCourse}"
+                                      Title="Enter Course " 
+                                      WidthRequest="330"
+                                      Margin="0,5,0,5"/>
+                    </VerticalStackLayout>
 
-                    <material:TextField x:Name="emailTextField"
-                                        Text="{Binding Email}"
-                                        Title="Enter your email" 
-                                        Margin="0,5,0,5" 
-                                        WidthRequest="330"/>
+                    <VerticalStackLayout>
+                        <Label Text="Contact Information" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
 
-                    <Label Text="Contact Number" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
+                        <Label Text="Email" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                    <material:TextField x:Name="contactNumberTextField"
-                                        Text="{Binding ContactNumber}"
-                                        Title="Enter contact number" 
-                                        Margin="0,5,0,5" 
-                                        WidthRequest="330"/>
-                </VerticalStackLayout>
+                        <material:TextField x:Name="emailTextField"
+                                    Text="{Binding Email}"
+                                    Title="Enter your email" 
+                                    Margin="0,5,0,5" 
+                                    WidthRequest="330"/>
 
-                <VerticalStackLayout>
-                    <Label Text="Address Information" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB" 
-                           Margin="0,20,0,15" />
+                        <Label Text="Contact Number" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                    <Label Text="Province" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
+                        <material:TextField x:Name="contactNumberTextField"
+                                    Text="{Binding ContactNumber}"
+                                    Title="Enter contact number" 
+                                    Margin="0,5,0,5" 
+                                    WidthRequest="330"/>
+                    </VerticalStackLayout>
 
-                    <material:TextField x:Name="provinceTextField"
-                                        Text="{Binding Province}"
-                                        Title="Enter your province" 
-                                        Margin="0,5,0,5" 
-                                        WidthRequest="330"/>
+                    <VerticalStackLayout>
+                        <Label Text="Address Information" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
 
-                    <Label Text="City/Municipality" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
+                        <Label Text="Province" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                    <material:TextField x:Name="cityTextField"
-                                        Text="{Binding CityMunicipality}"
-                                        Title="Enter your city/municipality" 
-                                        Margin="0,5,0,5" 
-                                        WidthRequest="330"/>
-                </VerticalStackLayout>
+                        <material:TextField x:Name="provinceTextField"
+                                    Text="{Binding Province}"
+                                    Title="Enter your province" 
+                                    Margin="0,5,0,5" 
+                                    WidthRequest="330"/>
 
-                <!-- <VerticalStackLayout>
-                    <Label Text="Educational Background" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB" 
-                           Margin="0,20,0,15" />
+                        <Label Text="City/Municipality" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
 
-                    <material:EditorField x:Name="educationalBackgroundEditor"
-                                          Text="{Binding EducationalBackground}"
-                                          Title="Enter your educational background" 
-                                          Margin="0,5,0,5" 
-                                          WidthRequest="330"/>
-                </VerticalStackLayout>
+                        <material:TextField x:Name="cityTextField"
+                                    Text="{Binding CityMunicipality}"
+                                    Title="Enter your city/municipality" 
+                                    Margin="0,5,0,5" 
+                                    WidthRequest="330"/>
+                    </VerticalStackLayout>
 
-                <VerticalStackLayout>
-                    <Label Text="Subject Preferences" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB" 
-                           Margin="0,20,0,15" />
+                    <!-- <VerticalStackLayout>
+                <Label Text="Educational Background" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
 
-                    <Label Text="Academic Subjects" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
-
-                    <material:MultiplePickerField 
-                              x:Name="academicSubjectsPicker"
-                              Title="Academic Subjects" 
-                              Icon="subject_icon.png" 
-                              Margin="0,5,0,5" 
-                              AccentColor="White" 
-                              WidthRequest="330"
-                              ItemsSource="{Binding Subjects.AvailableSub}"
-                              SelectedItems="{Binding Subjects.SelectedSub}">
-                    </material:MultiplePickerField>
-
-                    <Label Text="Non-Academic Subject" 
-                           FontSize="15" 
-                           FontAttributes="Bold"/>
-
-                    <material:MultiplePickerField 
-                              x:Name="nonAcademicSubjectsPicker"
-                              Title="Non-academic Subjects" 
-                              Icon="subject_icon.png" 
-                              Margin="0,5,0,5" 
-                              WidthRequest="330" 
-                              AccentColor="LightBlue"
-                              ItemsSource="{Binding Subjects.AvailableNonSub}"
-                              SelectedItems="{Binding Subjects.SelectedNonSub}">
-                    </material:MultiplePickerField>
-
-                    <Button Text="Display Selected Subjects" 
-                            Margin="0,10,0,10" 
-                            Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
-
-                    <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
-                    <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
-                </VerticalStackLayout>
-
-                <VerticalStackLayout Spacing="20">
-                    <Label Text="Available Schedule" 
-                           FontSize="18" 
-                           FontAttributes="Bold" 
-                           TextColor="#006EBB" 
-                           Margin="0,20,0,15" />
-
-                    <CollectionView ItemsSource="{Binding Schedule.Days}">
-                        <CollectionView.ItemTemplate>
-                            <DataTemplate>
-                                <StackLayout Orientation="Horizontal" Spacing="5">
-                                    <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
-                                    <Label Text="{Binding Day}" VerticalOptions="Center"/>
-                                    <material:TimePickerField Time="{Binding FromTime}" 
-                                                              IsVisible="{Binding IsSelected}" 
-                                                              Title="FROM" 
-                                                              Format="hh:mm tt" 
-                                                              FontSize="13" 
-                                                              HeightRequest="50" 
-                                                              Margin="5" 
-                                                              VerticalOptions="Center" 
-                                                              HorizontalOptions="Center"/>
-
-                                    <material:TimePickerField Time="{Binding ToTime}" 
-                                                              IsVisible="{Binding IsSelected}" 
-                                                              Title="TO" 
-                                                              Format="hh:mm tt" 
-                                                              HeightRequest="50" 
-                                                              FontSize="13" 
-                                                              Margin="5" 
-                                                              VerticalOptions="Center" 
-                                                              HorizontalOptions="Center"/>
-                                </StackLayout>
-                            </DataTemplate>
-                        </CollectionView.ItemTemplate>
-                    </CollectionView>
-
-                    <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
-
-                    <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
-                </VerticalStackLayout>-->
-                <Button Text="Save" 
-                        Clicked="OnSaveProfileClicked"
-                        FontAttributes="Bold" 
-                        HeightRequest="40" 
-                        WidthRequest="250"
-                        Margin="10,10"
-                        HorizontalOptions="Center" 
-                        VerticalOptions="Center">
-                </Button>
+                <material:EditorField x:Name="educationalBackgroundEditor"
+                                      Text="{Binding EducationalBackground}"
+                                      Title="Enter your educational background" 
+                                      Margin="0,5,0,5" 
+                                      WidthRequest="330"/>
             </VerticalStackLayout>
-        </ScrollView>
+
+            <VerticalStackLayout>
+                <Label Text="Subject Preferences" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
+
+                <Label Text="Academic Subjects" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
+
+                <material:MultiplePickerField 
+                          x:Name="academicSubjectsPicker"
+                          Title="Academic Subjects" 
+                          Icon="subject_icon.png" 
+                          Margin="0,5,0,5" 
+                          AccentColor="White" 
+                          WidthRequest="330"
+                          ItemsSource="{Binding Subjects.AvailableSub}"
+                          SelectedItems="{Binding Subjects.SelectedSub}">
+                </material:MultiplePickerField>
+
+                <Label Text="Non-Academic Subject" 
+                       FontSize="15" 
+                       FontAttributes="Bold"/>
+
+                <material:MultiplePickerField 
+                          x:Name="nonAcademicSubjectsPicker"
+                          Title="Non-academic Subjects" 
+                          Icon="subject_icon.png" 
+                          Margin="0,5,0,5" 
+                          WidthRequest="330" 
+                          AccentColor="LightBlue"
+                          ItemsSource="{Binding Subjects.AvailableNonSub}"
+                          SelectedItems="{Binding Subjects.SelectedNonSub}">
+                </material:MultiplePickerField>
+
+                <Button Text="Display Selected Subjects" 
+                        Margin="0,10,0,10" 
+                        Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
+
+                <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
+                <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
+            </VerticalStackLayout>
+
+            <VerticalStackLayout Spacing="20">
+                <Label Text="Available Schedule" 
+                       FontSize="18" 
+                       FontAttributes="Bold" 
+                       TextColor="#006EBB" 
+                       Margin="0,20,0,15" />
+
+                <CollectionView ItemsSource="{Binding Schedule.Days}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Spacing="5">
+                                <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
+                                <Label Text="{Binding Day}" VerticalOptions="Center"/>
+                                <material:TimePickerField Time="{Binding FromTime}" 
+                                                          IsVisible="{Binding IsSelected}" 
+                                                          Title="FROM" 
+                                                          Format="hh:mm tt" 
+                                                          FontSize="13" 
+                                                          HeightRequest="50" 
+                                                          Margin="5" 
+                                                          VerticalOptions="Center" 
+                                                          HorizontalOptions="Center"/>
+
+                                <material:TimePickerField Time="{Binding ToTime}" 
+                                                          IsVisible="{Binding IsSelected}" 
+                                                          Title="TO" 
+                                                          Format="hh:mm tt" 
+                                                          HeightRequest="50" 
+                                                          FontSize="13" 
+                                                          Margin="5" 
+                                                          VerticalOptions="Center" 
+                                                          HorizontalOptions="Center"/>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
+
+                <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
+            </VerticalStackLayout>-->
+                    <Button Text="Save" 
+                    Clicked="OnSaveProfileClicked"
+                    FontAttributes="Bold" 
+                    HeightRequest="40" 
+                    WidthRequest="250"
+                    Margin="10,10"
+                    HorizontalOptions="Center" 
+                    VerticalOptions="Center">
+                    </Button>
+                </VerticalStackLayout>
+            </ScrollView>
+        </Grid>
     </Grid>
 </ContentPage>
