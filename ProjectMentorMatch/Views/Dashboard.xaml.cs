@@ -200,7 +200,7 @@ public partial class Dashboard : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Booking(null));
+        await Navigation.PushAsync(new Booking(null, 0));
     }
 
     private void btnEx_Clicked(object sender, EventArgs e)
@@ -221,7 +221,10 @@ public partial class Dashboard : ContentPage
         if (viewModel != null && viewModel.CurrentItem != null)
         {
             string selectedFullName = viewModel.CurrentItem.ItemName;
-            Navigation.PushAsync(new Booking(selectedFullName));
+            int profileID = viewModel.CurrentItem.ProfileID;
+
+            // Navigate to Booking page with both parameters
+            Navigation.PushAsync(new Booking(selectedFullName, profileID));
         }
     }
 

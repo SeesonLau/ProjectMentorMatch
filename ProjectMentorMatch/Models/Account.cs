@@ -24,6 +24,8 @@ namespace ProjectMentorMatch.Models
         private string? email;
         private string? password;
 
+        public string? AddressCity;
+
         private int retuserID;
 
         public int GetUserID()
@@ -42,11 +44,64 @@ namespace ProjectMentorMatch.Models
         {
             return password;
         }
+
+        public string? GetAddressCity()
+        {
+            return AddressCity;
+        }
+
         public void SetUserID(int retuserID) {this.retuserID = retuserID; }
         public void SetFullname(string fullname) {this.fullname = fullname;}  
         public void SetEmail(string email) {this.email = email;}
         public void SetPassword(string password) {this.password = password;}
-       
+
+        public void SetAddressCity(string AddressCity) {this.AddressCity = AddressCity;}
+
+        public string? GetCityByUserID(int userID)
+        {
+            string query = "SELECT City FROM Address WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+        public string? GetProvinceByUserID(int userID)
+        {
+            string query = "SELECT Province FROM Address WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                object result = command.ExecuteScalar();
+
+                if (result != null && result != DBNull.Value)
+                {
+                    return result.ToString();
+                }
+            }
+
+            return null; // Return null if no city is found
+        }
+
+
+
+
         public void SignUp()
         {
             /*
