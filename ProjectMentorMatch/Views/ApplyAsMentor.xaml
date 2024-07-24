@@ -51,37 +51,56 @@
                 </VerticalStackLayout>
 
                 <VerticalStackLayout>
-                    <!-- Subject of Expertise Section -->
-                    <Label Text="Subject of Expertise" 
-                     FontSize="18" 
-                     FontAttributes="Bold" 
-                     TextColor="#006EBB"  
-                     Margin="0,20,0,10" />
-                    <material:MultiplePickerField x:Name="acadsPicker" 
-                                                  Title="Academic Subjects" 
-                                                  Icon="subject_icon.png" 
-                                                  Margin="0,0,0,10" 
-                                                  AccentColor="White"
-                                                  ItemsSource="{Binding Subjects.AvailableSub}"
-                                                  SelectedItems="{Binding Subjects.SelectedSub}">
+                    <Label Text="Subject Preferences" 
+                               FontSize="18" 
+                               FontAttributes="Bold" 
+                               TextColor="#006EBB" 
+                               Margin="0,20,0,15" />
+
+                    <Label Text="Academic Subjects" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:MultiplePickerField 
+                              x:Name="academicSubjectsPicker"
+                              Title="Academic Subjects" 
+                              Icon="subject_icon.png" 
+                              Margin="0,5,0,5" 
+                              AccentColor="White" 
+                              WidthRequest="330"
+                              ItemsSource="{Binding Subjects.AvailableSub}"
+                              SelectedItems="{Binding Subjects.SelectedSub}">
                     </material:MultiplePickerField>
 
-                    <material:MultiplePickerField x:Name="nonacadsPicker" 
-                                                  Title="Non-academic Subjects" 
-                                                  Icon="subject_icon.png" 
-                                                  Margin="0,0,0,10"
-                                                  ItemsSource="{Binding Subjects.AvailableNonSub}"
-                                                  SelectedItems="{Binding Subjects.SelectedNonSub}">
+                    <Label Text="Non-Academic Subject" 
+                           FontSize="15" 
+                           FontAttributes="Bold"/>
+
+                    <material:MultiplePickerField 
+                              x:Name="nonAcademicSubjectsPicker"
+                              Title="Non-academic Subjects" 
+                              Icon="subject_icon.png" 
+                              Margin="0,5,0,5" 
+                              WidthRequest="330" 
+                              AccentColor="LightBlue"
+                              ItemsSource="{Binding Subjects.AvailableNonSub}"
+                              SelectedItems="{Binding Subjects.SelectedNonSub}">
                     </material:MultiplePickerField>
+
+                    <Button Text="Display Selected Subjects" 
+                            Margin="0,10,0,10" 
+                            Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
+
+                    <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
+                    <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
                 </VerticalStackLayout>
 
-                <VerticalStackLayout Spacing="15">
-                    <!-- Available Schedule -->
+                <VerticalStackLayout Spacing="20">
                     <Label Text="Available Schedule" 
-                    FontSize="18" 
-                    FontAttributes="Bold" 
-                    TextColor="#006EBB" 
-                    Margin="0,20,0,10" />
+                           FontSize="18" 
+                           FontAttributes="Bold" 
+                           TextColor="#006EBB" 
+                           Margin="0,20,0,15" />
 
                     <CollectionView ItemsSource="{Binding Schedule.Days}">
                         <CollectionView.ItemTemplate>
@@ -90,31 +109,32 @@
                                     <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
                                     <Label Text="{Binding Day}" VerticalOptions="Center"/>
                                     <material:TimePickerField Time="{Binding FromTime}" 
-                                          IsVisible="{Binding IsSelected}" 
-                                          Title="FROM" 
-                                          Format="hh:mm tt" 
-                                          FontSize="13" 
-                                          HeightRequest="50" 
-                                          Margin="5" 
-                                          VerticalOptions="Center" 
-                                          HorizontalOptions="Center"/>
+                                              IsVisible="{Binding IsSelected}" 
+                                              Title="FROM" 
+                                              Format="hh:mm tt" 
+                                              FontSize="13" 
+                                              HeightRequest="50" 
+                                              Margin="5" 
+                                              VerticalOptions="Center" 
+                                              HorizontalOptions="Center"/>
 
                                     <material:TimePickerField Time="{Binding ToTime}" 
-                                          IsVisible="{Binding IsSelected}" 
-                                          Title="TO" 
-                                          Format="hh:mm tt" 
-                                          HeightRequest="50" 
-                                          FontSize="13" 
-                                          Margin="5" 
-                                          VerticalOptions="Center" 
-                                          HorizontalOptions="Center"/>
-
-
+                                              IsVisible="{Binding IsSelected}" 
+                                              Title="TO" 
+                                              Format="hh:mm tt" 
+                                              HeightRequest="50" 
+                                              FontSize="13" 
+                                              Margin="5" 
+                                              VerticalOptions="Center" 
+                                              HorizontalOptions="Center"/>
                                 </StackLayout>
-
                             </DataTemplate>
                         </CollectionView.ItemTemplate>
                     </CollectionView>
+
+                    <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
+
+                    <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
                 </VerticalStackLayout>
 
                 <VerticalStackLayout>
