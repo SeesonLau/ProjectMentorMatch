@@ -11,9 +11,8 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-
+    ProfileModels GetProfileID = new ProfileModels();
     private bool _isRefreshing;
-    private int selectedProfileID; // This should be set when selecting a profile
 
     // INSTRUCTIONS HOW TO BIND DATA: 
     // 0. Make sure that the attributes/fields are public from the classes and initialized it in GET AND SET in order the binding to recognize it as a property in the xaml
@@ -229,8 +228,26 @@ public partial class Dashboard : ContentPage
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-        LogProfileIDInAnalytics(selectedProfileID);
+        if (GetProfileID.ProfileID != 0) // Check if a valid ProfileID is set
+        {
+            LogProfileIDInAnalytics(ProfileModels.GetProfileIDForMentors());
+        }
+        else
+        {
+            // Handle the case where no profile is selected
+            DisplayAlert("No Profile Selected", "Please select a profile before clicking the button.", "OK");
+        }
     }
+    private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
+    {
+        var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
+        if (selectedProfile != null)
+        {
+            GetProfileID.ProfileID = selectedProfile.ProfileID;
+        }
+    }
+
+
 
     public static void LogProfileIDInAnalytics(int profileID)
     {

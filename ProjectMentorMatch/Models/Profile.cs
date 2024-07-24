@@ -118,6 +118,38 @@ namespace ProjectMentorMatch.Models
             return profileID;
         }
 
+        public static int GetProfileIDForMentors()
+        {
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+            int profileID = -1; // Default value if no profile is found
+
+            try
+            {
+                using (var connection = GetConnection())
+                using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        profileID = Convert.ToInt32(result);
+                        // Optional: SetProfileID(profileID); if you need to set the profile ID somewhere
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception (e.g., log it or display an error message)
+                Console.WriteLine("An error occurred while retrieving the ProfileID: " + ex.Message);
+            }
+
+            return profileID;
+        }
+
+
+
         // GET
         public string? GetFullName(int userID)
         {

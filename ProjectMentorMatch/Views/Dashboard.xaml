@@ -57,7 +57,7 @@
                                        FontAttributes="Bold" 
                                        TextColor="#006EBB" 
                                        Margin="0,20,0,15" />
-                                <material:MultiplePickerField 
+                                <!--<material:MultiplePickerField 
                                           x:Name="academicSubjectsPicker"
                                           Title="Academic Subjects" 
                                           Icon="subject_icon.png" 
@@ -66,9 +66,9 @@
                                           WidthRequest="330"
                                           ItemsSource="{Binding Subjects.AvailableSub}"
                                           SelectedItems="{Binding Subjects.SelectedSub}">
-                                </material:MultiplePickerField>
+                                </material:MultiplePickerField>-->
 
-                                <material:MultiplePickerField 
+                                <!--<material:MultiplePickerField 
                                           x:Name="nonAcademicSubjectsPicker"
                                           Title="Non-academic Subjects" 
                                           Icon="subject_icon.png" 
@@ -77,14 +77,14 @@
                                           AccentColor="LightBlue"
                                           ItemsSource="{Binding Subjects.AvailableNonSub}"
                                           SelectedItems="{Binding Subjects.SelectedNonSub}">
-                                </material:MultiplePickerField>
+                                </material:MultiplePickerField>-->
 
-                                <Button Text="Display Selected Subjects" 
+                                <!--<Button Text="Display Selected Subjects" 
                                         Margin="0,10,0,10" 
-                                        Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
+                                        Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />-->
 
-                                <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
-                                <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
+                                <!--<Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
+                                <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />-->
                             </VerticalStackLayout>
 
                             <!-- Day Filter -->
@@ -149,6 +149,7 @@
                                           ItemsSource="{Binding ItemList}"
                                           IndicatorView="indicatorView"
                                           IsSwipeEnabled="False"
+                                         
                                           CurrentItem="{Binding CurrentItem}">
                                 <CarouselView.ItemTemplate>
                                     <DataTemplate x:DataType="local:ItemInfo">
