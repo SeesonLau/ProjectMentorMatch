@@ -23,7 +23,7 @@ namespace ProjectMentorMatch.ViewModels
         {
             get => _currentItem;
             //set => SetProperty(ref _currentItem, value);
-            set
+            set         
             {
                 if (_currentItem != value)
                 {
