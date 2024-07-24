@@ -159,6 +159,7 @@
                         FontAttributes="Bold" 
                         HeightRequest="39" 
                         WidthRequest="200" 
+                        Clicked="btnWithdrawMentor_Clicked"
                         HorizontalOptions="Center" 
                         VerticalOptions="Center">
                 </Button>

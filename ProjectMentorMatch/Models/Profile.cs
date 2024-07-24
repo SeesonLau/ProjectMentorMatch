@@ -781,5 +781,21 @@ namespace ProjectMentorMatch.Models
             }
         }
 
+        public void WithdrewAsMentor(int userID)
+        {
+            string query = "UPDATE Profile SET isMentor = @isMentor WHERE UserID = @UserID";
+
+            using (var connection = GetConnection())
+            using (var command = connection.CreateCommand())
+            {
+                command.CommandText = query;
+                command.Parameters.AddWithValue("@isMentor", 0);
+                command.Parameters.AddWithValue("@UserID", userID);
+
+                connection.Open();
+                command.ExecuteNonQuery();
+            }
+        }
+
     }
 }
