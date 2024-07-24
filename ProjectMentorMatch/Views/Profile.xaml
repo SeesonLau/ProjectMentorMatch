@@ -38,7 +38,7 @@
             <VerticalStackLayout Padding="15,5,0,0">
 
                 <HorizontalStackLayout HorizontalOptions="End" Margin="0,0,0,10">
-                    <buttons:SfSwitch x:Name="SwitchMentor" 
+                    <!--<buttons:SfSwitch x:Name="SwitchMentor" 
                                       WidthRequest="50" 
                                       Grid.Column="2"
                                       HeightRequest="30" 
@@ -47,19 +47,19 @@
                                       Margin="0,0,160,0"            
                                       StateChanged="SwitchMentor_StateChanged"
                                       StateChanging="SwitchMentor_StateChanging"
-                                      Background="Transparent" />
+                                      Background="Transparent" /> -->
 
                     <buttons:SfButton Grid.Column="2" 
                                       x:Name="sfButton" 
-                                      Text="Apply as Mentor" 
+                                      Text="Be a Mentor" 
                                       WidthRequest="125" 
                                       HeightRequest="42" 
                                       HorizontalOptions="End"
                                       VerticalOptions="Center" 
                                       Margin="0,0,5,0"
-                                      Background="Yellow"
+                                      Background="#FFDF26"
                                       FontSize="13"
-                                      TextColor="Black" 
+                                      TextColor="#303030" 
                                       FontAttributes="Bold"
                                       Clicked="OnApplyMentorClicked"/>
                 </HorizontalStackLayout>
@@ -204,7 +204,7 @@
                                         WidthRequest="330"/>
                 </VerticalStackLayout>
 
-                <VerticalStackLayout>
+                <!-- <VerticalStackLayout>
                     <Label Text="Educational Background" 
                            FontSize="18" 
                            FontAttributes="Bold" 
@@ -303,7 +303,7 @@
                     <Button Text="Extract Selected Days" Command="{Binding Schedule.SelectedDaysCommand}" />
 
                     <Label Text="{Binding Schedule.SelectedDaysText}" FontSize="Medium" TextColor="Black" />
-                </VerticalStackLayout>
+                </VerticalStackLayout>-->
                 <Button Text="Save" 
                         Clicked="OnSaveProfileClicked"
                         FontAttributes="Bold" 

@@ -61,14 +61,14 @@ public partial class Profile : ContentPage
                 gradeCourseEditor.Text = qualification;
                 cityTextField.Text = addressCity;
                 provinceTextField.Text = addressProvince;
-                educationalBackgroundEditor.Text = eduback;
+                //educationalBackgroundEditor.Text = eduback;
                 if (birthday.HasValue)
                 {
                     birthDatePicker.Date = birthday.Value;
                 }
                 
-                academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
-                nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
+                //academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
+                //nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
                 if (profileImageBytes != null)
                 {
@@ -119,7 +119,7 @@ public partial class Profile : ContentPage
         string? qualification = gradeCourseEditor.Text;
         string? addressCity = cityTextField.Text;
         string? addressProvince = provinceTextField.Text;
-        string? educback = educationalBackgroundEditor.Text;
+        //string? educback = educationalBackgroundEditor.Text;
         //var selectedSchedules = SVM.GetSelectedDays();
 
         //var scheduleViewModel = new ScheduleViewModel();
@@ -133,15 +133,15 @@ public partial class Profile : ContentPage
             profile.SetQualification(qualification);
             profile.SetAddressCity(addressCity);
             profile.SetAddressProvince(addressProvince);
-            profile.SetAboutMe(educback);
+            //profile.SetAboutMe(educback);
 
             int userID = App.UserID;
             int profileID = App.ProfileID;
 
             profile.InsertProfile(userID);
             profile.InsertAddress(userID);
-            profile.InsertSubject(userID);
-         //   profile.InsertSchedules(userID);
+            //profile.InsertSubject(userID);
+            //profile.InsertSchedules(userID);
 
 
             //if (profile.CheckScheduleMenteeExist(userID))

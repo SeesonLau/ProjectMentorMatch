@@ -22,4 +22,7 @@ public partial class Analytics : ContentPage
 		int profileID = App.ProfileID;
 	}
 
+    
+
+
 }
