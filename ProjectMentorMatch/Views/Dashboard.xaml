@@ -261,7 +261,13 @@
                                Margin="0,10,0,0" 
                                FontSize="21"/>
                               <!-- Text="Yang Jungwon, 20" -->
-                               
+
+                        <Label x:Name="lblNameAge"
+                         Text="{Binding CurrentItem.ItemName}"
+                         FontAttributes="Bold" 
+                         Margin="0,10,0,0" 
+                         FontSize="21"/>
+
                         <!-- Address Field -->
                         <Label x:Name="lblAddressCity"
                         Text="{Binding CurrentItemAddressCity}"

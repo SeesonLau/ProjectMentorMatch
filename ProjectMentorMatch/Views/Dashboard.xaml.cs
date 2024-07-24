@@ -11,7 +11,6 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Dashboard : ContentPage
 {
-    ProfileModels GetProfileID = new ProfileModels();
     private bool _isRefreshing;
 
     // INSTRUCTIONS HOW TO BIND DATA: 
@@ -229,18 +228,15 @@ public partial class Dashboard : ContentPage
 
     private void btnHeart_Clicked(object sender, EventArgs e)
     {
-        
-     
+      
+
     }
+
 
 
     private void OnProfileSelected(object sender, SelectedItemChangedEventArgs e)
     {
-        var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
-        if (selectedProfile != null)
-        {
-            GetProfileID.GetProfileID(userID) = selectedProfile.GetProfileID(userID);
-        }
+      
     }
 
 

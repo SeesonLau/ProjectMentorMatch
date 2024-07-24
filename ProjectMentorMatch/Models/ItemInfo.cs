@@ -10,6 +10,8 @@ namespace ProjectMentorMatch.Models
     {
         public int ItemId { get; set; }
 
+        public int ProfileID { get; set; }
+
         public string? ItemName { get; set; }
         public string? ImageSource { get; set; }
 

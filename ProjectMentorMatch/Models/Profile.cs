@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 using ProjectMentorMatch.ViewModels;
 using static ProjectMentorMatch.ViewModels.SubjectsViewModel;
 using Microsoft.Maui.Controls;
-using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
+//using Xamarin.Google.Crypto.Tink.Shaded.Protobuf;
 
 namespace ProjectMentorMatch.Models
 {

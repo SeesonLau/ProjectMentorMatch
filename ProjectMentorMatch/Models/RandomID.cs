@@ -28,6 +28,11 @@
     public class RandomID 
     {
         private static readonly Random random = new Random();
+
+        public static int userIDGenerator()
+        {
+            return random.Next(1, 50);
+        }
         public static int genderID()
         {
             return random.Next(100, 199);
