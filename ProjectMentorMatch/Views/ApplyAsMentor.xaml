@@ -14,7 +14,7 @@
              Shell.NavBarIsVisible="False" >
 
     <ContentPage.BindingContext>
-        <local:ProfileViewModels />
+        <local:ViewModels />
     </ContentPage.BindingContext>
 
     <Grid RowDefinitions=".1*, *" Margin="0,5,0,0">

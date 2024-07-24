@@ -6,6 +6,8 @@ using Microsoft.Data.SqlClient;
 using Microsoft.Maui.ApplicationModel.Communication;
 using Syncfusion.Maui.Core;
 using Syncfusion.Maui.Core.Carousel;
+using Microsoft.Maui.Storage;
+using System.IO.Enumeration;
 
 namespace ProjectMentorMatch.Views;
 
@@ -13,7 +15,6 @@ public partial class Profile : ContentPage
 {
     ProfileModels profile;
     ProfileInformation profileInfo;
-
     private byte[]? selectedImageBytes;
 
     public void SetProfilePicture(byte[]? imageBytes)
@@ -51,7 +52,7 @@ public partial class Profile : ContentPage
          
             var subjects = await profile.GetSubjectMenteeAsync(userID);
 
-            byte[]? profileImageBytes = profile.GetProfileImage(userID);
+            string profileImage = profile.GetImage(userID);
             
             MainThread.BeginInvokeOnMainThread(() =>
             {
@@ -70,10 +71,8 @@ public partial class Profile : ContentPage
                 //academicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.Academic);
                 //nonAcademicSubjectsPicker.SelectedItems = new ObservableCollection<string>(subjects.NonAcademic);
 
-                if (profileImageBytes != null)
-                {
-                    ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(profileImageBytes));
-                }
+
+                    ProfileImage.ImageSource = "Resources/Images/" + profileImage;
 
                 if (genderChipGroup.Items != null)
                 {
@@ -194,11 +193,30 @@ public partial class Profile : ContentPage
             return;
         }
 
+        var fileName = Path.GetFileName(result.FullPath); // Includes the file extension, e.g., "example.jpg"
+        var localFilePath = Path.Combine(FileSystem.AppDataDirectory, fileName);
+
         using (var stream = await result.OpenReadAsync())
         {
-            selectedImageBytes = GetProfilePictureData(stream);
-            ProfileImage.ImageSource = ImageSource.FromStream(() => new MemoryStream(selectedImageBytes));
+            using (var localStream = File.OpenWrite(localFilePath))
+            {
+                await stream.CopyToAsync(localStream);
+            }
         }
+
+        // Set the ImageSource with the full path including the file extension
+        ProfileImage.ImageSource = "Resources/Images/" + fileName;
+        profile.SetImage(fileName);
+        // Optionally, save the image file name in the database
+        // await SaveImageFileNameToDatabase(fileName);
+
+        // Notify user to manually add the image to Resources/Images
+        // await DisplayAlert("Manual Step Required",
+        //  $"Please manually add {fileName} to Resources/Images in Visual Studio.",
+        // "OK");
+
+        // Save the file name to the database
+        // SaveProfilePictureToDatabase(fileName);
     }
     private byte[] GetProfilePictureData(Stream imageStream)
     {
