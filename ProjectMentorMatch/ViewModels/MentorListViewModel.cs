@@ -42,12 +42,12 @@ namespace ProjectMentorMatch.ViewModels
 
 
         // To be put in the Binding of the Dashboard
-        public string CurrentItemName => CurrentItem?.ItemName;
-        public string CurrentItemAddressCity => CurrentItem?.addressCity;
+        public string? CurrentItemName => CurrentItem?.ItemName;
+        public string? CurrentItemAddressCity => CurrentItem?.addressCity;
 
-        public string CurrentItemAddressProvince => CurrentItem?.addressProvince;
-        public string CurrentItemAboutMe => CurrentItem?.aboutMe;
-        public string CurrentItemQualifications => CurrentItem?.qualifications;
+        public string? CurrentItemAddressProvince => CurrentItem?.addressProvince;
+        public string? CurrentItemAboutMe => CurrentItem?.aboutMe;
+        public string? CurrentItemQualifications => CurrentItem?.qualifications;
 
         public string? CurrentItemContactNumber => CurrentItem?.contactNumber;   
 
