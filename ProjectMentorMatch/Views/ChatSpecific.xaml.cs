@@ -8,6 +8,7 @@ namespace ProjectMentorMatch.Views
     public partial class ChatSpecific : ContentPage
     {
         private readonly HubConnection hubConnection;
+        private bool isSendingMessage = false;
 
         public ChatSpecific(string ReceiverName)
         {
@@ -42,14 +43,26 @@ namespace ProjectMentorMatch.Views
 
         private async void btnSend_Clicked(object sender, EventArgs e)
         {
-            await hubConnection.InvokeCoreAsync("SendMessageToAll", args: new[]
-            {
-                txtUsername.Text,
-                txtMessage.Text
-            });
+            if (isSendingMessage)
+                return;
 
-            AddMessageToChat(txtUsername.Text, txtMessage.Text, true);
-            txtMessage.Text = string.Empty;
+            isSendingMessage = true;
+
+            try
+            {
+                await hubConnection.InvokeCoreAsync("SendMessageToAll", args: new[]
+                {
+                    txtUsername.Text,
+                    txtMessage.Text
+                });
+
+                AddMessageToChat(txtUsername.Text, txtMessage.Text, true);
+                txtMessage.Text = string.Empty;
+            }
+            finally
+            {
+                isSendingMessage = false;
+            }
         }
 
         private void AddMessageToChat(string user, string message, bool isCurrentUser)
