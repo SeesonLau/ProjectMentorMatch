@@ -1,51 +1,76 @@
 using ProjectMentorMatch.ViewModels;
 using Microsoft.Maui.Controls;
-namespace ProjectMentorMatch.Views;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Threading.Tasks;
 
-
-public partial class ChatSpecific : ContentPage
+namespace ProjectMentorMatch.Views
 {
-     private readonly HubConnection hubConnection;
-    public ChatSpecific(string ReceiverName)
+    public partial class ChatSpecific : ContentPage
     {
-        InitializeComponent();
-        BindingContext = new ChatViewModel(ReceiverName);
+        private readonly HubConnection hubConnection;
 
-        var baseUrl = "http://localhost";
-
-        // Android can't connect to localhost
-        if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+        public ChatSpecific(string ReceiverName)
         {
-            baseUrl = "http://10.0.2.2";
-        }
+            InitializeComponent();
+            BindingContext = new ChatViewModel(ReceiverName);
 
-        hubConnection = new HubConnectionBuilder()
-            .WithUrl($"{baseUrl}:5127/chatHub")
-            .Build();
+            var baseUrl = "http://localhost";
 
-       hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
-        {
-           lblChat.Text += $"<b>{user}</b>: {message}<br/>";
-        }); 
+            // Android can't connect to localhost
+            if (DeviceInfo.Current.Platform == DevicePlatform.Android)
+            {
+                baseUrl = "http://10.0.2.2";
+            }
 
-        Task.Run(() =>
-        {
-            Dispatcher.Dispatch(async () =>
+            hubConnection = new HubConnectionBuilder()
+                .WithUrl($"{baseUrl}:5127/chatHub")
+                .Build();
+
+            hubConnection.On<string, string>("ReceiveMessage", (user, message) =>
+            {
+                Dispatcher.Dispatch(() =>
+                {
+                    AddMessageToChat(user, message, user == txtUsername.Text);
+                });
+            });
+
+            Task.Run(async () =>
             {
                 await hubConnection.StartAsync();
             });
-        });
-   
-    }
-    private async void btnSend_Clicked(object sender, EventArgs e)
-    {
-        await hubConnection.InvokeCoreAsync("SendMessageToAll", args: new[]
+        }
+
+        private async void btnSend_Clicked(object sender, EventArgs e)
         {
+            await hubConnection.InvokeCoreAsync("SendMessageToAll", args: new[]
+            {
                 txtUsername.Text,
                 txtMessage.Text
             });
 
-        txtMessage.Text = String.Empty;
+            AddMessageToChat(txtUsername.Text, txtMessage.Text, true);
+            txtMessage.Text = string.Empty;
+        }
+
+        private void AddMessageToChat(string user, string message, bool isCurrentUser)
+        {
+            var messageLabel = new Label
+            {
+                Text = $"{user}: {message}",
+                TextColor = Colors.Black
+            };
+
+            var messageFrame = new Frame
+            {
+                Content = messageLabel,
+                BackgroundColor = isCurrentUser ? Colors.LightBlue : Colors.LightGray,
+                CornerRadius = 5,
+                Padding = new Thickness(10),
+                Margin = new Thickness(0, 5),
+                HorizontalOptions = isCurrentUser ? LayoutOptions.End : LayoutOptions.Start
+            };
+
+            ChatMessagesStack.Children.Add(messageFrame);
+        }
     }
 }

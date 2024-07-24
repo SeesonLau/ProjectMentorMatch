@@ -2,45 +2,26 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:local="clr-namespace:ProjectMentorMatch.ViewModels"
-             xmlns:sfchat="clr-namespace:Syncfusion.Maui.Chat;assembly=Syncfusion.Maui.Chat"
              x:Class="ProjectMentorMatch.Views.ChatSpecific"
              Title="ChatSpecific">
 
-
     <ContentPage.Content>
+        <Grid RowDefinitions="Auto, *, Auto">
+            <!-- Username entry -->
+            <Entry Grid.Row="0" x:Name="txtUsername" Placeholder="Your name" IsVisible="False" />
 
-        <Grid
-        RowDefinitions="Auto, 7*, Auto, Auto">
-            <Entry
-            x:Name="txtUsername"
-            Placeholder="Your name"/>
-
-            <ScrollView
-            Grid.Row="1">
-                <Label
-                x:Name="lblChat"
-                FontSize="18"
-                HorizontalOptions="StartAndExpand"
-                TextType="Html"></Label>
+            <!-- Chat area -->
+            <ScrollView Grid.Row="1">
+                <StackLayout x:Name="ChatMessagesStack" Padding="10">
+                    <!-- Messages will be dynamically added here -->
+                </StackLayout>
             </ScrollView>
 
-            <Entry
-            Grid.Row="2"
-            x:Name="txtMessage"
-            Placeholder="Enter your message"/>
-
-            <Button
-            Grid.Row="3"
-            x:Name="btnSend"
-            Text="Send"
-            HorizontalOptions="FillAndExpand"
-            Clicked="btnSend_Clicked"/>
-
+            <!-- Message entry area -->
+            <StackLayout Grid.Row="2" Orientation="Horizontal" Padding="10" Spacing="10">
+                <Entry x:Name="txtMessage" Placeholder="Enter your message" HorizontalOptions="FillAndExpand" />
+                <Button x:Name="btnSend" Text="Send" Clicked="btnSend_Clicked" />
+            </StackLayout>
         </Grid>
-
-        <!-- this makes sure current user is different from other receiver/sender among other things-->
-
-
     </ContentPage.Content>
-
 </ContentPage>
