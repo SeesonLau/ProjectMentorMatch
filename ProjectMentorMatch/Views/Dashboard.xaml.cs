@@ -219,8 +219,8 @@ public partial class Dashboard : ContentPage
     {
    //   int userID = App.UserID;
         int profileID = App.ProfileID;
-        Analytics analytics = new Analytics();
+        AnalyticsModel analytics = new AnalyticsModel();
  
-    //  analytics.UpdateBrainReact(profileID);
+       analytics.UpdateBrainReact(profileID);
     }
 }
