@@ -239,7 +239,7 @@ public partial class Dashboard : ContentPage
         var selectedProfile = e.SelectedItem as ProfileModels; // Assuming you have a Profile class
         if (selectedProfile != null)
         {
-            GetProfileID.ProfileID = selectedProfile.ProfileID;
+            GetProfileID.GetProfileID(userID) = selectedProfile.GetProfileID(userID);
         }
     }
 

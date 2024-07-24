@@ -101,9 +101,11 @@ namespace ProjectMentorMatch.Models
 
             return profiles;
         }
-        public int GetProfileID(int userID)
+        public int GetProfileID()
         {
-            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+
+            // COUNT (*) 
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID AND isMentor = 1";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
