@@ -31,6 +31,8 @@ namespace ProjectMentorMatch.Models
         DateTime parsedBirthday;
         private string? eduback;
         private string? fullName;
+        TimeSpan FromTime;
+        TimeSpan ToTime;
 
         public static List<ProfileModels> GetAllProfiles()
         {
@@ -477,23 +479,38 @@ namespace ProjectMentorMatch.Models
                 command.ExecuteNonQuery();
             }
         }
-        public async Task InsertSchedulesAsync(List<DaySchedule> schedules, int userID)
+        public void  InsertSchedules( int userID)
         {
+            ScheduleViewModel svm = new ScheduleViewModel();
+
+            // Call the methods to get selected days, from times, and to times
+            List<string> selectedDays = svm.GetSelectedDaysNames();
+            List<TimeSpan> selectedFromTimes = svm.GetSelectedFromTimes();
+            List<TimeSpan> selectedToTimes = svm.GetSelectedToTimes();
+
+            bool profileExists = CheckSubjectMenteeExist(userID);
+            string query;
+            if (profileExists)
+            {
+                query = "UPDATE [ScheduleMentee] SET [Day] = @Day, [FromTime] = @FromTime, [ToTime] = @ToTime " +
+                        "WHERE [UserID] = @UserID";
+            }
+            else
+            {
+                query = "INSERT INTO [ScheduleMentee] ([UserID], [Day], [FromTime], [ToTime]) " +
+                        "VALUES (@UserID, @Day, @FromTime, @ToTime)";
+            }
 
             using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                await connection.OpenAsync();
+                command.Parameters.AddWithValue("@UserID", userID);
+                command.Parameters.AddWithValue("@Day", selectedDays);
+                command.Parameters.AddWithValue("@FromTime", selectedFromTimes);
+                command.Parameters.AddWithValue("@ToTime", selectedToTimes);
 
-                foreach (var schedule in schedules)
-                {
-                    var command = new SqlCommand("INSERT INTO ScheduleMentee (UserID, Day, FromTime, ToTime) VALUES (@UserID, @Day, @FromTime, @ToTime)", connection);
-                    command.Parameters.AddWithValue("@UserID", userID);
-                    command.Parameters.AddWithValue("@Day", schedule.Day);
-                    command.Parameters.AddWithValue("@FromTime", schedule.FromTime);
-                    command.Parameters.AddWithValue("@ToTime", schedule.ToTime);
-
-                    await command.ExecuteNonQueryAsync();
-                }
+                connection.Open();
+                command.ExecuteNonQuery();
             }
         }
 
@@ -545,9 +562,7 @@ namespace ProjectMentorMatch.Models
                 connection.Open();
                 command.ExecuteNonQuery();
             }
-        }
-
-        private byte[] GetProfilePictureData(Stream imageStream)
+        }        private byte[] GetProfilePictureData(Stream imageStream)
         {
             using (MemoryStream ms = new MemoryStream())
             {
@@ -555,7 +570,6 @@ namespace ProjectMentorMatch.Models
                 return ms.ToArray();
             }
         }
-
         public async void InsertProfileSubject(int userID)
         {
             string selectedAcademic = string.Join(", ", SubjectService.SelectedSub);
@@ -656,7 +670,7 @@ namespace ProjectMentorMatch.Models
         }
         public bool CheckScheduleMenteeExist(int userID)
         {
-            string query = "SELECT COUNT(*) FROM [SubjectMentee] WHERE [UserID] = @UserID";
+            string query = "SELECT COUNT(*) FROM [ScheduleMentee] WHERE [UserID] = @UserID";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
