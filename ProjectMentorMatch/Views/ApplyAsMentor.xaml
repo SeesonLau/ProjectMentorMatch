@@ -49,13 +49,12 @@
                 <VerticalStackLayout Padding="30">
                     <VerticalStackLayout>
                         <!-- About Me Section -->
-                        <Label Text="About me" 
-                               x:Name="aboutMeEntry"
+                        <Label Text="About me"                               
                 FontSize="18" 
                 FontAttributes="Bold" 
                 TextColor="#006EBB"  
                 Margin="0,0,0,10" />
-                        <material:EditorField Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
+                        <material:EditorField x:Name="aboutMeEntry" Title="Tell us about yourself" Icon="aboutme_icon.png" Margin="0,0,0,10"/>
                     </VerticalStackLayout>
 
                     <VerticalStackLayout>
@@ -136,14 +135,13 @@
                     </StackLayout>
                     <VerticalStackLayout>
                         <!-- Session Rates -->
-                        <Label Text="Session Fee" 
-                               x:Name="MentorFeeEntry"
+                        <Label Text="Session Fee"                              
                         FontSize="Medium" 
                         FontAttributes="Bold"
                         Margin="0,20,0,5"
                         TextColor="#086EBB">
                         </Label>
-                        <material:TextField Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
+                        <material:TextField x:Name="MentorFeeEntry" Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
                     </VerticalStackLayout>
 
                    
