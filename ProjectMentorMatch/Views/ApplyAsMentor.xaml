@@ -95,15 +95,10 @@
                           SelectedItems="{Binding Subjects.SelectedNonSub, Mode=TwoWay}">
                         </material:MultiplePickerField>
 
-                        <Button Text="Display Selected Subjects" 
-                        Margin="0,10,0,10" 
-                        Command="{Binding Subjects.DisplaySelectedSubjectsCommand}" />
-
-                        <Label Text="{Binding Subjects.SelectedSubjectsText}" FontSize="Medium" TextColor="Black" />
-                        <Label Text="{Binding Subjects.SelectedNonSubjectsText}" FontSize="Medium" TextColor="Black" />
+                        
                     </VerticalStackLayout>
 
-                    <VerticalStackLayout Spacing="20">
+                    <VerticalStackLayout Spacing="10">
                         <Label Text="Available Schedule" 
                        FontSize="18" 
                        FontAttributes="Bold" 
@@ -120,45 +115,13 @@
                                   ItemsSource="{Binding Schedule.AvailableSched}"
                                   SelectedItems="{Binding Schedule.SelectedSched, Mode=TwoWay}">
                         </material:MultiplePickerField>
-                        <!-- <CollectionView ItemsSource="{Binding Schedule.Days}">
-                            <CollectionView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout Orientation="Horizontal" Spacing="5">
-                                        <CheckBox IsChecked="{Binding IsSelected}" VerticalOptions="Center"/>
-                                        <Label Text="{Binding Day}" VerticalOptions="Center"/>
-                                        <material:TimePickerField Time="{Binding FromTime}" 
-                                          IsVisible="{Binding IsSelected}" 
-                                          Title="FROM" 
-                                          Format="hh:mm tt" 
-                                          FontSize="13" 
-                                          HeightRequest="50" 
-                                          Margin="5" 
-                                          VerticalOptions="Center" 
-                                          HorizontalOptions="Center"/>
-
-                                        <material:TimePickerField Time="{Binding ToTime}" 
-                                          IsVisible="{Binding IsSelected}" 
-                                          Title="TO" 
-                                          Format="hh:mm tt" 
-                                          HeightRequest="50" 
-                                          FontSize="13" 
-                                          Margin="5" 
-                                          VerticalOptions="Center" 
-                                          HorizontalOptions="Center"/>
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CollectionView.ItemTemplate>
-                        </CollectionView> -->
-
-                        <Button Text="Extract Selected Days" Command="{Binding Schedule.DisplaySelectedSchedCommand}" />
-
-                        <Label Text="{Binding Schedule.SelectedSchedText}" FontSize="Medium" TextColor="Black" />
+                        
                     </VerticalStackLayout>
                     <!-- Preferred Setup Filter -->
                     <Label Text="Preferred Setup" 
                     FontSize="Medium" 
                     FontAttributes="Bold"
-                    Margin="0,10,0,5"
+                    Margin="0,20,0,5"
                     TextColor="#086EBB">
                     </Label>
 
@@ -177,20 +140,21 @@
                                x:Name="MentorFeeEntry"
                         FontSize="Medium" 
                         FontAttributes="Bold"
-                        Margin="0,50,0,5"
+                        Margin="0,20,0,5"
                         TextColor="#086EBB">
                         </Label>
                         <material:TextField Title="Fee" Icon="pesosign_icon.png" Margin="0,0,0,10"/>
                     </VerticalStackLayout>
 
-                    <Button x:Name="TestApplyButton" Text="Test Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked_1"/>
+                   
                     <!-- Apply Button-->
-                    <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="8" Clicked="ApplyButton_Clicked"/>
+                    <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="15" Clicked="ApplyButton_Clicked"/>
                     <Label Text="or" 
                    Padding ="5" 
                    HorizontalOptions="Center" 
                    VerticalOptions="Center"
-                   FontAttributes="Bold">
+                   FontAttributes="Bold"
+                     Margin="-5">
                     </Label>
                     <Button Text="Withdraw as Mentor"
                     x:Name="btnWithdrawMentor"
@@ -203,7 +167,8 @@
                     WidthRequest="200" 
                     Clicked="btnWithdrawMentor_Clicked"
                     HorizontalOptions="Center" 
-                    VerticalOptions="Center">
+                    VerticalOptions="Center"
+                    Margin="10">
                     </Button>
                 </VerticalStackLayout>
             </ScrollView>
