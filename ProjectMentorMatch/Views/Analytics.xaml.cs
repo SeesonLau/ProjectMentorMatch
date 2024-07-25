@@ -20,14 +20,11 @@ namespace ProjectMentorMatch.Views
 
             try
             {
-                var profileIDs = Account.GetAllProfileID();
+                var profileIDs = Account.GetAnalyticsProfileID(App.ProfileID);
                 var entries = new List<ChartEntry>();
-
-                foreach (var profileID in profileIDs)
-                {
-                    entries.AddRange(GetChartEntries(profileID));
-                }
-
+             
+                entries.AddRange(GetChartEntries(App.ProfileID));
+                
                 chartView.Chart = new LineChart()
                 {
                     Entries = entries,
@@ -41,7 +38,7 @@ namespace ProjectMentorMatch.Views
             }
         }
 
-        private IEnumerable<ChartEntry> GetChartEntries(int profileID)
+        private IEnumerable<ChartEntry> GetChartEntries(int profileIDs)
         {
             try
             {
@@ -52,7 +49,7 @@ namespace ProjectMentorMatch.Views
                     var query = "SELECT day, brainReact FROM Analytics WHERE ProfileID = @ProfileID";
                     using (var command = new SqlCommand(query, connection))
                     {
-                        command.Parameters.AddWithValue("@ProfileID", profileID);
+                        command.Parameters.AddWithValue("@ProfileID", profileIDs);
 
                         using (var reader = command.ExecuteReader())
                         {

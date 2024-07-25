@@ -418,14 +418,17 @@ namespace ProjectMentorMatch.Models
             return accounts;
         }
 
-        public static List<int> GetAllProfileID()
+        public static List<int> GetAnalyticsProfileID(int profileID)
         {
             List<int> profileIDs = new List<int>();
 
-            string query = "SELECT ProfileID FROM Analytics";
+            string query = @"SELECT ProfileID FROM Analytics WHERE ProfileID = @ProfileID";
+
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+
                 connection.Open();
                 using (SqlDataReader reader = command.ExecuteReader())
                 {
@@ -438,6 +441,7 @@ namespace ProjectMentorMatch.Models
 
             return profileIDs;
         }
+
 
         public static List<Account> GetAllMentors()
         {
