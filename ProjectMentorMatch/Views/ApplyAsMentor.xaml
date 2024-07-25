@@ -50,6 +50,7 @@
                     <VerticalStackLayout>
                         <!-- About Me Section -->
                         <Label Text="About me" 
+                               x:Name="aboutMeEntry"
                 FontSize="18" 
                 FontAttributes="Bold" 
                 TextColor="#006EBB"  
@@ -173,6 +174,7 @@
                     <VerticalStackLayout>
                         <!-- Session Rates -->
                         <Label Text="Session Fee" 
+                               x:Name="MentorFeeEntry"
                         FontSize="Medium" 
                         FontAttributes="Bold"
                         Margin="0,50,0,5"

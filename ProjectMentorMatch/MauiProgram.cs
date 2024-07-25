@@ -7,6 +7,8 @@ using ProjectMentorMatch.Views;
 using Syncfusion.Maui.Core.Hosting;
 using UraniumUI;
 using PanCardView;
+using Microcharts.Maui;
+using Microcharts;
 
 namespace ProjectMentorMatch
 {
@@ -41,6 +43,8 @@ namespace ProjectMentorMatch
                 .UseLocalNotification()
                 // Added Cards View
                 .UseCardsView()
+                //Chart
+                .UseMicrocharts()
 
                 .ConfigureFonts(fonts =>
                 {

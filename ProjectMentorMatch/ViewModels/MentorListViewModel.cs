@@ -115,7 +115,7 @@ namespace ProjectMentorMatch.ViewModels
                     if (stream != null)
                     {
                         byte[] imageData = ReadFully(stream);
-                        resizedImageData = Methods.CompressImage.ResizeImage(imageData, 400, 300); // Resize to desired dimensions
+                      //  resizedImageData = Methods.CompressImage.ResizeImage(imageData, 400, 300); // Resize to desired dimensions
                     }
                 }
 
