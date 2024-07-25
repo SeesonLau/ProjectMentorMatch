@@ -30,6 +30,10 @@ namespace ProjectMentorMatch.Models
 
         public string? contactNumber { get; set; }
 
+        public string? Day { get; set; }
+
+        public string? Rate { get; set; }
+
         // Convert byte[] to Base64 string
         private static string ConvertToBase64(byte[] imageBytes)
         {
