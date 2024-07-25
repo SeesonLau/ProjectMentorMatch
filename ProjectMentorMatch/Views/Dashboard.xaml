@@ -10,6 +10,7 @@
              xmlns:local="clr-namespace:ProjectMentorMatch.Models"
              xmlns:viewmodel="clr-namespace:ProjectMentorMatch.ViewModels"
              x:DataType="viewmodel:MentorListViewModel"
+             BackgroundImageSource="blue_bg.png"
              Title="MentorMatch">
             <!-- x:Class="ProjectMentorMatch.Views.Dashboard"-->
     <ContentPage.BindingContext>
@@ -269,7 +270,7 @@
                         <Label x:Name="lblNameAge"
                                Text="{Binding CurrentItem.ItemName}"
                                FontAttributes="Bold" 
-                               Margin="0,10,0,0" 
+                               Margin="0,10,0,0"
                                FontSize="21"/>
                               <!-- Text="Yang Jungwon, 20" -->
 
@@ -286,7 +287,7 @@
                         Margin="0,5,0,0" 
                         FontAttributes="Bold" 
                         FontSize="17" 
-                   TextColor="Gray"/>
+                        TextColor="#525252"/>
 
                        
                         <Label x:Name="lblAddressProvince"
@@ -294,7 +295,7 @@
                           Margin="0,5,0,10" 
                             FontAttributes="Bold" 
                              FontSize="17" 
-                            TextColor="Gray"/>
+                            TextColor="#525252"/>
 
 
                         <!--<HorizontalStackLayout Spacing="10">
@@ -328,7 +329,7 @@
                        Margin="0,-1,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
-                       TextColor="Gray"
+                       TextColor="#525252"
                        VerticalOptions="Center"/>
 
                         </HorizontalStackLayout>
@@ -358,7 +359,7 @@
                        Margin="0,5,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
-                       TextColor="Gray"
+                       TextColor="#525252"
                        VerticalOptions="Center"/>
 
                             <Image Source="like_icon.png" 
@@ -379,7 +380,7 @@
                        Margin="0,5,0,0" 
                        FontAttributes="Bold" 
                        FontSize="15" 
-                       TextColor="Gray"
+                       TextColor="#525252"
                        VerticalOptions="Center"/>
 
                             <Image Source="star_icon.png" 
@@ -430,7 +431,7 @@
 
                         <Label  Text="{Binding CurrentItemAboutMe}" 
                     FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
+                    FontSize="16" TextColor="#525252"/>
 
                     </VerticalStackLayout>
 
@@ -449,7 +450,7 @@
 
                         <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
+                    FontSize="16" TextColor="#525252"/>
 
                     </VerticalStackLayout>
 
@@ -467,7 +468,7 @@
 
                         <Label  Text="{Binding CurrentItemQualifications}"
                     FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
+                    FontSize="16" TextColor="#525252"/>
 
                     </VerticalStackLayout>
 
@@ -483,7 +484,7 @@
 
                         <Label  Text="{Binding CurrentItemDay}" 
                     FontAttributes="Bold" 
-                    FontSize="16" TextColor="#a3a3a3"/>
+                    FontSize="16" TextColor="#525252"/>
 
                     </VerticalStackLayout>
 
@@ -498,7 +499,7 @@
 
                         <Label  Text="{Binding CurrentItemContactNumber}" 
                                 FontAttributes="Bold" 
-                                FontSize="16" TextColor="#a3a3a3"/>
+                                FontSize="16" TextColor="#525252"/>
 
                     </VerticalStackLayout>
 

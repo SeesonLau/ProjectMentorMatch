@@ -4,6 +4,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="ProjectMentorMatch.Views.Booking"     
              Shell.TabBarIsVisible="False"
+             BackgroundImageSource="blue_bg.png"
              Title="Booking">
 
 
