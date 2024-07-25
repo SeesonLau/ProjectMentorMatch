@@ -4,14 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectMentorMatch.ViewModels;
 
 namespace ProjectMentorMatch.Models
 {
     public class Mentor : Database
     {
+        ScheduleViewModel svm = new ScheduleViewModel();
+
         private static readonly Random random = new Random();
         private string? aboutMe;
-        private float mentorFee;
+        private string? mentorFee;
         private string? academic;
         private string? nonacademic;
         private string? day;
@@ -34,9 +37,9 @@ namespace ProjectMentorMatch.Models
             }
             return aboutMe;
         }
-        public float GetMentorFee(int userID)
+        public string? GetMentorFee(int userID)
         {
-            string query = "SELECT [Rate] FROM [Mentor] WHERE [UserID] = @UserID";
+            string query = "SELECT [MentorFee] FROM [Mentor] WHERE [UserID] = @UserID";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -45,7 +48,7 @@ namespace ProjectMentorMatch.Models
                 object result = command.ExecuteScalar();
                 if (result != null)
                 {
-                    mentorFee = float.Parse(result.ToString());
+                    mentorFee = result.ToString();
                 }
             }
             return mentorFee;
@@ -100,7 +103,7 @@ namespace ProjectMentorMatch.Models
         }
         //SET
         public void SetAboutMe(string? aboutMe) {  this.aboutMe = aboutMe; }
-        public void SetMentorFee(float mentorFee) { this.mentorFee = mentorFee; }
+        public void SetMentorFee(string? mentorFee) { this.mentorFee = mentorFee; }
         public void SetAcademic(string? academic) { this.academic = academic; }
         public void SetNonAcademic (string? nonacademic) { this.nonacademic = nonacademic; }
         public void SetDay(string day) { this.day = day; }
@@ -112,14 +115,14 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [Academic] = @Academic,  [NonAcademic] = @NonAcademic, [Day] = @Day, [Rate] = @Rate " +
+                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [MentorFee] = @MentorFee " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [Academic], [NonAcademic], [Day], [Rate])" +
+                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [MentorFee])" +
 
-                        "VALUES (@UserID, @isMentor, @AboutMe, @Academic, @NonAcademic, @Day, @Rate)";
+                        "VALUES (@UserID, @isMentor, @AboutMe, @MentorFee)";
             }
 
             using (var connection = GetConnection())
@@ -128,15 +131,14 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@UserID", userID);
                 command.Parameters.AddWithValue("@isMentor", isMentor);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
-                command.Parameters.AddWithValue("@Academic", academic);
-                command.Parameters.AddWithValue("@NonAcademic", nonacademic);
-                command.Parameters.AddWithValue("@Day", day);
-                command.Parameters.AddWithValue("@Rate", mentorFee);
+                command.Parameters.AddWithValue("@MentorFee", mentorFee);
 
                 connection.Open();
                 command.ExecuteNonQuery();
             }
         }
+
+
         public bool CheckMentorExist(int userID)
         {
             string query = "SELECT COUNT(*) FROM Mentor WHERE [UserID] = @UserID";

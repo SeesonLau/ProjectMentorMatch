@@ -18,5 +18,21 @@ namespace ProjectMentorMatch.Methods
             LocalNotificationCenter.Current.AreNotificationsEnabled();
 
         }
+
+        public static async Task RequestStoragePermissionAsync()
+        {
+            var readPermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageRead>();
+            var writePermissionStatus = await Permissions.CheckStatusAsync<Permissions.StorageWrite>();
+
+            if (readPermissionStatus != PermissionStatus.Granted)
+            {
+                readPermissionStatus = await Permissions.RequestAsync<Permissions.StorageRead>();
+            }
+
+            if (writePermissionStatus != PermissionStatus.Granted)
+            {
+                writePermissionStatus = await Permissions.RequestAsync<Permissions.StorageWrite>();
+            }
+        }
     }
 }
