@@ -17,6 +17,9 @@ public partial class ApplyAsMentor : ContentPage
     SubjectsViewModel subjectsViewModel;
     Mentor mentor;
 
+    public string? SelectedSetupMode { get; set; }
+    public string? SelectedInteractionMode { get; set; }
+
     public ApplyAsMentor()
 	{
 		InitializeComponent();
@@ -33,7 +36,31 @@ public partial class ApplyAsMentor : ContentPage
         subjectsViewModel.LoadNonAcademicSubs(userID, nonAcademicSubjectsPicker);
         scheduleViewModel.LoadSelectedDays(userID, SchedulePicker);
     }
+    private void OnSetupModeCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value) // Only handle when the RadioButton is checked
+        {
+            var radioButton = sender as Microsoft.Maui.Controls.RadioButton;
+            if (radioButton != null)
+            {
+                SelectedSetupMode = radioButton.Content.ToString();
+                DisplayAlert("Setup Mode Selected", SelectedSetupMode, "OK");
+            }
+        }
+    }
 
+    private void OnInteractionModeCheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
+        if (e.Value) // Only handle when the RadioButton is checked
+        {
+            var radioButton = sender as Microsoft.Maui.Controls.RadioButton;
+            if (radioButton != null)
+            {
+                SelectedInteractionMode = radioButton.Content.ToString();
+                DisplayAlert("Interaction Mode Selected", SelectedInteractionMode, "OK");
+            }
+        }
+    }
     private void LoadApplyMentor()
     {
         int userId = App.UserID;
