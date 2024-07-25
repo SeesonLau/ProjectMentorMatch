@@ -163,7 +163,13 @@
             </syncfusion:DrawerSettings>
         </syncfusion:SfNavigationDrawer.DrawerSettings>
         <syncfusion:SfNavigationDrawer.ContentView>
-         
+            <Grid>
+                <Grid.Background>
+                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                        <GradientStop Color="#D8ECFF" Offset="0.0" />
+                        <GradientStop Color="#95C2EC" Offset="1.0" />
+                    </LinearGradientBrush>
+                </Grid.Background>
                 <ScrollView Margin="0,10,0,5" VerticalScrollBarVisibility="Never">
 
                 <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto, Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
@@ -272,7 +278,7 @@
                                FontAttributes="Bold" 
                                Margin="0,10,0,0"
                                FontSize="21"/>
-                              <!-- Text="Yang Jungwon, 20" -->
+                        <!-- Text="Yang Jungwon, 20" -->
 
                         <Label x:Name="lblProfileID"
                          Text="{Binding CurrentItem.ProfileID}"
@@ -289,7 +295,7 @@
                         FontSize="17" 
                         TextColor="#525252"/>
 
-                       
+
                         <Label x:Name="lblAddressProvince"
                          Text="{Binding CurrentItemAddressProvince}"
                           Margin="0,5,0,10" 
@@ -305,7 +311,9 @@
                        VerticalOptions="Center" 
                        HorizontalOptions="Start">
                             </Image>
-                            --><!-- Course Field --><!--
+                            -->
+                        <!-- Course Field -->
+                        <!--
                         
                         <Label x:Name="lblCourse"
                        Text="Civil Engineer"  
@@ -444,9 +452,9 @@
                    Margin="0,20,0,0"
                    TextColor="#086EBB">
                         </Label>
-                        
-                      
-                  
+
+
+
 
                         <Label    Text="{Binding CurrentItemSubjects}"
                     FontAttributes="Bold" 
@@ -520,7 +528,8 @@
         </VerticalStackLayout> -->
 
                 </Grid>
-            </ScrollView>
+                </ScrollView>
+            </Grid>
         </syncfusion:SfNavigationDrawer.ContentView>
             
     </syncfusion:SfNavigationDrawer>
