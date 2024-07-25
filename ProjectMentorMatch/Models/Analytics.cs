@@ -144,10 +144,12 @@ namespace ProjectMentorMatch.Models
         public List<ProfileRanking> GetProfileRankings()
         {
             string query = @"
-            SELECT ProfileID, SUM(brainReact) AS TotalBrainReact
-            FROM Analytics
-            GROUP BY ProfileID
-            ORDER BY TotalBrainReact DESC";
+    SELECT ca.Fullname, SUM(a.brainReact) AS TotalBrainReact
+    FROM Analytics a
+    INNER JOIN Profile p ON a.ProfileID = p.ProfileID
+    INNER JOIN CreateAccount ca ON p.UserID = ca.UserID
+    GROUP BY ca.Fullname
+    ORDER BY TotalBrainReact DESC";
 
             List<ProfileRanking> rankings = new List<ProfileRanking>();
 
@@ -160,12 +162,13 @@ namespace ProjectMentorMatch.Models
                     {
                         while (reader.Read())
                         {
-                            int profileID = reader.GetInt32(0);
-                            int totalBrainReact = reader.GetInt32(1);
+                            // Check if the columns are not null before reading
+                            string fullname = reader.IsDBNull(0) ? string.Empty : reader.GetString(0);
+                            int totalBrainReact = reader.IsDBNull(1) ? 0 : reader.GetInt32(1);
 
                             rankings.Add(new ProfileRanking
                             {
-                                ProfileID = profileID,
+                                Fullname = fullname,
                                 TotalBrainReact = totalBrainReact
                             });
                         }
@@ -181,9 +184,8 @@ namespace ProjectMentorMatch.Models
     public class ProfileRanking
     {
         public int Rank { get; set; }
-        public int ProfileID { get; set; }
+        public string Fullname { get; set; }
         public int TotalBrainReact { get; set; }
     }
-
 
 }
