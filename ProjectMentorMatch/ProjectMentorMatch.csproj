@@ -5,7 +5,7 @@
 
 		<RuntimeIdentifiers Condition="$(TargetFramework.Contains('-android'))">android-arm;android-arm64;android-x86;android-x64</RuntimeIdentifiers>
 		
-		<TargetFrameworks>net8.0-android;net8.0-maccatalyst</TargetFrameworks>
+		<TargetFrameworks>net8.0-android;net8.0-maccatalyst;net8.0-ios</TargetFrameworks>
 		<!-- Uncomment to also build the tizen app. You will need to install tizen by following this: https://github.com/Samsung/Tizen.NET -->
 		<!-- <TargetFrameworks>$(TargetFrameworks);net8.0-tizen</TargetFrameworks> -->
 
@@ -106,6 +106,11 @@
 	  <Optimize>False</Optimize>
 	</PropertyGroup>
 
+
+	<PropertyGroup>
+	  <TargetFrameworks Condition="$([MSBuild]::IsOSPlatform('windows'))">$(TargetFrameworks);net8.0-windows10.0.22621.0</TargetFrameworks>
+	</PropertyGroup>
+
 	<ItemGroup>
 		<!-- App Icon -->
 		<MauiIcon Include="Resources\AppIcon\appicon.svg" ForegroundFile="Resources\AppIcon\appiconfg.svg" Color="#F8F938" />
@@ -163,18 +168,17 @@
 		<PackageReference Include="Microsoft.Maui.Controls" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Maui.Controls.Compatibility" Version="8.0.70" />
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
-		<PackageReference Include="Plugin.LocalNotification" Version="10.1.8" />
 		<PackageReference Include="SkiaSharp.Views.Maui.Controls" Version="2.88.8" />
-		<PackageReference Include="Syncfusion.Maui.Buttons" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Cards" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Charts" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Chat" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Core" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Inputs" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.NavigationDrawer" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.Picker" Version="26.1.42" />
-		<PackageReference Include="Syncfusion.Maui.TabView" Version="26.1.42" />
+		<PackageReference Include="Syncfusion.Maui.Buttons" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Cards" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Carousel" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Charts" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Chat" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Core" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Inputs" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.NavigationDrawer" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.Picker" Version="26.2.4" />
+		<PackageReference Include="Syncfusion.Maui.TabView" Version="26.2.4" />
 		<PackageReference Include="UraniumUI.Dialogs.CommunityToolkit" Version="2.9.0" />
 		<PackageReference Include="UraniumUI.Dialogs.Mopups" Version="2.9.0" />
 		<PackageReference Include="UraniumUI.Material" Version="2.9.0" />

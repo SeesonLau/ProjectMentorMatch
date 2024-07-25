@@ -1,5 +1,4 @@
-﻿using Plugin.LocalNotification;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -14,8 +13,8 @@ namespace ProjectMentorMatch.Methods
         {
 
             // Notification Permission
-            LocalNotificationCenter.Current.RequestNotificationPermission();
-            LocalNotificationCenter.Current.AreNotificationsEnabled();
+            //LocalNotificationCenter.Current.RequestNotificationPermission();
+            //LocalNotificationCenter.Current.AreNotificationsEnabled();
 
         }
 

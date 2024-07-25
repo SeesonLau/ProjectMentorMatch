@@ -1,5 +1,4 @@
-﻿using Plugin.LocalNotification;
-using ProjectMentorMatch.Methods;
+﻿using ProjectMentorMatch.Methods;
 
 namespace ProjectMentorMatch
 {

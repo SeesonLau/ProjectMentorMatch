@@ -67,11 +67,11 @@
                           Route="MentorMatch" />
         </Tab>
         
-        <Tab Title="Notification" 
+        <!--<Tab Title="Notification" 
              Icon="notification_logo.png">
             <ShellContent ContentTemplate="{DataTemplate local:Notification}" 
                           Route="Notifications" />
-        </Tab>
+        </Tab>-->
         
         <Tab Title="Chat" 
              Icon="chat_icon.png">

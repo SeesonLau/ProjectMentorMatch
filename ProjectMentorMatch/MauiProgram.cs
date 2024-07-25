@@ -1,7 +1,6 @@
 using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Mopups.Hosting;
-using Plugin.LocalNotification;
 using ProjectMentorMatch.ViewModels;
 using ProjectMentorMatch.Views;
 using Syncfusion.Maui.Core.Hosting;
@@ -39,8 +38,6 @@ namespace ProjectMentorMatch
                 .ConfigureMopups()
                 // Add Syncfusion.Maui.Core.Hosting
                 .ConfigureSyncfusionCore()
-                // Added Notification Functionality
-                .UseLocalNotification()
                 // Added Cards View
                 .UseCardsView()
                 //Chart
