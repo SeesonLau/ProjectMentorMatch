@@ -16,7 +16,7 @@ public partial class ApplyAsMentor : ContentPage
     ScheduleViewModel scheduleViewModel;
     SubjectsViewModel subjectsViewModel;
     Mentor mentor;
-    SubjectsViewModel subjectsViewModel;
+
     public ApplyAsMentor()
 	{
 		InitializeComponent();
@@ -24,7 +24,8 @@ public partial class ApplyAsMentor : ContentPage
         scheduleViewModel = new ScheduleViewModel();
         subjectsViewModel = new SubjectsViewModel();
         mentor = new Mentor();
-        LoadSchedules();
+
+        subjectsViewModel = new SubjectsViewModel();
 
         int userID = App.UserID;
         subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
@@ -35,7 +36,6 @@ public partial class ApplyAsMentor : ContentPage
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-       // await scheduleViewModel.LoadSchedules(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
