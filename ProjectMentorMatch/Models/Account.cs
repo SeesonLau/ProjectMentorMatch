@@ -418,6 +418,27 @@ namespace ProjectMentorMatch.Models
             return accounts;
         }
 
+        public static List<int> GetAllProfileID()
+        {
+            List<int> profileIDs = new List<int>();
+
+            string query = "SELECT ProfileID FROM Analytics";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                connection.Open();
+                using (SqlDataReader reader = command.ExecuteReader())
+                {
+                    while (reader.Read())
+                    {
+                        profileIDs.Add(reader.GetInt32(reader.GetOrdinal("ProfileID")));
+                    }
+                }
+            }
+
+            return profileIDs;
+        }
+
         public static List<Account> GetAllMentors()
         {
             List<Account> accounts = new List<Account>();

@@ -20,26 +20,29 @@ namespace ProjectMentorMatch.Models
         private int brainReact = 0;
         private double pointsMax = 0; // unsa ang formula para ani??
         private double pointsGain = 0;
-        private int profileID = 0;
+        private int ProfileID { get; set; }
 
-        public int GetAnalyticsID(int profileID)
+        public string? GetAnalyticsID(int profileID)
         {
-            string analyticsIDQuery = "SELECT AnalyticsID FROM Profile WHERE ProfileID = @ProfileID";
+            string query = "SELECT AnalyticsID FROM Profile WHERE ProfileID = @ProfileID";
 
             using (var connection = GetConnection())
-            using (SqlCommand command = new SqlCommand(analyticsIDQuery, connection))
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                command.Parameters.AddWithValue("@ProfileID", profileID);
+                command.Parameters.AddWithValue("@AnalyticsID", analyticsID);
+
                 connection.Open();
                 object result = command.ExecuteScalar();
-                if (result != null)
+
+                if (result != null && result != DBNull.Value)
                 {
-                    analyticsID = Convert.ToInt32(result);
-                    SetProfileID(profileID);
+                    return result.ToString();
                 }
             }
-            return analyticsID;
+
+            return null; // Return null if no city is found
         }
+
 
         // not yet tested
         public int GetBrainReact(int profileID)
