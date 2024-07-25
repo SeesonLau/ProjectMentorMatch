@@ -14,11 +14,13 @@ public partial class ApplyAsMentor : ContentPage
 {
     ProfileModels profile;
     ScheduleViewModel scheduleViewModel;
+    Mentor mentor;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
         scheduleViewModel = new ScheduleViewModel();
+        mentor = new Mentor();
         LoadSchedules();
 
     }
@@ -36,11 +38,31 @@ public partial class ApplyAsMentor : ContentPage
 
     private async void ApplyButton_Clicked(object sender, EventArgs e)
     {
+
+        string? aboutMe = aboutMeEntry.Text;
+        float mentorFee = float.Parse(MentorFeeEntry.Text);
+        string? academic = aboutMeEntry.Text; // PLACEHOLDER
+        string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
+        string? day = aboutMeEntry.Text;  // PLACEHOLDER
+
+
+
+
         try
         {
             int userID = App.UserID;
-        profile.ApplyAsMentor(userID);
-            await scheduleViewModel.SaveSchedules(userID);
+            //profile.ApplyAsMentor(userID);
+
+            mentor.SetAboutMe(aboutMe);
+            mentor.SetMentorFee(mentorFee);
+            mentor.SetAcademic(academic); 
+            mentor.SetNonAcademic(nonacademic);
+            mentor.SetDay(day);
+             
+            mentor.InsertApplyAsMentor(userID);
+
+
+            //await scheduleViewModel.SaveSchedules(userID);
             await DisplayAlert("Success", "You're now a mentor bish.", "OK");
         }
         catch (Exception ex)
