@@ -38,27 +38,32 @@ public partial class ApplyAsMentor : ContentPage
     }
     private void OnSetupModeCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (e.Value) // Only handle when the RadioButton is checked
+        if (e.Value) 
         {
             var radioButton = sender as Microsoft.Maui.Controls.RadioButton;
             if (radioButton != null)
             {
                 SelectedSetupMode = radioButton.Content.ToString();
-                DisplayAlert("Setup Mode Selected", SelectedSetupMode, "OK");
             }
         }
     }
 
     private void OnInteractionModeCheckedChanged(object sender, CheckedChangedEventArgs e)
     {
-        if (e.Value) // Only handle when the RadioButton is checked
+        if (e.Value) 
         {
             var radioButton = sender as Microsoft.Maui.Controls.RadioButton;
             if (radioButton != null)
             {
                 SelectedInteractionMode = radioButton.Content.ToString();
-                DisplayAlert("Interaction Mode Selected", SelectedInteractionMode, "OK");
             }
+        }
+    }
+    private void SetRadioButtonSelected(Microsoft.Maui.Controls.RadioButton radioButton, string value)
+    {
+        if (radioButton.Content.ToString() == value)
+        {
+            radioButton.IsChecked = true;
         }
     }
     private void LoadApplyMentor()
@@ -66,11 +71,26 @@ public partial class ApplyAsMentor : ContentPage
         int userId = App.UserID;
         string? aboutMe = mentor.GetAboutMe(userId);
         string? mentorFee = mentor.GetMentorFee(userId);
+        string? setup = mentor.GetSetup(userId);
+        string? interaction = mentor.GetInteraction(userId);
 
         MainThread.BeginInvokeOnMainThread(() =>
         {
             aboutMeEntry.Text = aboutMe;
             MentorFeeEntry.Text = mentorFee;
+
+            if (setup != null)
+            {
+                SetRadioButtonSelected(rbnFacetoFace, setup);
+                SetRadioButtonSelected(rbnOnline, setup);
+            }
+
+            if (interaction != null)
+            {
+                SetRadioButtonSelected(rbnOneonOne, interaction);
+                SetRadioButtonSelected(rbnGroup, interaction);
+            }
+
 
         });
     }
@@ -89,6 +109,7 @@ public partial class ApplyAsMentor : ContentPage
        // string? academic = aboutMeEntry.Text; // PLACEHOLDER
        // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
        // string? day = aboutMeEntry.Text;  // PLACEHOLDER
+
         
        
 
@@ -100,6 +121,8 @@ public partial class ApplyAsMentor : ContentPage
 
             mentor.SetAboutMe(aboutMe);
             mentor.SetMentorFee(mentorFee);
+            mentor.SetSetup(SelectedSetupMode);
+            mentor.SetInteraction(SelectedInteractionMode);
             //mentor.SetAcademic(academic); 
             //mentor.SetNonAcademic(nonacademic);
             //mentor.SetDay(day);
