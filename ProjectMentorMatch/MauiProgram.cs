@@ -8,6 +8,7 @@ using Syncfusion.Maui.Core.Hosting;
 using UraniumUI;
 using PanCardView;
 using Microcharts.Maui;
+using Microcharts;
 
 namespace ProjectMentorMatch
 {

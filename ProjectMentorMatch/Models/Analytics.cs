@@ -139,9 +139,5 @@ namespace ProjectMentorMatch.Models
             }
         }
 
-        public void CreateLineChart(int userId)
-        {
-
-        }
     }
 }
