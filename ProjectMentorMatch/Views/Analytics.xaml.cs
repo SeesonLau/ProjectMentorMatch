@@ -9,7 +9,7 @@ using Microcharts;
 using Microcharts.Maui;
 using SkiaSharp;
 using System.Collections.Generic;
-
+using System.Linq;
 
 namespace ProjectMentorMatch.Views
 {
@@ -23,23 +23,29 @@ namespace ProjectMentorMatch.Views
             try
             {
                 var profileIDs = Account.GetAnalyticsProfileID(App.ProfileID);
-                var entries = new List<ChartEntry>();
-             
-                entries.AddRange(GetChartEntries(App.ProfileID));
-                
-                chartView.Chart = new LineChart()
+                if (!profileIDs.Any())
                 {
-                    Entries = entries,
-                    BackgroundColor = SKColors.White,
-                     LabelTextSize = 40, // Adjust the label text size
-                    PointMode = PointMode.Circle,
-                    PointSize = 10 // Adjus
-                };
+                    chartView.IsVisible = false;
+                    noDataMessage.IsVisible = true;
+                }
+                else
+                {
+                    var entries = new List<ChartEntry>();
+                    entries.AddRange(GetChartEntries(App.ProfileID));
+                    chartView.Chart = new LineChart()
+                    {
+                        Entries = entries,
+                        BackgroundColor = SKColors.White,
+                        LabelTextSize = 40,
+                        PointMode = PointMode.Circle,
+                        PointSize = 10
+                    };
+                }
             }
             catch (Exception ex)
             {
                 DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-              //  Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+                //  Console.WriteLine($"Stack Trace: {ex.StackTrace}");
             }
         }
         private void LoadRankings()
