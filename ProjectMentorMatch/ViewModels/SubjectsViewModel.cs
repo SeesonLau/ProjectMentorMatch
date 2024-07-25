@@ -204,16 +204,16 @@ namespace ProjectMentorMatch.ViewModels
 
             if (selectedNonSubs == null)
             {
-                SelectedSub.Clear();
+                SelectedNonSub.Clear();
             }
             else
             {
                 var nonacadSub = selectedNonSubs.Split(new[] { ", " }, StringSplitOptions.None).ToList();
 
-                SelectedSub.Clear();
+                SelectedNonSub.Clear();
                 foreach (var sub in nonacadSub)
                 {
-                    SelectedSub.Add(sub);
+                    SelectedNonSub.Add(sub);
                 }
             }
         }
