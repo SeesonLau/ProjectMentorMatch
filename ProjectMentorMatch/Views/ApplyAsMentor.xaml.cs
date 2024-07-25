@@ -14,23 +14,28 @@ public partial class ApplyAsMentor : ContentPage
 {
     ProfileModels profile;
     ScheduleViewModel scheduleViewModel;
-    Mentor mentor;
     SubjectsViewModel subjectsViewModel;
+    Mentor mentor;
+
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
         scheduleViewModel = new ScheduleViewModel();
-        mentor = new Mentor();
         subjectsViewModel = new SubjectsViewModel();
-        LoadSchedules();
+        mentor = new Mentor();
 
+        subjectsViewModel = new SubjectsViewModel();
+
+        int userID = App.UserID;
+        subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
+        subjectsViewModel.LoadNonAcademicSubs(userID, nonAcademicSubjectsPicker);
+        scheduleViewModel.LoadSelectedDays(userID, SchedulePicker);
     }
 
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-        //await scheduleViewModel.LoadSchedules(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
@@ -42,7 +47,7 @@ public partial class ApplyAsMentor : ContentPage
     {
 
         string? aboutMe = aboutMeEntry.Text;
-        float mentorFee = float.Parse(MentorFeeEntry.Text);
+        string? mentorFee = MentorFeeEntry.Text;
        // string? academic = aboutMeEntry.Text; // PLACEHOLDER
        // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
        // string? day = aboutMeEntry.Text;  // PLACEHOLDER
@@ -88,11 +93,4 @@ public partial class ApplyAsMentor : ContentPage
         }
     }
     //Test Apply Button Clicked
-    private void ApplyButton_Clicked_1(object sender, EventArgs e)
-    {
-        int userID = App.UserID;
-        scheduleViewModel.SaveSelectedDaysToDatabase(userID);
-        subjectsViewModel.SaveSubjects(userID);
-
-    }
 }
