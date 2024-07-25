@@ -219,7 +219,7 @@ namespace ProjectMentorMatch.ViewModels
         }
 
         public event PropertyChangedEventHandler? PropertyChanged;
-
+        //okay
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));

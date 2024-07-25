@@ -184,7 +184,7 @@ namespace ProjectMentorMatch.ViewModels
                 Console.WriteLine($"Error loading schedules: {ex.Message}");
             }
         }*/
-
+        //Okay
         protected virtual void OnPropertyChanged(string propertyName)
         {
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
