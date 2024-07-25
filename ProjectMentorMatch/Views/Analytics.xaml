@@ -8,7 +8,7 @@
     <ScrollView>
         <VerticalStackLayout Padding="10">
 
-            <Label Text="'Your BrainReacts Overtime' or something similar ana"
+            <Label Text="'Brain Analytics"
                    FontSize="24"
                    FontAttributes="Bold"
                    TextColor="Blue"
@@ -39,8 +39,8 @@
                 <CollectionView.Header>
                     <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="LightGray">
                         <Label Text="Rank" WidthRequest="110" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="ProfileID" WidthRequest="120" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="TotalBrainReact" WidthRequest="1000" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="Name" WidthRequest="120" FontAttributes="Bold" HorizontalOptions="Center" />
+                        <Label Text="Total Brains" WidthRequest="1000" FontAttributes="Bold" HorizontalOptions="Center" />
                     </StackLayout>
                 </CollectionView.Header>
                 <CollectionView.ItemTemplate>
