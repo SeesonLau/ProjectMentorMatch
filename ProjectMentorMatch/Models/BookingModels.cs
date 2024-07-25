@@ -63,7 +63,7 @@ namespace ProjectMentorMatch.Models
 
         public void SetHeartReact(int heartReact) { HeartReact = heartReact; }
 
-        public void SetSetup(string setup) { Setup = setup; }
+         public void SetSetup(string setup) { Setup = setup; }
 
 
         public void InsertBooking()
