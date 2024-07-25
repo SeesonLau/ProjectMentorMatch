@@ -252,7 +252,7 @@ public partial class Dashboard : ContentPage
     }
 
 
-    
+    /*
     public static void LogProfileIDInAnalytics(int profileID)
     {
         // Query to check if the ProfileID already exists on the Analytics table
@@ -281,6 +281,6 @@ public partial class Dashboard : ContentPage
                 }
             }
         }
-    }
+    }*/
     
 }

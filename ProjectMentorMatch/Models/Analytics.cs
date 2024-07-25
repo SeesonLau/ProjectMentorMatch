@@ -20,7 +20,36 @@ namespace ProjectMentorMatch.Models
         private int brainReact = 0;
         private double pointsMax = 0; // unsa ang formula para ani??
         private double pointsGain = 0;
-        private int profileID = 0;
+        private int profileID;
+        public static int GetProfileID(int userID)
+        {
+            string profileIDQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID ";
+            int profileID = -1; // Default value if no profile is found
+
+            try
+            {
+                using (var connection = Database.GetConnection())
+                using (SqlCommand command = new SqlCommand(profileIDQuery, connection))
+                {
+                    command.Parameters.AddWithValue("@UserID", userID);
+                    connection.Open();
+
+                    object result = command.ExecuteScalar();
+                    if (result != null)
+                    {
+                        profileID = Convert.ToInt32(result);
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                // Handle the exception (e.g., log it or display an error message)
+                Console.WriteLine("An error occurred while retrieving the ProfileID: " + ex.Message);
+            }
+
+            return profileID;
+        }
+
 
         public int GetAnalyticsID(int profileID)
         {
@@ -65,7 +94,7 @@ namespace ProjectMentorMatch.Models
         {
             return pointsGain;
         }
-
+        public void SetProfileID(int profileID) { this.profileID = profileID; }
         public void SetAnalyticsID(int analyticsID) { this.analyticsID = analyticsID; }
         public void SetBrainReact(int brainReact) { this.brainReact = brainReact; }
         public void SetPointsMax(double pointsMax) { this.pointsMax = pointsMax; }
@@ -138,5 +167,7 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
+
+        
     }
 }

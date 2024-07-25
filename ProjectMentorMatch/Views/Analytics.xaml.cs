@@ -14,12 +14,15 @@ namespace ProjectMentorMatch.Views;
 
 public partial class Analytics : ContentPage
 {
-
+    
     public Analytics()
     {
-        InitializeComponent();
+        //AnalyticsModel analytics = new AnalyticsModel();
 
-        int profileID = 2; // Placeholder, cannot retrieve profileID HUHU T_T
+        InitializeComponent();
+        int userID = App.UserID;
+        int profileID = AnalyticsModel.GetProfileID(userID);
+        // Placeholder, cannot retrieve profileID HUHU T_T
         var entries = GetChartEntries(profileID);
 
         chartView.Chart = new LineChart()
