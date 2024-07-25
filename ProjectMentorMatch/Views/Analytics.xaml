@@ -8,15 +8,23 @@
     <ScrollView>
         <VerticalStackLayout Padding="10">
 
-            <Label Text="Analytics"
+            <Label Text="'Your BrainReacts Overtime' or something similar ana"
                    FontSize="24"
                    FontAttributes="Bold"
                    TextColor="Blue"
                    HorizontalTextAlignment="Center"
                    Margin="0,20,0,10" />
 
-            <!-- Chart -->
+                <!-- Chart -->
             <micro:ChartView x:Name="chartView" HeightRequest="300" />
+
+            <!-- No Data Message -->
+            <Label x:Name="noDataMessage"
+                   Text="No data available yet"
+                   FontSize="20"
+                   TextColor="Gray"
+                   HorizontalTextAlignment="Center"
+                   IsVisible="False" />
 
             <!-- Leaderboards -->
             <Label Text="Leaderboards"
