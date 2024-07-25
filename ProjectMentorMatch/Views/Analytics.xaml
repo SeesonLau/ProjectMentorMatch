@@ -63,7 +63,7 @@
                         <DataTemplate>
                             <StackLayout Orientation="Horizontal" Padding="5">
                                 <Label Text="{Binding Rank}" WidthRequest="110" HorizontalOptions="Center" />
-                                <Label Text="{Binding ProfileID}" WidthRequest="120" HorizontalOptions="Center" />
+                                <Label Text="{Binding Fullname}" WidthRequest="120" HorizontalOptions="Center" />
                                 <Label Text="{Binding TotalBrainReact}" WidthRequest="1000" HorizontalOptions="Center" />
                             </StackLayout>
                         </DataTemplate>
