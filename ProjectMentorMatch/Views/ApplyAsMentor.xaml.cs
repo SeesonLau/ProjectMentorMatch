@@ -68,7 +68,7 @@ public partial class ApplyAsMentor : ContentPage
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
     }
-
+    //Test Apply Button Clicked
     private void ApplyButton_Clicked_1(object sender, EventArgs e)
     {
         int userID = App.UserID;
