@@ -125,13 +125,13 @@
                     </Label>
 
                     <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                        <RadioButton x:Name="rbnGroup" Content="Face to Face" GroupName="SetupModeGroup"  />
-                        <RadioButton Content="Online" GroupName="SetupModeGroup"  />
+                        <RadioButton x:Name="rbnFacetoFace" Content="Face to Face" GroupName="SetupModeGroup"  />
+                        <RadioButton x:Name="rbnOnline" Content="Online" GroupName="SetupModeGroup"  />
                     </StackLayout>
 
                     <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                        <RadioButton Content="One-on-one" GroupName="InteractionModeGroup"  />
-                        <RadioButton Content="Group" GroupName="InteractionModeGroup"  />
+                        <RadioButton x:Name="rbnOneonOne" Content="One-on-one" GroupName="InteractionModeGroup"  />
+                        <RadioButton x:Name="rbnGroup" Content="Group" GroupName="InteractionModeGroup"  />
                     </StackLayout>
                     <VerticalStackLayout>
                         <!-- Session Rates -->
