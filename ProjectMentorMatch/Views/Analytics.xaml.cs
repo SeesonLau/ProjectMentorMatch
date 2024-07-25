@@ -15,20 +15,19 @@ public partial class Analytics : ContentPage
 {
     public Analytics()
 	{
-        InitializeComponent();  
-	}
-
-    protected override async void OnAppearing()
+        InitializeComponent();
+        LoadChartAsync();   
+    }
+    private async Task LoadChartAsync()
     {
-        base.OnAppearing();
         int userID = App.UserID;
         await CreateLineChart(userID);
     }
-
     //Chart not yet working, cannot retrieve profileID using userID 
-    public static int GetProfileIDByUserID(int userID)
+    public int GetProfileIDByUserID(int userID)
     {
         string query = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+
         using (var connection = Database.GetConnection())
         {
             connection.Open();
@@ -42,13 +41,13 @@ public partial class Analytics : ContentPage
     }
     public async Task CreateLineChart(int userID)
     {
-
+        // Get the ProfileID using the userID
         int profileID = GetProfileIDByUserID(userID);
 
         if (profileID == -1)
         {
-
-            return;
+            // Handle the case where no ProfileID was found
+            throw new Exception("ProfileID not found for the given UserID");
         }
 
         List<ChartEntry> entries = new List<ChartEntry>();
