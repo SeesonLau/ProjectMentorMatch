@@ -15,78 +15,80 @@ public partial class Analytics : ContentPage
 {
     public Analytics()
 	{
-        InitializeComponent();
-        
+        InitializeComponent();  
 	}
 
     protected override async void OnAppearing()
     {
         base.OnAppearing();
-        int userId = App.UserID;
-        await CreateLineChart(userId);
+        int userID = App.UserID;
+        await CreateLineChart(userID);
     }
-    public async Task CreateLineChart(int userId)
+
+    //Chart not yet working, 
+    public static int GetProfileIDByUserID(int userID)
     {
+        string query = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
+        using (var connection = Database.GetConnection())
+        {
+            connection.Open();
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                object result = command.ExecuteScalar();
+                return result != null ? Convert.ToInt32(result) : -1; // Return -1 if no result
+            }
+        }
+    }
+    public async Task CreateLineChart(int userID)
+    {
+
+        int profileID = GetProfileIDByUserID(userID);
+
+        if (profileID == -1)
+        {
+            // Handle the case where ProfileID is not found
+            // Possibly log an error or show a message to the user
+            return;
+        }
+
         List<ChartEntry> entries = new List<ChartEntry>();
-        int profileId;
 
         using (var connection = Database.GetConnection())
         {
             await connection.OpenAsync();
-
-            // Get the ProfileID from the Profile table
-            string profileIdQuery = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
-            using (SqlCommand profileIdCommand = new SqlCommand(profileIdQuery, connection))
+            string query = "SELECT day, brainReact FROM Analytics WHERE ProfileID = @ProfileID";
+            using (SqlCommand command = new SqlCommand(query, connection))
             {
-                profileIdCommand.Parameters.AddWithValue("@UserID", userId);
-                object result = await profileIdCommand.ExecuteScalarAsync();
+                command.Parameters.AddWithValue("@ProfileID", profileID);
 
-                if (result != null && int.TryParse(result.ToString(), out profileId))
+                using (SqlDataReader reader = await command.ExecuteReaderAsync())
                 {
-                    // ProfileID was found, now get data from the Analytics table
-                    string analyticsQuery = "SELECT day, brainReact FROM Analytics WHERE ProfileID = @ProfileID";
-                    using (SqlCommand analyticsCommand = new SqlCommand(analyticsQuery, connection))
+                    while (await reader.ReadAsync())
                     {
-                        analyticsCommand.Parameters.AddWithValue("@ProfileID", profileId);
-                        SqlDataReader reader = await analyticsCommand.ExecuteReaderAsync();
+                        var day = reader.GetDateTime(0);
+                        var brainReact = reader.GetInt32(1);
 
-                        while (await reader.ReadAsync())
+                        entries.Add(new ChartEntry(brainReact)
                         {
-                            var day = reader.GetDateTime(0);
-                            var brainReact = reader.GetInt32(1);
-
-                            entries.Add(new ChartEntry(brainReact)
-                            {
-                                Label = day.ToString("MM/dd/yyyy"),
-                                ValueLabel = brainReact.ToString(),
-                                Color = SKColor.Parse("#3498db")
-                            });
-                        }
-
-                        reader.Close();
+                            Label = day.ToString("MM/dd/yyyy"),
+                            ValueLabel = brainReact.ToString(),
+                            Color = SKColor.Parse("#3498db")
+                        });
                     }
-                }
-                else
-                {
-                    entries.Add(new ChartEntry(0)
-                    {
-                        Label = "No data available",
-                        ValueLabel = "0",
-                        Color = SKColor.Parse("#e74c3c")
-                    });
                 }
             }
         }
 
+        // Step 3: Create and configure the LineChart
         chartView.Chart = new LineChart()
         {
             Entries = entries,
             BackgroundColor = SKColors.White,
             LineMode = LineMode.Straight,
-            LineSize = 8,
+            LineSize = 15,
             PointMode = PointMode.Circle,
-            PointSize = 18,
+            PointSize = 30
         };
     }
-
 }

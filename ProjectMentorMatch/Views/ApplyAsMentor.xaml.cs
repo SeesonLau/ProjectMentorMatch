@@ -28,7 +28,7 @@ public partial class ApplyAsMentor : ContentPage
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-        await scheduleViewModel.LoadSchedules(userId);
+   //  await scheduleViewModel.LoadSchedules(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
@@ -89,7 +89,7 @@ public partial class ApplyAsMentor : ContentPage
     {
         int userID = App.UserID;
         scheduleViewModel.SaveSelectedDaysToDatabase(userID);
-        subjectsViewModel.SaveSubjects(userID);
+      //  subjectsViewModel.SaveSubjects(userID);
 
     }
 }
