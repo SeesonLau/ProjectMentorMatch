@@ -46,7 +46,7 @@ public partial class ApplyAsMentor : ContentPage
        // string? academic = aboutMeEntry.Text; // PLACEHOLDER
        // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
        // string? day = aboutMeEntry.Text;  // PLACEHOLDER
-
+        
        
 
 
