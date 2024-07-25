@@ -25,7 +25,7 @@ public partial class Analytics : ContentPage
         await CreateLineChart(userID);
     }
 
-    //Chart not yet working, 
+    //Chart not yet working, cannot retrieve profileID using userID 
     public static int GetProfileIDByUserID(int userID)
     {
         string query = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
@@ -47,8 +47,7 @@ public partial class Analytics : ContentPage
 
         if (profileID == -1)
         {
-            // Handle the case where ProfileID is not found
-            // Possibly log an error or show a message to the user
+
             return;
         }
 
