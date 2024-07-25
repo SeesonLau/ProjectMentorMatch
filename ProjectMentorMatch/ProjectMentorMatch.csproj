@@ -138,6 +138,7 @@
 	<ItemGroup>
 	  <None Remove="EULA.txt" />
 	  <None Remove="LinkerConfig.xml" />
+	  <None Remove="Resources\Images\chat_background.png" />
 	  <None Remove="Resources\Images\chat_placeholder.png" />
 	</ItemGroup>
 

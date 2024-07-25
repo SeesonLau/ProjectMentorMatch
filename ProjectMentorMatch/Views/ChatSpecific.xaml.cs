@@ -31,7 +31,11 @@ namespace ProjectMentorMatch.Views
             {
                 Dispatcher.Dispatch(() =>
                 {
-                    AddMessageToChat(user, message, user == txtUsername.Text);
+                    // Ensure the message is only added when received from others
+                    if (user != txtUsername.Text)
+                    {
+                        AddMessageToChat(user, message, false);
+                    }
                 });
             });
 
@@ -56,6 +60,7 @@ namespace ProjectMentorMatch.Views
                     txtMessage.Text
                 });
 
+                // Add the message to the chat immediately for the sender
                 AddMessageToChat(txtUsername.Text, txtMessage.Text, true);
                 txtMessage.Text = string.Empty;
             }
@@ -77,7 +82,7 @@ namespace ProjectMentorMatch.Views
             {
                 Text = user,
                 FontSize = 10,
-                TextColor = Colors.Gray,
+                TextColor = Colors.White,
                 HorizontalOptions = LayoutOptions.Start
             };
 
@@ -91,7 +96,7 @@ namespace ProjectMentorMatch.Views
             var messageFrame = new Frame
             {
                 Content = messageStack,
-                BackgroundColor = isCurrentUser ? Colors.LightBlue : Colors.LightGray,
+                BackgroundColor = isCurrentUser ? Colors.Gold : Colors.CornflowerBlue,
                 CornerRadius = 15,
                 Padding = new Thickness(10),
                 Margin = new Thickness(0, 5),
