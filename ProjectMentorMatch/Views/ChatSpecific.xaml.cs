@@ -11,11 +11,10 @@ namespace ProjectMentorMatch.Views
         private readonly HubConnection hubConnection;
         private bool isSendingMessage = false;
 
-        public ChatSpecific(string ReceiverName)
+        public ChatSpecific()
         {
             InitializeComponent();
-            BindingContext = new ChatViewModel(ReceiverName);
-
+           
             var baseUrl = "http://localhost";
 
             // Android can't connect to localhost

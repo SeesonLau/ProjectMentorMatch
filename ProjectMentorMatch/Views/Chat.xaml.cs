@@ -19,8 +19,8 @@ namespace ProjectMentorMatch.Views
             var mentors = await FetchTopMentorsAsync();
             var chats = await FetchTopChatsAsync();
 
-            BindMentorsToUI(mentors);
-            BindChatsToUI(chats);
+            //BindMentorsToUI(mentors);
+           // BindChatsToUI(chats);
         }
 
         private async Task<List<string>> FetchTopMentorsAsync()
@@ -104,12 +104,16 @@ namespace ProjectMentorMatch.Views
                 var ReceiverName = button.CommandParameter.ToString();
                 if (!string.IsNullOrEmpty(ReceiverName))
                 {
-                    await Navigation.PushAsync(new ChatSpecific(ReceiverName));
+                    await Navigation.PushAsync(new ChatSpecific());
                 }
             }
         }
-
-        async void OnChatClicked(object sender, EventArgs e)
+        private async void OnChatClicked(object sender, EventArgs e)
+        {
+            // Navigate to the ChatSpecific page
+            await Navigation.PushAsync(new ChatSpecific());
+        }
+        /*async void OnChatClicked(object sender, EventArgs e)
         {
             var grid = sender as Grid;
             if (grid?.BindingContext != null)
@@ -120,6 +124,6 @@ namespace ProjectMentorMatch.Views
                     await Navigation.PushAsync(new ChatSpecific(ReceiverName));
                 }
             }
-        }
+        }*/
     }
 }
