@@ -146,7 +146,7 @@
 
                    
                     <!-- Apply Button-->
-                    <Button x:Name="ApplyButton" Text="Apply" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="15" Clicked="ApplyButton_Clicked"/>
+                    <Button x:Name="ApplyButton" Text="Save" WidthRequest="200" HeightRequest ="39" HorizontalOptions="Center" Margin="15" Clicked="ApplyButton_Clicked"/>
                     <Label Text="or" 
                    Padding ="5" 
                    HorizontalOptions="Center" 
