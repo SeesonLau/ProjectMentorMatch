@@ -38,7 +38,7 @@
                 <Label Grid.Column="1"
         FontSize="24"
         HorizontalTextAlignment="Center"
-        Text="Apply as Mentor"
+        Text="Mentor Profile"
         TextColor="#006EBB"
         FontAttributes="Bold"
         VerticalOptions="Center" />
