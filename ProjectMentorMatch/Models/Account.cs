@@ -237,7 +237,7 @@ namespace ProjectMentorMatch.Models
 
         public string? GetRateByUserID(int userID)
         {
-            string query = "SELECT Rate FROM Mentor WHERE UserID = @UserID";
+            string query = "SELECT MentorFee FROM Mentor WHERE UserID = @UserID";
 
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
