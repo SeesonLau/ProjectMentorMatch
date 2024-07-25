@@ -200,7 +200,7 @@ public partial class Dashboard : ContentPage
 
     private async void Button_Clicked(object sender, EventArgs e)
     {
-        await Navigation.PushAsync(new Booking(null, 0));
+        await Navigation.PushAsync(new Booking(null, 0, null, null, null, null, null, null));
     }
 
     private void btnEx_Clicked(object sender, EventArgs e)
@@ -222,9 +222,17 @@ public partial class Dashboard : ContentPage
         {
             string? selectedFullName = viewModel.CurrentItem.ItemName;
             int profileID = viewModel.CurrentItem.ProfileID;
+            string? subject = viewModel.CurrentItem.subjects;
+            string? day = viewModel.CurrentItem.Day;
+            string? picture = viewModel.CurrentItem.ImageSource;
+            string? Province = viewModel.CurrentItem.addressProvince;
+            string? City = viewModel.CurrentItem.addressCity;
+            string? mentorFee = viewModel.CurrentItem.Rate;
+
+
 
             // Navigate to Booking page with both parameters
-            Navigation.PushAsync(new Booking(selectedFullName, profileID));
+            Navigation.PushAsync(new Booking(selectedFullName, profileID, subject, day, picture, Province, City, mentorFee));
         }
     }
 

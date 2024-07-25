@@ -32,7 +32,8 @@
                    Padding="0">
                 
                 <!-- Profile Picture Gi Image button ra nako aron ma sunod ang design -->
-                <ImageButton Source="sample_profile2.png" 
+                <ImageButton x:Name="bookPicture"
+                             Source="sample_profile2.png" 
                              HorizontalOptions="FillAndExpand"  
                              Aspect="AspectFill" 
                              HeightRequest="350">
@@ -61,10 +62,11 @@
                 </buttons:SfButton.Shadow>
             </buttons:SfButton>
 
-            <Label Grid.Column="0" 
+            <Label x:Name="bookName"               
+                   Grid.Column="0" 
                    Grid.Row="3" 
                    Grid.ColumnSpan="3" 
-                   Margin="0, -90, 0,0"
+                   Margin="0, 0, 0,0"
                    FontSize="25"
                    HorizontalTextAlignment="Center"
                    Text="Book now !"
@@ -73,22 +75,14 @@
                    VerticalOptions="Center" >
             </Label>
 
-            <Label
-              x:Name="bookName"
-         Grid.Row="3" 
-         Grid.ColumnSpan="3" 
-         Margin="0, -20, 0,0"
-         FontSize="25"
-         HorizontalTextAlignment="Center"
-         Text="Book now !"
-         TextColor="#006EBB"
-         FontAttributes="Bold"
-         VerticalOptions="Center" >
-            </Label>
+           
+
+
 
             <Label
          x:Name="bookProfileID"
         Grid.Row="3" 
+                IsVisible="False"
         Grid.ColumnSpan="3" 
         Margin="0, 70, 0,0"
         FontSize="25"
@@ -99,6 +93,32 @@
         VerticalOptions="Center" >
             </Label>
 
+            <Label
+ x:Name="lblFee"
+Grid.Row="3" 
+                IsVisible="False"
+Grid.ColumnSpan="3" 
+Margin="0, 70, 0,0"
+FontSize="25"
+HorizontalTextAlignment="Center"
+TextColor="#006EBB"
+FontAttributes="Bold"
+VerticalOptions="Center" >
+            </Label>
+
+
+            <Label x:Name="lblLocation"
+                   Grid.Row="3" 
+                   Grid.ColumnSpan="3" 
+                   Margin="0, 70, 0,0"
+                   FontSize="25"
+                   HorizontalTextAlignment="Center"
+                   Text="Book now !"
+                   TextColor="#006EBB"
+                   FontAttributes="Bold"
+                   VerticalOptions="Center"
+                   IsVisible="False">
+            </Label>
 
             <Label Grid.Column="0" 
                    Grid.ColumnSpan="2" 
@@ -110,16 +130,24 @@
                    TextColor="#006EBB">
             </Label>
 
-            <Label Grid.Column="0" 
-                   x:Name="lblSubs"
+            <StackLayout x:Name="chkSubsContainer"
+                         Grid.Column="0"
+                         Grid.Row="5"
+                         Grid.ColumnSpan="3"
+                         Spacing="10"
+                         Margin="0,10,0,0">
+            </StackLayout>
+
+            <Label x:Name="lblSubs"
+                   Grid.Column="0" 
                    Grid.ColumnSpan="3" 
                    Grid.Row="5" 
+                   IsVisible="False"
                    Text="To be Bind Subs" 
                    FontAttributes="Bold" 
                    FontSize="16" 
                    TextColor="#a3a3a3">
             </Label>
-
 
             <Label Grid.Column="0" 
                    Grid.ColumnSpan="2" 
@@ -131,11 +159,20 @@
                    TextColor="#006EBB">
             </Label>
 
+            <StackLayout x:Name="chkSchedContainer"
+                         Grid.Column="0"
+                         Grid.Row="7"
+                         Grid.ColumnSpan="3"
+                         Spacing="10"
+                         Margin="0,10,0,0">
+            </StackLayout>
+
 
             <Label Grid.Column="0" 
                    x:Name="lblSched"
                    Grid.ColumnSpan="4" 
                    Grid.Row="7" 
+                   IsVisible="False"
                    Margin="0,0,0,0"
                    Text="To be Bind Sched" 
                    FontAttributes="Bold" 

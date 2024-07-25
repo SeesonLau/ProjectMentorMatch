@@ -9,7 +9,7 @@ public partial class Booking : ContentPage
 
     public string SelectedFullName { get; set; }
 
-    public Booking(string selectedFullName, int selectedProfileID)
+    public Booking(string selectedFullName, int selectedProfileID, string subject, string day, string picture, string province, string city, string mentorFee)
     {
         InitializeComponent();
         // Set the binding context or directly set the property
@@ -17,6 +17,73 @@ public partial class Booking : ContentPage
         BindingContext = this;
         bookName.Text = selectedFullName;
         bookProfileID.Text = selectedProfileID.ToString();
+        lblSubs.Text = subject;
+        lblSched.Text = day;
+        bookPicture.Source = picture;
+        lblLocation.Text = province + ", " + city;
+        lblFee.Text = mentorFee;
+
+        CreateSubjectCheckboxes(subject);
+        CreateScheduleCheckboxes(day);
+    }
+
+    private void CreateSubjectCheckboxes(string subject)
+    {
+        if (string.IsNullOrEmpty(subject)) return;
+
+        // Split the subject string into individual subjects
+        var subjects = subject.Split(',');
+
+        foreach (var subj in subjects)
+        {
+            var checkBoxContainer = new HorizontalStackLayout
+            {
+                Spacing = 10,
+                Children =
+                    {
+                        new CheckBox
+                        {
+                            IsChecked = false
+                        },
+                        new Label
+                        {
+                            Text = subj.Trim(),
+                            VerticalOptions = LayoutOptions.Center
+                        }
+                    }
+            };
+
+            chkSubsContainer.Children.Add(checkBoxContainer);
+        }
+    }
+    private void CreateScheduleCheckboxes(string day)
+    {
+        if (string.IsNullOrEmpty(day)) return;
+
+        // Split the day string into individual days
+        var days = day.Split(',');
+
+        foreach (var d in days)
+        {
+            var checkBoxContainer = new HorizontalStackLayout
+            {
+                Spacing = 10,
+                Children =
+                    {
+                        new CheckBox
+                        {
+                            IsChecked = false
+                        },
+                        new Label
+                        {
+                            Text = d.Trim(),
+                            VerticalOptions = LayoutOptions.Center
+                        }
+                    }
+            };
+
+            chkSchedContainer.Children.Add(checkBoxContainer);
+        }
     }
 
 
@@ -53,38 +120,82 @@ public partial class Booking : ContentPage
         }
     }
 
+
     private void btnBookNow_Clicked(object sender, EventArgs e)
     {
         // Retrieve values from UI elements
         string fullname = bookName.Text ?? string.Empty;
         string subject = lblSubs.Text ?? string.Empty;
         string schedule = lblSched.Text ?? string.Empty;
+        string picture = bookPicture.Source.ToString().Replace("File:", string.Empty).Trim();
+        string province = lblLocation.Text.Split(',')[0].Trim();
+        string city = lblLocation.Text.Split(',')[1].Trim();
+        string mentorFee = lblFee.Text ?? string.Empty;
+        string day = string.Empty;
 
-        // Retrieve selected setup mode and interaction mode from radio buttons
-        string setup = rbnF2F.IsChecked ? rbnF2F.Content.ToString() : rbnOnline.IsChecked ? rbnOnline.Content.ToString() : string.Empty;
-        string interactionMode = rbnOneToOne.IsChecked ? rbnOneToOne.Content.ToString() : rbnGroup.IsChecked ? rbnGroup.Content.ToString() : string.Empty;
+        // Retrieve selected subjects
+        var selectedSubjects = chkSubsContainer.Children
+            .OfType<HorizontalStackLayout>()
+            .Where(container => container.Children.OfType<CheckBox>().FirstOrDefault()?.IsChecked == true)
+            .Select(container => container.Children.OfType<Label>().FirstOrDefault()?.Text)
+            .Where(subj => !string.IsNullOrEmpty(subj))
+            .ToList();
+
+        // Retrieve selected schedules
+        var selectedSchedules = chkSchedContainer.Children
+            .OfType<HorizontalStackLayout>()
+            .Where(container => container.Children.OfType<CheckBox>().FirstOrDefault()?.IsChecked == true)
+            .Select(container => container.Children.OfType<Label>().FirstOrDefault()?.Text)
+            .Where(day => !string.IsNullOrEmpty(day))
+            .ToList();
+
+
+        // Retrieve selected setup mode from radio buttons
+        string setup = string.Empty;
+        if (rbnF2F.IsChecked)
+        {
+            setup = rbnF2F.Content.ToString();
+        }
+        else if (rbnOnline.IsChecked)
+        {
+            setup = rbnOnline.Content.ToString();
+        }
+
+        // Retrieve selected interaction mode from radio buttons
+        string interactionMode = string.Empty;
+        if (rbnOneToOne.IsChecked)
+        {
+            interactionMode = rbnOneToOne.Content.ToString();
+        }
+        else if (rbnGroup.IsChecked)
+        {
+            interactionMode = rbnGroup.Content.ToString();
+        }
 
         // Create a new Booking object
         BookingModels booking = new BookingModels
         {
             // Set the properties with retrieved values
-            Picture = "sample_profile2.png", // Default picture or fetch from a source if available
+            Picture = picture,
             Fullname = fullname,
-            MentorFee = 0.0f, // Set default or fetch from somewhere
-            Subject = subject,
-            Address = string.Empty, // Default or fetch from somewhere
-            Ratings = 0.0f, // Default or fetch from somewhere
-            HeartReact = 0, // Default or fetch from somewhere
-            Setup = setup // or interactionMode if that's what you need
+            MentorFee = mentorFee,
+            Subject = string.Join(", ", selectedSubjects),
+            Day = string.Join(", ", selectedSchedules),
+            Address = province + ", " + city,
+            Setup = setup,
+            Interaction = interactionMode
+        
         };
 
         // Insert the booking into the database
         booking.InsertBooking();
+
+        DisplayAlert("Thank you!", $"You successfully booked {fullname}", "OK");
+
     }
 
+    private void chkSubs_CheckedChanged(object sender, CheckedChangedEventArgs e)
+    {
 
-
-
-
-
+    }
 }

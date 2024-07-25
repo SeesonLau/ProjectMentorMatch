@@ -15,14 +15,16 @@ namespace ProjectMentorMatch.Models
      //   private int profileID;
 
         private int BookingID;
-        public string Picture;
-        public string Fullname;
-        public float MentorFee;
-        public string Subject;
-        public string Address;
+        public string? Picture;
+        public string? Fullname;
+        public string? MentorFee;
+        public string? Subject;
+        public string? Address;
         public float Ratings;
         public int HeartReact;
-        public string Setup;
+        public string? Setup;
+        public string? Day;
+        public string? Interaction;
 
         // GET
 
@@ -31,7 +33,7 @@ namespace ProjectMentorMatch.Models
 
         public string GetFullname() { return Fullname; }    
 
-        public float GetMentorFee() { return MentorFee; }
+        public string GetMentorFee() { return MentorFee; }
 
         public string GetSubject() { return Subject; }
 
@@ -51,7 +53,7 @@ namespace ProjectMentorMatch.Models
 
         public void SetFullname(string fullname) { Fullname = fullname; }
 
-        public void SetMentorFee(float mentorFee) { MentorFee = mentorFee; }
+        public void SetMentorFee(string mentorFee) { MentorFee = mentorFee; }
 
         public void SetSubject(string subject) { Subject = subject; }
 
@@ -67,8 +69,8 @@ namespace ProjectMentorMatch.Models
         public void InsertBooking()
         {
             string query = @"
-                INSERT INTO Booking (Picture, Fullname, MentorFee, Subject, Address, Ratings, HeartReact, Setup)
-                VALUES (@Picture, @Fullname, @MentorFee, @Subject, @Address, @Ratings, @HeartReact, @Setup);
+                INSERT INTO Booking (Picture, Fullname, MentorFee, Subject, Address, Schedule, Setup, Interaction)
+                VALUES (@Picture, @Fullname, @MentorFee, @Subject, @Address, @Schedule, @Setup, @Interaction);
             ";
 
             using (SqlConnection connection = GetConnection()) 
@@ -80,9 +82,9 @@ namespace ProjectMentorMatch.Models
                     command.Parameters.AddWithValue("@MentorFee", MentorFee);
                     command.Parameters.AddWithValue("@Subject", Subject);
                     command.Parameters.AddWithValue("@Address", Address);
-                    command.Parameters.AddWithValue("@Ratings", Ratings);
-                    command.Parameters.AddWithValue("@HeartReact", HeartReact);
+                    command.Parameters.AddWithValue("@Schedule", Day);
                     command.Parameters.AddWithValue("@Setup", Setup);
+                    command.Parameters.AddWithValue("@Interaction", Interaction);
 
                     connection.Open();
                     command.ExecuteNonQuery();
