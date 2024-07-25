@@ -53,7 +53,8 @@ namespace ProjectMentorMatch.Views
                 rankings[i].Rank = i + 1;
             }
 
-            rankingsCollectionView.ItemsSource = rankings;
+            // Display only top 5 rankings
+            rankingsCollectionView.ItemsSource = rankings.Take(5).ToList();
         }
 
         private IEnumerable<ChartEntry> GetChartEntries(int profileIDs)
