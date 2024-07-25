@@ -15,12 +15,14 @@ public partial class ApplyAsMentor : ContentPage
     ProfileModels profile;
     ScheduleViewModel scheduleViewModel;
     Mentor mentor;
+    SubjectsViewModel subjectsViewModel;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
         scheduleViewModel = new ScheduleViewModel();
         mentor = new Mentor();
+        subjectsViewModel = new SubjectsViewModel();
         LoadSchedules();
 
     }
@@ -28,7 +30,7 @@ public partial class ApplyAsMentor : ContentPage
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-        await scheduleViewModel.LoadSchedules(userId);
+        //await scheduleViewModel.LoadSchedules(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
@@ -41,11 +43,11 @@ public partial class ApplyAsMentor : ContentPage
 
         string? aboutMe = aboutMeEntry.Text;
         float mentorFee = float.Parse(MentorFeeEntry.Text);
-        string? academic = aboutMeEntry.Text; // PLACEHOLDER
-        string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
-        string? day = aboutMeEntry.Text;  // PLACEHOLDER
+       // string? academic = aboutMeEntry.Text; // PLACEHOLDER
+       // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
+       // string? day = aboutMeEntry.Text;  // PLACEHOLDER
 
-
+       
 
 
         try
@@ -55,12 +57,13 @@ public partial class ApplyAsMentor : ContentPage
 
             mentor.SetAboutMe(aboutMe);
             mentor.SetMentorFee(mentorFee);
-            mentor.SetAcademic(academic); 
-            mentor.SetNonAcademic(nonacademic);
-            mentor.SetDay(day);
+            //mentor.SetAcademic(academic); 
+            //mentor.SetNonAcademic(nonacademic);
+            //mentor.SetDay(day);
              
             mentor.InsertApplyAsMentor(userID);
-
+            scheduleViewModel.SaveSelectedDaysToDatabase(userID);
+            subjectsViewModel.SaveSubjects(userID);
 
             //await scheduleViewModel.SaveSchedules(userID);
             await DisplayAlert("Success", "You're now a mentor bish.", "OK");
