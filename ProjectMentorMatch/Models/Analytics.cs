@@ -20,7 +20,7 @@ namespace ProjectMentorMatch.Models
         private int brainReact = 0;
         private double pointsMax = 0; // unsa ang formula para ani??
         private double pointsGain = 0;
-        private int ProfileID { get; set; }
+       private int ProfileID { get; set; }
 
         public string? GetAnalyticsID(int profileID)
         {

@@ -3,57 +3,74 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
              x:Class="ProjectMentorMatch.Views.Analytics"
+             BackgroundImageSource="blue_bg.png"
+             Shell.NavBarIsVisible="False"
              Title="AnalyticsView">
 
-    <ScrollView>
-        <VerticalStackLayout Padding="10">
+    <Grid RowDefinitions=".1*, .0*, *, .0*" Margin="0,30,0,0">
+        <Label Grid.Column="1"
+              FontSize="30"
+              HorizontalTextAlignment="Start"
+              Text="   Analytics"
+              TextColor="#086EBB"
+              FontAttributes="Bold"
+              VerticalOptions="Start" />
 
-            <Label Text="'Your BrainReacts Overtime' or something similar ana"
-                   FontSize="24"
-                   FontAttributes="Bold"
-                   TextColor="Blue"
-                   HorizontalTextAlignment="Center"
-                   Margin="0,20,0,10" />
-
+        <ScrollView Grid.Row="2">
+            <VerticalStackLayout Padding="10">
+                <HorizontalStackLayout HorizontalOptions="Center" Spacing="10">
+                    <Image Source="brain_icon.png" 
+                           WidthRequest="50" 
+                           HeightRequest="50" 
+                           Margin="0,-7,0,0">
+                    </Image>
+                    <Label Text="Brain Analytics"
+                            FontSize="24"
+                            FontAttributes="Bold"
+                            TextColor="#086EBB"
+                            HorizontalTextAlignment="Center"
+                            Margin="0,0,0,10" />
+                </HorizontalStackLayout>
                 <!-- Chart -->
-            <micro:ChartView x:Name="chartView" HeightRequest="300" />
+                <micro:ChartView x:Name="chartView" HeightRequest="300" />
 
-            <!-- No Data Message -->
-            <Label x:Name="noDataMessage"
-                   Text="No data available yet"
-                   FontSize="20"
-                   TextColor="Gray"
-                   HorizontalTextAlignment="Center"
-                   IsVisible="False" />
+                <!-- No Data Message -->
+                <Label x:Name="noDataMessage"
+           Text="No data available yet"
+           FontSize="20"
+           TextColor="Gray"
+           HorizontalTextAlignment="Center"
+           IsVisible="False" />
 
-            <!-- Leaderboards -->
-            <Label Text="Leaderboards"
-                   FontSize="20"
-                   FontAttributes="Bold"
-                   TextColor="Blue"
-                   HorizontalTextAlignment="Center"
-                   Margin="0,20,0,10" />
+                <!-- Leaderboards -->
+                <Label Text="Leaderboards"
+           FontSize="20"
+           FontAttributes="Bold"
+           TextColor="#086EBB"
+           HorizontalTextAlignment="Center"
+           Margin="0,50,0,10" />
 
-            <CollectionView x:Name="rankingsCollectionView"
-                            Margin="10">
-                <CollectionView.Header>
-                    <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="LightGray">
-                        <Label Text="Rank" WidthRequest="110" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="ProfileID" WidthRequest="120" FontAttributes="Bold" HorizontalOptions="Center" />
-                        <Label Text="TotalBrainReact" WidthRequest="1000" FontAttributes="Bold" HorizontalOptions="Center" />
-                    </StackLayout>
-                </CollectionView.Header>
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Orientation="Horizontal" Padding="5">
-                            <Label Text="{Binding Rank}" WidthRequest="110" HorizontalOptions="Center" />
-                            <Label Text="{Binding ProfileID}" WidthRequest="120" HorizontalOptions="Center" />
-                            <Label Text="{Binding TotalBrainReact}" WidthRequest="1000" HorizontalOptions="Center" />
+                <CollectionView x:Name="rankingsCollectionView"
+                    Margin="10">
+                    <CollectionView.Header>
+                        <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="#8EC4F5">
+                            <Label Text="Rank" WidthRequest="110" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="Name" WidthRequest="120" FontAttributes="Bold" HorizontalOptions="Center" />
+                            <Label Text="Total Brains" WidthRequest="1000" FontAttributes="Bold" HorizontalOptions="Center" />
                         </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                    </CollectionView.Header>
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout Orientation="Horizontal" Padding="5">
+                                <Label Text="{Binding Rank}" WidthRequest="110" HorizontalOptions="Center" />
+                                <Label Text="{Binding ProfileID}" WidthRequest="120" HorizontalOptions="Center" />
+                                <Label Text="{Binding TotalBrainReact}" WidthRequest="1000" HorizontalOptions="Center" />
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
 
-        </VerticalStackLayout>
-    </ScrollView>
+            </VerticalStackLayout>
+        </ScrollView>
+    </Grid>
 </ContentPage>
