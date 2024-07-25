@@ -47,7 +47,7 @@ public partial class ApplyAsMentor : ContentPage
     {
 
         string? aboutMe = aboutMeEntry.Text;
-        float mentorFee = float.Parse(MentorFeeEntry.Text);
+        string? mentorFee = MentorFeeEntry.Text;
        // string? academic = aboutMeEntry.Text; // PLACEHOLDER
        // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
        // string? day = aboutMeEntry.Text;  // PLACEHOLDER
