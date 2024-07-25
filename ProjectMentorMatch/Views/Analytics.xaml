@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
-                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-                 xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
-                 x:Class="ProjectMentorMatch.Views.Analytics"
-                 Title="AnalyticsView">
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:micro="clr-namespace:Microcharts.Maui;assembly=Microcharts.Maui"
+             x:Class="ProjectMentorMatch.Views.Analytics"
+             Title="AnalyticsView">
 
     <ScrollView>
         <VerticalStackLayout Padding="10">
@@ -14,13 +14,38 @@
                    TextColor="Blue"
                    HorizontalTextAlignment="Center"
                    Margin="0,20,0,10" />
-           
-                <!--Chart-->
+
+            <!-- Chart -->
             <micro:ChartView x:Name="chartView" HeightRequest="300" />
 
-           
-            <!--Leaderboards here-->
-          
+            <!-- Leaderboards -->
+            <Label Text="Leaderboards"
+                   FontSize="20"
+                   FontAttributes="Bold"
+                   TextColor="Blue"
+                   HorizontalTextAlignment="Center"
+                   Margin="0,20,0,10" />
+
+            <CollectionView x:Name="rankingsCollectionView"
+                            Margin="10">
+                <CollectionView.Header>
+                    <StackLayout Orientation="Horizontal" Padding="5" BackgroundColor="LightGray">
+                        <Label Text="Rank" WidthRequest="50" FontAttributes="Bold" />
+                        <Label Text="ProfileID" WidthRequest="100" FontAttributes="Bold" />
+                        <Label Text="TotalBrainReact" WidthRequest="100" FontAttributes="Bold" />
+                    </StackLayout>
+                </CollectionView.Header>
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Orientation="Horizontal" Padding="5">
+                            <Label Text="{Binding Rank}" WidthRequest="50" />
+                            <Label Text="{Binding ProfileID}" WidthRequest="100" />
+                            <Label Text="{Binding TotalBrainReact}" WidthRequest="200" />
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
         </VerticalStackLayout>
     </ScrollView>
 </ContentPage>

@@ -8,16 +8,18 @@ using Syncfusion.Maui.Core;
 using Microcharts;
 using Microcharts.Maui;
 using SkiaSharp;
+using System.Collections.Generic;
 
 
 namespace ProjectMentorMatch.Views
 {
+
     public partial class Analytics : ContentPage
     {
         public Analytics()
         {
             InitializeComponent();
-
+            LoadRankings();
             try
             {
                 var profileIDs = Account.GetAnalyticsProfileID(App.ProfileID);
@@ -37,8 +39,21 @@ namespace ProjectMentorMatch.Views
             catch (Exception ex)
             {
                 DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+              //  Console.WriteLine($"Stack Trace: {ex.StackTrace}");
             }
+        }
+        private void LoadRankings()
+        {
+            AnalyticsModel analyticsModel = new AnalyticsModel();
+            List<ProfileRanking> rankings = analyticsModel.GetProfileRankings();
+
+            // Assign ranks
+            for (int i = 0; i < rankings.Count; i++)
+            {
+                rankings[i].Rank = i + 1;
+            }
+
+            rankingsCollectionView.ItemsSource = rankings;
         }
 
         private IEnumerable<ChartEntry> GetChartEntries(int profileIDs)

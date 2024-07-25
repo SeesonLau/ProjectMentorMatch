@@ -141,5 +141,49 @@ namespace ProjectMentorMatch.Models
                 }
             }
         }
+        public List<ProfileRanking> GetProfileRankings()
+        {
+            string query = @"
+            SELECT ProfileID, SUM(brainReact) AS TotalBrainReact
+            FROM Analytics
+            GROUP BY ProfileID
+            ORDER BY TotalBrainReact DESC";
+
+            List<ProfileRanking> rankings = new List<ProfileRanking>();
+
+            using (var connection = GetConnection())
+            {
+                connection.Open();
+                using (SqlCommand command = new SqlCommand(query, connection))
+                {
+                    using (SqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            int profileID = reader.GetInt32(0);
+                            int totalBrainReact = reader.GetInt32(1);
+
+                            rankings.Add(new ProfileRanking
+                            {
+                                ProfileID = profileID,
+                                TotalBrainReact = totalBrainReact
+                            });
+                        }
+                    }
+                }
+            }
+
+            return rankings;
+        }
     }
+
+    // Helper class to store profile ranking information
+    public class ProfileRanking
+    {
+        public int Rank { get; set; }
+        public int ProfileID { get; set; }
+        public int TotalBrainReact { get; set; }
+    }
+
+
 }
