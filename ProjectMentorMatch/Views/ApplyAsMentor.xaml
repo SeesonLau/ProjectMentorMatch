@@ -125,7 +125,7 @@
                     </Label>
 
                     <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
-                        <RadioButton Content="Face to Face" GroupName="SetupModeGroup"  />
+                        <RadioButton x:Name="rbnGroup" Content="Face to Face" GroupName="SetupModeGroup"  />
                         <RadioButton Content="Online" GroupName="SetupModeGroup"  />
                     </StackLayout>
 
