@@ -19,6 +19,8 @@ namespace ProjectMentorMatch.Models
         private string? nonacademic;
         private string? day;
         private int isMentor = 1;
+        private string? setup;
+        private string? interaction;
 
         //GET
         public string? GetAboutMe(int userID)
@@ -87,7 +89,7 @@ namespace ProjectMentorMatch.Models
         }
         public string? GetDay(int userID)
         {
-            string query = "SELECT [Dat] FROM [Mentor] WHERE [UserID] = @UserID";
+            string query = "SELECT [Day] FROM [Mentor] WHERE [UserID] = @UserID";
             using (var connection = GetConnection())
             using (SqlCommand command = new SqlCommand(query, connection))
             {
@@ -101,12 +103,46 @@ namespace ProjectMentorMatch.Models
             }
             return day;
         }
+        public string? GetSetup(int userID)
+        {
+            string query = "SELECT [Setup] FROM [Mentor] WHERE [UserID] = @UserID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    setup = result.ToString();
+                }
+            }
+            return setup;
+        }
+        public string? GetInteraction(int userID)
+        {
+            string query = "SELECT [Interaction] FROM [Mentor] WHERE [UserID] = @UserID";
+            using (var connection = GetConnection())
+            using (SqlCommand command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@UserID", userID);
+                connection.Open();
+                object result = command.ExecuteScalar();
+                if (result != null)
+                {
+                    interaction = result.ToString();
+                }
+            }
+            return interaction;
+        }
         //SET
         public void SetAboutMe(string? aboutMe) {  this.aboutMe = aboutMe; }
         public void SetMentorFee(string? mentorFee) { this.mentorFee = mentorFee; }
         public void SetAcademic(string? academic) { this.academic = academic; }
         public void SetNonAcademic (string? nonacademic) { this.nonacademic = nonacademic; }
         public void SetDay(string day) { this.day = day; }
+        public void SetSetup(string? setup) { this.setup = setup; }
+        public void SetInteraction(string? interaction) { this.interaction = interaction; }
 
 
         public void InsertApplyAsMentor(int userID)
