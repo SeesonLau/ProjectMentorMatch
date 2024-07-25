@@ -151,14 +151,14 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [MentorFee] = @MentorFee " +
+                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [MentorFee] = @MentorFee, [Setup] = @Setup, [Interaction] = @Interaction " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [MentorFee])" +
+                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [MentorFee], [Setup], [Interaction])" +
 
-                        "VALUES (@UserID, @isMentor, @AboutMe, @MentorFee)";
+                        "VALUES (@UserID, @isMentor, @AboutMe, @MentorFee, @Setup, @Interaction)";
             }
 
             using (var connection = GetConnection())
@@ -168,6 +168,8 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@isMentor", isMentor);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
                 command.Parameters.AddWithValue("@MentorFee", mentorFee);
+                command.Parameters.AddWithValue("@Setup", setup);
+                command.Parameters.AddWithValue("@Interaction", interaction);
 
                 connection.Open();
                 command.ExecuteNonQuery();
