@@ -1,0 +1,618 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="ProjectMentorMatch.Views.Dashboard"
+             xmlns:uranium="http://schemas.enisn-projects.io/dotnet/maui/uraniumui"
+             xmlns:syncfusion="clr-namespace:Syncfusion.Maui.NavigationDrawer;assembly=Syncfusion.Maui.NavigationDrawer"
+             xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
+             xmlns:carousel="clr-namespace:Syncfusion.Maui.Core.Carousel;assembly=Syncfusion.Maui.Core"
+             xmlns:buttons="clr-namespace:Syncfusion.Maui.Buttons;assembly=Syncfusion.Maui.Buttons"
+             xmlns:local="clr-namespace:ProjectMentorMatch.Models"
+             xmlns:viewmodel="clr-namespace:ProjectMentorMatch.ViewModels"
+             x:DataType="viewmodel:MentorListViewModel"
+             Title="MentorMatch">
+            <!-- x:Class="ProjectMentorMatch.Views.Dashboard"-->
+    <ContentPage.BindingContext>
+        <viewmodel:MentorListViewModel/>
+    </ContentPage.BindingContext>    
+
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text = "Filter" IconImageSource="filter_icon.png" Clicked="OnClickedFilter"/>
+    </ContentPage.ToolbarItems>
+
+
+    <syncfusion:SfNavigationDrawer x:Name="NavigationDrawer">
+        <syncfusion:SfNavigationDrawer.DrawerSettings>
+            <syncfusion:DrawerSettings ContentBackground ="White" DrawerHeaderHeight="0" DrawerWidth="350" Position="Right">
+                <syncfusion:DrawerSettings.DrawerHeaderView>
+                    <HorizontalStackLayout HorizontalOptions="StartAndExpand">
+                        
+                    </HorizontalStackLayout>
+                </syncfusion:DrawerSettings.DrawerHeaderView>
+                <syncfusion:DrawerSettings.DrawerContentView>
+                    <Grid>
+                        <Grid.Background>
+                            <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                <GradientStop Color="#D8ECFF" Offset="0.0" />
+                                <GradientStop Color="#95C2EC" Offset="1.0" />
+                            </LinearGradientBrush>
+                        </Grid.Background>
+                        <ScrollView Padding="10">
+                            <StackLayout Spacing="10" Padding="5">
+                                <Label Text="Filter Search" 
+               FontSize="Large" 
+               FontAttributes="Bold" 
+               Margin="0,20"
+               TextColor="#086EBB">
+                                </Label>
+                                <!-- Gender Filter -->
+                                <Label Text="Gender"
+                TextColor="#086EBB"
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="5">
+                                </Label>
+
+                                <StackLayout Spacing="30" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="Male" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                    <RadioButton Content="Female" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                    <RadioButton Content="Non-binary" GroupName="GenderGroup" CheckedChanged="OnGenderCheckedChanged" />
+                                </StackLayout>
+
+                                <!-- Subject Filter -->
+                                <Label Text="Subject" 
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="5,15,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <material:MultiplePickerField Title="Academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10" AccentColor="White">
+                                    <material:MultiplePickerField.ItemsSource BackgroundColor="White">
+                                        <x:Array Type="{x:Type x:String}" >
+                                            <x:String>Business</x:String>
+                                            <x:String>Calculus</x:String>
+                                            <x:String>Chemistry</x:String>
+                                            <x:String>Computer Programming</x:String>
+                                            <x:String>Economics</x:String>
+                                            <x:String>Engineering</x:String>
+                                            <x:String>Foreign Language</x:String>
+                                            <x:String>Health/Nutrition</x:String>
+                                            <x:String>History</x:String>
+                                            <x:String>Literacy</x:String>
+                                            <x:String>Mathematics</x:String>
+                                            <x:String>Medical</x:String>
+                                            <x:String>Philosophy</x:String>
+                                            <x:String>Physics</x:String>
+                                            <x:String>Science</x:String>
+                                            <x:String>Sex Education</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <material:MultiplePickerField Title="Non-academic Subjects" Icon="subject_icon.png" Margin="0,0,0,10">
+                                    <material:MultiplePickerField.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Art/Design</x:String>
+                                            <x:String>Cooking/Culinary Arts</x:String>
+                                            <x:String>Creative Writing</x:String>
+                                            <x:String>Dance</x:String>
+                                            <x:String>Fitness Training</x:String>
+                                            <x:String>Music</x:String>
+                                            <x:String>Performing Arts</x:String>
+                                            <x:String>Photography and Photo Editing</x:String>
+                                            <x:String>Physical Education</x:String>
+                                            <x:String>Public Speaking</x:String>
+                                            <x:String>Video Editing</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <!-- Day Filter -->
+                                <Label Text="Schedule" 
+                FontSize="Medium" 
+                FontAttributes="Bold" 
+                Margin="10,10,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <material:MultiplePickerField Title="Select Day" Margin="0,0,0,10" Icon="day_icon.png">
+                                    <material:MultiplePickerField.ItemsSource>
+                                        <x:Array Type="{x:Type x:String}">
+                                            <x:String>Monday</x:String>
+                                            <x:String>Tuesday</x:String>
+                                            <x:String>Wednesday</x:String>
+                                            <x:String>Thursday</x:String>
+                                            <x:String>Friday</x:String>
+                                            <x:String>Saturday</x:String>
+                                            <x:String>Sunday</x:String>
+                                        </x:Array>
+                                    </material:MultiplePickerField.ItemsSource>
+                                </material:MultiplePickerField>
+
+                                <!-- Preferred Setup Filter -->
+                                <Label Text="Preferred Setup" 
+                FontSize="Medium" 
+                FontAttributes="Bold"
+                Margin="10,10,0,5"
+                TextColor="#086EBB">
+                                </Label>
+
+                                <StackLayout Spacing="60" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="Face to Face" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+                                    <RadioButton Content="Online" GroupName="SetupModeGroup" CheckedChanged="OnSetupModeCheckedChanged" />
+                                </StackLayout>
+
+                                <StackLayout Spacing="66" Orientation="Horizontal" HorizontalOptions="Start" Margin="5,0,0,0">
+                                    <RadioButton Content="One-on-one" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+                                    <RadioButton Content="Group" GroupName="InteractionModeGroup" CheckedChanged="OnInteractionModeCheckedChanged" />
+                                </StackLayout>
+                                <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Spacing="5" HorizontalOptions="Center" VerticalOptions="Center">
+                                    <!-- Apply Button -->
+                                    <Button Text="Apply"  
+                    WidthRequest="200" 
+                    HeightRequest ="40" 
+                    Margin="0,20,0,20"
+                    HorizontalOptions="Center"/>
+                                </VerticalStackLayout>
+                            </StackLayout>
+                        </ScrollView>
+                    </Grid>
+                </syncfusion:DrawerSettings.DrawerContentView>
+            </syncfusion:DrawerSettings>
+        </syncfusion:SfNavigationDrawer.DrawerSettings>
+        <syncfusion:SfNavigationDrawer.ContentView>
+         
+                <ScrollView Margin="0,10,0,5" VerticalScrollBarVisibility="Never">
+
+                <Grid RowDefinitions="Auto,Auto,Auto,Auto,Auto,Auto,Auto,Auto, Auto" RowSpacing="10" Margin="30,0,30,10" ColumnDefinitions="*,*,*">
+
+                    <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,-30,10,-30" CornerRadius="40" IsClippedToBounds="True" Padding="0">
+                        <StackLayout>
+                            <CarouselView x:Name="carouselView"
+                                          ItemsSource="{Binding ItemList}"
+                                          IndicatorView="indicatorView"
+                                          IsSwipeEnabled="False"
+                                          CurrentItem="{Binding CurrentItem}">
+                                <CarouselView.ItemTemplate>
+                                    <DataTemplate x:DataType="local:ItemInfo">
+                                        <ImageButton Source="{Binding ImageSource}"
+                                                     HorizontalOptions="FillAndExpand"
+                                                     Aspect="AspectFill"
+                                                     HeightRequest="460"/>
+                                    </DataTemplate>
+                                </CarouselView.ItemTemplate>
+                            </CarouselView>
+                            <IndicatorView x:Name="indicatorView"
+                                           HorizontalOptions="Center"
+                                           VerticalOptions="End"
+                                           IndicatorColor="Gray"
+                                           SelectedIndicatorColor="Black"/>
+                        </StackLayout>
+                    </Frame>
+                    <!-- <Frame Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="3" Margin="10,-30,10,-30" CornerRadius="40" IsClippedToBounds="True" Padding="0">
+                         Profile Picture Field 
+                        <ImageButton Source="sample_profile2.png" 
+                         HorizontalOptions="FillAndExpand"  
+                         Aspect="AspectFill" 
+                         HeightRequest="460"/>
+
+                    </Frame>-->
+                    <!-- Not Like/Ex Button -->
+                    <buttons:SfButton x:Name="btnEx" 
+                          Grid.Column="0" 
+                          Grid.Row="1" 
+                          Margin="0,-50,0,0" 
+                          ShowIcon="True"
+                          BackgroundColor="White" 
+                          Background="White" 
+                          ImageSource="ex_icon.png" 
+                          HeightRequest="80" 
+                          WidthRequest="80" 
+                          CornerRadius="40" 
+                          ImageSize="30" 
+                          ImageAlignment="Default"
+                          Clicked="btnEx_Clicked">
+                        <buttons:SfButton.Shadow>
+                            <Shadow Brush="#bcbcbc"
+                        Offset="5,5"
+                        Opacity="0.6"/>
+                        </buttons:SfButton.Shadow>
+                    </buttons:SfButton>
+
+                    <!-- Heart Button -->
+                    <buttons:SfButton  x:Name="btnHeart" 
+                           Grid.Column="1" 
+                           Grid.Row="1" 
+                           Margin="0,-50,0,0"  
+                           ShowIcon="True" 
+                           BackgroundColor="White" 
+                           Background="#FFE760" 
+                           Clicked="btnHeart_Clicked"
+                           ImageSource="brain_icon.png" 
+                           HeightRequest="110" 
+                           WidthRequest="110" 
+                           CornerRadius="55" 
+                           ImageSize="100" 
+                           ImageAlignment="Default">
+                        <buttons:SfButton.Shadow>
+                            <Shadow Brush="#f8bcd9"
+                        Offset="5,5"
+                        Opacity="0.6"/>
+                        </buttons:SfButton.Shadow>
+                    </buttons:SfButton>
+
+                    <!-- Like/Star Button -->
+                    <buttons:SfButton x:Name="btnLike" 
+                          Grid.Column="2" 
+                          Grid.Row="1" 
+                          Margin="0,-50,0,0"  
+                          ShowIcon="True" 
+                          BackgroundColor="White"
+                          Background="White" 
+                          ImageSource="like_icon.png" 
+                          HeightRequest="80"
+                          WidthRequest="80" 
+                          CornerRadius="40" 
+                          ImageSize="30" 
+                          ImageAlignment="Default" 
+                          Clicked="btnLikeButton_Clicked">
+                        <buttons:SfButton.Shadow>
+                            <Shadow Brush="#bcbcbc"
+                        Offset="5,5"
+                        Opacity="0.6"/>
+                        </buttons:SfButton.Shadow>
+                    </buttons:SfButton>
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="3" Grid.Row="2" Grid.RowSpan="1" Margin="0, -5">
+                        <!-- Name and Age Field -->
+                        <Label x:Name="lblNameAge"
+                               Text="{Binding CurrentItem.ItemName}"
+                               FontAttributes="Bold" 
+                               Margin="0,10,0,0" 
+                               FontSize="21"/>
+                              <!-- Text="Yang Jungwon, 20" -->
+
+                        <Label x:Name="lblProfileID"
+                         Text="{Binding CurrentItem.ProfileID}"
+                         FontAttributes="Bold" 
+                         IsVisible="False"
+                         Margin="0,10,0,0" 
+                         FontSize="21"/>
+
+                        <!-- Address Field -->
+                        <Label x:Name="lblAddressCity"
+                        Text="{Binding CurrentItemAddressCity}"
+                        Margin="0,5,0,0" 
+                        FontAttributes="Bold" 
+                        FontSize="17" 
+                   TextColor="Gray"/>
+
+                        <Label x:Name="lblAddressProvince"
+                         Text="{Binding CurrentItemAddressProvince}"
+                          Margin="0,5,0,10" 
+                            FontAttributes="Bold" 
+                             FontSize="17" 
+                            TextColor="Gray"/>
+
+
+                        <!--<HorizontalStackLayout Spacing="10">
+                            <Image Source="course_icon.png" 
+                       WidthRequest="22" 
+                       HeightRequest="22"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start">
+                            </Image>
+                            --><!-- Course Field --><!--
+                        
+                        <Label x:Name="lblCourse"
+                       Text="Civil Engineer"  
+                       Margin="0,5,0,0" 
+                       FontAttributes="Bold" 
+                       FontSize="15" 
+                       TextColor="Gray"
+                       VerticalOptions="Center"/>
+                        </HorizontalStackLayout>-->
+
+                        <HorizontalStackLayout Spacing="10">
+                            <Image Source="pesosign_icon.png" 
+                       WidthRequest="18" 
+                       HeightRequest="18"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="Start" Margin="2">
+                            </Image>
+                            <!-- Fee Field -->
+                            <Label x:Name="lblFee"
+                       Text="{Binding CurrentItemRate}"  
+                       Margin="0,-1,0,0" 
+                       FontAttributes="Bold" 
+                       FontSize="15" 
+                       TextColor="Gray"
+                       VerticalOptions="Center"/>
+
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout HorizontalOptions="Start" Spacing="10">
+                            <Label Text="Scroll for more details..."  
+                       Margin="5,12,0,0" 
+                       FontAttributes="Bold" 
+                       FontSize="15.5" 
+                       TextColor="#086EBB"/>
+
+                            <!--<Image Source="arrow_down.png" 
+                       WidthRequest="18" 
+                       HeightRequest="18" 
+                       Margin="12">
+                            </Image>-->
+                        </HorizontalStackLayout>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="2" Grid.ColumnSpan="2" Grid.Row="2" Margin="0,15" Spacing="10" HorizontalOptions="End" WidthRequest="100">
+                        <HorizontalStackLayout Spacing="5" HorizontalOptions="End">
+
+                            <!-- Like Field -->
+                            <Label x:Name="lblLike"
+                       Text="2k"  
+                       Margin="0,5,0,0" 
+                       FontAttributes="Bold" 
+                       FontSize="15" 
+                       TextColor="Gray"
+                       VerticalOptions="Center"/>
+
+                            <Image Source="like_icon.png" 
+                       WidthRequest="18" 
+                       HeightRequest="18"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End" 
+                       Margin="2">
+                            </Image>
+
+                        </HorizontalStackLayout>
+
+                        <HorizontalStackLayout Spacing="3" HorizontalOptions="End">
+
+                            <!-- Star/Rating Field -->
+                            <Label x:Name="lblRating"
+                       Text="5.0"  
+                       Margin="0,5,0,0" 
+                       FontAttributes="Bold" 
+                       FontSize="15" 
+                       TextColor="Gray"
+                       VerticalOptions="Center"/>
+
+                            <Image Source="star_icon.png" 
+                       WidthRequest="20" 
+                       HeightRequest="20"
+                       VerticalOptions="Center" 
+                       HorizontalOptions="End" 
+                       Margin="2">
+                            </Image>
+
+                        </HorizontalStackLayout>
+
+
+
+
+                        <!-- Chat Button commented for now -->
+                        <!--  <buttons:SfButton x:Name="btnChat" 
+                              Grid.Column="2" 
+                              Grid.Row="2" 
+                              Grid.RowSpan="2" 
+                              ShowIcon="True" 
+                              BackgroundColor="White" 
+                              Background="White" 
+                              ImageSource="chat_icon.png" 
+                              HeightRequest="40" 
+                              WidthRequest="40" 
+                              CornerRadius="10" 
+                              ImageSize="25" 
+                              ImageAlignment="Default"
+                              HorizontalOptions="Center">
+                <buttons:SfButton.Shadow>
+                    <Shadow Brush="#bcbcbc"
+                            Offset="5,5"
+                            Opacity="0.6"/>
+                </buttons:SfButton.Shadow>
+            </buttons:SfButton> -->
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="3" Spacing="5">
+
+                        <Label Text="About Me" 
+                    FontAttributes="Bold" 
+                    FontSize="16" 
+                    Margin="0,20,0,0"
+                    TextColor="#086EBB">
+                        </Label>
+
+
+                        <Label  Text="{Binding CurrentItemAboutMe}" 
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+                    </VerticalStackLayout>
+
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="4" Spacing="5">
+
+                        <Label Text="Subjects" 
+                   FontAttributes="Bold" 
+                   FontSize="16" 
+                   Margin="0,20,0,0"
+                   TextColor="#086EBB">
+                        </Label>
+                        
+                      
+                  
+
+                        <Label    Text="{Binding CurrentItemSubjects}"
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+                    </VerticalStackLayout>
+
+                    <!--"<Label Grid.Column="2" Grid.Row="4" Text="Read more" FontAttributes="Bold" FontSize="15" TextColor="#c0bebe" HorizontalTextAlignment="End" Margin="0,20,0,0"/>-->
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="5" Spacing="5">
+
+                        <Label Text="Qualifications" 
+                   FontAttributes="Bold" 
+                   FontSize="16" 
+                   Margin="0,20,0,0"
+                   TextColor="#086EBB">
+                        </Label>
+
+
+                        <Label  Text="{Binding CurrentItemQualifications}"
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="6" Spacing="5">
+
+                        <Label Text="Availability" 
+                   FontAttributes="Bold" 
+                   FontSize="16" 
+                   Margin="0,20,0,0"
+                   TextColor="#086EBB">
+                        </Label>
+
+
+                        <Label  Text="{Binding CurrentItemDay}" 
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+                    </VerticalStackLayout>
+
+                    <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="7" Spacing="5">
+
+                        <Label Text="Contact Information" 
+                   FontAttributes="Bold" 
+                   FontSize="16" 
+                   Margin="0,20,0,0"
+                   TextColor="#086EBB">
+                        </Label>
+
+                        <Label  Text="{Binding CurrentItemContactNumber}" 
+                                FontAttributes="Bold" 
+                                FontSize="16" TextColor="#a3a3a3"/>
+
+                    </VerticalStackLayout>
+
+                    <!-- <VerticalStackLayout Grid.Column="0" Grid.ColumnSpan="4" Grid.Row="8" Spacing="5">
+
+            <Label Text="Contact Information" 
+                    FontAttributes="Bold" 
+                    FontSize="16" 
+                    Margin="0,20,0,0"
+                    TextColor="#086EBB">
+                                    </Label>
+
+
+            <Label  Text="My name is Madeline and I enjoy meet new people and finding ways to help them have an uplifting experience ..." 
+                    FontAttributes="Bold" 
+                    FontSize="16" TextColor="#a3a3a3"/>
+
+        </VerticalStackLayout> -->
+
+                </Grid>
+            </ScrollView>
+        </syncfusion:SfNavigationDrawer.ContentView>
+            
+    </syncfusion:SfNavigationDrawer>
+
+    <!-- <RefreshView x:Name="refreshView" IsRefreshing="{Binding IsRefreshing, Mode=OneWay}" Refreshing="OnRefresh">
+        <CarouselView x:Name="carouselView" ItemsSource="{Binding Items}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ScrollView>
+                        <StackLayout Margin="0,10,0,10">
+                            
+                            <AbsoluteLayout HeightRequest="200" WidthRequest="150">
+                                
+                                <Image Source="circle_logo.png"
+                                   Aspect="AspectFill"
+                                   HeightRequest="500"
+                                   WidthRequest="300"
+                                   BackgroundColor="ForestGreen"
+                                   AbsoluteLayout.LayoutBounds="0.5, 0.5, -1, -1"
+                                   AbsoluteLayout.LayoutFlags="PositionProportional"/>
+
+                                <Button Text="1"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="0, 0.9, -150, -500"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"/>
+
+                                <Button Text="2"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="1, 0.9, -150, -500"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"/>
+
+                                <Button Text="Book Test"
+                                    BackgroundColor="LightBlue"
+                                    TextColor="Black"
+                                    WidthRequest="50"
+                                    HeightRequest="40"
+                                    AbsoluteLayout.LayoutBounds="1, 1, 150, -350"
+                                    AbsoluteLayout.LayoutFlags="PositionProportional"
+                                    VerticalOptions="Center"
+                                    Clicked="Button_Clicked"/>
+                            </AbsoluteLayout>
+
+                            <Label Text="{Binding fullname}"   
+                               HorizontalOptions="Center"
+                               FontSize="30"
+                               TextColor="Black"
+                               Margin="0,220,0,10"/>
+
+                            <Label Text="{Binding email}"   
+                          HorizontalOptions="Center"
+                            FontSize="15"
+                              TextColor="Black"/>
+
+
+
+                            <Label Text="We Can Bind the data here from the database, and we can also add more buttons and other controls here"
+                               Padding="23"
+                               HorizontalOptions="Center"
+                               Margin="0,0,0,20"/>
+
+                            <Button Text="View Profile"   
+                                WidthRequest="225"
+                                HeightRequest="40"
+                                VerticalOptions="End"
+                                BackgroundColor="CadetBlue"
+                                TextColor="Black"
+                                BorderWidth="2.2"
+                                Margin="0,0,0,0"/>
+
+                            <Button Text="Button 2"   
+                         WidthRequest="225"
+                          HeightRequest="40"
+                        VerticalOptions="End"
+                         BackgroundColor="CadetBlue"
+                         TextColor="Black"
+                         BorderWidth="2.2"
+                        Margin="0,23,0,23"
+                                    Clicked="Button_Clicked"/>
+                            
+                        </StackLayout>
+                        
+                    </ScrollView>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView>
+    </RefreshView>-->
+</ContentPage>
+
+    
