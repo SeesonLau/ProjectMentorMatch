@@ -28,15 +28,26 @@ public partial class ApplyAsMentor : ContentPage
         subjectsViewModel = new SubjectsViewModel();
 
         int userID = App.UserID;
+        LoadApplyMentor();
         subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
         subjectsViewModel.LoadNonAcademicSubs(userID, nonAcademicSubjectsPicker);
         scheduleViewModel.LoadSelectedDays(userID, SchedulePicker);
     }
 
-    private async void LoadSchedules()
+    private void LoadApplyMentor()
     {
         int userId = App.UserID;
+        string? aboutMe = mentor.GetAboutMe(userId);
+        string? mentorFee = mentor.GetMentorFee(userId);
+
+        MainThread.BeginInvokeOnMainThread(() =>
+        {
+            aboutMeEntry.Text = aboutMe;
+            MentorFeeEntry.Text = mentorFee;
+
+        });
     }
+
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
     {
