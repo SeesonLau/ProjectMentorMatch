@@ -14,24 +14,21 @@ public partial class ApplyAsMentor : ContentPage
 {
     ProfileModels profile;
     ScheduleViewModel scheduleViewModel;
-    SubjectsViewModel subjectsViewModel;
+    Mentor mentor;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
         profile = new ProfileModels();
         scheduleViewModel = new ScheduleViewModel();
-        subjectsViewModel = new SubjectsViewModel();
+        mentor = new Mentor();
+        LoadSchedules();
 
-        int userID = App.UserID;
-        subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
-        subjectsViewModel.LoadAcademicSubs(userID, nonAcademicSubjectsPicker);
-        scheduleViewModel.LoadSelectedDays(userID, SchedulePicker);
     }
 
     private async void LoadSchedules()
     {
         int userId = App.UserID;
-      //  await scheduleViewModel.LoadSchedulesFromDatabase(userId);
+        await scheduleViewModel.LoadSchedules(userId);
     }
 
     private async void GoBackButton_Clicked(object sender, EventArgs e)
@@ -39,14 +36,33 @@ public partial class ApplyAsMentor : ContentPage
         await Shell.Current.GoToAsync("//Profile", animate: true);
     }
 
-
-
     private async void ApplyButton_Clicked(object sender, EventArgs e)
     {
+
+        string? aboutMe = aboutMeEntry.Text;
+        float mentorFee = float.Parse(MentorFeeEntry.Text);
+        string? academic = aboutMeEntry.Text; // PLACEHOLDER
+        string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
+        string? day = aboutMeEntry.Text;  // PLACEHOLDER
+
+
+
+
         try
         {
             int userID = App.UserID;
-            profile.ApplyAsMentor(userID);            
+            //profile.ApplyAsMentor(userID);
+
+            mentor.SetAboutMe(aboutMe);
+            mentor.SetMentorFee(mentorFee);
+            mentor.SetAcademic(academic); 
+            mentor.SetNonAcademic(nonacademic);
+            mentor.SetDay(day);
+             
+            mentor.InsertApplyAsMentor(userID);
+
+
+            //await scheduleViewModel.SaveSchedules(userID);
             await DisplayAlert("Success", "You're now a mentor bish.", "OK");
         }
         catch (Exception ex)
@@ -67,13 +83,5 @@ public partial class ApplyAsMentor : ContentPage
         {
             await DisplayAlert("Error", $"An error occurred: {ex.Message}", "OK");
         }
-    }
-
-    private void ApplyButton_Clicked_1(object sender, EventArgs e)
-    {
-        int userID = App.UserID;
-        scheduleViewModel.SaveSelectedDaysToDatabase(userID);
-        subjectsViewModel.SaveSubjects(userID);
-
     }
 }
