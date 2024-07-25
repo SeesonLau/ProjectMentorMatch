@@ -290,7 +290,8 @@
 
                        
                         <Label x:Name="lblAddressProvince"
-                         Text="{Binding CurrentItemAddressProvince}"
+                         Text=
+                       "{Binding CurrentItemAddressProvince}"
                           Margin="0,5,0,10" 
                             FontAttributes="Bold" 
                              FontSize="17" 
