@@ -28,7 +28,11 @@ namespace ProjectMentorMatch.Views
                 chartView.Chart = new LineChart()
                 {
                     Entries = entries,
-                    BackgroundColor = SKColors.White
+                    BackgroundColor = SKColors.White,
+                     LabelTextSize = 40, // Adjust the label text size
+                    LineMode = LineMode.Straight,
+                    PointMode = PointMode.Circle,
+                    PointSize = 10 // Adjus
                 };
             }
             catch (Exception ex)
@@ -57,7 +61,8 @@ namespace ProjectMentorMatch.Views
 
                             while (reader.Read())
                             {
-                                var day = reader["day"].ToString();
+                                //var day = reader["day"].ToString();
+                                var day = Convert.ToDateTime(reader["day"]).ToString("yyyy-MM-dd");
                                 var brainReact = Convert.ToSingle(reader["brainReact"]);
 
                                 chartEntries.Add(new ChartEntry(brainReact)
@@ -76,7 +81,7 @@ namespace ProjectMentorMatch.Views
             catch (Exception ex)
             {
                 DisplayAlert("Error", $"An error occurred while fetching chart entries: {ex.Message}", "OK");
-                Console.WriteLine($"Stack Trace: {ex.StackTrace}");
+         //       Console.WriteLine($"Stack Trace: {ex.StackTrace}");
                 return Enumerable.Empty<ChartEntry>();
             }
         }
