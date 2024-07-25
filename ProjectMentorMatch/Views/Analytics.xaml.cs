@@ -9,84 +9,58 @@ using Microcharts;
 using Microcharts.Maui;
 using SkiaSharp;
 
+
 namespace ProjectMentorMatch.Views;
 
 public partial class Analytics : ContentPage
 {
+
     public Analytics()
-	{
+    {
         InitializeComponent();
-        LoadChartAsync();   
-    }
-    private async Task LoadChartAsync()
-    {
-        int userID = App.UserID;
-        await CreateLineChart(userID);
-    }
-    //Chart not yet working, cannot retrieve profileID using userID 
-    public int GetProfileIDByUserID(int userID)
-    {
-        string query = "SELECT ProfileID FROM Profile WHERE UserID = @UserID";
 
-        using (var connection = Database.GetConnection())
-        {
-            connection.Open();
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@UserID", userID);
-                object result = command.ExecuteScalar();
-                return result != null ? Convert.ToInt32(result) : -1; // Return -1 if no result
-            }
-        }
-    }
-    public async Task CreateLineChart(int userID)
-    {
-        // Get the ProfileID using the userID
-        int profileID = GetProfileIDByUserID(userID);
+        int profileID = 2; // Placeholder, cannot retrieve profileID HUHU T_T
+        var entries = GetChartEntries(profileID);
 
-        if (profileID == -1)
-        {
-            // Handle the case where no ProfileID was found
-            throw new Exception("ProfileID not found for the given UserID");
-        }
-
-        List<ChartEntry> entries = new List<ChartEntry>();
-
-        using (var connection = Database.GetConnection())
-        {
-            await connection.OpenAsync();
-            string query = "SELECT day, brainReact FROM Analytics WHERE ProfileID = @ProfileID";
-            using (SqlCommand command = new SqlCommand(query, connection))
-            {
-                command.Parameters.AddWithValue("@ProfileID", profileID);
-
-                using (SqlDataReader reader = await command.ExecuteReaderAsync())
-                {
-                    while (await reader.ReadAsync())
-                    {
-                        var day = reader.GetDateTime(0);
-                        var brainReact = reader.GetInt32(1);
-
-                        entries.Add(new ChartEntry(brainReact)
-                        {
-                            Label = day.ToString("MM/dd/yyyy"),
-                            ValueLabel = brainReact.ToString(),
-                            Color = SKColor.Parse("#3498db")
-                        });
-                    }
-                }
-            }
-        }
-
-        // Step 3: Create and configure the LineChart
         chartView.Chart = new LineChart()
         {
             Entries = entries,
-            BackgroundColor = SKColors.White,
-            LineMode = LineMode.Straight,
-            LineSize = 15,
-            PointMode = PointMode.Circle,
-            PointSize = 30
+            BackgroundColor = SKColors.White
         };
     }
+    private ChartEntry[] GetChartEntries(int profileID)
+    {
+        using (var connection = Database.GetConnection())
+        {
+            connection.Open();
+
+            var query = "SELECT day, brainReact FROM Analytics WHERE ProfileID = @ProfileID";
+            using (var command = new SqlCommand(query, connection))
+            {
+                command.Parameters.AddWithValue("@ProfileID", profileID);
+
+                using (var reader = command.ExecuteReader())
+                {
+                    var chartEntries = new List<ChartEntry>();
+
+                    while (reader.Read())
+                    {
+                        var day = reader["day"].ToString();
+                        var brainReact = Convert.ToSingle(reader["brainReact"]);
+
+                        chartEntries.Add(new ChartEntry(brainReact)
+                        {
+                            Label = day,
+                            ValueLabel = brainReact.ToString(),
+                            Color = SKColor.Parse("#2c3e50") // You can change the color based on your preference
+                        });
+                    }
+
+                    return chartEntries.ToArray();
+                }
+            }
+        }
+    }
 }
+
+    
