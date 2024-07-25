@@ -372,3 +372,5 @@ FodyWeavers.xsd
 /ProjectMentorMatch/Models/Chat.cs
 *.cs
 /ProjectMentorMatch/Views/Profile.xaml.cs
+/ProjectMentorMatch/Views/ApplyAsMentor.xaml.cs
+/ProjectMentorMatch/Views/Dashboard.xaml

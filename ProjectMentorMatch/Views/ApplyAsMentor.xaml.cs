@@ -16,6 +16,7 @@ public partial class ApplyAsMentor : ContentPage
     ScheduleViewModel scheduleViewModel;
     SubjectsViewModel subjectsViewModel;
     Mentor mentor;
+    SubjectsViewModel subjectsViewModel;
     public ApplyAsMentor()
 	{
 		InitializeComponent();
@@ -23,6 +24,7 @@ public partial class ApplyAsMentor : ContentPage
         scheduleViewModel = new ScheduleViewModel();
         subjectsViewModel = new SubjectsViewModel();
         mentor = new Mentor();
+        LoadSchedules();
 
         int userID = App.UserID;
         subjectsViewModel.LoadAcademicSubs(userID, academicSubjectsPicker);
@@ -46,11 +48,11 @@ public partial class ApplyAsMentor : ContentPage
 
         string? aboutMe = aboutMeEntry.Text;
         float mentorFee = float.Parse(MentorFeeEntry.Text);
-        string? academic = aboutMeEntry.Text; // PLACEHOLDER
-        string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
-        string? day = aboutMeEntry.Text;  // PLACEHOLDER
+       // string? academic = aboutMeEntry.Text; // PLACEHOLDER
+       // string? nonacademic = aboutMeEntry.Text;  // PLACEHOLDER
+       // string? day = aboutMeEntry.Text;  // PLACEHOLDER
 
-
+       
 
 
         try
@@ -60,9 +62,9 @@ public partial class ApplyAsMentor : ContentPage
 
             mentor.SetAboutMe(aboutMe);
             mentor.SetMentorFee(mentorFee);
-            mentor.SetAcademic(academic); 
-            mentor.SetNonAcademic(nonacademic);
-            mentor.SetDay(day);
+            //mentor.SetAcademic(academic); 
+            //mentor.SetNonAcademic(nonacademic);
+            //mentor.SetDay(day);
              
             mentor.InsertApplyAsMentor(userID);
             scheduleViewModel.SaveSelectedDaysToDatabase(userID);

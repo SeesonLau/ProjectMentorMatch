@@ -4,11 +4,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using ProjectMentorMatch.ViewModels;
 
 namespace ProjectMentorMatch.Models
 {
     public class Mentor : Database
     {
+        ScheduleViewModel svm = new ScheduleViewModel();
+
         private static readonly Random random = new Random();
         private string? aboutMe;
         private float mentorFee;
@@ -112,14 +115,14 @@ namespace ProjectMentorMatch.Models
             string query;
             if (profileExists)
             {
-                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [Academic] = @Academic,  [NonAcademic] = @NonAcademic, [Day] = @Day, [Rate] = @Rate " +
+                query = "UPDATE Mentor SET [isMentor] = @isMentor, [AboutMe] = @AboutMe, [Rate] = @Rate " +
                         "WHERE [UserID] = @UserID";
             }
             else
             {
-                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [Academic], [NonAcademic], [Day], [Rate])" +
+                query = "INSERT INTO Profile ([UserID], [isMentor], [AboutMe], [Rate])" +
 
-                        "VALUES (@UserID, @isMentor, @AboutMe, @Academic, @NonAcademic, @Day, @Rate)";
+                        "VALUES (@UserID, @isMentor, @AboutMe, @Rate)";
             }
 
             using (var connection = GetConnection())
@@ -128,9 +131,6 @@ namespace ProjectMentorMatch.Models
                 command.Parameters.AddWithValue("@UserID", userID);
                 command.Parameters.AddWithValue("@isMentor", isMentor);
                 command.Parameters.AddWithValue("@AboutMe", aboutMe);
-                command.Parameters.AddWithValue("@Academic", academic);
-                command.Parameters.AddWithValue("@NonAcademic", nonacademic);
-                command.Parameters.AddWithValue("@Day", day);
                 command.Parameters.AddWithValue("@Rate", mentorFee);
 
                 connection.Open();
