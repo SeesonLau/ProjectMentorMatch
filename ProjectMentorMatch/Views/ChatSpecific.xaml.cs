@@ -1,6 +1,7 @@
 using ProjectMentorMatch.ViewModels;
 using Microsoft.Maui.Controls;
 using Microsoft.AspNetCore.SignalR.Client;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace ProjectMentorMatch.Views
@@ -43,6 +44,26 @@ namespace ProjectMentorMatch.Views
             {
                 await hubConnection.StartAsync();
             });
+
+            // Add predefined messages
+            InitializePredefinedMessages();
+        }
+
+        private void InitializePredefinedMessages()
+        {
+            var predefinedMessages = new List<(string user, string message, bool isCurrentUser)>
+            {
+
+                ("Charles", "Hey.", true),
+                ("Charles", "Would you be available for a tutoring schedule about Mathematics next week.", true),
+                ("Jamel", "Hello, yes I am, I just got your booking notification.", false),
+               
+            };
+
+            foreach (var (user, message, isCurrentUser) in predefinedMessages)
+            {
+                AddMessageToChat(user, message, isCurrentUser);
+            }
         }
 
         private async void btnSend_Clicked(object sender, EventArgs e)
