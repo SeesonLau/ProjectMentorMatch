@@ -30,7 +30,6 @@ namespace ProjectMentorMatch.Views
                     Entries = entries,
                     BackgroundColor = SKColors.White,
                      LabelTextSize = 40, // Adjust the label text size
-                    LineMode = LineMode.Straight,
                     PointMode = PointMode.Circle,
                     PointSize = 10 // Adjus
                 };
