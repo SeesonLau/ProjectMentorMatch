@@ -323,9 +323,9 @@ TextColor="#086EBB">
                                                         </control:SfRating>
                                                     </Grid>
                                                 </Grid>
-
+<!-- Hidden Button -->
                                                 <!-- Hidden Mentor -->
-                                                <Grid x:Name ="HiddenMentor" ColumnDefinitions="auto, *, auto" Padding="0,0,10,10" IsVisible="True">
+                                                <Grid x:Name ="HiddenMentor" ColumnDefinitions="auto, *, auto" Padding="0,0,10,10" IsVisible="False">
                                                     <Grid.BindingContext>
                                                         <x:String>Mentor 2</x:String>
                                                     </Grid.BindingContext>
