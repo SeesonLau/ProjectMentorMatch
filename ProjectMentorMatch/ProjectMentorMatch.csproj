@@ -145,6 +145,8 @@
 	  <None Remove="LinkerConfig.xml" />
 	  <None Remove="Resources\Images\chat_background.png" />
 	  <None Remove="Resources\Images\chat_placeholder.png" />
+	  <None Remove="Resources\Images\profile_blank.png" />
+	  <None Remove="Resources\Images\refresh_icon.png" />
 	  <None Remove="Resources\Images\sample_profile6.jpg" />
 	</ItemGroup>
 

@@ -61,4 +61,10 @@ public partial class Search : ContentPage
             }
         }
     }
+
+    private void OnToggleVisibilityClicked(object sender, EventArgs e)
+    {
+        // Toggle the visibility of the Grid
+       // HiddenGrid.IsVisible = !HiddenGrid.IsVisible;
+    }
 }

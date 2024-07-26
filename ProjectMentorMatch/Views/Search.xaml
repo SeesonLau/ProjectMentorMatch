@@ -171,6 +171,7 @@ TextColor="#086EBB">
                 </Grid>
                 <Grid  Margin="0,34,0,0">
                     <VerticalStackLayout Padding="10,0,10,0">
+                        
                         <material:TextField Title="" Icon="search_icon.png" AllowClear="True">
                             <material:TextField.Attachments>
                                 <Button Text="Search" />
@@ -322,6 +323,51 @@ TextColor="#086EBB">
                                                         </control:SfRating>
                                                     </Grid>
                                                 </Grid>
+
+                                                <!-- Hidden Mentor -->
+                                                <Grid x:Name ="HiddenMentor" ColumnDefinitions="auto, *, auto" Padding="0,0,10,10" IsVisible="True">
+                                                    <Grid.BindingContext>
+                                                        <x:String>Mentor 2</x:String>
+                                                    </Grid.BindingContext>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <VerticalStackLayout Padding="10,0,0,0">
+                                                        <Image Source="profile_blank.png"
+    WidthRequest="60"
+    HeightRequest="60"
+    VerticalOptions="Center"/>
+                                                    </VerticalStackLayout>
+                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
+                                                        <VerticalStackLayout Padding="10,0,20,0">
+                                                            <Grid>
+                                                                <Grid.ColumnDefinitions>
+                                                                    <ColumnDefinition Width="*" />
+                                                                    <ColumnDefinition Width="auto" />
+                                                                </Grid.ColumnDefinitions>
+                                                                <Label Text="Julian Semblante" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
+                                                                <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
+                                                                    <control:SfRating.RatingSettings>
+                                                                        <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
+
+                                                                        </control:RatingSettings>
+                                                                    </control:SfRating.RatingSettings>
+                                                                </control:SfRating>
+                                                            </Grid>
+                                                            <Label Text="Add Description"
+        FontSize="14" 
+        TextColor="Gray"/>
+                                                        </VerticalStackLayout>
+                                                        <control:SfRating ItemCount="1" ItemSize="25" RatingShape="Heart" Grid.Column="1">
+                                                            <control:SfRating.RatingSettings>
+                                                                <control:RatingSettings RatedFill="#FF6069" UnratedStroke="#515151">
+
+                                                                </control:RatingSettings>
+                                                            </control:SfRating.RatingSettings>
+                                                        </control:SfRating>
+                                                    </Grid>
+
+                                                </Grid>
                                             </VerticalStackLayout>
                                         </DataTemplate>
                                     </material:TabItem.ContentTemplate>
@@ -390,8 +436,8 @@ TextColor="#086EBB">
                                                      VerticalOptions="Center"/>
                                                 </Grid>
 
-                                                <!-- Mentee 3 -->
-                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                                                <!--  to hide and unhide-->
+                                                <Grid x:Name="HiddenGrid" ColumnDefinitions="auto, *, auto" Padding="0,0,0,10" IsVisible="False">
                                                     <Grid.BindingContext>
                                                         <x:String>Mentee 3</x:String>
                                                     </Grid.BindingContext>
@@ -417,6 +463,34 @@ TextColor="#086EBB">
                                                      WidthRequest="24"
                                                      HeightRequest="24"
                                                      VerticalOptions="Center"/>
+                                                </Grid>
+
+                                                <Grid ColumnDefinitions="auto, *, auto" Padding="0,0,0,10">
+                                                    <Grid.BindingContext>
+                                                        <x:String>Mentee 3</x:String>
+                                                    </Grid.BindingContext>
+                                                    <Grid.GestureRecognizers>
+                                                        <TapGestureRecognizer Tapped="OnClickedMentee" CommandParameter="{Binding .}"/>
+                                                    </Grid.GestureRecognizers>
+                                                    <VerticalStackLayout Padding="10,0,0,0">
+                                                        <Image Source="circle_logo.png"
+                                                       WidthRequest="60"
+                                                       HeightRequest="60"
+                                                       VerticalOptions="Center"/>           
+                                                    </VerticalStackLayout>
+                                                    <Grid Grid.Column="1" ColumnDefinitions="*, auto">
+                                                        <VerticalStackLayout Padding="10,0,20,0">
+                                                            <Label Text="Mentee 3" FontSize="16" FontAttributes="Bold"/>
+                                                            <Label Text="Supporting line text lorem ipsum dolor sit amet, consectetur."
+                                                           FontSize="14" 
+                                                           TextColor="Gray"/>               
+                                                        </VerticalStackLayout>
+                                                    </Grid>
+                                                    <ImageButton Source="more_icon.png"
+                                                         Grid.Column="2"
+                                                         WidthRequest="24"
+                                                         HeightRequest="24"
+                                                         VerticalOptions="Center"/>             
                                                 </Grid>
                                             </VerticalStackLayout>
                                         </DataTemplate>
