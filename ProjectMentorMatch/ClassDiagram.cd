@@ -1,2 +1,279 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<ClassDiagram /> 
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ProjectMentorMatch.Models.Account" Collapsed="true">
+    <Position X="8.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAACHCCCKCAGggkSAAAAACAAAKgADoIAAAQggACjAA=</HashCode>
+      <FileName>Models\Account.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.AnalyticsModel" Collapsed="true">
+    <Position X="10.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAJAIAAAAAAAAQAAgAIgAAIAAAAAAAoAAAIAAAAAiCA=</HashCode>
+      <FileName>Models\Analytics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.ProfileRanking" Collapsed="true">
+    <Position X="12.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIBAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Analytics.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.BookingModels" Collapsed="true">
+    <Position X="10.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAKAiKAAKAEIAIAgAoAAAAAAAACAGAACABAYQIgCAgA=</HashCode>
+      <FileName>Models\BookingModels.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.Chat" Collapsed="true">
+    <Position X="6.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>CAAAAAAAIBAAAIAEAAgAIAAAEQAAgAAAACAFBAAIAAA=</HashCode>
+      <FileName>Models\Chat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.Database" Collapsed="true">
+    <Position X="10.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAAAgAAAABAAAAAAAAAQAAAAAAABAAAAA=</HashCode>
+      <FileName>Models\Database.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.ItemInfo" Collapsed="true">
+    <Position X="12.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>QAAEAAAAIAAQAAAggAEIAAAAAQAAACAAAAIAgAAAgAA=</HashCode>
+      <FileName>Models\ItemInfo.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.Mentor" Collapsed="true">
+    <Position X="13.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAGgAIAACCECAAwAQAEIAAACgABBADwABBYAAAAIEAA=</HashCode>
+      <FileName>Models\Mentor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.ProfileModels" Collapsed="true">
+    <Position X="9.75" Y="3.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gkChCkRDSiASCAAgywmOlBkQgChAkKAIAJIAhAgBgQI=</HashCode>
+      <FileName>Models\Profile.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.ProfileInformation" Collapsed="true">
+    <Position X="9.75" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAYwAAAAQSAAigBAAIAEAAgCEAEBCBABABIQAAAAgAI=</HashCode>
+      <FileName>Models\ProfileInformation.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.RandomID" Collapsed="true">
+    <Position X="12.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AICAAAAAAIAAAAAACAgAEAAABAAAAAKAAAQQBEAAAAA=</HashCode>
+      <FileName>Models\RandomID.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Models.Settings" Collapsed="true">
+    <Position X="8.75" Y="5.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAIAAAAAAAAAAAAgAAAIAABAAAAAAAAAAAgAigAAAAA=</HashCode>
+      <FileName>Models\Settings.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Methods.AccessPermissions" Collapsed="true">
+    <Position X="14.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAgAAAAAAAAAA=</HashCode>
+      <FileName>Methods\AccessPermissions.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Methods.CompressImage" Collapsed="true">
+    <Position X="14.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAABAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Methods\CompressImage.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Methods.EmailFormat" Collapsed="true">
+    <Position X="14.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAABAAAAAAAA=</HashCode>
+      <FileName>Methods\EmailFormat.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.About" Collapsed="true">
+    <Position X="18.25" Y="4.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\About.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.ChatViewModel" Collapsed="true">
+    <Position X="18.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAEAAAAACAAAQAAAAA=</HashCode>
+      <FileName>ViewModels\ChatViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.MentorListViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAACAAQEBgIAgAgABQgQDAQAAAAAIAAACRAAA=</HashCode>
+      <FileName>ViewModels\MentorListViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.ProfileViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAAAAAAAAAAAAAAIAAAAAAAgAAAAABAAAAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ProfileViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.ScheduleViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="18.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAQAAAgAAAEABAIBIAAAAAgAAgEAIAAAAABAgAAAA=</HashCode>
+      <FileName>ViewModels\ScheduleViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.SubjectsViewModel" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="20" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAIARAoAAAAABAAAISAAAAIAgAAAUAIIAAAgAAlAAAA=</HashCode>
+      <FileName>ViewModels\SubjectsViewModel.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectMentorMatch.ViewModels.ViewModels" Collapsed="true" BaseTypeListCollapsed="true">
+    <Position X="16.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAEAAAAAAAAAAIAAAAAAAgEAAAAAAABAAAAAAAAA=</HashCode>
+      <FileName>ViewModels\ViewModels.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Analytics" Collapsed="true">
+    <Position X="23" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AIAgAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Analytics.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.ApplyAsMentor" Collapsed="true">
+    <Position X="24.75" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gIAAAiACCAIAAAAAAAAAIAAIBAAAEAQAAAAAAAAAgAA=</HashCode>
+      <FileName>Views\ApplyAsMentor.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Booking" Collapsed="true">
+    <Position X="26.5" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAKEAAAAAAAQCAAAAAgAAAAAAUAABAAAAAAAAA=</HashCode>
+      <FileName>Views\Booking.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.ChangePassPopUp" Collapsed="true">
+    <Position X="28.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ChangePassPopUp.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Chat" Collapsed="true">
+    <Position X="30" Y="1.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgAAAAAAAEAICAACAAgAAAAAAEAAAAAAA=</HashCode>
+      <FileName>Views\Chat.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.ChatSpecific" Collapsed="true">
+    <Position X="23" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAQAAgCgAAAEA=</HashCode>
+      <FileName>Views\ChatSpecific.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Dashboard" Collapsed="true">
+    <Position X="26.5" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACUAAAAAAAAAAAAAAQAACYAAQAAEAAEAAAAAA=</HashCode>
+      <FileName>Views\Dashboard.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Filter" Collapsed="true">
+    <Position X="28.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACAAAAAACgAAAAAACAAAAAAAQAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Filter.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.MenteeSearch" Collapsed="true">
+    <Position X="23" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MenteeSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.MentorSearch" Collapsed="true">
+    <Position X="24.75" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\MentorSearch.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.PrivacyAndSecurity" Collapsed="true">
+    <Position X="28.25" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\PrivacyAndSecurity.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Profile" Collapsed="true">
+    <Position X="26.5" Y="0.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>gAAAAyCAAAAABAEAAABAAAAAIABAEAAABIAAAAAAAAA=</HashCode>
+      <FileName>Views\Profile.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Search" Collapsed="true">
+    <Position X="30" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAACQAAAAAAAAAAAAAACAACAAAYAAAAgAAAAAAA=</HashCode>
+      <FileName>Views\Search.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.Views.Settings" Collapsed="true">
+    <Position X="26.25" Y="4.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAEAKAgBAAgBAAAAAAAAAAAAAAQAAAAAAAAAAQCAAA=</HashCode>
+      <FileName>Views\Settings.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.CreateAccount" Collapsed="true">
+    <Position X="24.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAAAACAIAAAAA=</HashCode>
+      <FileName>Views\CreateAccount.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="ProjectMentorMatch.SignIn" Collapsed="true">
+    <Position X="26.5" Y="3.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAACAAAAAAgAAAAAAACAAAAAAAACAAAAAAA=</HashCode>
+      <FileName>Views\SignIn.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="System.ComponentModel.INotifyPropertyChanged" Collapsed="true">
+    <Position X="18.25" Y="1.75" Width="1.5" />
+    <TypeIdentifier />
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>
