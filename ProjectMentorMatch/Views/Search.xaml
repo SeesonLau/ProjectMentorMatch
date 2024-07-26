@@ -6,6 +6,8 @@
              xmlns:material="http://schemas.enisn-projects.io/dotnet/maui/uraniumui/material"
              xmlns:control="clr-namespace:Syncfusion.Maui.Inputs;assembly=Syncfusion.Maui.Inputs"
              x:Class="ProjectMentorMatch.Views.Search"
+                          BackgroundImageSource="blue_bg.png"
+
              Shell.NavBarIsVisible="False"
              Title="Search">
     
@@ -174,7 +176,7 @@ TextColor="#086EBB">
                         
                         <material:TextField Title="" Icon="search_icon.png" AllowClear="True">
                             <material:TextField.Attachments>
-                                <Button Text="Search" />
+                                <Button Text="Search" Clicked="Button_Clicked" IsVisible="False" BackgroundColor="White" />
                             </material:TextField.Attachments>
                         </material:TextField>
                     </VerticalStackLayout>
@@ -327,11 +329,11 @@ TextColor="#086EBB">
                                                         <x:String>Mentor 2</x:String>
                                                     </Grid.BindingContext>
                                                     <Grid.GestureRecognizers>
-                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding .}"/>
+                                                        <TapGestureRecognizer Tapped="OnClickedMentor" CommandParameter="{Binding }"/>
                                                     </Grid.GestureRecognizers>
                                                     <VerticalStackLayout Padding="10,0,0,0">
                                                         <Frame WidthRequest="60" HeightRequest="60" CornerRadius="30" IsClippedToBounds="True" Padding="0">
-                                                            <Image Source="jennie.jpg" Aspect="AspectFill"/>
+                                                            <Image x:Name="julianPicture" Source="jennie.jpg" Aspect="AspectFill"/>
                                                         </Frame>
                                                     </VerticalStackLayout>
                                                     <Grid Grid.Column="1" ColumnDefinitions="*, auto">
@@ -341,7 +343,7 @@ TextColor="#086EBB">
                                                                     <ColumnDefinition Width="*" />
                                                                     <ColumnDefinition Width="auto" />
                                                                 </Grid.ColumnDefinitions>
-                                                                <Label Text="Julian Semblante" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
+                                                                <Label x:Name="julianName" Text="Julian Semblante" FontSize="16" FontAttributes="Bold" Grid.Column="0" />
                                                                 <control:SfRating Precision="Exact" ItemCount="5" ItemSize="20" RatingShape="Star" Grid.Column="1">
                                                                     <control:SfRating.RatingSettings>
                                                                         <control:RatingSettings RatedFill="#FDDB19" UnratedStroke="#515151">
@@ -350,6 +352,17 @@ TextColor="#086EBB">
                                                                     </control:SfRating.RatingSettings>
                                                                 </control:SfRating>
                                                             </Grid>
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
+                                                            
                                                             <Label Text="Add Description"
         FontSize="14" 
         TextColor="Gray"/>
