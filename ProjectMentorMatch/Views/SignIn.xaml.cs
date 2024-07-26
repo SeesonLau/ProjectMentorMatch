@@ -110,7 +110,7 @@ public partial class SignIn : ContentPage
                 int profileID = GetProfileID(userId);
                 App.ProfileID = profileID;
 
-                await DisplayAlert("Success", "Login successful.", $"{profileID}", "OK");
+              //  await DisplayAlert("Success", "Login successful.", $"{profileID}", "OK");
                 // Check if Application.Current is not null
                 if (Application.Current != null)
                 {
